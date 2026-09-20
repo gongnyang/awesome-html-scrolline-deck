@@ -7,7 +7,7 @@
   "engines": { "node": ">=20" },
   "bin": { "scrolline": "scripts/cli.mjs" },
   "scripts": {
-    "test": "node --test tests/",
+    "test": "node --test \"tests/**/*.test.mjs\"",
     "check:sample": "node scripts/cli.mjs check examples/sample-deck",
     "verify:sample": "node scripts/cli.mjs verify examples/sample-deck"
   },

@@ -105,3 +105,12 @@ sha256File, fillTemplate, slugify, parseFlags, escapeHtml`).
 - **수정 3건(sd-docs 실주행 피드백 반영)**: ① closing-qr URL을 `ch` 폭 트윈 → `--type` 클립 리빌로 교체(긴 URL 최종 상태에서 잘리던 버그). ② kinetic-titles 불릿 구분자를 공백 감싼 `//`로(CLI `--lines`가 `|`로 쪼개서 왕복 불가), `|`도 계속 허용. ③ horizontal-gallery 모션 축소 레이아웃에서 캡션 `order: -1` + 2열 그리드(G10 가시 요소 2개 실패 → 해소).
 - **셀프테스트 술어 7번 추가**: scene.js에서 `width`를 `ch`/`em`으로 트윈하면 실패(위 ① 유형 재발 차단). 역검증 완료 — 옛 코드로 되돌리면 FAIL, 복구하면 PASS.
 - **수정 4건째(sd-docs)**: odometer-stats — ① 마스크·1.04em 클립을 `.od__odo` 전체 → `.od__reels`(릴만)로 좁히고 `.od__suffix`를 그 밖으로 빼 `.4em`/자체 line-height로 조판(한글 접미사 하단 잘림 해소). ② 파서를 `/^\s*([\d,]+)(\S*)\s*([\s\S]*)$/`로 교체 — 접미사는 숫자에 **붙어 있을 때만**, 공백 뒤는 전부 라벨. `12 장면`(맨숫자+한글 라벨)이 이제 가능, `2450vh of pin`·`98% 재방문`도 그대로.
+
+### D notes — 3차 (최종)
+
+- T의 템플릿 수정 반영 후 재빌드·재검증: **`check` 6/6 PASS · `verify` 12/12 PASS**(G10 포함).
+  `examples/sample-deck/qa/`에 캡처 18장 + `report.json`. README 히어로 4장 육안 확인 완료
+  (오도미터 한글 접미사 정상, 클로징 URL 두 줄로 전량 표시).
+- 재현 명령: `bash examples/sample-deck/tools/build-sample.sh` → `(cd examples/sample-deck && npm run build)`
+  → `node scripts/cli.mjs verify examples/sample-deck`.
+- 샘플 커밋 용량 3.7 MB(프레임 2.8 · qa 0.72 · 나머지 0.2), node_modules·dist 제외.

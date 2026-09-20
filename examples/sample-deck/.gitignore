@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+# qa/ is tracked here on purpose — the captures are the README hero images.
