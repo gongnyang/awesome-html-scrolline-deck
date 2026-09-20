@@ -53,7 +53,7 @@
       "trim_ok": true,
       "body_pt_declared": 9.8,
       "body_pt_measured": 9.8,
-      "pages": 46,
+      "pages": 56,
       "range": [
         24,
         60
@@ -113,13 +113,13 @@
         },
         {
           "title": "무대에서 굴리는 법",
-          "printed": 28,
-          "expected": 28
+          "printed": 38,
+          "expected": 38
         },
         {
           "title": "실전 해부: 패캠 Astra 세미나 12장면",
-          "printed": 35,
-          "expected": 35
+          "printed": 45,
+          "expected": 45
         }
       ],
       "ok": true,
@@ -134,7 +134,7 @@
     "G14-C": {
       "problems": [],
       "skipped": 0,
-      "dedup_skipped": 120,
+      "dedup_skipped": 121,
       "ok": true
     },
     "G14-D": {
@@ -212,13 +212,13 @@
           "role": null
         },
         {
-          "page": 30,
+          "page": 40,
           "reach": 0.809,
-          "lines": 19,
+          "lines": 20,
           "role": null
         },
         {
-          "page": 37,
+          "page": 47,
           "reach": 0.818,
           "lines": 21,
           "role": null
@@ -251,10 +251,15 @@
     "G7-MID: p19 reach 0.97 — float 밀림 면제(다음 면 통짜 블록)",
     "G7-MID: p20 reach 0.861 — float 밀림 면제(다음 면 통짜 블록)",
     "G7-MID: p21 reach 0.939 — float 밀림 면제(다음 면 통짜 블록)",
-    "G7-MID: p26 reach 0.897 — float 밀림 면제(다음 면 통짜 블록)",
-    "G7-MID: p28 reach 0.968 — float 밀림 면제(다음 면 통짜 블록)",
-    "G7-MID: p35 reach 1.0 — float 밀림 면제(다음 면 통짜 블록)",
-    "G7-MID: p42 reach 0.93 — float 밀림 면제(다음 면 통짜 블록)"
+    "G7-MID: p31 reach 0.895 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p32 reach 1.0 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p34 reach 1.0 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p35 reach 0.953 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p36 reach 0.909 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p37 reach 0.953 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p38 reach 0.978 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p45 reach 1.0 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p52 reach 0.93 — float 밀림 면제(다음 면 통짜 블록)"
   ],
   "pass": true,
   "metrics": {
@@ -447,9 +452,9 @@
       },
       {
         "page": 24,
-        "lines": 6,
-        "reach": 0.869,
-        "ink": 0.339,
+        "lines": 7,
+        "reach": 0.9,
+        "ink": 0.37,
         "gap": 0.53,
         "imgarea": 0.0
       },
@@ -464,45 +469,125 @@
       {
         "page": 26,
         "lines": 37,
-        "reach": 0.897,
-        "ink": 0.752,
-        "gap": 0.145,
+        "reach": 0.945,
+        "ink": 0.751,
+        "gap": 0.194,
         "imgarea": 0.0
       },
       {
         "page": 27,
         "lines": 22,
         "reach": 0.93,
-        "ink": 0.771,
-        "gap": 0.159,
+        "ink": 0.76,
+        "gap": 0.17,
         "imgarea": 0.0
       },
       {
         "page": 28,
-        "lines": 26,
-        "reach": 0.968,
-        "ink": 0.839,
-        "gap": 0.129,
+        "lines": 25,
+        "reach": 0.904,
+        "ink": 0.801,
+        "gap": 0.103,
         "imgarea": 0.0
       },
       {
         "page": 29,
-        "lines": 22,
-        "reach": 0.921,
-        "ink": 0.767,
-        "gap": 0.154,
+        "lines": 23,
+        "reach": 0.956,
+        "ink": 0.791,
+        "gap": 0.165,
         "imgarea": 0.0
       },
       {
         "page": 30,
-        "lines": 19,
-        "reach": 0.809,
-        "ink": 0.644,
+        "lines": 23,
+        "reach": 0.947,
+        "ink": 0.782,
         "gap": 0.165,
         "imgarea": 0.0
       },
       {
         "page": 31,
+        "lines": 22,
+        "reach": 0.895,
+        "ink": 0.748,
+        "gap": 0.147,
+        "imgarea": 0.0
+      },
+      {
+        "page": 32,
+        "lines": 15,
+        "reach": 1.0,
+        "ink": 0.885,
+        "gap": 0.115,
+        "imgarea": 0.266
+      },
+      {
+        "page": 33,
+        "lines": 15,
+        "reach": 0.987,
+        "ink": 0.908,
+        "gap": 0.079,
+        "imgarea": 0.266
+      },
+      {
+        "page": 34,
+        "lines": 14,
+        "reach": 1.0,
+        "ink": 0.855,
+        "gap": 0.145,
+        "imgarea": 0.266
+      },
+      {
+        "page": 35,
+        "lines": 15,
+        "reach": 0.953,
+        "ink": 0.908,
+        "gap": 0.045,
+        "imgarea": 0.266
+      },
+      {
+        "page": 36,
+        "lines": 13,
+        "reach": 0.909,
+        "ink": 0.844,
+        "gap": 0.065,
+        "imgarea": 0.266
+      },
+      {
+        "page": 37,
+        "lines": 15,
+        "reach": 0.953,
+        "ink": 0.908,
+        "gap": 0.045,
+        "imgarea": 0.266
+      },
+      {
+        "page": 38,
+        "lines": 15,
+        "reach": 0.978,
+        "ink": 0.913,
+        "gap": 0.065,
+        "imgarea": 0.266
+      },
+      {
+        "page": 39,
+        "lines": 15,
+        "reach": 1.0,
+        "ink": 0.892,
+        "gap": 0.108,
+        "imgarea": 0.266
+      },
+      {
+        "page": 40,
+        "lines": 20,
+        "reach": 0.809,
+        "ink": 0.678,
+        "gap": 0.131,
+        "imgarea": 0.0
+      },
+      {
+        "page": 41,
         "lines": 6,
         "reach": 0.869,
         "ink": 0.339,
@@ -510,7 +595,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 32,
+        "page": 42,
         "lines": 28,
         "reach": 0.931,
         "ink": 0.765,
@@ -518,7 +603,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 33,
+        "page": 43,
         "lines": 29,
         "reach": 0.983,
         "ink": 0.799,
@@ -526,7 +611,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 34,
+        "page": 44,
         "lines": 24,
         "reach": 0.999,
         "ink": 0.822,
@@ -534,7 +619,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 35,
+        "page": 45,
         "lines": 32,
         "reach": 1.0,
         "ink": 0.812,
@@ -542,7 +627,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 36,
+        "page": 46,
         "lines": 26,
         "reach": 0.979,
         "ink": 0.833,
@@ -550,7 +635,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 37,
+        "page": 47,
         "lines": 21,
         "reach": 0.818,
         "ink": 0.709,
@@ -558,7 +643,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 38,
+        "page": 48,
         "lines": 7,
         "reach": 0.946,
         "ink": 0.388,
@@ -566,7 +651,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 39,
+        "page": 49,
         "lines": 24,
         "reach": 0.997,
         "ink": 0.809,
@@ -574,7 +659,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 40,
+        "page": 50,
         "lines": 39,
         "reach": 0.982,
         "ink": 0.819,
@@ -582,7 +667,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 41,
+        "page": 51,
         "lines": 37,
         "reach": 0.94,
         "ink": 0.756,
@@ -590,7 +675,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 42,
+        "page": 52,
         "lines": 23,
         "reach": 0.93,
         "ink": 0.781,
@@ -598,7 +683,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 43,
+        "page": 53,
         "lines": 24,
         "reach": 0.906,
         "ink": 0.813,
@@ -606,7 +691,7 @@
         "imgarea": 0.053
       },
       {
-        "page": 44,
+        "page": 54,
         "lines": 23,
         "reach": 0.916,
         "ink": 0.782,
@@ -614,7 +699,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 45,
+        "page": 55,
         "lines": 30,
         "reach": 0.72,
         "ink": 0.589,
@@ -622,7 +707,7 @@
         "imgarea": 0.0
       },
       {
-        "page": 46,
+        "page": 56,
         "lines": 6,
         "reach": 1.0,
         "ink": 0.164,
@@ -635,15 +720,15 @@
       10,
       18,
       24,
-      31,
-      38
+      41,
+      48
     ],
     "tails": [
       9,
       17,
       23,
-      30,
-      37
+      40,
+      47
     ],
     "structural_exempt": [
       1,
@@ -654,10 +739,10 @@
       18,
       22,
       24,
-      31,
-      38,
-      45,
-      46
+      41,
+      48,
+      55,
+      56
     ]
   },
   "final": "/mnt/d/awesome-html-scrolline-deck/book/final/book.pdf"
