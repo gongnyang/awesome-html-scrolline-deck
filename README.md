@@ -29,6 +29,12 @@ One notch of the wheel is not the next slide. It is the next frame of the scene 
 
 ---
 
+## One-minute demo
+
+<a href="docs/demo.mp4"><img src="docs/demo-teaser.gif" width="100%" alt="12-second teaser: four scroll-driven decks cut together" /></a>
+
+<sub>Full 59-second trailer: <a href="docs/demo.mp4">docs/demo.mp4</a> (1080p). Every shot is a real deck driven by real wheel events; the score is synthesised in ffmpeg. Regenerate with <code>tools/demo/</code>.</sub>
+
 ## Live examples
 
 Four decks, four concepts, all generated and gate-verified by the skill. Open one and scroll, or press <b>→</b>.

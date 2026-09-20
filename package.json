@@ -1,6 +1,6 @@
 {
   "name": "awesome-html-scrolline-deck",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scrolline Deck — a Claude Code skill and CLI that turns an outline into a scroll-driven cinematic HTML presentation (scrollytelling deck).",
   "type": "module",
   "license": "MIT",

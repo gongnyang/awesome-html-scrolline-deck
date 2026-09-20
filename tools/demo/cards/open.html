@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Scrolline Deck — cold open</title>
+<link rel="stylesheet" href="./card.css" />
+<style>
+  .stage { gap: 0; }
+  .kicker { margin-bottom: 30px; }
+  .rule   { width: 560px; margin: 0 0 46px; }
+  .display { margin-bottom: 34px; }
+  .sub    { margin-bottom: 96px; }
+  .foot   { position: absolute; left: 200px; bottom: 96px; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <p class="kicker anim" id="kicker">Scroll-driven cinematic HTML presentation</p>
+    <div class="rule anim" id="rule"></div>
+    <h1 class="display anim" id="title">Scrolline Deck</h1>
+    <p class="sub anim" id="sub">스크롤로 발표하라</p>
+    <p class="foot anim" id="foot">a Claude Code skill · MIT</p>
+  </div>
+
+<script type="module">
+import { card, win, letters, rise } from './seek.js';
+
+const kicker = document.getElementById('kicker');
+const rule   = document.getElementById('rule');
+const title  = document.getElementById('title');
+const sub    = document.getElementById('sub');
+const foot   = document.getElementById('foot');
+
+const chars = letters(title);
+const subChars = letters(sub);
+
+// The reveal is front-loaded and over by a third of the way in. A card that takes
+// three quarters of a second to put anything on screen is three quarters of a second
+// of dead trailer, and the emptiness check counts every frame of it.
+card((p) => {
+  rise(kicker, win(p, 0.00, 0.035), 14);
+
+  // The rule draws itself left to right, then the title types out behind it.
+  const r = win(p, 0.00, 0.10);
+  rule.style.opacity = String(r);
+  rule.style.transform = `scaleX(${r.toFixed(3)})`;
+
+  title.style.opacity = '1';
+  chars.forEach((ch, i) => {
+    const t = win(p, 0.015 + i * 0.0075, 0.015 + i * 0.0075 + 0.065);
+    ch.style.opacity = String(t);
+    ch.style.transform = `translateY(${((1 - t) * 30).toFixed(2)}px)`;
+  });
+
+  sub.style.opacity = '1';
+  subChars.forEach((ch, i) => {
+    const t = win(p, 0.20 + i * 0.008, 0.20 + i * 0.008 + 0.07);
+    ch.style.opacity = String(t * 0.92);
+    ch.style.transform = `translateY(${((1 - t) * 18).toFixed(2)}px)`;
+  });
+
+  rise(foot, win(p, 0.34, 0.42), 12);
+});
+</script>
+</body>
+</html>

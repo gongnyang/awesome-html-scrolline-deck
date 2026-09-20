@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Scrolline Deck — end card</title>
+<link rel="stylesheet" href="./card.css" />
+<style>
+  .stage { justify-content: center; }
+  .display { font-size: 104px; margin-bottom: 40px; letter-spacing: -4px; }
+  .rule { width: 680px; margin-bottom: 44px; }
+  .links { display: flex; flex-direction: column; gap: 20px; margin-bottom: 84px; }
+  .link { display: flex; align-items: baseline; gap: 26px; }
+  .link .tag {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--ink-subtle);
+    min-width: 108px;
+  }
+  .link .url { font-family: var(--font-mono); font-size: 30px; letter-spacing: -0.4px; color: var(--ink); }
+  .foot { position: absolute; left: 200px; bottom: 96px; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <h1 class="display anim" id="title">Scrolline Deck</h1>
+    <div class="rule anim" id="rule"></div>
+    <div class="links">
+      <div class="link anim" id="l1">
+        <span class="tag">Repo</span>
+        <span class="url">github.com/gongnyang/<span class="accent">awesome-html-scrolline-deck</span></span>
+      </div>
+      <div class="link anim" id="l2">
+        <span class="tag">Live decks</span>
+        <span class="url">gongnyang.github.io/<span class="accent">awesome-html-scrolline-deck</span></span>
+      </div>
+    </div>
+    <p class="foot anim" id="foot">MIT · npx scrolline new · 스크롤로 발표하라</p>
+  </div>
+
+<script type="module">
+import { card, win, rise } from './seek.js';
+
+const title = document.getElementById('title');
+const rule  = document.getElementById('rule');
+const links = ['l1', 'l2'].map((id) => document.getElementById(id));
+const foot  = document.getElementById('foot');
+
+card((p) => {
+  rise(title, win(p, 0.00, 0.09), 26);
+  const r = win(p, 0.02, 0.14);
+  rule.style.opacity = String(r);
+  rule.style.transform = `scaleX(${r.toFixed(3)})`;
+  links.forEach((l, i) => {
+    const t = win(p, 0.06 + i * 0.05, 0.06 + i * 0.05 + 0.13);
+    l.style.opacity = String(t);
+    l.style.transform = `translateY(${((1 - t) * 22).toFixed(2)}px)`;
+  });
+  rise(foot, win(p, 0.26, 0.36), 12);
+});
+</script>
+</body>
+</html>

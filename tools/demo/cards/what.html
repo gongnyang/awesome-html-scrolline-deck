@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Scrolline Deck — what it is</title>
+<link rel="stylesheet" href="./card.css" />
+<style>
+  .stage { justify-content: center; }
+  .kicker { margin-bottom: 54px; }
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    padding: 26px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .row:last-of-type { border-bottom: 1px solid var(--hairline); }
+  .row .num {
+    font-size: 64px;
+    font-weight: 600;
+    letter-spacing: -2.4px;
+    min-width: 150px;
+    font-variant-numeric: tabular-nums;
+  }
+  .row .txt { font-size: 40px; font-weight: 500; letter-spacing: -1.2px; }
+  .row .tail { font-size: 22px; color: var(--ink-subtle); margin-left: auto; font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <p class="kicker anim" id="kicker">What it is</p>
+    <div class="row anim" id="r1">
+      <span class="num accent">1</span>
+      <span class="txt">휠 한 칸 = 장면 진행률</span>
+      <span class="tail">scrub, not slide</span>
+    </div>
+    <div class="row anim" id="r2">
+      <span class="num amber">12</span>
+      <span class="txt">장면 기법</span>
+      <span class="tail">scene techniques</span>
+    </div>
+    <div class="row anim" id="r3">
+      <span class="num">10</span>
+      <span class="txt">하드 게이트</span>
+      <span class="tail">gates, fail closed</span>
+    </div>
+  </div>
+
+<script type="module">
+import { card, win, rise } from './seek.js';
+
+const kicker = document.getElementById('kicker');
+const rows = ['r1', 'r2', 'r3'].map((id) => document.getElementById(id));
+
+card((p) => {
+  rise(kicker, win(p, 0.00, 0.035), 12);
+  rows.forEach((row, i) => {
+    const t = win(p, 0.02 + i * 0.055, 0.02 + i * 0.055 + 0.12);
+    row.style.opacity = String(t);
+    row.style.transform = `translateY(${((1 - t) * 30).toFixed(2)}px)`;
+  });
+});
+</script>
+</body>
+</html>

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1 — 2026-09-21
+
+- Three more example decks, each a different concept and palette, every picture a script-drawn infographic: `product-launch` (light), `annual-report`, `city-guide`. All twelve techniques are now exercised across the examples.
+- GitHub Pages gallery of all decks: https://gongnyang.github.io/awesome-html-scrolline-deck/ (`scripts/site/build-examples.mjs`).
+- One-minute demo trailer `docs/demo.mp4` + teaser GIF; regenerate with `tools/demo/`.
+- Handbook grows to 56 pages with a chapter-4 gallery of real captures from the four decks.
+- Template fixes found by building the decks: parallax-video veil hid the clip; odometer clipped 3–4 digit figures; paper-assembly fan lost its centring; wipe-transform step number coerced to a number; anatomy-rows accepts `assets.marks`; tilt-card caption legible over plates; `verify` settles 700 ms so captures match the scrubbed timeline. Schema documents `links`, `rows`, `marks`, `caption`, `restartLabel`.
+- CLI: `add --url` and `qr --scene` wire the QR into `deck.json`; unknown flags warn.
+
 ## 0.1.0 — 2026-09-20
 
 First public release.

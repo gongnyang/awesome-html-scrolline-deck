@@ -29,6 +29,12 @@
 
 ---
 
+## 1분 데모
+
+<a href="docs/demo.mp4"><img src="docs/demo-teaser.gif" width="100%" alt="12초 티저: 스크롤 덱 넷을 이어 붙인 컷" /></a>
+
+<sub>59초 트레일러 전체: <a href="docs/demo.mp4">docs/demo.mp4</a> (1080p). 모든 샷은 실제 휠 이벤트로 굴린 실제 덱이고, 음악은 ffmpeg로 합성했다. <code>tools/demo/</code>로 재생성.</sub>
+
 ## 실제 예제
 
 서로 다른 콘셉트의 덱 넷. 전부 스킬이 생성하고 게이트로 검증했다. 열어서 휠을 굴리거나 <b>→</b>를 누르면 된다.
