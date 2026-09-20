@@ -1,0 +1,9 @@
+node_modules
+dist
+.npm-cache
+*.log
+qa/*.tmp
+book/draft
+book/.cache
+examples/sample-deck/node_modules
+examples/sample-deck/dist

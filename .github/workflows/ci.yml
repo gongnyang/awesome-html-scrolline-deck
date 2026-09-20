@@ -1,0 +1,26 @@
+name: ci
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy: { matrix: { node: [20, 22] } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ matrix.node }}" }
+      - run: npm ci
+      - run: npm test
+      - run: node scripts/cli.mjs check examples/sample-deck
+      - run: cd examples/sample-deck && npm ci && npm run build
+  verify:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci && npm i -D playwright && npx playwright install --with-deps chromium
+      - run: cd examples/sample-deck && npm ci && npm run build
+      - run: node scripts/cli.mjs verify examples/sample-deck
+      - uses: actions/upload-artifact@v4
+        with: { name: qa, path: examples/sample-deck/qa }
