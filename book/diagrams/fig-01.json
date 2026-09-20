@@ -1,0 +1,18 @@
+{
+  "kind": "antv",
+  "bf": { "width": "full", "icons": false },
+  "dsl": [
+    "infographic compare-quadrant-quarter-simple-card",
+    "data",
+    "  title 어느 형식이 어디에 강한가",
+    "  compares",
+    "    - label 슬라이드 강점",
+    "      desc 항목 나열과 표",
+    "    - label 슬라이드 약점",
+    "      desc 변화 묘사",
+    "    - label 스크롤텔링 강점",
+    "      desc 과정과 대비",
+    "    - label 스크롤텔링 약점",
+    "      desc 되짚기와 배포"
+  ]
+}

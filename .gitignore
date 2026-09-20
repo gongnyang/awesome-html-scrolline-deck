@@ -9,3 +9,7 @@ examples/sample-deck/node_modules
 examples/sample-deck/dist
 WORKERS.md
 tests/fixtures/*/qa/
+book/final
+book/typeset
+book/qc
+book/refit-params.json

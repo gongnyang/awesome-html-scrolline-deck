@@ -1,0 +1,16 @@
+{
+  "kind": "antv",
+  "bf": { "width": "full", "icons": false },
+  "dsl": [
+    "infographic list-grid-badge-card",
+    "data",
+    "  title 리허설에서 확인할 여섯 가지",
+    "  lists",
+    "    - label 전체 주행",
+    "    - label 프로젝터 대비",
+    "    - label 전체 화면",
+    "    - label 키 착지",
+    "    - label 영상 대체본",
+    "    - label 네트워크 차단"
+  ]
+}

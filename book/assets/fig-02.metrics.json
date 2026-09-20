@@ -1,0 +1,217 @@
+{
+  "schema": "bf-diagram-metrics/2",
+  "fig": "fig-02",
+  "kind": "antv",
+  "style": "practical",
+  "widthKey": "full",
+  "cacheKey": "3199ce7cfee916b92a2e8f5ccd443d8e4dc0248483da38091a2840de31888cc5",
+  "template": "sequence-ascending-steps",
+  "widthMm": 121,
+  "viewBoxW": 394.21,
+  "ptPerUnit": 0.87007,
+  "bodyPt": 9.8,
+  "minFontPt": 8,
+  "maxRatio": 1.2,
+  "sizeCount": 7,
+  "minPt": 8.823,
+  "maxPt": 11.267,
+  "ratio": 1.15,
+  "capPt": 11.76,
+  "band": {
+    "level": "FAIL",
+    "enforce": true,
+    "verdict": "ok",
+    "reason": null
+  },
+  "sizesPt": [
+    8.823,
+    8.823,
+    8.823,
+    9.797,
+    9.797,
+    9.797,
+    11.267
+  ],
+  "labelPaint": {
+    "checked": 7,
+    "knockout": 0,
+    "roleViolations": 0,
+    "contrastViolations": 0,
+    "minRatio": 6.897,
+    "notes": [],
+    "labels": [
+      {
+        "text": "장면 하나의 세 박자",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 11.267,
+        "bold": false,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "요소가 화면에 들어온다",
+        "tag": "text",
+        "fill": "#5a5a5a",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 8.823,
+        "bold": false,
+        "ratio": 6.897,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "진입 0~30%",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.797,
+        "bold": true,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "완성 화면이 유지된다",
+        "tag": "text",
+        "fill": "#5a5a5a",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 8.823,
+        "bold": false,
+        "ratio": 6.897,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "홀드 30~75%",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.797,
+        "bold": true,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "다음 장면에 자리를 넘긴다",
+        "tag": "text",
+        "fill": "#5a5a5a",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 8.823,
+        "bold": false,
+        "ratio": 6.897,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "퇴장 75~100%",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.797,
+        "bold": true,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      }
+    ]
+  },
+  "fit": {
+    "verdict": "ok",
+    "maxHeightMm": 167,
+    "nominalWidthMm": 121,
+    "placedHMm": 71.275,
+    "widthMm": 121
+  },
+  "labelScale": {
+    "version": 1,
+    "applied": true,
+    "passes": 2,
+    "targetPt": {
+      "title": 11.27,
+      "text": 9.8,
+      "desc": 8.82
+    },
+    "injectedUnits": {
+      "title": 12.953,
+      "text": 11.263,
+      "desc": 10.137
+    },
+    "nativeClamped": 0,
+    "pre": {
+      "viewBoxW": 394.21,
+      "minPt": 10.441,
+      "maxPt": 20.882,
+      "ratio": 2.131
+    },
+    "frameW": 394.21,
+    "contentW": 394.208,
+    "frameSlack": 0,
+    "iterations": [
+      {
+        "pass": 0,
+        "inject": null,
+        "frameW": null,
+        "contentW": 394.208,
+        "nativeClamped": 0,
+        "viewBoxW": 394.21,
+        "ptPerUnit": 0.87007,
+        "minPt": 10.441,
+        "maxPt": 20.882
+      },
+      {
+        "pass": 1,
+        "inject": {
+          "title": 12.953,
+          "text": 11.263,
+          "desc": 10.137
+        },
+        "frameW": 394.21,
+        "contentW": 394.208,
+        "nativeClamped": 0,
+        "viewBoxW": 394.21,
+        "ptPerUnit": 0.87007,
+        "minPt": 8.823,
+        "maxPt": 11.267
+      }
+    ]
+  }
+}

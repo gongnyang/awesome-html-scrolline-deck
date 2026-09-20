@@ -1,0 +1,217 @@
+{
+  "schema": "bf-diagram-metrics/2",
+  "fig": "fig-05",
+  "kind": "antv",
+  "style": "practical",
+  "widthKey": "full",
+  "cacheKey": "eaacf4da531b5dfb4499fabd3500504c024542819a69761ce4d05e7b9b377d50",
+  "template": "list-grid-badge-card",
+  "widthMm": 121,
+  "viewBoxW": 658.37,
+  "ptPerUnit": 0.52097,
+  "bodyPt": 9.8,
+  "minFontPt": 8,
+  "maxRatio": 1.2,
+  "sizeCount": 7,
+  "minPt": 9.799,
+  "maxPt": 11.269,
+  "ratio": 1.15,
+  "capPt": 11.76,
+  "band": {
+    "level": "FAIL",
+    "enforce": true,
+    "verdict": "ok",
+    "reason": null
+  },
+  "sizesPt": [
+    9.799,
+    9.799,
+    9.799,
+    9.799,
+    9.799,
+    9.799,
+    11.269
+  ],
+  "labelPaint": {
+    "checked": 7,
+    "knockout": 0,
+    "roleViolations": 0,
+    "contrastViolations": 0,
+    "minRatio": 12.473,
+    "notes": [],
+    "labels": [
+      {
+        "text": "리허설에서 확인할 여섯 가지",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 11.269,
+        "bold": false,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "전체 주행",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#e8eff8",
+        "bgLayers": 1,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.799,
+        "bold": true,
+        "ratio": 13.068,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "프로젝터 대비",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#e9e9ea",
+        "bgLayers": 1,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.799,
+        "bold": true,
+        "ratio": 12.473,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "전체 화면",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#f0f1f2",
+        "bgLayers": 1,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.799,
+        "bold": true,
+        "ratio": 13.382,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "키 착지",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#e8eff8",
+        "bgLayers": 1,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.799,
+        "bold": true,
+        "ratio": 13.068,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "영상 대체본",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#e9e9ea",
+        "bgLayers": 1,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.799,
+        "bold": true,
+        "ratio": 12.473,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "네트워크 차단",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#f0f1f2",
+        "bgLayers": 1,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.799,
+        "bold": true,
+        "ratio": 13.382,
+        "floor": 4.5,
+        "verdict": "ok"
+      }
+    ]
+  },
+  "fit": {
+    "verdict": "ok",
+    "maxHeightMm": 167,
+    "nominalWidthMm": 121,
+    "placedHMm": 41.788,
+    "widthMm": 121
+  },
+  "labelScale": {
+    "version": 1,
+    "applied": true,
+    "passes": 2,
+    "targetPt": {
+      "title": 11.27,
+      "text": 9.8,
+      "desc": 8.82
+    },
+    "injectedUnits": {
+      "title": 21.633,
+      "text": 18.811,
+      "desc": 16.93
+    },
+    "nativeClamped": 0,
+    "pre": {
+      "viewBoxW": 658.37,
+      "minPt": 7.294,
+      "maxPt": 12.503,
+      "ratio": 1.276
+    },
+    "frameW": 658.37,
+    "contentW": 658.368,
+    "frameSlack": 0,
+    "iterations": [
+      {
+        "pass": 0,
+        "inject": null,
+        "frameW": null,
+        "contentW": 658.368,
+        "nativeClamped": 0,
+        "viewBoxW": 658.37,
+        "ptPerUnit": 0.52097,
+        "minPt": 7.294,
+        "maxPt": 12.503
+      },
+      {
+        "pass": 1,
+        "inject": {
+          "title": 21.633,
+          "text": 18.811,
+          "desc": 16.93
+        },
+        "frameW": 658.37,
+        "contentW": 658.368,
+        "nativeClamped": 0,
+        "viewBoxW": 658.37,
+        "ptPerUnit": 0.52097,
+        "minPt": 9.799,
+        "maxPt": 11.269
+      }
+    ]
+  }
+}

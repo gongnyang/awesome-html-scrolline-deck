@@ -180,6 +180,14 @@ awesome-html-scrolline-deck/
 └─ book/                 동반 실용서(국문, PDF는 docs/)
 ```
 
+## 실용서
+
+<a href="docs/스크롤로-발표하라.pdf"><img src="docs/handbook-cover.jpg" width="160" align="left" alt="실용서 「스크롤로 발표하라」 표지" /></a>
+
+**「스크롤로 발표하라」** (46쪽, PDF는 [`docs/`](docs/스크롤로-발표하라.pdf)) — 개발자가 아니라 발표자를 위한 실용서. 스크롤텔링 덱이 무엇인지, 진입·홀드·퇴장 문법, 표 한 장짜리 스토리보드, Claude Code에 덱을 요청하는 법, 발표 키와 리허설, 실제 12장면 세미나 덱 해부.
+
+<br clear="all" />
+
 ## 기여
 
 이슈와 PR 환영한다. 새 기법 하나를 추가하려면 `templates/scenes/<technique>/` 아래 네 파일(`scene.html`·`scene.css`·`scene.js`·`template.json`)과 `references/techniques.md` 한 행, 그리고 통과하는 `node --test`가 필요하다. 색은 토큰으로, 타임라인 합은 1 이하로, 박스는 넣지 않는다.

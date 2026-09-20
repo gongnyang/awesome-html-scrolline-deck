@@ -1,0 +1,664 @@
+{
+  "gates": {
+    "G16-SYNC": {
+      "problems": [],
+      "warns": [
+        "engine=typst — theme.typ 색은 .darken()/.transparentize() 계산식이라 팔레트↔테마 대조는 스캔 범위 밖(수동 감사 항목)"
+      ],
+      "ok": true,
+      "enforced_by": "build.py"
+    },
+    "G16-CONTRAST": {
+      "problems": [],
+      "warns": [
+        "styles/practical/tokens.json에 contrast_contract 미선언 — 축 N/A"
+      ],
+      "ok": true,
+      "enforced_by": "build.py"
+    },
+    "G16-BRAND": {
+      "problems": [],
+      "warns": [],
+      "ok": true,
+      "enforced_by": "build.py"
+    },
+    "G10": {
+      "problems": [],
+      "ok": true
+    },
+    "G0": {
+      "problems": [],
+      "ok": true
+    },
+    "G15-PARA": {
+      "problems": [],
+      "ok": true
+    },
+    "G16-LINT": {
+      "ok": true,
+      "problems": [],
+      "warns": [],
+      "skipped": "typeset/book-final.html 부재 — 이 린터는 HTML DOM에서 실 페어를 도출하므로 typst 엔진 스타일(practical)에는 원리적으로 적용 불가"
+    },
+    "G1": {
+      "exists": true,
+      "trim_mm_measured": [
+        153.0,
+        225.0
+      ],
+      "trim_mm_expected": [
+        153,
+        225
+      ],
+      "trim_ok": true,
+      "body_pt_declared": 9.8,
+      "body_pt_measured": 9.8,
+      "pages": 46,
+      "range": [
+        24,
+        60
+      ],
+      "ok": true,
+      "strict": false
+    },
+    "G2": {
+      "not_embedded": [],
+      "type3_pages": [],
+      "ok": true
+    },
+    "G3-OVERFLOW": {
+      "overflows": [],
+      "count": 0,
+      "invalid_bboxes": [],
+      "invalid_count": 0,
+      "empty_count": 0,
+      "ok": true
+    },
+    "G4": {
+      "bookmarks": 6,
+      "bookmarks_lvl2": 29,
+      "mismatches": [],
+      "ok": true
+    },
+    "G13": {
+      "problems": [],
+      "ok": true
+    },
+    "G17-FIGFIT": {
+      "problems": [],
+      "ok": true
+    },
+    "G14-A": {
+      "problems": [],
+      "pairs": [
+        {
+          "title": "슬라이드가 아니라 장면이다",
+          "printed": 1,
+          "expected": 1
+        },
+        {
+          "title": "장면 문법: 진입·홀드·퇴장",
+          "printed": 7,
+          "expected": 7
+        },
+        {
+          "title": "준비물은 표 한 장이다",
+          "printed": 15,
+          "expected": 15
+        },
+        {
+          "title": "덱을 Claude Code로 만든다",
+          "printed": 21,
+          "expected": 21
+        },
+        {
+          "title": "무대에서 굴리는 법",
+          "printed": 28,
+          "expected": 28
+        },
+        {
+          "title": "실전 해부: 패캠 Astra 세미나 12장면",
+          "printed": 35,
+          "expected": 35
+        }
+      ],
+      "ok": true,
+      "toc_pages": [
+        3
+      ]
+    },
+    "G14-B": {
+      "problems": [],
+      "ok": true
+    },
+    "G14-C": {
+      "problems": [],
+      "skipped": 0,
+      "dedup_skipped": 120,
+      "ok": true
+    },
+    "G14-D": {
+      "problems": [],
+      "pairs": [],
+      "warns": [],
+      "checked": 0,
+      "ok": true
+    },
+    "G14-E": {
+      "problems": [],
+      "pairs": [],
+      "warns": [],
+      "checked": 0,
+      "ok": true
+    },
+    "G15-RHYTHM": {
+      "problems": [],
+      "ok": true
+    },
+    "G11": {
+      "declared": 0,
+      "problems": [],
+      "ok": true
+    },
+    "G3-COLLIDE": {
+      "collisions": [],
+      "count": 0,
+      "exempt_pages": [],
+      "ok": true
+    },
+    "G3-FIT": {
+      "problems": [],
+      "front_pages": [
+        1,
+        2,
+        3
+      ],
+      "declared": false,
+      "ok": true
+    },
+    "G7-FRAME": {
+      "token_top_pt": 56.7,
+      "derived_top_pt": 55.2,
+      "book_pitch": 18.29,
+      "n_grid": 29,
+      "ok": true
+    },
+    "G7-BLANK": {
+      "blank_pages": [],
+      "ok": true
+    },
+    "G12": {
+      "parity_filler": [],
+      "ok": true
+    },
+    "G7-TAIL": {
+      "tails": [
+        {
+          "page": 9,
+          "reach": 0.921,
+          "lines": 22,
+          "role": null
+        },
+        {
+          "page": 17,
+          "reach": 0.809,
+          "lines": 20,
+          "role": null
+        },
+        {
+          "page": 23,
+          "reach": 0.706,
+          "lines": 17,
+          "role": null
+        },
+        {
+          "page": 30,
+          "reach": 0.809,
+          "lines": 19,
+          "role": null
+        },
+        {
+          "page": 37,
+          "reach": 0.818,
+          "lines": 21,
+          "role": null
+        }
+      ],
+      "ok": true
+    },
+    "G7-MID": {
+      "underfull": [],
+      "ok": true
+    },
+    "G7-DOC": {
+      "median": 0.809,
+      "p10": 0.706,
+      "ok": true
+    },
+    "G8": {
+      "stretched": [],
+      "ok": true
+    },
+    "G9": {
+      "violations": [],
+      "ok": true
+    }
+  },
+  "warns": [
+    "G16-LINT: skip — typeset/book-final.html 부재 — 이 린터는 HTML DOM에서 실 페어를 도출하므로 typst 엔진 스타일(practical)에는 원리적으로 적용 불가",
+    "G3-FIT: styles/practical/tokens.json에 front_frame_mm 미선언 — 앞부속 프레임 축 생략(표지·목차의 자체 padding 계약이 확보되지 않은 스타일). 양성 조건만 검사함",
+    "G7-MID: p6 reach 0.938 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p19 reach 0.97 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p20 reach 0.861 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p21 reach 0.939 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p26 reach 0.897 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p28 reach 0.968 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p35 reach 1.0 — float 밀림 면제(다음 면 통짜 블록)",
+    "G7-MID: p42 reach 0.93 — float 밀림 면제(다음 면 통짜 블록)"
+  ],
+  "pass": true,
+  "metrics": {
+    "book_pitch": 18.29,
+    "n_grid": 29,
+    "pages": [
+      {
+        "page": 1,
+        "lines": 5,
+        "reach": 1.0,
+        "ink": 0.397,
+        "gap": 0.603,
+        "imgarea": 0.0
+      },
+      {
+        "page": 2,
+        "lines": 5,
+        "reach": 0.944,
+        "ink": 0.193,
+        "gap": 0.751,
+        "imgarea": 0.0
+      },
+      {
+        "page": 3,
+        "lines": 77,
+        "reach": 0.968,
+        "ink": 0.912,
+        "gap": 0.056,
+        "imgarea": 0.0
+      },
+      {
+        "page": 4,
+        "lines": 6,
+        "reach": 0.869,
+        "ink": 0.339,
+        "gap": 0.53,
+        "imgarea": 0.0
+      },
+      {
+        "page": 5,
+        "lines": 22,
+        "reach": 0.933,
+        "ink": 0.762,
+        "gap": 0.171,
+        "imgarea": 0.0
+      },
+      {
+        "page": 6,
+        "lines": 37,
+        "reach": 0.938,
+        "ink": 0.756,
+        "gap": 0.182,
+        "imgarea": 0.0
+      },
+      {
+        "page": 7,
+        "lines": 16,
+        "reach": 0.976,
+        "ink": 0.899,
+        "gap": 0.077,
+        "imgarea": 0.0
+      },
+      {
+        "page": 8,
+        "lines": 23,
+        "reach": 0.964,
+        "ink": 0.796,
+        "gap": 0.168,
+        "imgarea": 0.0
+      },
+      {
+        "page": 9,
+        "lines": 22,
+        "reach": 0.921,
+        "ink": 0.743,
+        "gap": 0.178,
+        "imgarea": 0.0
+      },
+      {
+        "page": 10,
+        "lines": 6,
+        "reach": 0.869,
+        "ink": 0.339,
+        "gap": 0.53,
+        "imgarea": 0.0
+      },
+      {
+        "page": 11,
+        "lines": 24,
+        "reach": 0.988,
+        "ink": 0.83,
+        "gap": 0.158,
+        "imgarea": 0.0
+      },
+      {
+        "page": 12,
+        "lines": 23,
+        "reach": 0.972,
+        "ink": 0.823,
+        "gap": 0.149,
+        "imgarea": 0.0
+      },
+      {
+        "page": 13,
+        "lines": 37,
+        "reach": 0.925,
+        "ink": 0.728,
+        "gap": 0.197,
+        "imgarea": 0.0
+      },
+      {
+        "page": 14,
+        "lines": 43,
+        "reach": 0.996,
+        "ink": 0.826,
+        "gap": 0.17,
+        "imgarea": 0.0
+      },
+      {
+        "page": 15,
+        "lines": 36,
+        "reach": 0.973,
+        "ink": 0.792,
+        "gap": 0.181,
+        "imgarea": 0.0
+      },
+      {
+        "page": 16,
+        "lines": 24,
+        "reach": 1.0,
+        "ink": 0.822,
+        "gap": 0.178,
+        "imgarea": 0.0
+      },
+      {
+        "page": 17,
+        "lines": 20,
+        "reach": 0.809,
+        "ink": 0.679,
+        "gap": 0.13,
+        "imgarea": 0.0
+      },
+      {
+        "page": 18,
+        "lines": 6,
+        "reach": 0.869,
+        "ink": 0.339,
+        "gap": 0.53,
+        "imgarea": 0.0
+      },
+      {
+        "page": 19,
+        "lines": 40,
+        "reach": 0.97,
+        "ink": 0.787,
+        "gap": 0.183,
+        "imgarea": 0.0
+      },
+      {
+        "page": 20,
+        "lines": 19,
+        "reach": 0.861,
+        "ink": 0.668,
+        "gap": 0.193,
+        "imgarea": 0.0
+      },
+      {
+        "page": 21,
+        "lines": 22,
+        "reach": 0.939,
+        "ink": 0.767,
+        "gap": 0.172,
+        "imgarea": 0.0
+      },
+      {
+        "page": 22,
+        "lines": 27,
+        "reach": 1.0,
+        "ink": 1.0,
+        "gap": 0.0,
+        "imgarea": 0.0
+      },
+      {
+        "page": 23,
+        "lines": 17,
+        "reach": 0.706,
+        "ink": 0.576,
+        "gap": 0.13,
+        "imgarea": 0.0
+      },
+      {
+        "page": 24,
+        "lines": 6,
+        "reach": 0.869,
+        "ink": 0.339,
+        "gap": 0.53,
+        "imgarea": 0.0
+      },
+      {
+        "page": 25,
+        "lines": 23,
+        "reach": 0.937,
+        "ink": 0.782,
+        "gap": 0.155,
+        "imgarea": 0.0
+      },
+      {
+        "page": 26,
+        "lines": 37,
+        "reach": 0.897,
+        "ink": 0.752,
+        "gap": 0.145,
+        "imgarea": 0.0
+      },
+      {
+        "page": 27,
+        "lines": 22,
+        "reach": 0.93,
+        "ink": 0.771,
+        "gap": 0.159,
+        "imgarea": 0.0
+      },
+      {
+        "page": 28,
+        "lines": 26,
+        "reach": 0.968,
+        "ink": 0.839,
+        "gap": 0.129,
+        "imgarea": 0.0
+      },
+      {
+        "page": 29,
+        "lines": 22,
+        "reach": 0.921,
+        "ink": 0.767,
+        "gap": 0.154,
+        "imgarea": 0.0
+      },
+      {
+        "page": 30,
+        "lines": 19,
+        "reach": 0.809,
+        "ink": 0.644,
+        "gap": 0.165,
+        "imgarea": 0.0
+      },
+      {
+        "page": 31,
+        "lines": 6,
+        "reach": 0.869,
+        "ink": 0.339,
+        "gap": 0.53,
+        "imgarea": 0.0
+      },
+      {
+        "page": 32,
+        "lines": 28,
+        "reach": 0.931,
+        "ink": 0.765,
+        "gap": 0.166,
+        "imgarea": 0.0
+      },
+      {
+        "page": 33,
+        "lines": 29,
+        "reach": 0.983,
+        "ink": 0.799,
+        "gap": 0.184,
+        "imgarea": 0.0
+      },
+      {
+        "page": 34,
+        "lines": 24,
+        "reach": 0.999,
+        "ink": 0.822,
+        "gap": 0.177,
+        "imgarea": 0.0
+      },
+      {
+        "page": 35,
+        "lines": 32,
+        "reach": 1.0,
+        "ink": 0.812,
+        "gap": 0.188,
+        "imgarea": 0.0
+      },
+      {
+        "page": 36,
+        "lines": 26,
+        "reach": 0.979,
+        "ink": 0.833,
+        "gap": 0.146,
+        "imgarea": 0.0
+      },
+      {
+        "page": 37,
+        "lines": 21,
+        "reach": 0.818,
+        "ink": 0.709,
+        "gap": 0.109,
+        "imgarea": 0.0
+      },
+      {
+        "page": 38,
+        "lines": 7,
+        "reach": 0.946,
+        "ink": 0.388,
+        "gap": 0.558,
+        "imgarea": 0.0
+      },
+      {
+        "page": 39,
+        "lines": 24,
+        "reach": 0.997,
+        "ink": 0.809,
+        "gap": 0.188,
+        "imgarea": 0.0
+      },
+      {
+        "page": 40,
+        "lines": 39,
+        "reach": 0.982,
+        "ink": 0.819,
+        "gap": 0.163,
+        "imgarea": 0.0
+      },
+      {
+        "page": 41,
+        "lines": 37,
+        "reach": 0.94,
+        "ink": 0.756,
+        "gap": 0.184,
+        "imgarea": 0.0
+      },
+      {
+        "page": 42,
+        "lines": 23,
+        "reach": 0.93,
+        "ink": 0.781,
+        "gap": 0.149,
+        "imgarea": 0.0
+      },
+      {
+        "page": 43,
+        "lines": 24,
+        "reach": 0.906,
+        "ink": 0.813,
+        "gap": 0.093,
+        "imgarea": 0.053
+      },
+      {
+        "page": 44,
+        "lines": 23,
+        "reach": 0.916,
+        "ink": 0.782,
+        "gap": 0.134,
+        "imgarea": 0.0
+      },
+      {
+        "page": 45,
+        "lines": 30,
+        "reach": 0.72,
+        "ink": 0.589,
+        "gap": 0.131,
+        "imgarea": 0.0
+      },
+      {
+        "page": 46,
+        "lines": 6,
+        "reach": 1.0,
+        "ink": 0.164,
+        "gap": 0.836,
+        "imgarea": 0.0
+      }
+    ],
+    "chapter_starts": [
+      4,
+      10,
+      18,
+      24,
+      31,
+      38
+    ],
+    "tails": [
+      9,
+      17,
+      23,
+      30,
+      37
+    ],
+    "structural_exempt": [
+      1,
+      2,
+      3,
+      4,
+      10,
+      18,
+      22,
+      24,
+      31,
+      38,
+      45,
+      46
+    ]
+  },
+  "final": "/mnt/d/awesome-html-scrolline-deck/book/final/book.pdf"
+}

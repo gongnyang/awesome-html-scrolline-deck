@@ -1,0 +1,242 @@
+{
+  "schema": "bf-diagram-metrics/2",
+  "fig": "fig-06",
+  "kind": "antv",
+  "style": "practical",
+  "widthKey": "full",
+  "cacheKey": "84429f31cdbc1a446f7caa7e0fd14a9623cf15b6645676b3d446963a240caf05",
+  "template": "sequence-zigzag-steps-underline-text",
+  "widthMm": 121,
+  "viewBoxW": 878.8,
+  "ptPerUnit": 0.3903,
+  "bodyPt": 9.8,
+  "minFontPt": 8,
+  "maxRatio": 1.2,
+  "sizeCount": 8,
+  "minPt": 8.77,
+  "maxPt": 9.742,
+  "ratio": 0.994,
+  "capPt": 11.76,
+  "band": {
+    "level": "FAIL",
+    "enforce": true,
+    "verdict": "ok",
+    "reason": null
+  },
+  "sizesPt": [
+    8.77,
+    8.77,
+    8.77,
+    8.77,
+    9.742,
+    9.742,
+    9.742,
+    9.742
+  ],
+  "labelPaint": {
+    "checked": 8,
+    "knockout": 0,
+    "roleViolations": 0,
+    "contrastViolations": 0,
+    "minRatio": 4.735,
+    "notes": [],
+    "labels": [
+      {
+        "text": "길이 단위",
+        "tag": "text",
+        "fill": "#1a5fb4",
+        "knockout": false,
+        "role": [
+          "label"
+        ],
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.742,
+        "bold": true,
+        "ratio": 6.288,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "비율 단위로 교체",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 8.77,
+        "bold": false,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "스크롤 기본값",
+        "tag": "text",
+        "fill": "#20242a",
+        "knockout": false,
+        "role": [
+          "label"
+        ],
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.742,
+        "bold": true,
+        "ratio": 15.588,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "함수 값으로 지정",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 8.77,
+        "bold": false,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "글자 대비",
+        "tag": "text",
+        "fill": "#6b7480",
+        "knockout": false,
+        "role": [
+          "label"
+        ],
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.742,
+        "bold": true,
+        "ratio": 4.735,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "어두운 층을 깐다",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 8.77,
+        "bold": false,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "색 변수 보간",
+        "tag": "text",
+        "fill": "#1a5fb4",
+        "knockout": false,
+        "role": [
+          "label"
+        ],
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 9.742,
+        "bold": true,
+        "ratio": 6.288,
+        "floor": 4.5,
+        "verdict": "ok"
+      },
+      {
+        "text": "숫자만 움직인다",
+        "tag": "text",
+        "fill": "#262626",
+        "knockout": false,
+        "role": null,
+        "bg": "#ffffff",
+        "bgLayers": 0,
+        "samples": 5,
+        "bgWorstAt": 0.1,
+        "pt": 8.77,
+        "bold": false,
+        "ratio": 15.134,
+        "floor": 4.5,
+        "verdict": "ok"
+      }
+    ]
+  },
+  "fit": {
+    "verdict": "ok",
+    "maxHeightMm": 167,
+    "nominalWidthMm": 121,
+    "placedHMm": 49.27,
+    "widthMm": 121
+  },
+  "labelScale": {
+    "version": 1,
+    "applied": true,
+    "passes": 2,
+    "targetPt": {
+      "title": 11.27,
+      "text": 9.8,
+      "desc": 8.82
+    },
+    "injectedUnits": {
+      "title": 28.71,
+      "text": 24.965,
+      "desc": 22.469
+    },
+    "nativeClamped": 0,
+    "pre": {
+      "viewBoxW": 873.76,
+      "minPt": 5.496,
+      "maxPt": 7.066,
+      "ratio": 0.721
+    },
+    "frameW": 873.76,
+    "contentW": 878.801,
+    "frameSlack": -0.006,
+    "iterations": [
+      {
+        "pass": 0,
+        "inject": null,
+        "frameW": null,
+        "contentW": 873.76,
+        "nativeClamped": 0,
+        "viewBoxW": 873.76,
+        "ptPerUnit": 0.39255,
+        "minPt": 5.496,
+        "maxPt": 7.066
+      },
+      {
+        "pass": 1,
+        "inject": {
+          "title": 28.71,
+          "text": 24.965,
+          "desc": 22.469
+        },
+        "frameW": 873.76,
+        "contentW": 878.801,
+        "nativeClamped": 0,
+        "viewBoxW": 878.8,
+        "ptPerUnit": 0.3903,
+        "minPt": 8.77,
+        "maxPt": 9.742
+      }
+    ]
+  }
+}

@@ -179,6 +179,14 @@ awesome-html-scrolline-deck/
 └─ book/                 the companion handbook (Korean, PDF in docs/)
 ```
 
+## Handbook
+
+<a href="docs/스크롤로-발표하라.pdf"><img src="docs/handbook-cover.jpg" width="160" align="left" alt="Cover of the handbook 스크롤로 발표하라" /></a>
+
+**「스크롤로 발표하라」** (Korean, 46 pages, PDF in [`docs/`](docs/스크롤로-발표하라.pdf)) — a practical guide for presenters, not developers: what a scrollytelling deck is, the enter/hold/exit grammar, the one-table storyboard, how to ask Claude Code for the deck, presenting keys and rehearsal, and a teardown of a real 12-scene seminar deck.
+
+<br clear="all" />
+
 ## Contributing
 
 Issues and pull requests are welcome. A new scene technique needs four files under `templates/scenes/<technique>/` — `scene.html`, `scene.css`, `scene.js`, `template.json` — plus a row in `references/techniques.md` and a passing `node --test`. Keep colours in tokens, keep every timeline at or under 1, and keep the boxes out.

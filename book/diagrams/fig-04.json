@@ -1,0 +1,21 @@
+{
+  "kind": "antv",
+  "bf": {
+    "width": "full",
+    "icons": false
+  },
+  "dsl": [
+    "infographic sequence-ascending-steps",
+    "data",
+    "  title 하루짜리 제작 루프",
+    "  sequences",
+    "    - label 표를 넘긴다",
+    "      desc 스토리보드 한 장",
+    "    - label 요청한다",
+    "      desc 문장으로 지시",
+    "    - label 캡처를 읽는다",
+    "      desc 세 지점 판독",
+    "    - label 수정을 부른다",
+    "      desc 번호로 지목"
+  ]
+}

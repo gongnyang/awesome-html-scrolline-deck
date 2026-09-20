@@ -1,0 +1,21 @@
+{
+  "kind": "antv",
+  "bf": {
+    "width": "full",
+    "icons": false
+  },
+  "dsl": [
+    "infographic list-grid-ribbon-card",
+    "data",
+    "  title 스토리보드 표가 갈라지는 네 갈래",
+    "  lists",
+    "    - label 카피",
+    "      desc 제목 한 줄, 본문 네 줄까지",
+    "    - label 이미지",
+    "      desc 가로형 webp 1600px",
+    "    - label 영상",
+    "      desc 무음 루프와 대체 컷",
+    "    - label 프레임",
+    "      desc 120장, 우선 다섯 장"
+  ]
+}

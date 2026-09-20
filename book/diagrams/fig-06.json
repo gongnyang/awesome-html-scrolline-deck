@@ -1,0 +1,20 @@
+{
+  "kind": "antv",
+  "bf": {
+    "width": "full",
+    "icons": false
+  },
+  "dsl": [
+    "infographic sequence-zigzag-steps-underline-text",
+    "data",
+    "  sequences",
+    "    - label 길이 단위",
+    "      desc 비율 단위로 교체",
+    "    - label 스크롤 기본값",
+    "      desc 함수 값으로 지정",
+    "    - label 글자 대비",
+    "      desc 어두운 층을 깐다",
+    "    - label 색 변수 보간",
+    "      desc 숫자만 움직인다"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "antv",
+  "bf": { "width": "full", "icons": false },
+  "dsl": [
+    "infographic sequence-ascending-steps",
+    "data",
+    "  title 장면 하나의 세 박자",
+    "  sequences",
+    "    - label 진입 0~30%",
+    "      desc 요소가 화면에 들어온다",
+    "    - label 홀드 30~75%",
+    "      desc 완성 화면이 유지된다",
+    "    - label 퇴장 75~100%",
+    "      desc 다음 장면에 자리를 넘긴다",
+    "  order asc"
+  ]
+}
