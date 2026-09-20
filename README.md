@@ -10,24 +10,37 @@ One notch of the wheel is not the next slide. It is the next frame of the scene 
 [![License: MIT](https://img.shields.io/badge/License-MIT-5e6ad2.svg)](LICENSE)
 ![Node](https://img.shields.io/badge/node-%E2%89%A520-5e6ad2.svg)
 
-[한국어 README](README.ko.md) · [Skill router](SKILL.md) · [Sample deck](examples/sample-deck/)
+[한국어 README](README.ko.md) · [Skill router](SKILL.md) · [Live examples](https://gongnyang.github.io/awesome-html-scrolline-deck/)
 
 </div>
 
 <table>
 <tr>
-<td width="50%"><img src="examples/sample-deck/qa/01-hero-55.jpg" alt="Hero scene at 55% of its pin — the frame sequence scrubbing behind a standing title" /></td>
-<td width="50%"><img src="examples/sample-deck/qa/04-gallery-55.jpg" alt="Horizontal gallery scene at 55% — vertical scroll moving a horizontal rail of plates" /></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/city-guide/"><img src="examples/city-guide/qa/02-route-55.jpg" alt="City guide deck — a drawn route map dissected into timed rows (anatomy-rows)" /></a></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/product-launch/"><img src="examples/product-launch/qa/03-hero-55.jpg" alt="Product launch deck, light theme — exploded view of the headphone (tilt-card)" /></a></td>
 </tr>
 <tr>
-<td width="50%"><img src="examples/sample-deck/qa/05-numbers-55.jpg" alt="Odometer scene at 55% — figures rolling into place" /></td>
-<td width="50%"><img src="examples/sample-deck/qa/06-closing-55.jpg" alt="Closing scene at 55% — QR code and handoff line" /></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/annual-report/"><img src="examples/annual-report/qa/02-anatomy-55.jpg" alt="Annual report deck — revenue chart taken apart row by row (anatomy-rows)" /></a></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/sample-deck/"><img src="examples/sample-deck/qa/03-arc-55.jpg" alt="Sample deck — enter, hold, exit as numbered kinetic titles" /></a></td>
 </tr>
 </table>
 
-<sub>Every image above is a `verify` capture, taken by driving a real mouse wheel through the sample deck. Nothing here is a mockup.</sub>
+<sub>Every image above is a `verify` capture, taken by driving a real mouse wheel through a deck. Every picture inside the decks is a vector infographic drawn by a script. Nothing here is a mockup. <b>Click a capture to open the live deck.</b></sub>
 
 ---
+
+## Live examples
+
+Four decks, four concepts, all generated and gate-verified by the skill. Open one and scroll, or press <b>→</b>.
+
+| deck | concept | theme | scenes | open |
+|---|---|---|---|---|
+| [`examples/sample-deck`](examples/sample-deck/) | the tool explaining itself | dark, purple | 6 | [▶ open](https://gongnyang.github.io/awesome-html-scrolline-deck/sample-deck/) |
+| [`examples/product-launch`](examples/product-launch/) | 「Nimbus」 headphone launch: 90 drawn rotation frames, exploded view, feature charts, spec odometer | **light**, cream + coral | 7 | [▶ open](https://gongnyang.github.io/awesome-html-scrolline-deck/product-launch/) |
+| [`examples/annual-report`](examples/annual-report/) | fictional annual results: chart anatomy, six report pages fanning, KPI odometer, structure wipe | dark, forest + amber | 6 | [▶ open](https://gongnyang.github.io/awesome-html-scrolline-deck/annual-report/) |
+| [`examples/city-guide`](examples/city-guide/) | Seoul at dusk: 100 drawn skyline frames, route-map anatomy, postcards, cost/time compare | dark, twilight | 7 | [▶ open](https://gongnyang.github.io/awesome-html-scrolline-deck/city-guide/) |
+
+Gallery of all four: **https://gongnyang.github.io/awesome-html-scrolline-deck/** — rebuilt by GitHub Pages on every push (`scripts/site/build-examples.mjs`). Each deck folder has a README with its storyboard and the scripts that draw its assets; all figures are sample data.
 
 ## What this is
 
@@ -174,7 +187,7 @@ awesome-html-scrolline-deck/
 ├─ templates/scenes/     12 technique templates (scene.html/css/js + template.json)
 ├─ references/           contract, schema, techniques, choreography, design, pitfalls
 ├─ scripts/              cli.mjs and cmd/ + gates/ + lib/
-├─ examples/sample-deck/ the six-scene deck this README is captured from
+├─ examples/              four sample decks (sample-deck, product-launch, annual-report, city-guide)
 ├─ tests/                node --test: gate units, bad-* fixtures, build smoke
 └─ book/                 the companion handbook (Korean, PDF in docs/)
 ```

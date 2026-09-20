@@ -10,24 +10,37 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-5e6ad2.svg)](LICENSE)
 ![Node](https://img.shields.io/badge/node-%E2%89%A520-5e6ad2.svg)
 
-[English README](README.md) · [스킬 라우터](SKILL.md) · [샘플 덱](examples/sample-deck/)
+[English README](README.md) · [스킬 라우터](SKILL.md) · [실제 예제](https://gongnyang.github.io/awesome-html-scrolline-deck/)
 
 </div>
 
 <table>
 <tr>
-<td width="50%"><img src="examples/sample-deck/qa/01-hero-55.jpg" alt="히어로 장면 55% 지점 — 제목 뒤에서 프레임 시퀀스가 스크럽된다" /></td>
-<td width="50%"><img src="examples/sample-deck/qa/04-gallery-55.jpg" alt="수평 갤러리 55% 지점 — 세로 스크롤이 가로 레일을 민다" /></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/city-guide/"><img src="examples/city-guide/qa/02-route-55.jpg" alt="도시 가이드 덱 — 그려 넣은 노선도를 시간별 행으로 해부(anatomy-rows)" /></a></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/product-launch/"><img src="examples/product-launch/qa/03-hero-55.jpg" alt="제품 런칭 덱, 라이트 테마 — 헤드폰 분해도(tilt-card)" /></a></td>
 </tr>
 <tr>
-<td width="50%"><img src="examples/sample-deck/qa/05-numbers-55.jpg" alt="오도미터 55% 지점 — 숫자가 굴러 제자리에 선다" /></td>
-<td width="50%"><img src="examples/sample-deck/qa/06-closing-55.jpg" alt="클로징 55% 지점 — QR과 인계 문구" /></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/annual-report/"><img src="examples/annual-report/qa/02-anatomy-55.jpg" alt="연간 보고 덱 — 매출 차트를 행 단위로 해부(anatomy-rows)" /></a></td>
+<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/sample-deck/"><img src="examples/sample-deck/qa/03-arc-55.jpg" alt="샘플 덱 — 진입·홀드·퇴장을 번호 붙은 키네틱 타이틀로" /></a></td>
 </tr>
 </table>
 
-<sub>위 이미지는 전부 `verify`가 실제 휠 이벤트로 샘플 덱을 굴려 찍은 캡처다. 목업이 아니다.</sub>
+<sub>위 이미지는 전부 실제 마우스 휠로 덱을 굴려 찍은 `verify` 캡처다. 덱 안의 그림은 전부 스크립트가 그린 벡터 인포그래픽이고, 목업은 하나도 없다. <b>캡처를 누르면 실제 덱이 열린다.</b></sub>
 
 ---
+
+## 실제 예제
+
+서로 다른 콘셉트의 덱 넷. 전부 스킬이 생성하고 게이트로 검증했다. 열어서 휠을 굴리거나 <b>→</b>를 누르면 된다.
+
+| 덱 | 콘셉트 | 테마 | 장면 | 열기 |
+|---|---|---|---|---|
+| [`examples/sample-deck`](examples/sample-deck/) | 도구가 자기를 설명하는 덱 | 다크, 퍼플 | 6 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/sample-deck/) |
+| [`examples/product-launch`](examples/product-launch/) | 「Nimbus」 헤드폰 런칭: 회전 프레임 90장, 분해도, 기능 차트, 스펙 오도미터 | **라이트**, 크림 + 코랄 | 7 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/product-launch/) |
+| [`examples/annual-report`](examples/annual-report/) | 가상 연간 성과: 차트 해부, 부속 보고서 6장 펼침, KPI 오도미터, 구조 와이프 | 다크, 포레스트 + 앰버 | 6 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/annual-report/) |
+| [`examples/city-guide`](examples/city-guide/) | 해질녘 서울: 스카이라인 프레임 100장, 노선도 해부, 엽서, 비용·시간 비교 | 다크, 트와일라잇 | 7 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/city-guide/) |
+
+넷을 한 화면에: **https://gongnyang.github.io/awesome-html-scrolline-deck/** — 푸시마다 GitHub Pages가 다시 짓는다(`scripts/site/build-examples.mjs`). 덱 폴더마다 스토리보드와 에셋을 그리는 스크립트가 README에 있고, 수치는 전부 샘플 데이터다.
 
 ## 무엇인가
 
@@ -175,7 +188,7 @@ awesome-html-scrolline-deck/
 ├─ templates/scenes/     기법 템플릿 12종(scene.html/css/js + template.json)
 ├─ references/           계약·스키마·기법·안무·디자인·함정
 ├─ scripts/              cli.mjs + cmd/ + gates/ + lib/
-├─ examples/sample-deck/ 이 README의 캡처가 나온 6장면 덱
+├─ examples/              샘플 덱 넷(sample-deck·product-launch·annual-report·city-guide)
 ├─ tests/                node --test: 게이트 단위·bad-* 픽스처·빌드 스모크
 └─ book/                 동반 실용서(국문, PDF는 docs/)
 ```
