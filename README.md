@@ -67,7 +67,7 @@ node scripts/cli.mjs init my-deck --title "How we ship" --style dark
 # 2. add scenes (one per storyboard row; never repeat a technique back to back)
 node scripts/cli.mjs add frame-scrub-hero    --id 01-hero    --kicker "2026" --title "How we ship"
 node scripts/cli.mjs add horizontal-gallery  --id 02-work    --kicker "Work" --title "Six things we shipped"
-node scripts/cli.mjs add closing-qr          --id 03-closing --kicker "Next" --title "Come build with us"
+node scripts/cli.mjs add closing-qr          --id 03-closing --kicker "Next" --title "Come build with us" --url https://example.com
 
 # 3. run it
 cd my-deck && npm install && npm run dev

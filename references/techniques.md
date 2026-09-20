@@ -141,7 +141,8 @@ lines read on the other, under a slow tilt. Set `assets.caption` for a credit.
 ### closing-qr — pinVh 200, pin true
 Thanks set letter by letter beside a QR that draws itself, a typed URL, and a
 link back to the first scene. `assets.images[0]` is the QR as an SVG
-(`scrolline add closing-qr --url <site>` generates it); `images[1]` is an
+(`scrolline add closing-qr --url <site>` or `scrolline qr --url <site> --scene <id>`
+generates and wires it); `images[1]` is an
 optional mascot or portrait. Without an SVG the URL is simply printed.
 **Copy:** kicker, title, one line (the URL; `deck.links.site` is the fallback).
 **Hold frame:** thanks set, QR drawn, URL typed out, the restart link showing.

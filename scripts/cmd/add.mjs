@@ -6,6 +6,9 @@ import {
   fillTemplate, parseFlags, escapeHtml, slugify,
 } from '../lib/fs.mjs';
 import { validate, formatErrors } from '../lib/schema.mjs';
+import { makeQrSvg } from './qr.mjs';
+
+const KNOWN_FLAGS = new Set(['dir', 'id', 'title', 'kicker', 'lines', 'pinVh', 'notes', 'url']);
 
 const SCHEMA = readJson(path.join(REPO_ROOT, 'references/deck.schema.json'));
 const TECHNIQUES = SCHEMA.$defs.scene.properties.technique.enum;
@@ -98,6 +101,10 @@ function expandLines(text, lines) {
 export async function run(argv) {
   const flags = parseFlags(argv);
   const technique = flags._[0];
+  const unknown = Object.keys(flags).filter((k) => k !== '_' && !KNOWN_FLAGS.has(k));
+  if (unknown.length) {
+    process.stderr.write(`scrolline add: ignoring unknown flag(s) ${unknown.map((k) => `--${k}`).join(', ')} (known: ${[...KNOWN_FLAGS].map((k) => `--${k}`).join(', ')})\n`);
+  }
   const dir = path.resolve(process.cwd(), flags.dir ?? flags._[1] ?? '.');
 
   if (!technique) {
@@ -185,6 +192,23 @@ export async function run(argv) {
   if (wants(meta.assets?.frames)) Object.assign(entry.assets, { frames: null, count: 0, critical: [], poster: null });
   if (wants(meta.assets?.images)) entry.assets.images = [];
   if (wants(meta.assets?.video)) Object.assign(entry.assets, { video: null, poster: null });
+
+  // --url: write a QR for the link and wire it as images[0] (closing-qr reads it there).
+  const url = typeof flags.url === 'string' ? flags.url : '';
+  if (url) {
+    let svg;
+    try {
+      svg = await makeQrSvg(url);
+    } catch (error) {
+      process.stderr.write(`scrolline add: --url given but ${error.message}\n`);
+      return 1;
+    }
+    const publicPath = `/media/${id}/qr.svg`;
+    writeText(path.join(dir, 'public', publicPath), svg);
+    entry.assets.images = [publicPath, ...(entry.assets.images ?? [])];
+    deck.links = { ...(deck.links ?? {}), site: url };
+    written.push(`public${publicPath}`);
+  }
 
   deck.scenes.push(entry);
   deck.scenes.sort((a, b) => a.order - b.order);

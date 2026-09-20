@@ -69,12 +69,14 @@ export default {
     }
 
     // hold — 0.30 .. 0.75. The QR draws, the URL types, the room photographs it.
-    tl.to(qr, { '--draw': 1, duration: 0.2, ease: 'none' }, 0.32);
+    tl.to(qr, { '--draw': 1, duration: 0.16, ease: 'none' }, 0.3);
     // A clip wipe, not a width tween: "ch" is the width of a zero, so a long
     // URL in a proportional stack stays clipped at the final state.
-    tl.fromTo(url, { '--type': 0 }, { '--type': 1, duration: 0.14, ease: 'none' }, 0.38);
-    tl.fromTo(mascot, { x: 40, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.16, ease: 'power3.out' }, 0.48);
-    tl.fromTo(restart, { y: 8, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0.62);
+    tl.fromTo(url, { '--type': 0 }, { '--type': 1, duration: 0.12, ease: 'none' }, 0.3);
+    // Everything is standing by .48 — the keyboard lands at .35, the 55% capture
+    // (and the room's photo) must show the finished frame even with scrub lag.
+    tl.fromTo(mascot, { x: 40, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.12, ease: 'power3.out' }, 0.36);
+    tl.fromTo(restart, { y: 8, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.08, ease: 'power2.out' }, 0.4);
 
     // exit — 0.75 .. 1.00. Nothing leaves; the bloom only breathes out.
     tl.to(bloom, { '--r': 86, autoAlpha: 0.55, duration: 0.18, ease: 'power2.out' }, 0.8);

@@ -22,10 +22,30 @@ const parse = (line) => {
   return { title: text.slice(0, sep.index).trim(), bullets };
 };
 
-// Blocks march down the diagonal, so one formula places both them and the line.
+// Blocks march down the diagonal. y starts at 26% so block 01 clears the
+// scene heading (kicker + title end near 18% on a 700px-tall viewport).
 const spot = (index, total) => {
   const t = total > 1 ? index / (total - 1) : 0.5;
-  return { x: 4 + t * 52, y: 14 + t * 54 };
+  return { x: 4 + t * 52, y: 26 + t * 48 };
+};
+
+// The light runs a rail, not a straight diagonal: down each block's left
+// margin, then across the gap to the next number. A straight line through the
+// staircase would cut through the titles themselves.
+const RAIL_GAP = 2.4; // % of width, left of the block's text edge
+const railPoints = (blocksEl, total) => {
+  const stageH = Number(blocksEl && blocksEl.offsetHeight) || 0;
+  const blocks = blocksEl && blocksEl.querySelectorAll ? Array.from(blocksEl.querySelectorAll('.kt__block')) : [];
+  const points = [];
+  for (let index = 0; index < total; index += 1) {
+    const at = spot(index, total);
+    const el = blocks[index];
+    const hPct = stageH && el && Number(el.offsetHeight) ? (Number(el.offsetHeight) / stageH) * 100 : 18;
+    const rail = at.x - RAIL_GAP;
+    points.push([rail, at.y + 1.2]);
+    points.push([rail, Math.min(at.y + hPct, 96)]);
+  }
+  return points;
 };
 
 export default {
@@ -49,10 +69,8 @@ export default {
         + '</article>';
     }).join('');
 
-    const points = lines.map((line, index) => {
-      const at = spot(index, lines.length);
-      return `${Math.round((at.x + 8) / 100 * VB.w)} ${Math.round((at.y + 6) / 100 * VB.h)}`;
-    });
+    const points = railPoints(root.querySelector('[data-role="blocks"]'), lines.length)
+      .map(([x, y]) => `${Math.round(x / 100 * VB.w)} ${Math.round(y / 100 * VB.h)}`);
     const d = points.length > 1 ? `M ${points.join(' L ')}` : `M 0 0 L ${VB.w} ${VB.h}`;
     const path = root.querySelector('[data-role="line"]');
     path.setAttribute('d', d);

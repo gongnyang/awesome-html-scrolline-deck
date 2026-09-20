@@ -39,9 +39,9 @@ node scripts/cli.mjs add <technique> --id 01-hero --kicker "..." --title "..." -
 ```bash
 node scripts/cli.mjs frames in.mp4 --name hero --fps 12 --width 1280 --scene 01-hero   # ffmpeg, ≤120장·≤10MB
 node scripts/cli.mjs media photo.png --scene 04-gallery                                # webp 변환 + deck.json 등록
-node scripts/cli.mjs qr --url https://example.com --out public/media/qr.svg
+node scripts/cli.mjs qr --url https://example.com --scene 06-closing                             # QR svg + deck.json images[0]·links.site
 ```
-`--scene`를 주면 deck.json의 `frames`·`count`·`critical`·`images`가 자동으로 채워진다. 이미지는 webp ≤1600px `public/media/<id>/`, 영상은 muted·playsinline·포스터 필수.
+`--scene`를 주면 deck.json의 `frames`·`count`·`critical`·`images`가 자동으로 채워진다(`add closing-qr --url <site>`도 같은 결과). 덱 폴더 밖에서 부르면 `--dir <덱>`. 이미지는 webp ≤1600px `public/media/<id>/`, 영상은 muted·playsinline·포스터 필수.
 
 **5 카피·노트** — deck.json의 `copy`(제목 1줄, `lines` 최대 4줄 — 기법별 허용 범위는 `template.json`의 `slots`)와 `notes`(필수, N키 노트 패널에 뜬다)를 채운다. `scene.js`는 템플릿이 표시한 **enter / hold / exit 블록 안에서만** 고친다. CSS 정지 상태 = 홀드에서 보일 완성 프레임.
 

@@ -17,6 +17,12 @@
         "autoDurationSec": { "type": "number", "minimum": 30, "maximum": 3600 }
       }
     },
+    "links": {
+      "type": "object",
+      "description": "Deck-level links. `site` is the URL the closing-qr scene prints when copy.lines is empty; `scrolline qr --scene` and `add --url` set it.",
+      "properties": { "site": { "type": "string" } },
+      "additionalProperties": { "type": "string" }
+    },
     "theme": {
       "type": "object",
       "properties": {

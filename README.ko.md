@@ -68,7 +68,7 @@ node scripts/cli.mjs init my-deck --title "우리는 이렇게 출시한다" --s
 # 2. 장면 추가 (스토리보드 한 행에 한 번, 같은 기법 연속 배치 금지)
 node scripts/cli.mjs add frame-scrub-hero    --id 01-hero    --kicker "2026"  --title "우리는 이렇게 출시한다"
 node scripts/cli.mjs add horizontal-gallery  --id 02-work    --kicker "작업"  --title "올해 내보낸 여섯 가지"
-node scripts/cli.mjs add closing-qr          --id 03-closing --kicker "다음"  --title "같이 만들어요"
+node scripts/cli.mjs add closing-qr          --id 03-closing --kicker "다음"  --title "같이 만들어요" --url https://example.com
 
 # 3. 띄우기
 cd my-deck && npm install && npm run dev
