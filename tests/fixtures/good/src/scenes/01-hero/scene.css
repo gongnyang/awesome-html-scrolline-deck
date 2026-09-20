@@ -1,0 +1,21 @@
+[data-scene="01-hero"] .hero {
+  display: grid;
+  align-content: center;
+  gap: var(--space-4);
+  color: var(--fg);
+}
+[data-scene="01-hero"] .hero__kicker {
+  color: var(--fg-dim);
+  letter-spacing: 0.12em;
+}
+[data-scene="01-hero"] .hero__title {
+  font-size: var(--step-6);
+  color: var(--fg);
+}
+[data-scene="01-hero"] .hero__poster {
+  width: min(48vw, 640px);
+  background: transparent;
+}
+@media (max-width: 720px) {
+  [data-scene="01-hero"] .hero__title { font-size: var(--step-4); }
+}

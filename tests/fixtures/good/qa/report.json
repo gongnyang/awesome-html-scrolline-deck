@@ -6,54 +6,54 @@
       "title": "deck.json 스키마 · 에셋 경로",
       "ok": true,
       "skipped": false,
-      "details": "장면 6개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
+      "details": "장면 2개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
       "items": [],
-      "ms": 39
+      "ms": 16
     },
     {
       "id": "G1",
       "title": "장면 모듈 4멤버 · id = 폴더명",
       "ok": true,
       "skipped": false,
-      "details": "장면 모듈 6개 계약 충족",
+      "details": "장면 모듈 2개 계약 충족",
       "items": [],
-      "ms": 929
+      "ms": 95
     },
     {
       "id": "G2",
       "title": "타임라인 총 길이 ≤ 1.001 · order 정합",
       "ok": true,
       "skipped": false,
-      "details": "장면 6개 · 최장 타임라인 0.980",
+      "details": "장면 2개 · 최장 타임라인 1.000",
       "items": [],
-      "ms": 60
+      "ms": 31
     },
     {
       "id": "G3",
       "title": "tween 문자열 안 var( ) 금지",
       "ok": true,
       "skipped": false,
-      "details": "scene.js 6개에 var( ) tween 없음",
+      "details": "scene.js 2개에 var( ) tween 없음",
       "items": [],
-      "ms": 54
+      "ms": 40
     },
     {
       "id": "G4",
       "title": "장면 · 검수 경로에 직접 스크롤 이동 금지",
       "ok": true,
       "skipped": false,
-      "details": "파일 10개 · 직접 스크롤 이동 없음",
+      "details": "파일 6개 · 직접 스크롤 이동 없음",
       "items": [],
-      "ms": 64
+      "ms": 52
     },
     {
       "id": "LINT",
       "title": "scene.css 토큰만 · 선택자 스코프 · pathLength",
       "ok": true,
       "skipped": false,
-      "details": "장면 6개 린트 통과 (L1·L2·L3)",
+      "details": "장면 2개 린트 통과 (L1·L2·L3)",
       "items": [],
-      "ms": 126
+      "ms": 190
     },
     {
       "id": "G5",
@@ -110,5 +110,5 @@
       "ms": 0
     }
   ],
-  "ts": "2026-09-20T03:14:46.328Z"
+  "ts": "2026-09-20T03:15:14.884Z"
 }

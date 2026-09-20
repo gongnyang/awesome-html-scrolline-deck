@@ -1,0 +1,30 @@
+{
+  "title": "게이트 픽스처 덱",
+  "subtitle": "정적 게이트가 통과해야 하는 최소 덱",
+  "lang": "ko",
+  "presenter": { "name": "공냥이", "roles": ["발표"], "autoDurationSec": 180 },
+  "theme": { "style": "dark", "accent": "--accent" },
+  "scenes": [
+    {
+      "id": "01-hero",
+      "order": 0,
+      "technique": "frame-scrub-hero",
+      "pinVh": 200,
+      "pin": true,
+      "assets": { "poster": "/media/01-hero/poster.webp" },
+      "copy": { "kicker": "여는 장면", "title": "스크롤로 발표한다", "lines": ["휠 한 칸이 장면 진행률이다"] },
+      "transition": { "in": "fade", "out": "wipe" },
+      "notes": "첫 장면은 홀드에서 멈춰 세우고 인사한다."
+    },
+    {
+      "id": "02-closing",
+      "order": 1,
+      "technique": "closing-qr",
+      "pinVh": 150,
+      "pin": true,
+      "copy": { "kicker": "닫는 장면", "title": "여기서 이어집니다", "lines": ["QR 하나로 자료를 넘긴다"] },
+      "transition": { "in": "fade", "out": "fade" },
+      "notes": "QR을 띄운 채 질문을 받는다."
+    }
+  ]
+}

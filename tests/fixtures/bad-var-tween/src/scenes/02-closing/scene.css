@@ -1,0 +1,14 @@
+[data-scene="02-closing"] .closing {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-5);
+  color: var(--fg);
+}
+[data-scene="02-closing"] .closing__title {
+  font-size: var(--step-5);
+}
+[data-scene="02-closing"] .closing__qr {
+  width: 320px;
+  height: 320px;
+  background: var(--surface);
+}
