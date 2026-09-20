@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gongnyang/awesome-html-scrolline-deck/references/deck.schema.json",
+  "title": "Scrolline Deck — data/deck.json",
+  "type": "object",
+  "required": ["title", "scenes"],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "subtitle": { "type": "string" },
+    "lang": { "type": "string", "pattern": "^[a-z]{2}(-[A-Za-z0-9]+)*$" },
+    "presenter": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "roles": { "type": "array", "items": { "type": "string" } },
+        "avatar": { "type": "string" },
+        "autoDurationSec": { "type": "number", "minimum": 30, "maximum": 3600 }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "style": { "type": "string", "enum": ["dark", "light"] },
+        "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "uniqueItems": true,
+      "x-uniqueBy": "id",
+      "items": { "$ref": "#/$defs/scene" }
+    }
+  },
+  "$defs": {
+    "scene": {
+      "type": "object",
+      "required": ["id", "order", "technique", "pinVh", "notes"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d{2}-[a-z0-9-]+$",
+          "description": "Must equal the src/scenes/<id>/ folder name."
+        },
+        "order": { "type": "integer", "minimum": 1 },
+        "technique": {
+          "type": "string",
+          "enum": [
+            "frame-scrub-hero",
+            "word-relay",
+            "kinetic-titles",
+            "horizontal-gallery",
+            "anatomy-rows",
+            "frame-scrub-video",
+            "parallax-video",
+            "paper-assembly",
+            "odometer-stats",
+            "wipe-transform",
+            "tilt-card",
+            "closing-qr"
+          ]
+        },
+        "pinVh": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 400,
+          "description": "Pin distance as a percentage of viewport height."
+        },
+        "pin": { "type": "boolean" },
+        "assets": {
+          "type": "object",
+          "properties": {
+            "frames": {
+              "type": ["string", "null"],
+              "pattern": "%0\\dd",
+              "description": "Frame sequence pattern, e.g. /frames/hero/f_%03d.jpg"
+            },
+            "mobileFrames": { "type": ["string", "null"], "pattern": "%0\\dd" },
+            "count": { "type": "integer", "minimum": 0, "maximum": 240 },
+            "critical": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+            "poster": { "type": ["string", "null"] },
+            "images": { "type": "array", "items": { "type": "string" } },
+            "video": { "type": ["string", "null"] }
+          }
+        },
+        "copy": {
+          "type": "object",
+          "properties": {
+            "kicker": { "type": "string" },
+            "title": { "type": "string" },
+            "lines": { "type": "array", "items": { "type": "string" }, "maxItems": 4 }
+          }
+        },
+        "transition": {
+          "type": "object",
+          "properties": {
+            "in": { "type": "string" },
+            "out": { "type": "string" }
+          }
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Speaker notes. Shown in the N panel; required for every scene."
+        },
+        "audio": {
+          "type": "object",
+          "required": ["src"],
+          "properties": {
+            "src": { "type": "string" },
+            "volume": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "fallback": { "type": "string" }
+      }
+    }
+  }
+}

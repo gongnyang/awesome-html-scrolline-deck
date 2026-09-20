@@ -1,0 +1,16 @@
+{
+  "title": "{{title}}",
+  "subtitle": "{{subtitle}}",
+  "lang": "{{lang}}",
+  "presenter": {
+    "name": "",
+    "roles": [],
+    "avatar": "",
+    "autoDurationSec": 180
+  },
+  "theme": {
+    "style": "{{theme}}",
+    "accent": "#5e6ad2"
+  },
+  "scenes": []
+}
