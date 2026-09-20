@@ -3,7 +3,7 @@
 [data-scene="{{id}}"] .pv__media { position: fixed; z-index: -2; inset: 0; width: 100%; height: 100svh; pointer-events: none; }
 [data-scene="{{id}}"] .pv__media video,
 [data-scene="{{id}}"] .pv__media img { display: block; width: 100%; height: 100%; object-fit: cover; filter: brightness(.62); }
-[data-scene="{{id}}"] .pv__veil { position: fixed; z-index: -1; inset: 0; background: var(--canvas); opacity: .28; pointer-events: none; }
+[data-scene="{{id}}"] .pv__veil { position: fixed; z-index: -1; inset: 0; background: color-mix(in srgb, var(--canvas) 46%, transparent); pointer-events: none; } /* translucency lives in the colour: build() tweens autoAlpha to 1, so an opacity here would be overwritten and hide the clip */
 [data-scene="{{id}}"] .pv__copy { width: min(900px, calc(100% - var(--gutter, 20px) * 2)); padding: var(--space-section, 88px) 0; text-align: center; }
 [data-scene="{{id}}"] .pv__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 [data-scene="{{id}}"] .pv__title { margin: 0 0 var(--space-lg, 24px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(38px, 6.4vw, var(--display-xl-size, 80px)); font-weight: 700; line-height: 1.02; letter-spacing: -.03em; text-wrap: balance; word-break: keep-all; }

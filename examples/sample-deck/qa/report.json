@@ -8,7 +8,7 @@
       "skipped": false,
       "details": "장면 6개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
       "items": [],
-      "ms": 28
+      "ms": 26
     },
     {
       "id": "G1",
@@ -17,7 +17,7 @@
       "skipped": false,
       "details": "장면 모듈 6개 계약 충족",
       "items": [],
-      "ms": 129
+      "ms": 184
     },
     {
       "id": "G2",
@@ -26,7 +26,7 @@
       "skipped": false,
       "details": "장면 6개 · 최장 타임라인 0.980",
       "items": [],
-      "ms": 30
+      "ms": 35
     },
     {
       "id": "G3",
@@ -35,7 +35,7 @@
       "skipped": false,
       "details": "scene.js 6개에 var( ) tween 없음",
       "items": [],
-      "ms": 40
+      "ms": 47
     },
     {
       "id": "G4",
@@ -44,7 +44,7 @@
       "skipped": false,
       "details": "파일 10개 · 직접 스크롤 이동 없음",
       "items": [],
-      "ms": 50
+      "ms": 55
     },
     {
       "id": "LINT",
@@ -53,7 +53,7 @@
       "skipped": false,
       "details": "장면 6개 린트 통과 (L1·L2·L3)",
       "items": [],
-      "ms": 83
+      "ms": 132
     },
     {
       "id": "G5",
@@ -62,7 +62,7 @@
       "skipped": false,
       "details": "핀 장면 6개 전부 ±2px 이내",
       "items": [],
-      "ms": 54153
+      "ms": 61564
     },
     {
       "id": "G6",
@@ -80,7 +80,7 @@
       "skipped": false,
       "details": "키 착지 5회 · 최대 오차 0px",
       "items": [],
-      "ms": 12312
+      "ms": 12301
     },
     {
       "id": "G8",
@@ -98,7 +98,7 @@
       "skipped": false,
       "details": "가로 넘침 없음 (1440 · 390)",
       "items": [],
-      "ms": 8768
+      "ms": 8944
     },
     {
       "id": "G10",
@@ -107,8 +107,8 @@
       "skipped": false,
       "details": "핀 0개 · 장면 6개 정지 프레임 완성",
       "items": [],
-      "ms": 5395
+      "ms": 5397
     }
   ],
-  "ts": "2026-09-20T03:29:39.238Z"
+  "ts": "2026-09-20T15:53:40.308Z"
 }

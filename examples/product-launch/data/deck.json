@@ -1,0 +1,209 @@
+{
+  "title": "Nimbus",
+  "subtitle": "무선 헤드폰 런칭 — 소음·무게·시간을 지운다",
+  "lang": "ko",
+  "presenter": {
+    "name": "Nimbus Audio",
+    "roles": [],
+    "avatar": "",
+    "autoDurationSec": 180
+  },
+  "theme": {
+    "style": "light",
+    "accent": "#cf4224"
+  },
+  "scenes": [
+    {
+      "id": "01-open",
+      "order": 1,
+      "technique": "kinetic-titles",
+      "pinVh": 240,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "NIMBUS OVER-EAR",
+        "title": "우리가 지운 세 가지",
+        "lines": [
+          "소음 // 42dB를 덜어냈다 · 엔진 소리가 방 안 공기가 된다",
+          "무게 // 213g · 두 시간 뒤에는 쓴 것을 잊는다",
+          "시간 // 40시간 재생 · 출장에 충전기를 두고 간다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "세 단어만 말한다. 소음, 무게, 시간. 블록이 다 서면 '오늘은 이 셋을 어떻게 지웠는지만 말합니다'로 넘어간다.",
+      "fallback": "세 블록을 세로 목록으로 세운 정지 화면."
+    },
+    {
+      "id": "02-turn",
+      "order": 2,
+      "technique": "frame-scrub-video",
+      "pinVh": 280,
+      "pin": true,
+      "assets": {
+        "frames": "/frames/turn/f_%03d.jpg",
+        "count": 90,
+        "critical": [
+          1,
+          23,
+          45,
+          68,
+          90
+        ],
+        "poster": "/frames/turn/poster.jpg"
+      },
+      "copy": {
+        "kicker": "외형",
+        "title": "한 바퀴 돌려 본다",
+        "lines": [
+          "이어컵은 알루미늄 한 덩이를 깎아 만든다",
+          "힌지는 안쪽으로 접혀 가방 두께를 넘지 않는다",
+          "헤드밴드는 다섯 단계로 늘어난다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "휠을 천천히 굴린다. 한 바퀴가 다 돌 때까지 말을 아끼고, 줄이 하나씩 내려앉을 때마다 한 문장씩만 붙인다.",
+      "fallback": "포스터 한 장(45° 뷰) 위에 카피만 얹는다. 모바일은 시퀀스를 내려받지 않는다."
+    },
+    {
+      "id": "03-hero",
+      "order": 3,
+      "technique": "tilt-card",
+      "pinVh": 200,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/03-hero/exploded.webp"
+        ],
+        "caption": "EXPLODED VIEW · NB-01"
+      },
+      "copy": {
+        "kicker": "안쪽",
+        "title": "뜯어 보면 네 층",
+        "lines": [
+          "40mm 다이내믹 드라이버 — 리퀴드 크리스털 다이어프램",
+          "1,200mAh 셀 — 힌지 아래에 눕혔다",
+          "피드포워드·피드백 마이크 각 2개",
+          "메모리폼 이어패드 — 손으로 교체한다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "분해도를 가리키며 위에서 아래로 짚는다. 드라이버, 배터리, 마이크, 패드. 네 번째 줄에서 '수리해서 오래 쓰는 물건'이라는 말을 붙인다.",
+      "fallback": "분해도 정지 화면 옆에 네 줄이 그대로 선다."
+    },
+    {
+      "id": "04-features",
+      "order": 4,
+      "technique": "horizontal-gallery",
+      "pinVh": 320,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/04-features/plate-01-battery.webp",
+          "/media/04-features/plate-02-anc.webp",
+          "/media/04-features/plate-03-weight.webp",
+          "/media/04-features/plate-04-codec.webp",
+          "/media/04-features/plate-05-color.webp"
+        ]
+      },
+      "copy": {
+        "kicker": "다섯 장면",
+        "title": "숫자로 먼저 본다",
+        "lines": [
+          "한 판에 하나씩, 다섯 판"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "판을 하나씩 해설하지 않는다. 레일이 지나가는 동안 '재생·소음·무게·코덱·색' 다섯 축만 소리 내어 읽는다.",
+      "fallback": "판 다섯 장을 2열 그리드로 정지 배치하고 캡션을 맨 위로 올린다."
+    },
+    {
+      "id": "05-breathe",
+      "order": 5,
+      "technique": "parallax-video",
+      "pinVh": 130,
+      "pin": false,
+      "assets": {
+        "video": "/media/05-breathe/breathe.mp4",
+        "poster": "/media/05-breathe/poster.webp",
+        "images": []
+      },
+      "copy": {
+        "kicker": "잠깐",
+        "title": "소리가 사라진 자리",
+        "lines": [
+          "남는 것은 당신이 고른 소리뿐이다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "여기서는 한 문장만 말하고 계속 굴린다. 멈추면 숨 고르기가 아니라 정적이 된다.",
+      "fallback": "영상이 막히면 포스터(파형 정지 화면) 위로 카피만 흐른다."
+    },
+    {
+      "id": "06-specs",
+      "order": 6,
+      "technique": "odometer-stats",
+      "pinVh": 220,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "스펙",
+        "title": "네 숫자로 끝낸다",
+        "lines": [
+          "40시간 연속 재생",
+          "42dB 노이즈 캔슬링",
+          "213g 헤드밴드 포함",
+          "6개 빔포밍 마이크"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "릴이 멈춘 뒤에 숫자를 읽는다. 마지막에 '전부 실험실 수치이고, 이 제품은 가상입니다'를 덧붙인다.",
+      "fallback": "네 숫자를 최종값 상태로 세운다."
+    },
+    {
+      "id": "07-close",
+      "order": 7,
+      "technique": "closing-qr",
+      "pinVh": 200,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/07-close/qr.svg"
+        ]
+      },
+      "copy": {
+        "kicker": "가져가기",
+        "title": "감사합니다",
+        "lines": [
+          "github.com/gongnyang/awesome-html-scrolline-deck"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "QR을 띄운 채로 질문을 받는다. 화면을 넘기지 않는다.",
+      "fallback": "QR과 주소를 정지 상태로 함께 띄운다."
+    }
+  ],
+  "links": {
+    "site": "https://github.com/gongnyang/awesome-html-scrolline-deck"
+  }
+}

@@ -1,0 +1,32 @@
+/* parallax-video — unpinned. The clip sits still while the copy drifts past it. */
+[data-scene="05-breathe"] .pv { position: relative; isolation: isolate; width: 100%; min-height: 130svh; display: grid; place-items: center; overflow: clip; }
+[data-scene="05-breathe"] .pv__media { position: fixed; z-index: -2; inset: 0; width: 100%; height: 100svh; pointer-events: none; }
+[data-scene="05-breathe"] .pv__media video,
+[data-scene="05-breathe"] .pv__media img { display: block; width: 100%; height: 100%; object-fit: cover; filter: brightness(.62); }
+[data-scene="05-breathe"] .pv__veil { position: fixed; z-index: -1; inset: 0; background: var(--canvas); opacity: .28; pointer-events: none; }
+[data-scene="05-breathe"] .pv__copy { width: min(900px, calc(100% - var(--gutter, 20px) * 2)); padding: var(--space-section, 88px) 0; text-align: center; }
+[data-scene="05-breathe"] .pv__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="05-breathe"] .pv__title { margin: 0 0 var(--space-lg, 24px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(38px, 6.4vw, var(--display-xl-size, 80px)); font-weight: 700; line-height: 1.02; letter-spacing: -.03em; text-wrap: balance; word-break: keep-all; }
+[data-scene="05-breathe"] .pv__line { margin: 0; color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.55; word-break: keep-all; }
+@media (max-width: 720px) {
+  [data-scene="05-breathe"] .pv { min-height: 120svh; }
+  [data-scene="05-breathe"] .pv__copy { padding: var(--space-xl, 32px) var(--gutter, 20px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="05-breathe"] .pv { min-height: 100svh; background: var(--surface-1); }
+  [data-scene="05-breathe"] .pv__media { position: absolute; }
+  [data-scene="05-breathe"] .pv__veil { position: absolute; }
+}
+
+/* --- deck corrections (05-breathe) --- */
+/* Template bug. parallax-video paints a veil of solid var(--canvas) over the
+   clip and keeps it translucent with `opacity: .28` in CSS — but build() tweens
+   the same element's autoAlpha to 1, which writes `opacity: 1` inline and turns
+   the veil into an opaque sheet. The clip is invisible in both themes, with no
+   console error and every gate green. Keep the fade (opacity is the tweened
+   property) and move the translucency into the colour instead. */
+[data-scene="05-breathe"] .pv__veil { background: color-mix(in srgb, var(--canvas) 46%, transparent); }
+/* The template dims the clip for a dark deck (brightness .62). This one is drawn
+   on the same cream as the page, so it only needs a touch of contrast. */
+[data-scene="05-breathe"] .pv__media video,
+[data-scene="05-breathe"] .pv__media img { filter: contrast(1.04); }

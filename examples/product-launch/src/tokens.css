@@ -1,0 +1,132 @@
+/* ============================================================
+   tokens.css — Nimbus launch palette (warm cream + coral / cobalt).
+   The only place colours, type and spacing are defined; scene CSS uses
+   var() and never a literal colour (gate L1 enforces it).
+   The deck ships light — [data-theme="light"] is the palette that matters —
+   and the dark ladder is kept warm so the same deck survives a dark room.
+   ============================================================ */
+
+:root {
+  /* ---------- accents ---------- */
+  --accent-1: #f2674a;   /* coral: the launch colour, marks and accents */
+  --accent-2: #7f9bff;   /* cobalt, lifted for a dark room */
+  --accent-3: #e0a34a;   /* amber: third beat, charge and warmth */
+  --on-accent: #1a120c;
+
+  /* ---------- surface ladder ---------- */
+  --canvas:    #14100d;  /* warm near-black. never pure #000 */
+  --surface-1: #1c1713;
+  --surface-2: #241d18;
+  --surface-3: #2e251e;
+
+  /* ---------- hairlines ---------- */
+  --hairline:        #3a2f26;
+  --hairline-strong: #4d3f33;
+
+  /* ---------- ink ---------- */
+  --ink:        #f8f1e6;
+  --ink-muted:  #d6c9ba;
+  --ink-subtle: #9b8b7b;
+
+  /* ---------- fonts ---------- */
+  /* Display is a geometric sans — URW Gothic / Century Gothic / Futura — with
+     Pretendard picking up Hangul, which those faces do not cover. Body stays
+     Korean-first so a paragraph never switches face mid-sentence. */
+  --font-display: 'URW Gothic', 'Century Gothic', Questrial, Poppins, Futura,
+                  'Pretendard Variable', Pretendard, system-ui,
+                  'Noto Sans CJK KR', 'Noto Sans KR', sans-serif;
+  --font-body: 'Pretendard Variable', Pretendard, system-ui, -apple-system,
+               'Noto Sans CJK KR', 'Noto Sans KR', sans-serif;
+  /* Ubuntu Mono carries no Hangul, so a CJK mono follows it in the stack. Note
+     that this is not a cure: a string that mixes Latin and Hangul inside one
+     monospace run still gets Latin advances and sets the syllables on top of
+     each other, so mono copy in this deck stays single-script. */
+  --font-mono: 'Ubuntu Mono', 'Noto Sans Mono CJK KR', ui-monospace, SFMono-Regular,
+               'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* ---------- type scale (size / line-height / tracking / weight) ---------- */
+  --display-xl-size: 88px;  --display-xl-lh: 0.98; --display-xl-ls: -3.6px;  --display-xl-weight: 700;
+  --display-lg-size: 60px;  --display-lg-lh: 1.06; --display-lg-ls: -2.2px;  --display-lg-weight: 700;
+  --display-md-size: 42px;  --display-md-lh: 1.12; --display-md-ls: -1.2px;  --display-md-weight: 700;
+  --headline-size:   28px;  --headline-lh:   1.20; --headline-ls:   -0.6px;  --headline-weight:   600;
+  --card-title-size: 22px;  --card-title-lh: 1.25; --card-title-ls: -0.4px;  --card-title-weight: 500;
+  --subhead-size:    20px;  --subhead-lh:    1.40; --subhead-ls:    -0.2px;  --subhead-weight:    400;
+  --body-lg-size:    18px;  --body-lg-lh:    1.50; --body-lg-ls:    -0.1px;  --body-lg-weight:    400;
+  --body-size:       16px;  --body-lh:       1.50; --body-ls:       -0.05px; --body-weight:       400;
+  --body-sm-size:    14px;  --body-sm-lh:    1.50; --body-sm-ls:    0;       --body-sm-weight:    400;
+  --caption-size:    12px;  --caption-lh:    1.40; --caption-ls:    0;       --caption-weight:    400;
+  --eyebrow-size:    13px;  --eyebrow-lh:    1.30; --eyebrow-ls:    2.2px;   --eyebrow-weight:    500;
+  --mono-size:       13px;  --mono-lh:       1.50; --mono-ls:       0;       --mono-weight:       400;
+
+  /* ---------- radius ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+
+  /* ---------- spacing ---------- */
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-xxl: 48px;
+  --space-section: 96px;
+
+  /* ---------- layout ---------- */
+  --gutter: 20px;
+  --container: 1200px;
+  --stage-max: 1440px;
+
+  /* ---------- motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+
+  /* ---------- depth ---------- */
+  --focus-ring: 0 0 0 2px color-mix(in srgb, var(--accent-1) 60%, transparent);
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+}
+
+/* ---------- light variant ---------- */
+:root[data-theme='light'] {
+  /* Cream canvas, not white: the plates are drawn on the same paper. */
+  --canvas:    #faf3e8;
+  --surface-1: #f3e9da;
+  --surface-2: #ecdfcc;
+  --surface-3: #e3d3bc;
+
+  --hairline:        #ddcdb5;
+  --hairline-strong: #c2ab8c;
+
+  --ink:        #1b1410;
+  --ink-muted:  #4a3b30;
+  --ink-subtle: #7c6a5a;
+
+  --accent-1: #cf4224;   /* coral — 4.9:1 on the cream canvas */
+  --accent-2: #1f3fbb;   /* cobalt — 7.4:1 */
+  --accent-3: #9a5a00;   /* amber, darkened until it reads as text */
+  --on-accent: #faf3e8;
+}
+
+/* Projected decks are read from far away: keep the display sizes usable on laptops. */
+@media (max-width: 900px) {
+  :root {
+    --display-xl-size: 44px; --display-xl-ls: -1.6px;
+    --display-lg-size: 34px; --display-lg-ls: -1.0px;
+    --display-md-size: 28px; --display-md-ls: -0.6px;
+    --headline-size:   22px; --headline-ls:   -0.4px;
+    --card-title-size: 19px;
+    --subhead-size:    17px;
+    --body-lg-size:    16px;
+    --space-section:   64px;
+    --gutter:          16px;
+  }
+}
