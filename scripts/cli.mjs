@@ -8,7 +8,7 @@
  *   scrolline storyboard [dir]              print the scene table
  *   scrolline check [dir]                   static gates (no browser)
  *   scrolline verify [dir]                  browser gates (Playwright, optional)
- *   scrolline qr --url https://… --out q.svg
+ *   scrolline qr --url https://… --scene 06-closing
  *   scrolline media <file> --scene NN-id    convert an image into the scene's media folder
  *   scrolline upgrade <dir> [--force]       replace the copied engine with this one
  */
@@ -52,7 +52,7 @@ Commands
   storyboard [dir]            Print the scene table (id, technique, copy, pin, assets)
   check [dir]                 Static gates: module shape, timeline <= 1, tokens, no scrollTo
   verify [dir]                Browser gates: pin distance, visibility, console, overflow
-  qr --url <url> --out <file> Write a currentColor QR SVG
+  qr --url <url> --scene <id> Write a currentColor QR SVG and wire it into deck.json (or --out <file>)
   media <file> --scene NN-id  Copy/convert an image into public/media/<scene>/
   upgrade <dir> [--force]     Refresh <dir>/src/engine from this engine build
       --manifest              (no dir) Regenerate engine/MANIFEST.json in this repo
