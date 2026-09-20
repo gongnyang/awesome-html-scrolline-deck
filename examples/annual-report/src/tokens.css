@@ -1,0 +1,120 @@
+/* ============================================================
+   tokens.css — 「2026 연간 성과 보고」 팔레트.
+   기본 스캐폴드의 남색/흰색 대신 깊은 숲빛 잉크 바탕 + 앰버·민트 강조,
+   제목은 명조(세리프), 본문은 고딕(산세리프)로 갈랐다.
+   규칙은 그대로 — 색은 여기서만 정의하고 scene.css는 var()만 쓴다.
+   ============================================================ */
+
+:root {
+  /* ---------- accents ---------- */
+  --accent-1: #4fd1a5;   /* 민트: 진행바·포커스·주 강조 */
+  --accent-2: #edb04a;   /* 앰버: 숫자·수평선·하이라이트 */
+  --accent-3: #e08744;   /* 짙은 앰버: 연결선·단계 번호 */
+  --on-accent: #04110e;
+
+  /* ---------- surface ladder ---------- */
+  --canvas:    #061210;  /* 숲 그늘. 순검정 아님 */
+  --surface-1: #0b1a17;
+  --surface-2: #11241f;
+  --surface-3: #183029;
+
+  /* ---------- hairlines ---------- */
+  --hairline:        #24423a;
+  --hairline-strong: #33594e;
+
+  /* ---------- ink ---------- */
+  --ink:        #f1f6f2;
+  --ink-muted:  #bed1c7;
+  --ink-subtle: #7d9489;
+
+  /* ---------- fonts ---------- */
+  /* 제목은 명조계. 연간 보고서의 활자 인상은 여기서 갈린다. */
+  --font-display: 'Noto Serif KR', 'Noto Serif CJK KR', 'Nanum Myeongjo', 'Apple SD Gothic Neo',
+                  Georgia, 'Times New Roman', serif;
+  --font-body: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+               'Noto Sans CJK KR', 'Noto Sans KR', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  /* ---------- type scale (size / line-height / tracking / weight) ---------- */
+  --display-xl-size: 80px;  --display-xl-lh: 1.05; --display-xl-ls: -3.0px;  --display-xl-weight: 600;
+  --display-lg-size: 56px;  --display-lg-lh: 1.10; --display-lg-ls: -1.8px;  --display-lg-weight: 600;
+  --display-md-size: 40px;  --display-md-lh: 1.15; --display-md-ls: -1.0px;  --display-md-weight: 600;
+  --headline-size:   28px;  --headline-lh:   1.20; --headline-ls:   -0.6px;  --headline-weight:   600;
+  --card-title-size: 22px;  --card-title-lh: 1.25; --card-title-ls: -0.4px;  --card-title-weight: 500;
+  --subhead-size:    20px;  --subhead-lh:    1.40; --subhead-ls:    -0.2px;  --subhead-weight:    400;
+  --body-lg-size:    18px;  --body-lg-lh:    1.50; --body-lg-ls:    -0.1px;  --body-lg-weight:    400;
+  --body-size:       16px;  --body-lh:       1.50; --body-ls:       -0.05px; --body-weight:       400;
+  --body-sm-size:    14px;  --body-sm-lh:    1.50; --body-sm-ls:    0;       --body-sm-weight:    400;
+  --caption-size:    12px;  --caption-lh:    1.40; --caption-ls:    0;       --caption-weight:    400;
+  --eyebrow-size:    13px;  --eyebrow-lh:    1.30; --eyebrow-ls:    0.4px;   --eyebrow-weight:    500;
+  --mono-size:       13px;  --mono-lh:       1.50; --mono-ls:       0;       --mono-weight:       400;
+
+  /* ---------- radius ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+
+  /* ---------- spacing ---------- */
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-xxl: 48px;
+  --space-section: 96px;
+
+  /* ---------- layout ---------- */
+  --gutter: 20px;
+  --container: 1200px;
+  --stage-max: 1440px;
+
+  /* ---------- motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+
+  /* ---------- depth ---------- */
+  --focus-ring: 0 0 0 2px color-mix(in srgb, var(--accent-1) 60%, transparent);
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+}
+
+/* ---------- light variant ---------- */
+:root[data-theme='light'] {
+  --canvas:    #fbfaf4;
+  --surface-1: #f2f1e7;
+  --surface-2: #e8e7da;
+  --surface-3: #dcdbca;
+
+  --hairline:        #d3d2c0;
+  --hairline-strong: #b3b29c;
+
+  --ink:        #0f1f1a;
+  --ink-muted:  #3a4f46;
+  --ink-subtle: #64786d;
+
+  --accent-1: #0f6b55;
+  --accent-2: #8a5a08;
+  --accent-3: #9c5322;
+}
+
+/* Projected decks are read from far away: keep the display sizes usable on laptops. */
+@media (max-width: 900px) {
+  :root {
+    --display-xl-size: 44px; --display-xl-ls: -1.6px;
+    --display-lg-size: 34px; --display-lg-ls: -1.0px;
+    --display-md-size: 28px; --display-md-ls: -0.6px;
+    --headline-size:   22px; --headline-ls:   -0.4px;
+    --card-title-size: 19px;
+    --subhead-size:    17px;
+    --body-lg-size:    16px;
+    --space-section:   64px;
+    --gutter:          16px;
+  }
+}

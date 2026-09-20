@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1600" viewBox="0 0 1100 1600">
+<defs><linearGradient id="wash" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1100" height="1600" fill="#061210" /><rect x="0" y="0" width="1100" height="1600" fill="url(#wash)" />
+<line x1="90" y1="150" x2="1010" y2="150" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="90" y="118" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="22" font-weight="400" fill="#7d9489" text-anchor="start" letter-spacing="5">QUARTERLY RESULT</text>
+<text x="1010" y="118" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="22" font-weight="400" fill="#e08744" text-anchor="end" letter-spacing="2">가상 데이터</text>
+<text x="90" y="250" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="62" font-weight="700" fill="#f1f6f2" text-anchor="start">매출과 이익률</text>
+<text x="90" y="300" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#bed1c7" text-anchor="start">2025 Q1 – 2026 Q4 · 매출 억원 · 이익률 %</text>
+<rect x="90" y="340" width="30" height="14" fill="#4fd1a5" fill-opacity="0.9" />
+<text x="132" y="353" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#bed1c7" text-anchor="start">연결 매출</text>
+<line x1="290" y1="347" x2="334" y2="347" stroke="#edb04a" stroke-width="4" stroke-linecap="round" />
+<circle cx="312" cy="347" r="7" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<text x="346" y="353" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#bed1c7" text-anchor="start">영업이익률</text>
+<line x1="156" y1="1060" x2="1020" y2="1060" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="142" y="1068" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="22" font-weight="400" fill="#7d9489" text-anchor="end">100</text>
+<line x1="156" y1="880" x2="1020" y2="880" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="142" y="888" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="22" font-weight="400" fill="#7d9489" text-anchor="end">200</text>
+<line x1="156" y1="700" x2="1020" y2="700" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="142" y="708" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="22" font-weight="400" fill="#7d9489" text-anchor="end">300</text>
+<line x1="156" y1="520" x2="1020" y2="520" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="142" y="528" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="22" font-weight="400" fill="#7d9489" text-anchor="end">400</text>
+<line x1="156" y1="1240" x2="1020" y2="1240" stroke="#33594e" stroke-width="1" stroke-linecap="butt" />
+<rect x="203.5" y="696.4" width="58" height="543.6" fill="#183029" />
+<line x1="203.5" y1="696.4" x2="261.5" y2="696.4" stroke="#33594e" stroke-width="2" stroke-linecap="butt" />
+<text x="232.5" y="680.4" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="400" fill="#7d9489" text-anchor="middle">302</text>
+<text x="232.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#7d9489" text-anchor="middle">25 Q1</text>
+<rect x="308.5" y="649.6" width="58" height="590.4" fill="#183029" />
+<line x1="308.5" y1="649.6" x2="366.5" y2="649.6" stroke="#33594e" stroke-width="2" stroke-linecap="butt" />
+<text x="337.5" y="633.6" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="400" fill="#7d9489" text-anchor="middle">328</text>
+<text x="337.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#7d9489" text-anchor="middle">25 Q2</text>
+<rect x="413.5" y="628" width="58" height="612" fill="#183029" />
+<line x1="413.5" y1="628" x2="471.5" y2="628" stroke="#33594e" stroke-width="2" stroke-linecap="butt" />
+<text x="442.5" y="612" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="400" fill="#7d9489" text-anchor="middle">340</text>
+<text x="442.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#7d9489" text-anchor="middle">25 Q3</text>
+<rect x="518.5" y="523.6" width="58" height="716.4" fill="#183029" />
+<line x1="518.5" y1="523.6" x2="576.5" y2="523.6" stroke="#33594e" stroke-width="2" stroke-linecap="butt" />
+<text x="547.5" y="507.6" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="400" fill="#7d9489" text-anchor="middle">398</text>
+<text x="547.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#7d9489" text-anchor="middle">25 Q4</text>
+<rect x="623.5" y="635.2" width="58" height="604.8" fill="#4fd1a5" fill-opacity="0.9" />
+<text x="652.5" y="619.2" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="700" fill="#f1f6f2" text-anchor="middle">336</text>
+<text x="652.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#bed1c7" text-anchor="middle">26 Q1</text>
+<rect x="728.5" y="595.6" width="58" height="644.4" fill="#4fd1a5" fill-opacity="0.9" />
+<text x="757.5" y="579.6" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="700" fill="#f1f6f2" text-anchor="middle">358</text>
+<text x="757.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#bed1c7" text-anchor="middle">26 Q2</text>
+<rect x="833.5" y="570.4" width="58" height="669.6" fill="#4fd1a5" fill-opacity="0.9" />
+<text x="862.5" y="554.4" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="700" fill="#f1f6f2" text-anchor="middle">372</text>
+<text x="862.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#bed1c7" text-anchor="middle">26 Q3</text>
+<rect x="938.5" y="491.2" width="58" height="748.8" fill="#4fd1a5" fill-opacity="0.9" />
+<text x="967.5" y="475.2" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="700" fill="#f1f6f2" text-anchor="middle">416</text>
+<text x="967.5" y="1286" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#bed1c7" text-anchor="middle">26 Q4</text>
+<line x1="600" y1="400" x2="600" y2="1310" stroke="#33594e" stroke-width="1" stroke-linecap="butt" stroke-dasharray="5 9" />
+<text transform="translate(584 1226) rotate(-90)" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" fill="#4fd1a5">2026 회계연도</text>
+<polyline points="232.5,746 337.5,711.8 442.5,687.3 547.5,672.7 652.5,565.1 757.5,467.3 862.5,418.4 967.5,379.3" fill="none" stroke="#edb04a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="232.5" cy="746" r="8" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<circle cx="337.5" cy="711.78" r="8" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<circle cx="442.5" cy="687.33" r="8" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<circle cx="547.5" cy="672.67" r="8" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<circle cx="652.5" cy="565.11" r="8" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<circle cx="757.5" cy="467.33" r="8" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<circle cx="862.5" cy="418.44" r="8" fill="#061210" stroke="#edb04a" stroke-width="3" />
+<circle cx="967.5" cy="379.33" r="11" fill="#edb04a" stroke="#edb04a" stroke-width="3" />
+<text x="210.5" y="755" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="700" fill="#edb04a" text-anchor="end">5.9%</text>
+<text x="757.5" y="441.33" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="700" fill="#edb04a" text-anchor="middle">11.6%</text>
+<text x="967.5" y="353.33" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="700" fill="#edb04a" text-anchor="middle">13.4%</text>
+<line x1="90" y1="1330" x2="1010" y2="1330" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="90" y="1382" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="22" font-weight="400" fill="#7d9489" text-anchor="start">연간 매출</text>
+<text x="90" y="1432" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="40" font-weight="700" fill="#f1f6f2" text-anchor="start">1,482억</text>
+<text x="90" y="1474" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#4fd1a5" text-anchor="start">+8.3%</text>
+<text x="430" y="1382" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="22" font-weight="400" fill="#7d9489" text-anchor="start">영업이익률</text>
+<text x="430" y="1432" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="40" font-weight="700" fill="#f1f6f2" text-anchor="start">11.9%</text>
+<text x="430" y="1474" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#4fd1a5" text-anchor="start">+5.1%p</text>
+<text x="760" y="1382" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="22" font-weight="400" fill="#7d9489" text-anchor="start">고정비 비중</text>
+<text x="760" y="1432" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="40" font-weight="700" fill="#f1f6f2" text-anchor="start">-4.2%p</text>
+<text x="760" y="1474" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="24" font-weight="400" fill="#4fd1a5" text-anchor="start">물류 통합</text>
+<text x="90" y="1552" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="22" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터 · 밀물 주식회사 2026 연차보고</text>
+</svg>

@@ -1,0 +1,23 @@
+/* word-relay — one word at a time crosses the stage; the last one stays. */
+[data-scene="01-open"] .relay { position: relative; isolation: isolate; width: min(100%, 1320px); min-height: 100svh; display: grid; place-content: center; padding: var(--space-section, 88px) var(--gutter, 20px); overflow: hidden; text-align: center; }
+[data-scene="01-open"] .relay__kicker { position: relative; z-index: 1; margin: 0 0 var(--space-section, 88px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="01-open"] .relay__words { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: var(--space-lg, 24px); min-height: 1.1em; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(38px, 6.4vw, var(--display-xl-size, 80px)); font-weight: 700; line-height: 1.04; letter-spacing: -.03em; white-space: nowrap; }
+[data-scene="01-open"] .relay__word { display: inline-block; }
+[data-scene="01-open"] .relay__word + .relay__word::before { content: '\2192'; margin-right: var(--space-md, 16px); color: var(--ink-subtle); }
+[data-scene="01-open"] .relay__lines { position: relative; z-index: 1; display: grid; gap: var(--space-xs, 8px); margin-top: var(--space-section, 88px); color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.55; word-break: keep-all; }
+[data-scene="01-open"] .relay__lines p { margin: 0; }
+[data-scene="01-open"] .relay__reveal { position: absolute; z-index: 0; inset: 0; background: var(--surface-1); clip-path: inset(50% 50% 50% 50%); opacity: 0; pointer-events: none; }
+@media (max-width: 720px) {
+  [data-scene="01-open"] .relay__words { flex-direction: column; gap: var(--space-xs, 8px); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); white-space: normal; }
+  [data-scene="01-open"] .relay__word + .relay__word::before { display: none; }
+  [data-scene="01-open"] .relay__kicker, [data-scene="01-open"] .relay__lines { margin-block: var(--space-xl, 32px) 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="01-open"] .relay__reveal { display: none; }
+}
+
+/* ── 연간 보고 손질 ── 명조 제목은 기본값(-.03em)만큼 조이면 붙어 보인다. */
+[data-scene="01-open"] .relay__kicker { color: var(--accent-2); }
+[data-scene="01-open"] .relay__words { letter-spacing: -.01em; }
+[data-scene="01-open"] .relay__word + .relay__word::before { color: var(--accent-2); }
+[data-scene="01-open"] .relay__lines p + p { color: var(--ink-subtle); font-size: .84em; }

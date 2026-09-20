@@ -1,0 +1,180 @@
+{
+  "title": "2026 연간 성과 보고",
+  "subtitle": "밀물 주식회사 · 가상 데이터 기반 샘플 덱",
+  "lang": "ko",
+  "presenter": {
+    "name": "재무·전략본부",
+    "roles": [],
+    "avatar": "",
+    "autoDurationSec": 180
+  },
+  "theme": {
+    "style": "dark",
+    "accent": "#4fd1a5"
+  },
+  "scenes": [
+    {
+      "id": "01-open",
+      "order": 1,
+      "technique": "word-relay",
+      "pinVh": 220,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "2026 연간 성과 보고",
+        "title": "규모를 줄여 → 이익을 남겼다",
+        "lines": [
+          "구독 전환과 물류 통합, 두 가지만 했다",
+          "밀물 주식회사 · 2026 회계연도 결산 (가상 데이터)"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "첫 단어에서 한 번 멈춘다. 두 번째 단어가 도착하면 그것이 올해의 한 문장이라고 말하고 넘어간다. 수치는 전부 예시용 가상 데이터라는 점을 여기서 한 번 밝힌다.",
+      "fallback": "두 구절을 가로로 나란히 세운 정지 화면."
+    },
+    {
+      "id": "02-anatomy",
+      "order": 2,
+      "technique": "anatomy-rows",
+      "pinVh": 300,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/02-anatomy/quarters.webp"
+        ]
+      },
+      "copy": {
+        "kicker": "분기 실적",
+        "title": "여덟 분기를 한 장으로",
+        "lines": [
+          "매출: 여덟 분기 내리 올랐지만 4분기 증가폭은 절반으로 꺾였다",
+          "이익률: 원가를 다시 짠 2026년 2분기부터 두 자리로 올라섰다",
+          "전환점: 구독 매출이 절반을 넘은 시점과 이익률 반등이 겹친다",
+          "비용: 물류를 한 곳으로 모아 고정비 비중이 4.2%p 내려갔다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "차트를 먼저 3초 보여준 뒤 행을 하나씩 읽는다. 네 번째 행에서 다음 장면의 숫자를 예고한다.",
+      "fallback": "차트 한 장과 행 네 개를 연결선 없이 위아래로 쌓는다."
+    },
+    {
+      "id": "03-numbers",
+      "order": 3,
+      "technique": "odometer-stats",
+      "pinVh": 220,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "핵심 지표",
+        "title": "네 숫자로 본 한 해",
+        "lines": [
+          "1482억 연결 매출 (+8.3%)",
+          "12% 영업이익률",
+          "38만 구독 가구",
+          "17개 통합 물류 거점"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "릴이 전부 멈춘 뒤에 말을 시작한다. 12%는 연간 11.9%를 반올림한 값이고, 분기별 숫자는 앞 장면 차트에 있다. 매출보다 이익률을 먼저 짚고, 구독 가구 수가 이익률을 만든 원인이라고 연결한다.",
+      "fallback": "네 숫자를 최종값 상태로 세운다."
+    },
+    {
+      "id": "04-stack",
+      "order": 4,
+      "technique": "paper-assembly",
+      "pinVh": 260,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/04-stack/page-01-mix.webp",
+          "/media/04-stack/page-02-pnl.webp",
+          "/media/04-stack/page-03-timeline.webp",
+          "/media/04-stack/page-04-map.webp",
+          "/media/04-stack/page-05-quote.webp",
+          "/media/04-stack/page-06-retention.webp"
+        ]
+      },
+      "copy": {
+        "kicker": "부문별 보고",
+        "title": "여섯 장의 부속 보고서",
+        "lines": [
+          "본문 한 권 뒤에 붙는 부속 자료 여섯 장"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "여섯 장이 모이는 동안 말하지 않는다. 부채꼴이 완성되면 각 장이 어느 부문인지만 이름을 부른다.",
+      "fallback": "부속 보고서 여섯 장을 3열 그리드로 정지 배치한다."
+    },
+    {
+      "id": "05-shift",
+      "order": 5,
+      "technique": "wipe-transform",
+      "pinVh": 300,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/05-shift/plate-2025.webp",
+          "/media/05-shift/plate-2026.webp",
+          "/media/05-shift/plate-delta.webp"
+        ],
+        "video": null,
+        "poster": null
+      },
+      "copy": {
+        "kicker": "",
+        "title": "사업 구조가 바뀌었다",
+        "lines": [
+          "2025 — 한 갈래로 팔았다",
+          "2026 — 세 갈래로 나눴다",
+          "2027 — 물류 자동화가 남았다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "와이프가 지나가는 동안 손을 든다. 2025 구조도와 2026 구조도의 차이는 갈래 수가 아니라 재구매 비중이라고 말한다.",
+      "fallback": "2025 구조도와 2026 구조도를 위아래로 나란히 둔다."
+    },
+    {
+      "id": "06-close",
+      "order": 6,
+      "technique": "closing-qr",
+      "pinVh": 200,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/06-close/qr.svg"
+        ]
+      },
+      "copy": {
+        "kicker": "자료 받기",
+        "title": "감사합니다",
+        "lines": [
+          "github.com/gongnyang/awesome-html-scrolline-deck"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "QR을 띄운 채로 질문을 받는다. 이 덱은 스크롤라인 덱 스킬의 예제이고 모든 수치는 가상 데이터라는 점을 마지막으로 다시 밝힌다.",
+      "fallback": "QR과 주소를 정지 상태로 함께 띄운다."
+    }
+  ],
+  "links": {
+    "site": "https://github.com/gongnyang/awesome-html-scrolline-deck"
+  }
+}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="wash-02" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1280" height="720" fill="#061210" /><rect x="0" y="0" width="1280" height="720" fill="url(#wash-02)" />
+<rect x="8" y="8" width="1264" height="704" fill="none" stroke="#24423a" stroke-width="1" />
+<text x="72" y="96" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="34" font-weight="700" fill="#edb04a" text-anchor="start" letter-spacing="2">02</text>
+<text x="1208" y="96" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="end">2026 · 단위 억원</text>
+<line x1="72" y1="130" x2="1208" y2="130" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="218" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="60" font-weight="700" fill="#f1f6f2" text-anchor="start">분기 손익</text>
+<line x1="72" y1="636" x2="1208" y2="636" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="682" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터 · 밀물 주식회사 2026 연차보고</text>
+<text x="72" y="310" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="30" font-weight="400" fill="#7d9489" text-anchor="start">분기</text>
+<text x="700" y="310" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="30" font-weight="400" fill="#7d9489" text-anchor="end">매출</text>
+<text x="960" y="310" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="30" font-weight="400" fill="#7d9489" text-anchor="end">영업이익</text>
+<text x="1208" y="310" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="30" font-weight="400" fill="#7d9489" text-anchor="end">이익률</text>
+<line x1="72" y1="334" x2="1208" y2="334" stroke="#33594e" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="390" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="42" font-weight="700" fill="#f1f6f2" text-anchor="start">Q1</text>
+<text x="700" y="390" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="end">336</text>
+<text x="960" y="390" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="end">32.3</text>
+<text x="1208" y="390" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="700" fill="#edb04a" text-anchor="end">9.6%</text>
+<line x1="72" y1="416" x2="1208" y2="416" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="458" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="42" font-weight="700" fill="#f1f6f2" text-anchor="start">Q2</text>
+<text x="700" y="458" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="end">358</text>
+<text x="960" y="458" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="end">41.5</text>
+<text x="1208" y="458" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="700" fill="#edb04a" text-anchor="end">11.6%</text>
+<line x1="72" y1="484" x2="1208" y2="484" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="526" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="42" font-weight="700" fill="#f1f6f2" text-anchor="start">Q3</text>
+<text x="700" y="526" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="end">372</text>
+<text x="960" y="526" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="end">46.9</text>
+<text x="1208" y="526" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="700" fill="#edb04a" text-anchor="end">12.6%</text>
+<line x1="72" y1="552" x2="1208" y2="552" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="594" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="42" font-weight="700" fill="#4fd1a5" text-anchor="start">Q4</text>
+<text x="700" y="594" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#4fd1a5" text-anchor="end">416</text>
+<text x="960" y="594" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="400" fill="#4fd1a5" text-anchor="end">55.7</text>
+<text x="1208" y="594" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="40" font-weight="700" fill="#4fd1a5" text-anchor="end">13.4%</text>
+<line x1="72" y1="620" x2="1208" y2="620" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+</svg>

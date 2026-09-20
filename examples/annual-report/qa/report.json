@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "gates": [
+    {
+      "id": "S0",
+      "title": "deck.json 스키마 · 에셋 경로",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 6개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
+      "items": [],
+      "ms": 23
+    },
+    {
+      "id": "G1",
+      "title": "장면 모듈 4멤버 · id = 폴더명",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 모듈 6개 계약 충족",
+      "items": [],
+      "ms": 116
+    },
+    {
+      "id": "G2",
+      "title": "타임라인 총 길이 ≤ 1.001 · order 정합",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 6개 · 최장 타임라인 0.980",
+      "items": [],
+      "ms": 40
+    },
+    {
+      "id": "G3",
+      "title": "tween 문자열 안 var( ) 금지",
+      "ok": true,
+      "skipped": false,
+      "details": "scene.js 6개에 var( ) tween 없음",
+      "items": [],
+      "ms": 36
+    },
+    {
+      "id": "G4",
+      "title": "장면 · 검수 경로에 직접 스크롤 이동 금지",
+      "ok": true,
+      "skipped": false,
+      "details": "파일 10개 · 직접 스크롤 이동 없음",
+      "items": [],
+      "ms": 47
+    },
+    {
+      "id": "LINT",
+      "title": "scene.css 토큰만 · 선택자 스코프 · pathLength",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 6개 린트 통과 (L1·L2·L3)",
+      "items": [],
+      "ms": 93
+    }
+  ],
+  "ts": "2026-09-20T15:57:35.660Z"
+}

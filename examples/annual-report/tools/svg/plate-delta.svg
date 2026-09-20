@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1040" viewBox="0 0 720 1040">
+<defs><linearGradient id="wash-delta" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="720" height="1040" fill="#061210" /><rect x="0" y="0" width="720" height="1040" fill="url(#wash-delta)" />
+<rect x="6" y="6" width="708" height="1028" fill="none" stroke="#24423a" stroke-width="1" />
+<text x="60" y="96" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="30" font-weight="400" fill="#edb04a" text-anchor="start" letter-spacing="2">2025 → 2026</text>
+<line x1="60" y1="126" x2="660" y2="126" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="60" y="212" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="60" font-weight="700" fill="#f1f6f2" text-anchor="start">한 해의 차이</text>
+<text x="60" y="300" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#7d9489" text-anchor="start">영업이익률</text>
+<text x="60" y="372" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="46" font-weight="700" fill="#7d9489" text-anchor="start">6.8%</text>
+<text x="200" y="372" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="40" font-weight="400" fill="#7d9489" text-anchor="start">→</text>
+<text x="258" y="372" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="64" font-weight="700" fill="#4fd1a5" text-anchor="start">11.9%</text>
+<rect x="60" y="404" width="600" height="16" fill="#183029" />
+<rect x="60" y="404" width="342.86" height="16" fill="#33594e" />
+<rect x="60" y="434" width="600" height="16" fill="#183029" />
+<rect x="60" y="434" width="600" height="16" fill="#4fd1a5" />
+<text x="60" y="530" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#7d9489" text-anchor="start">구독 매출 비중</text>
+<text x="60" y="602" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="46" font-weight="700" fill="#7d9489" text-anchor="start">18%</text>
+<text x="200" y="602" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="40" font-weight="400" fill="#7d9489" text-anchor="start">→</text>
+<text x="258" y="602" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="64" font-weight="700" fill="#4fd1a5" text-anchor="start">52%</text>
+<rect x="60" y="634" width="600" height="16" fill="#183029" />
+<rect x="60" y="634" width="207.69" height="16" fill="#33594e" />
+<rect x="60" y="664" width="600" height="16" fill="#183029" />
+<rect x="60" y="664" width="600" height="16" fill="#4fd1a5" />
+<text x="60" y="760" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#7d9489" text-anchor="start">물류 거점</text>
+<text x="60" y="832" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="46" font-weight="700" fill="#7d9489" text-anchor="start">9개</text>
+<text x="200" y="832" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="40" font-weight="400" fill="#7d9489" text-anchor="start">→</text>
+<text x="258" y="832" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="64" font-weight="700" fill="#4fd1a5" text-anchor="start">17개</text>
+<rect x="60" y="864" width="600" height="16" fill="#183029" />
+<rect x="60" y="864" width="317.65" height="16" fill="#33594e" />
+<rect x="60" y="894" width="600" height="16" fill="#183029" />
+<rect x="60" y="894" width="600" height="16" fill="#4fd1a5" />
+<line x1="60" y1="946" x2="660" y2="946" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="60" y="992" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터</text>
+</svg>

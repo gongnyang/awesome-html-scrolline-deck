@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="wash-05" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1280" height="720" fill="#061210" /><rect x="0" y="0" width="1280" height="720" fill="url(#wash-05)" />
+<rect x="8" y="8" width="1264" height="704" fill="none" stroke="#24423a" stroke-width="1" />
+<text x="72" y="96" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="34" font-weight="700" fill="#edb04a" text-anchor="start" letter-spacing="2">05</text>
+<text x="1208" y="96" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="end">구독 가구 인터뷰</text>
+<line x1="72" y1="130" x2="1208" y2="130" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="218" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="60" font-weight="700" fill="#f1f6f2" text-anchor="start">고객의 말</text>
+<line x1="72" y1="636" x2="1208" y2="636" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="682" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터 · 밀물 주식회사 2026 연차보고</text>
+<text x="96" y="486" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="200" font-weight="700" fill="#4fd1a5" text-anchor="start" fill-opacity="0.32">“</text>
+<text x="230" y="370" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="54" font-weight="700" fill="#f1f6f2" text-anchor="start">주문을 넣는 날보다</text>
+<text x="230" y="452" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="54" font-weight="700" fill="#f1f6f2" text-anchor="start">안 넣어도 되는 날이 좋아졌다.</text>
+<line x1="230" y1="500" x2="350" y2="500" stroke="#edb04a" stroke-width="3" stroke-linecap="butt" />
+<text x="230" y="556" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="30" font-weight="400" fill="#7d9489" text-anchor="start">구독 3년차 가구 인터뷰 · 2026년 9월</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="wash-03" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1280" height="720" fill="#061210" /><rect x="0" y="0" width="1280" height="720" fill="url(#wash-03)" />
+<rect x="8" y="8" width="1264" height="704" fill="none" stroke="#24423a" stroke-width="1" />
+<text x="72" y="96" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="34" font-weight="700" fill="#edb04a" text-anchor="start" letter-spacing="2">03</text>
+<text x="1208" y="96" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="end">주요 실행</text>
+<line x1="72" y1="130" x2="1208" y2="130" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="218" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="60" font-weight="700" fill="#f1f6f2" text-anchor="start">한 해의 순서</text>
+<line x1="72" y1="636" x2="1208" y2="636" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="682" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터 · 밀물 주식회사 2026 연차보고</text>
+<line x1="120" y1="440" x2="1160" y2="440" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<line x1="120" y1="440" x2="1080" y2="440" stroke="#33594e" stroke-width="1" stroke-linecap="butt" />
+<circle cx="200" cy="440" r="13" fill="#061210" stroke="#33594e" stroke-width="3" />
+<text x="200" y="394" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="36" font-weight="700" fill="#edb04a" text-anchor="middle">2월</text>
+<text x="200" y="516" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="32" font-weight="400" fill="#bed1c7" text-anchor="middle">구독 요금제 전환</text>
+<circle cx="493.33" cy="440" r="13" fill="#061210" stroke="#33594e" stroke-width="3" />
+<text x="493.33" y="394" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="36" font-weight="700" fill="#edb04a" text-anchor="middle">5월</text>
+<text x="493.33" y="516" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="32" font-weight="400" fill="#bed1c7" text-anchor="middle">원가 구조 재설계</text>
+<circle cx="786.67" cy="440" r="13" fill="#061210" stroke="#33594e" stroke-width="3" />
+<text x="786.67" y="394" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="36" font-weight="700" fill="#edb04a" text-anchor="middle">8월</text>
+<text x="786.67" y="516" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="32" font-weight="400" fill="#bed1c7" text-anchor="middle">물류 거점 통합</text>
+<circle cx="1080" cy="440" r="18" fill="#4fd1a5" stroke="#4fd1a5" stroke-width="3" />
+<text x="1080" y="394" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="36" font-weight="700" fill="#4fd1a5" text-anchor="middle">11월</text>
+<text x="1080" y="516" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="32" font-weight="400" fill="#bed1c7" text-anchor="middle">B2B 공급 개시</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="wash-04" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1280" height="720" fill="#061210" /><rect x="0" y="0" width="1280" height="720" fill="url(#wash-04)" />
+<rect x="8" y="8" width="1264" height="704" fill="none" stroke="#24423a" stroke-width="1" />
+<text x="72" y="96" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="34" font-weight="700" fill="#edb04a" text-anchor="start" letter-spacing="2">04</text>
+<text x="1208" y="96" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="end">권역별 물류 거점</text>
+<line x1="72" y1="130" x2="1208" y2="130" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="218" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="60" font-weight="700" fill="#f1f6f2" text-anchor="start">거점 지도</text>
+<line x1="72" y1="636" x2="1208" y2="636" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="682" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터 · 밀물 주식회사 2026 연차보고</text>
+<line x1="288" y1="296" x2="343" y2="377.6" stroke="#33594e" stroke-width="1" stroke-linecap="butt" stroke-dasharray="4 8" stroke-opacity="0.8" />
+<line x1="288" y1="296" x2="442" y2="468.8" stroke="#33594e" stroke-width="1" stroke-linecap="butt" stroke-dasharray="4 8" stroke-opacity="0.8" />
+<line x1="288" y1="296" x2="244" y2="483.2" stroke="#33594e" stroke-width="1" stroke-linecap="butt" stroke-dasharray="4 8" stroke-opacity="0.8" />
+<line x1="288" y1="296" x2="200" y2="574.4" stroke="#33594e" stroke-width="1" stroke-linecap="butt" stroke-dasharray="4 8" stroke-opacity="0.8" />
+<circle cx="288" cy="296" r="46" fill="#4fd1a5" fill-opacity="0.16" stroke="#4fd1a5" stroke-width="2" />
+<circle cx="288" cy="296" r="6" fill="#4fd1a5" />
+<text x="352" y="308" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="start">수도권 6</text>
+<circle cx="343" cy="377.6" r="31" fill="#4fd1a5" fill-opacity="0.16" stroke="#4fd1a5" stroke-width="2" />
+<circle cx="343" cy="377.6" r="6" fill="#4fd1a5" />
+<text x="392" y="389.6" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="start">중부 3</text>
+<circle cx="442" cy="468.8" r="36" fill="#4fd1a5" fill-opacity="0.16" stroke="#4fd1a5" stroke-width="2" />
+<circle cx="442" cy="468.8" r="6" fill="#4fd1a5" />
+<text x="496" y="480.8" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="start">영남 4</text>
+<circle cx="244" cy="483.2" r="31" fill="#4fd1a5" fill-opacity="0.16" stroke="#4fd1a5" stroke-width="2" />
+<circle cx="244" cy="483.2" r="6" fill="#4fd1a5" />
+<text x="293" y="495.2" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="start">호남 3</text>
+<circle cx="200" cy="574.4" r="21" fill="#4fd1a5" fill-opacity="0.16" stroke="#4fd1a5" stroke-width="2" />
+<circle cx="200" cy="574.4" r="6" fill="#4fd1a5" />
+<text x="239" y="586.4" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="start">제주 1</text>
+<text x="1208" y="430" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="130" font-weight="700" fill="#4fd1a5" text-anchor="end">17</text>
+<text x="1208" y="486" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#f1f6f2" text-anchor="end">통합 물류 거점</text>
+<text x="1208" y="532" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="end">2025년 9개에서 8개 늘었다</text>
+</svg>

@@ -15,7 +15,7 @@ const fanFor = (index, total) => {
 };
 
 export default {
-  id: '{{id}}',
+  id: '04-stack',
 
   mount(section, ctx) {
     root = section.querySelector('.pa') || section;
@@ -50,11 +50,18 @@ export default {
     // hold — 0.30 .. 0.75. The stack opens into a fan you can count.
     sheets.forEach((sheet, index) => {
       const to = fanFor(index, total);
-      // The sheet is centred by CSS translate(-50%,-50%), which GSAP reads as
-      // xPercent/yPercent -50. Writing the fan offset alone would drop it.
-      tl.to(sheet, { xPercent: to.x - 50, yPercent: to.y - 50, rotation: to.r, duration: 0.22, ease: 'power2.inOut' }, 0.34);
+      // CSS 의 translate(-50%,-50%) 를 GSAP 이 xPercent/yPercent 로 읽어 두기 때문에,
+      // 부채꼴 값을 그대로 넣으면 가운데 정렬이 풀려 판이 오른쪽 아래로 쏠린다.
+      // -50 을 다시 얹어 중심을 잡고, 여섯 장이 서로 가리지 않도록 1.6배로 편다.
+      tl.to(sheet, {
+        xPercent: to.x * 1.6 - 50,
+        yPercent: to.y - 50,
+        rotation: to.r * 1.2,
+        duration: 0.2,
+        ease: 'power2.inOut',
+      }, 0.3);
     });
-    tl.fromTo(line, { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0.5);
+    tl.fromTo(line, { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0.46);
 
     // exit — 0.75 .. 1.00. The whole set files away into the corner.
     tl.to(stage, { xPercent: 42, yPercent: 44, scale: 0.2, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);

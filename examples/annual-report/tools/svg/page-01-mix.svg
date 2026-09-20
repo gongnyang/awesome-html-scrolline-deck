@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="wash-01" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1280" height="720" fill="#061210" /><rect x="0" y="0" width="1280" height="720" fill="url(#wash-01)" />
+<rect x="8" y="8" width="1264" height="704" fill="none" stroke="#24423a" stroke-width="1" />
+<text x="72" y="96" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="34" font-weight="700" fill="#edb04a" text-anchor="start" letter-spacing="2">01</text>
+<text x="1208" y="96" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="end">부문별 비중</text>
+<line x1="72" y1="130" x2="1208" y2="130" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="218" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="60" font-weight="700" fill="#f1f6f2" text-anchor="start">매출 구성</text>
+<line x1="72" y1="636" x2="1208" y2="636" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="682" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터 · 밀물 주식회사 2026 연차보고</text>
+<path d="M 384.24 288.06 A 152 152 0 1 1 365.17 591.27 L 370.63 535.54 A 96 96 0 1 0 382.68 344.04 Z" fill="#4fd1a5" />
+<path d="M 356.75 590.21 A 152 152 0 0 1 244.81 370.52 L 294.62 396.12 A 96 96 0 0 0 365.31 534.87 Z" fill="#edb04a" />
+<path d="M 248.9 363.08 A 152 152 0 0 1 375.76 288.06 L 377.32 344.04 A 96 96 0 0 0 297.2 391.42 Z" fill="#e08744" />
+<text x="380" y="432" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="42" font-weight="700" fill="#f1f6f2" text-anchor="middle">1,482억</text>
+<text x="380" y="478" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="middle">연결 매출</text>
+<rect x="660" y="310" width="30" height="30" fill="#4fd1a5" />
+<text x="710" y="336" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="start">구독</text>
+<text x="1208" y="340" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="50" font-weight="700" fill="#4fd1a5" text-anchor="end">52%</text>
+<rect x="660" y="408" width="30" height="30" fill="#edb04a" />
+<text x="710" y="434" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="start">단건 판매</text>
+<text x="1208" y="438" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="50" font-weight="700" fill="#edb04a" text-anchor="end">31%</text>
+<rect x="660" y="506" width="30" height="30" fill="#e08744" />
+<text x="710" y="532" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="40" font-weight="400" fill="#f1f6f2" text-anchor="start">B2B 공급</text>
+<text x="1208" y="536" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="50" font-weight="700" fill="#e08744" text-anchor="end">17%</text>
+</svg>

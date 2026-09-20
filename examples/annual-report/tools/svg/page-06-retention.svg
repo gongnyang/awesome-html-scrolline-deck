@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="wash-06" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1280" height="720" fill="#061210" /><rect x="0" y="0" width="1280" height="720" fill="url(#wash-06)" />
+<rect x="8" y="8" width="1264" height="704" fill="none" stroke="#24423a" stroke-width="1" />
+<text x="72" y="96" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="34" font-weight="700" fill="#edb04a" text-anchor="start" letter-spacing="2">06</text>
+<text x="1208" y="96" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="26" font-weight="400" fill="#7d9489" text-anchor="end">2026 · 월별 %</text>
+<line x1="72" y1="130" x2="1208" y2="130" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="218" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="60" font-weight="700" fill="#f1f6f2" text-anchor="start">구독 유지율</text>
+<line x1="72" y1="636" x2="1208" y2="636" stroke="#24423a" stroke-width="1" stroke-linecap="butt" />
+<text x="72" y="682" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="24" font-weight="400" fill="#7d9489" text-anchor="start">예시용 가상 데이터 · 밀물 주식회사 2026 연차보고</text>
+<text x="72" y="336" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="76" font-weight="700" fill="#4fd1a5" text-anchor="start">91%</text>
+<text x="72" y="382" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="28" font-weight="400" fill="#7d9489" text-anchor="start">1월 78% 에서 12월까지</text>
+<line x1="120" y1="430" x2="1120" y2="430" stroke="#24423a" stroke-width="1" stroke-linecap="butt" stroke-dasharray="4 8" />
+<text x="128" y="416" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="400" fill="#7d9489" text-anchor="start">90%</text>
+<line x1="120" y1="590" x2="1120" y2="590" stroke="#33594e" stroke-width="1" stroke-linecap="butt" />
+<path d="M 120 550 L 210.9 540 L 301.8 520 L 392.7 510 L 483.6 490 L 574.5 480 L 665.5 470 L 756.4 450 L 847.3 450 L 938.2 430 L 1029.1 430 L 1120 420 L 1120 590 L 120 590 Z" fill="#4fd1a5" fill-opacity="0.12" />
+<polyline points="120,550 210.9,540 301.8,520 392.7,510 483.6,490 574.5,480 665.5,470 756.4,450 847.3,450 938.2,430 1029.1,430 1120,420" fill="none" stroke="#4fd1a5" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="120" cy="550" r="10" fill="#061210" stroke="#4fd1a5" stroke-width="4" />
+<circle cx="1120" cy="420" r="13" fill="#4fd1a5" />
+<text x="120" y="626" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="400" fill="#7d9489" text-anchor="start">1월</text>
+<text x="1120" y="626" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="26" font-weight="400" fill="#7d9489" text-anchor="middle">12월</text>
+</svg>

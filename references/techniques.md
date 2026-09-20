@@ -72,7 +72,7 @@ counter. The pin turns vertical scroll into a sideways pan.
 
 ### anatomy-rows — pinVh 300, pin true
 One artefact on the left, labelled rows on the right, each row drawing a
-connector to a mark on the artefact. Rows come from `copy.lines` written as `Label: sentence`, or from `assets.rows`
+connector to a mark on the artefact. Rows come from `copy.lines` written as `Label: sentence`, or from `assets.rows`; `assets.marks` (`[[x, y], …]`, % of the image) puts each row's mark on a real feature of the picture
 (`[{ label, value }]`) when a sentence contains a colon of its own.
 **Assets:** `images` (exactly 1). **Copy:** kicker, title, two to four lines.
 **Hold frame:** the artefact wiped in, every row open, every connector drawn,

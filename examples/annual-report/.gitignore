@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+# qa/ 는 일부러 추적한다 — 캡처가 README의 장면 증거다.

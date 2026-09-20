@@ -85,7 +85,19 @@
             "critical": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
             "poster": { "type": ["string", "null"] },
             "images": { "type": "array", "items": { "type": "string" } },
-            "video": { "type": ["string", "null"] }
+            "video": { "type": ["string", "null"] },
+            "rows": {
+              "type": "array",
+              "description": "anatomy-rows: explicit rows instead of parsing copy.lines",
+              "items": { "type": "object", "properties": { "label": { "type": "string" }, "value": { "type": "string" } }, "required": ["label", "value"] }
+            },
+            "marks": {
+              "type": "array",
+              "description": "anatomy-rows: [x, y] in % of the image for each row's mark; falls back to the template's spread",
+              "items": { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 100 }, "minItems": 2, "maxItems": 2 }
+            },
+            "caption": { "type": "string", "description": "horizontal-gallery: caption under the rail" },
+            "restartLabel": { "type": "string", "description": "closing-qr: label of the link back to scene one" }
           }
         },
         "copy": {

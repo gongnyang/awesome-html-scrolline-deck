@@ -1,7 +1,5 @@
 // anatomy-rows — take one artefact apart. Rows come from assets.rows
 // ([{label, value}]) or from copy.lines written as "Label: sentence".
-// Mark positions (% of the image, [x, y]) come from assets.marks when given,
-// so a row can point at a real feature of the picture; MARKS is the fallback.
 let root = null;
 let observer = null;
 let frame = 0;
@@ -51,17 +49,14 @@ const schedule = () => {
 };
 
 export default {
-  id: '{{id}}',
+  id: '02-anatomy',
 
   mount(section, ctx) {
     root = section.querySelector('.an') || section;
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
     const assets = scene.assets || {};
-    const marks = Array.isArray(assets.marks) && assets.marks.length
-      ? assets.marks.map((m, i) => (Array.isArray(m) && m.length === 2 ? m : MARKS[i % MARKS.length]))
-      : MARKS;
-    const rows = toRows(scene).slice(0, marks.length);
+    const rows = toRows(scene).slice(0, MARKS.length);
     const image = (assets.images || [])[0];
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
@@ -69,7 +64,7 @@ export default {
 
     const art = root.querySelector('[data-role="art"]');
     art.innerHTML = (image ? `<img src="${image}" alt="${esc(copy.title || '')}" decoding="async" />` : '')
-      + rows.map((row, index) => `<i class="an__mark" data-mark="r${index}" style="--ax:${marks[index][0]};--ay:${marks[index][1]}"></i>`).join('');
+      + rows.map((row, index) => `<i class="an__mark" data-mark="r${index}" style="--ax:${MARKS[index][0]};--ay:${MARKS[index][1]}"></i>`).join('');
 
     root.querySelector('[data-role="rows"]').innerHTML = rows.map((row, index) =>
       `<div class="an__row" data-slot="r${index}"><span class="an__label">${esc(row.label)}</span><p class="an__value">${esc(row.value)}</p></div>`).join('');

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="wash-2025" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#11241f" stop-opacity="0.95"/><stop offset="55%" stop-color="#0b1a17" stop-opacity="0.7"/><stop offset="100%" stop-color="#061210" stop-opacity="1"/></linearGradient></defs><rect x="0" y="0" width="1600" height="900" fill="#061210" /><rect x="0" y="0" width="1600" height="900" fill="url(#wash-2025)" />
+<text x="110" y="300" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="190" font-weight="700" fill="#7d9489" text-anchor="start" fill-opacity="0.2">2025</text>
+<text x="112" y="360" font-family="'DejaVu Sans Mono','Liberation Mono',monospace" font-size="30" font-weight="400" fill="#7d9489" text-anchor="start" letter-spacing="2">유통 경로 하나</text>
+<line x1="352" y1="450" x2="428" y2="450" stroke="#33594e" stroke-width="1" stroke-linecap="butt" />
+<path d="M 408 439 L 421 450 L 408 461" fill="none" stroke="#33594e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="612" y1="450" x2="688" y2="450" stroke="#33594e" stroke-width="1" stroke-linecap="butt" />
+<path d="M 668 439 L 681 450 L 668 461" fill="none" stroke="#33594e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<line x1="872" y1="450" x2="948" y2="450" stroke="#33594e" stroke-width="1" stroke-linecap="butt" />
+<path d="M 928 439 L 941 450 L 928 461" fill="none" stroke="#33594e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="260" cy="450" r="84" fill="#11241f" stroke="#33594e" stroke-width="2" />
+<text x="260" y="461.33" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="middle">산지</text>
+<circle cx="520" cy="450" r="84" fill="#11241f" stroke="#33594e" stroke-width="2" />
+<text x="520" y="461.33" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="middle">총판</text>
+<circle cx="780" cy="450" r="84" fill="#11241f" stroke="#33594e" stroke-width="2" />
+<text x="780" y="461.33" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#bed1c7" text-anchor="middle">소매</text>
+<circle cx="1040" cy="450" r="84" fill="#11241f" stroke="#edb04a" stroke-width="2" />
+<text x="1040" y="461.33" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="34" font-weight="400" fill="#f1f6f2" text-anchor="middle">고객</text>
+<text x="1040" y="600" font-family="'Noto Serif KR','Noto Serif CJK KR','Nanum Myeongjo',Georgia,serif" font-size="40" font-weight="700" fill="#edb04a" text-anchor="middle">100%</text>
+<text x="1040" y="642" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="28" font-weight="400" fill="#7d9489" text-anchor="middle">단건 판매</text>
+<text x="650" y="232" font-family="'Noto Sans CJK KR','Noto Sans KR','Pretendard',sans-serif" font-size="30" font-weight="400" fill="#7d9489" text-anchor="middle">재구매는 집계되지 않았다</text>
+<defs><linearGradient id="scrim-2025" x1="0" y1="1" x2="0.75" y2="0.15"><stop offset="0%" stop-color="#061210" stop-opacity="0.96"/><stop offset="48%" stop-color="#061210" stop-opacity="0.55"/><stop offset="100%" stop-color="#061210" stop-opacity="0"/></linearGradient></defs><rect x="0" y="0" width="1600" height="900" fill="url(#scrim-2025)" />
+</svg>
