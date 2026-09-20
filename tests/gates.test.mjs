@@ -6,6 +6,7 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -62,7 +63,9 @@ test('checkDeck은 report.json 모양을 지킨다', async () => {
   }
 });
 
-test('verify는 Playwright가 없으면 브라우저 게이트를 건너뛰고 exit 0 한다', () => {
+test('verify는 Playwright가 없으면 브라우저 게이트를 건너뛰고 exit 0 한다', (t) => {
+  // 이 테스트만 진짜 CLI를 띄운다. CLI는 qa/report.json을 남기므로 픽스처를 원상복구한다.
+  t.after(() => { try { fs.rmSync(path.join(fixture('good'), 'qa'), { recursive: true, force: true }); } catch { /* 무시 */ } });
   const cli = path.join(HERE, '..', 'scripts', 'cmd', 'verify.mjs');
   const result = spawnSync(process.execPath, [cli, fixture('good'), '--json'], {
     encoding: 'utf8',

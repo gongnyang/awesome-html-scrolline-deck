@@ -8,3 +8,4 @@ book/.cache
 examples/sample-deck/node_modules
 examples/sample-deck/dist
 WORKERS.md
+tests/fixtures/*/qa/
