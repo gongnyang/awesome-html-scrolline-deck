@@ -28,7 +28,7 @@ description: 발표 주제·개요를 스크롤 구동 시네마 HTML 덱(스크
 
 오프너는 `frame-scrub-hero` 또는 `kinetic-titles`, 클로저는 `closing-qr`. **같은 기법 연속 배치 금지.**
 
-**3 생성**
+**3 생성** — 아래 `scripts/cli.mjs`는 **스킬 루트**(이 SKILL.md가 있는 폴더, 설치 시 `~/.claude/skills/scrolline-deck`) 기준이다. 다른 작업 폴더에서 부를 때는 `node ~/.claude/skills/scrolline-deck/scripts/cli.mjs …`로 절대경로를 쓴다.
 ```bash
 node scripts/cli.mjs init <dir> --title "<제목>" --style dark
 node scripts/cli.mjs add <technique> --id 01-hero --kicker "..." --title "..." --lines "1줄|2줄"
