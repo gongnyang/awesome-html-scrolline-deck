@@ -1,0 +1,31 @@
+/* anatomy-rows — label/value rows on the right, connected to marks on the art. */
+[data-scene="02-route"] .an { position: relative; width: 100%; height: 100svh; overflow: hidden; background: var(--canvas); color: var(--ink); }
+[data-scene="02-route"] .an__art { --clip: 1; position: absolute; inset: 0 auto 0 0; width: 44vw; margin: 0; overflow: hidden; clip-path: inset(0 calc((1 - var(--clip)) * 100%) 0 0); }
+[data-scene="02-route"] .an__art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 58%, var(--canvas)); opacity: .4; }
+[data-scene="02-route"] .an__art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+[data-scene="02-route"] .an__copy { position: absolute; z-index: 2; left: calc(44vw + clamp(var(--space-lg, 24px), 5vw, var(--space-section, 88px))); top: 16svh; width: min(47vw, 760px); }
+[data-scene="02-route"] .an__kicker { margin: 0 0 var(--space-sm, 12px); color: var(--accent-3); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="02-route"] .an__title { margin: 0 0 clamp(var(--space-xl, 32px), 5vh, var(--space-section, 88px)); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; word-break: keep-all; }
+[data-scene="02-route"] .an__rows { display: grid; gap: clamp(var(--space-sm, 12px), 2.5vh, var(--space-lg, 24px)); }
+[data-scene="02-route"] .an__row { position: relative; display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: var(--space-md, 16px); align-items: baseline; padding-bottom: var(--space-xs, 8px); }
+[data-scene="02-route"] .an__row::after { content: ''; position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: var(--hairline); transform: scaleX(var(--line, 1)); transform-origin: left; }
+[data-scene="02-route"] .an__label { color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .08em; }
+[data-scene="02-route"] .an__value { margin: 0; overflow: hidden; color: var(--ink); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; clip-path: inset(0 calc((1 - var(--reveal, 1)) * 100%) 0 0); }
+[data-scene="02-route"] .an__row.is-active .an__label,
+[data-scene="02-route"] .an__row.is-active .an__value { color: var(--accent-3); }
+[data-scene="02-route"] .an__rules { position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+[data-scene="02-route"] .an__rules path { fill: none; stroke: var(--accent-3); stroke-width: 1; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--draw, 1)); opacity: var(--ext, 1); }
+[data-scene="02-route"] .an__mark { position: absolute; z-index: 4; width: 11px; height: 11px; left: calc(var(--ax, 50) * 1%); top: calc(var(--ay, 50) * 1%); border: 1px solid var(--accent-3); border-radius: 50%; transform: translate(-50%, -50%) scale(var(--pop, 1)); }
+[data-scene="02-route"] .an__mark::after { content: ''; position: absolute; inset: 3px; background: var(--accent-3); border-radius: 50%; }
+@media (max-width: 720px) {
+  [data-scene="02-route"] .an { height: auto; min-height: 100svh; }
+  [data-scene="02-route"] .an__art { position: relative; width: 100%; height: 40svh; clip-path: none; }
+  [data-scene="02-route"] .an__copy { position: relative; top: auto; left: auto; width: auto; padding: var(--space-lg, 24px) var(--gutter, 20px); }
+  [data-scene="02-route"] .an__row { grid-template-columns: 82px minmax(0, 1fr); gap: var(--space-sm, 12px); }
+  [data-scene="02-route"] .an__value { font-size: clamp(15px, 1.3vw, var(--body-lg-size, 18px)); }
+  [data-scene="02-route"] .an__rules, [data-scene="02-route"] .an__mark { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="02-route"] .an__value { clip-path: none; }
+  [data-scene="02-route"] .an__rules { display: none; }
+}

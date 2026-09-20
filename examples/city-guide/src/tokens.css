@@ -1,0 +1,128 @@
+/* ============================================================
+   tokens.css — 「서울, 해질녘 한 바퀴」 twilight palette.
+   Replaces the scaffold's default token file; tools/build-city-guide.sh
+   copies this over src/tokens.css after `scrolline init`.
+
+   Rule: scene CSS uses var() and never a literal colour (gate L1 enforces it).
+   Every colour named here has a twin in tools/palette.mjs, which is what the
+   drawings under public/ are rendered from.
+   ============================================================ */
+
+:root {
+  /* ---------- accents: a teal stream, a tangerine sun ---------- */
+  --accent-1: #3fc7b4;   /* progress bar, focus ring, the water */
+  --accent-2: #ffc06b;   /* lit windows, times, figures */
+  --accent-3: #ff8a4c;   /* the route, the active row, step numbers */
+  --on-accent: #141026;
+
+  /* ---------- surface ladder: deep indigo into plum ---------- */
+  --canvas:    #141026;
+  --surface-1: #1d1733;
+  --surface-2: #261d41;
+  --surface-3: #32264f;
+
+  /* ---------- hairlines ---------- */
+  --hairline:        #3c3059;
+  --hairline-strong: #50406f;
+
+  /* ---------- ink: warm, because the light in this deck is warm ---------- */
+  --ink:        #f7f1e8;
+  --ink-muted:  #cec2dc;
+  --ink-subtle: #9c8eb2;
+
+  /* ---------- fonts: a humanist serif carries every title ---------- */
+  --font-display: 'Noto Serif KR', 'Noto Serif CJK KR', 'Nanum Myeongjo',
+                  'Apple SD Gothic Neo', Georgia, 'Times New Roman', serif;
+  --font-body: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+               'Noto Sans CJK KR', 'Noto Sans KR', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', 'Noto Sans Mono CJK KR',
+               Menlo, Consolas, monospace;
+
+  /* ---------- type scale ----------
+     The display sizes carry less negative tracking than the sans default:
+     a serif set at -3px closes its counters and stops reading at projector
+     distance. Line-heights are a shade looser for the same reason. */
+  --display-xl-size: 82px;  --display-xl-lh: 1.10; --display-xl-ls: -1.4px;  --display-xl-weight: 700;
+  --display-lg-size: 58px;  --display-lg-lh: 1.16; --display-lg-ls: -0.9px;  --display-lg-weight: 700;
+  --display-md-size: 41px;  --display-md-lh: 1.22; --display-md-ls: -0.5px;  --display-md-weight: 700;
+  --headline-size:   29px;  --headline-lh:   1.28; --headline-ls:   -0.3px;  --headline-weight:   700;
+  --card-title-size: 22px;  --card-title-lh: 1.30; --card-title-ls: -0.2px;  --card-title-weight: 600;
+  --subhead-size:    21px;  --subhead-lh:    1.46; --subhead-ls:    -0.1px;  --subhead-weight:    400;
+  --body-lg-size:    18px;  --body-lg-lh:    1.58; --body-lg-ls:    0;       --body-lg-weight:    400;
+  --body-size:       16px;  --body-lh:       1.58; --body-ls:       0;       --body-weight:       400;
+  --body-sm-size:    14px;  --body-sm-lh:    1.52; --body-sm-ls:    0;       --body-sm-weight:    400;
+  --caption-size:    12px;  --caption-lh:    1.40; --caption-ls:    0;       --caption-weight:    400;
+  --eyebrow-size:    13px;  --eyebrow-lh:    1.30; --eyebrow-ls:    0.4px;   --eyebrow-weight:    500;
+  --mono-size:       13px;  --mono-lh:       1.50; --mono-ls:       0;       --mono-weight:       400;
+
+  /* ---------- radius ---------- */
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 7px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-pill: 9999px;
+
+  /* ---------- spacing ---------- */
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  34px;
+  --space-xxl: 52px;
+  --space-section: 96px;
+
+  /* ---------- layout ---------- */
+  --gutter: 22px;
+  --container: 1200px;
+  --stage-max: 1440px;
+
+  /* ---------- motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+
+  /* ---------- depth ---------- */
+  --focus-ring: 0 0 0 2px color-mix(in srgb, var(--accent-1) 65%, transparent);
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+}
+
+/* ---------- light variant: the same walk at four in the afternoon ---------- */
+:root[data-theme='light'] {
+  --canvas:    #fbf6ef;
+  --surface-1: #f3ece3;
+  --surface-2: #ece3d7;
+  --surface-3: #e2d7c8;
+
+  --hairline:        #d9cdbd;
+  --hairline-strong: #bcae9c;
+
+  --ink:        #221a33;
+  --ink-muted:  #4b3f5e;
+  --ink-subtle: #6f6382;
+
+  --accent-1: #0f7f72;
+  --accent-2: #9a6410;
+  --accent-3: #c14f14;
+  --on-accent: #fbf6ef;
+}
+
+/* Projected decks are read from far away: keep the display sizes usable on laptops. */
+@media (max-width: 900px) {
+  :root {
+    --display-xl-size: 45px; --display-xl-ls: -0.8px;
+    --display-lg-size: 35px; --display-lg-ls: -0.5px;
+    --display-md-size: 29px; --display-md-ls: -0.3px;
+    --headline-size:   23px; --headline-ls:   -0.2px;
+    --card-title-size: 19px;
+    --subhead-size:    17px;
+    --body-lg-size:    16px;
+    --space-section:   64px;
+    --gutter:          16px;
+  }
+}

@@ -1,0 +1,19 @@
+
+/* ------------------------------------------------------------------
+   city-guide override — the poster is painted under the clip.
+   The <video> is a separately composited layer: it does not appear in
+   Playwright's `verify` captures, and a projector that refuses H.264
+   leaves the same hole. Painting the poster as the media background
+   means the scene always has a frame, and the clip simply plays on top
+   of it where it can. The brightness moves off the <video> and onto the
+   host so both layers are graded the same.
+   ------------------------------------------------------------------ */
+[data-scene="04-drift"] .pv__media {
+  background-image: url('/media/04-drift/poster.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(.62);
+}
+[data-scene="04-drift"] .pv__media video,
+[data-scene="04-drift"] .pv__media img { filter: none; }

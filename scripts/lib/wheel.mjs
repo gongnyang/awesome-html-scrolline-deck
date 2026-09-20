@@ -9,7 +9,7 @@
 
 export const TICK = 240;          // 휠 한 칸(px). fc-astra 실측에서 lenis가 따라오는 크기.
 export const TICK_WAIT = 50;      // 틱 사이 대기(ms). lenis 보간이 한 프레임 이상 돌게 한다.
-export const SETTLE = 250;        // 목표 도달 후 정착 대기(ms).
+export const SETTLE = 700;        // 목표 도달 후 정착 대기(ms). ScrollTrigger scrub 0.6s가 따라붙을 시간을 준다.
 export const HOLD_RATIO = 0.35;   // 키 이동 착지 지점 = 핀 거리의 35%(엔진 goTo와 같은 값).
 export const MIN_AREA = 400;      // 가시 판정 최소 면적(px²).
 export const MIN_OPACITY = 0.05;  // 가시 판정 최소 불투명도.

@@ -1,0 +1,234 @@
+{
+  "title": "서울, 해질녘 한 바퀴",
+  "subtitle": "해가 지는 세 시간 동안 걷는 다섯 정거장",
+  "lang": "ko",
+  "presenter": {
+    "name": "gongnyang",
+    "roles": [],
+    "avatar": "",
+    "autoDurationSec": 150
+  },
+  "theme": {
+    "style": "dark",
+    "accent": "#3fc7b4"
+  },
+  "scenes": [
+    {
+      "id": "01-hero",
+      "order": 1,
+      "technique": "frame-scrub-hero",
+      "pinVh": 260,
+      "pin": true,
+      "assets": {
+        "frames": "/frames/skyline/f_%03d.jpg",
+        "count": 100,
+        "critical": [
+          1,
+          25,
+          50,
+          75,
+          100
+        ],
+        "poster": "/frames/skyline/poster.jpg"
+      },
+      "copy": {
+        "kicker": "SEOUL TWILIGHT LOOP",
+        "title": "해가 지는 세 시간",
+        "lines": [
+          "오후 다섯 시 반에 출발해 밤 아홉 시에 끝나는 다섯 정거장.",
+          "SAMPLE ITINERARY · 요금과 시간은 예시 데이터입니다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "첫 문장만 말하고 기다린다. 하늘이 완전히 어두워지고 창문에 불이 다 들어올 때까지 프레임을 굴린다. 마지막에 오늘 걷는 거리(5.8km)만 덧붙인다.",
+      "fallback": "포스터 한 장(해가 반쯤 내려간 프레임) 위에 제목만. 모바일은 시퀀스를 내려받지 않는다."
+    },
+    {
+      "id": "02-route",
+      "order": 2,
+      "technique": "anatomy-rows",
+      "pinVh": 300,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/02-route/route.webp"
+        ],
+        "rows": [
+          {
+            "label": "17:30",
+            "value": "경복궁 돌담길 — 서십자각에서 영추문까지. 해는 아직 지붕 위에 있다."
+          },
+          {
+            "label": "18:20",
+            "value": "서촌 골목 — 통인시장을 지나 한 블록. 간판에 불이 먼저 들어온다."
+          },
+          {
+            "label": "19:10",
+            "value": "인왕산 자락길 — 계단 200개. 도시가 발밑에서 주황으로 바뀐다."
+          },
+          {
+            "label": "20:00",
+            "value": "광장시장 — 빈대떡 한 장과 국수 한 그릇. 가장 오래 앉는 자리."
+          },
+          {
+            "label": "20:50",
+            "value": "청계천 하류 — 물 위로 간판이 한 번 더 보인다. 여기서 끝낸다."
+          }
+        ]
+      },
+      "copy": {
+        "kicker": "ROUTE",
+        "title": "다섯 정거장, 걸어서 이어진다",
+        "lines": []
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "지도를 먼저 보여 주고 행을 하나씩 짚는다. 정거장 사이가 모두 도보 20분 안쪽이라는 점이 이 경로의 전부다. 세 번째 행(인왕산 자락길)에서 한 번 쉬어 간다.",
+      "fallback": "지도 한 장 아래에 다섯 행을 세로 목록으로 세운다. 연결선은 그리지 않는다."
+    },
+    {
+      "id": "03-postcards",
+      "order": 3,
+      "technique": "paper-assembly",
+      "pinVh": 260,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/03-postcards/card-01.webp",
+          "/media/03-postcards/card-02.webp",
+          "/media/03-postcards/card-03.webp",
+          "/media/03-postcards/card-04.webp",
+          "/media/03-postcards/card-05.webp",
+          "/media/03-postcards/card-06.webp"
+        ]
+      },
+      "copy": {
+        "kicker": "POSTCARDS",
+        "title": "여섯 장이면 하루가 된다",
+        "lines": [
+          "정거장마다 한 장. 도장은 그 시각에 찍힌다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "여섯 장이 다 모일 때까지 말하지 않는다. 부채꼴이 서면 그때 '하루가 여섯 장이면 충분하다'고 말한다.",
+      "fallback": "엽서 여섯 장을 3열 그리드로 정지 배치한다."
+    },
+    {
+      "id": "04-drift",
+      "order": 4,
+      "technique": "parallax-video",
+      "pinVh": 130,
+      "pin": false,
+      "assets": {
+        "video": "/media/04-drift/drift.mp4",
+        "poster": "/media/04-drift/poster.webp"
+      },
+      "copy": {
+        "kicker": "BREATH",
+        "title": "물 위로 간판이 두 번",
+        "lines": [
+          "청계천 하류. 이 구간에서는 아무것도 하지 않아도 됩니다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "멈추지 않는다. 한 문장만 말하고 계속 굴린다. 객석이 화면을 보는 시간이다.",
+      "fallback": "영상이 없으면 포스터 정지 화면 위로 카피만 흘러간다. 모션 축소 설정에서도 같다."
+    },
+    {
+      "id": "05-guide",
+      "order": 5,
+      "technique": "tilt-card",
+      "pinVh": 200,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/05-guide/guide.webp"
+        ]
+      },
+      "copy": {
+        "kicker": "YOUR GUIDE",
+        "title": "안내는 사람이 한다",
+        "lines": [
+          "골목 안내 7년 차. 해질녘 시간대만 골라 걷습니다.",
+          "하루 다섯 정거장, 5.8km, 순수하게 걷는 시간은 1시간 40분.",
+          "거리·시간·요금은 이 예제를 위해 만든 샘플 데이터입니다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "오른쪽 타임라인을 손으로 짚으며 하루의 모양을 한 번 훑는다. 마지막 줄(샘플 데이터)은 반드시 소리 내어 읽는다.",
+      "fallback": "도판을 오른쪽에 고정하고 세 줄을 괘선으로 끊어 세운다."
+    },
+    {
+      "id": "06-compare",
+      "order": 6,
+      "technique": "wipe-transform",
+      "pinVh": 300,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/06-compare/mode-01-transit.webp",
+          "/media/06-compare/mode-02-walk.webp",
+          "/media/06-compare/mode-03-taxi.webp"
+        ]
+      },
+      "copy": {
+        "kicker": "",
+        "title": "같은 길, 세 가지 속도",
+        "lines": [
+          "환승 두 번",
+          "가장 느리고 가장 싸다",
+          "가장 빠른 대신 창밖만"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "숫자를 읽지 말고 막대를 가리킨다. 도보가 가장 오래 걸리고 가장 싸다는 것, 그리고 이 경로는 그래서 도보라는 것만 말한다.",
+      "fallback": "세 판을 차례로 정지 배치하고 캡션 번호만 바꾼다."
+    },
+    {
+      "id": "07-close",
+      "order": 7,
+      "technique": "closing-qr",
+      "pinVh": 200,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/07-close/qr.svg",
+          "/media/07-close/loop.webp"
+        ]
+      },
+      "copy": {
+        "kicker": "가져가기",
+        "title": "고맙습니다",
+        "lines": [
+          "https://github.com/gongnyang/awesome-html-scrolline-deck"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "QR을 띄워 둔 채로 질문을 받는다. 화면을 넘기지 않는다.",
+      "fallback": "QR과 주소를 정지 상태로 함께 띄운다."
+    }
+  ],
+  "links": {
+    "site": "https://github.com/gongnyang/awesome-html-scrolline-deck"
+  }
+}

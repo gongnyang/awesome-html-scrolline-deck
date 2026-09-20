@@ -1,0 +1,31 @@
+/* closing-qr — the last frame stays on screen: thanks, a QR, a way back. */
+[data-scene="07-close"] .cq { position: relative; isolation: isolate; width: 100%; min-height: 100svh; display: grid; align-items: center; padding: clamp(var(--space-xl, 32px), 8vw, var(--space-section, 88px)); overflow: hidden; background: var(--canvas); }
+[data-scene="07-close"] .cq__bloom { --r: 70; position: absolute; z-index: 0; inset: 50% auto auto 42%; width: min(78vw, 1120px); aspect-ratio: 1; transform: translate(-50%, -50%); background: radial-gradient(circle, color-mix(in srgb, var(--accent-1) 30%, transparent) 0, color-mix(in srgb, var(--accent-1) 10%, transparent) calc(var(--r) * .38 * 1%), transparent calc(var(--r) * 1%)); filter: blur(clamp(32px, 7vw, 100px)); opacity: .8; pointer-events: none; }
+[data-scene="07-close"] .cq__copy { position: relative; z-index: 2; max-width: min(80vw, 1060px); }
+[data-scene="07-close"] .cq__lead { margin: 0 0 var(--space-lg, 24px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="07-close"] .cq__thanks { margin: 0; max-width: 12ch; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(38px, 6.4vw, var(--display-xl-size, 80px)); font-weight: 700; line-height: 1.02; letter-spacing: -.03em; word-break: keep-all; }
+[data-scene="07-close"] .cq__char { display: inline-block; white-space: pre; }
+[data-scene="07-close"] .cq__site { display: flex; align-items: center; gap: var(--space-lg, 24px); margin-top: clamp(var(--space-xl, 32px), 4vw, var(--space-section, 88px)); }
+[data-scene="07-close"] .cq__qr { width: 160px; height: 160px; flex: 0 0 160px; color: var(--ink); }
+[data-scene="07-close"] .cq__qr:empty { display: none; }
+[data-scene="07-close"] .cq__qr svg { display: block; width: 100%; height: 100%; overflow: visible; }
+[data-scene="07-close"] .cq__qr path { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--draw, 1)); }
+[data-scene="07-close"] .cq__qr rect { fill: currentColor; opacity: var(--draw, 1); }
+[data-scene="07-close"] .cq__url { margin: 0; max-width: min(100%, 46ch); color: var(--ink-muted); overflow-wrap: anywhere; font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); letter-spacing: .02em; line-height: 1.45; clip-path: inset(0 calc((1 - var(--type, 1)) * 100%) 0 0); }
+[data-scene="07-close"] .cq__restart { display: block; margin: var(--space-xl, 32px) 0 0; padding: 0; border: 0; background: transparent; color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .12em; text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: .42em; cursor: pointer; }
+[data-scene="07-close"] .cq__restart:focus-visible { outline: 2px solid var(--accent-1); outline-offset: var(--space-xs, 8px); }
+[data-scene="07-close"] .cq__restart:empty { display: none; }
+[data-scene="07-close"] .cq__mascot { position: absolute; z-index: 1; right: 0; bottom: 0; width: 34vw; max-width: 560px; margin: 0; object-fit: contain; object-position: right bottom; pointer-events: none; mask-image: radial-gradient(ellipse 110% 100% at 100% 100%, var(--ink) 0 55%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 110% 100% at 100% 100%, var(--ink) 0 55%, transparent 100%); }
+[data-scene="07-close"] .cq__mascot:not([src]) { display: none; }
+@media (max-width: 720px) {
+  [data-scene="07-close"] .cq { align-items: start; padding-top: 18svh; }
+  [data-scene="07-close"] .cq__copy { max-width: 100%; }
+  [data-scene="07-close"] .cq__site { flex-direction: column; align-items: flex-start; gap: var(--space-md, 16px); }
+  [data-scene="07-close"] .cq__qr { width: 128px; height: 128px; flex-basis: 128px; }
+  [data-scene="07-close"] .cq__url { max-width: 100%; font-size: clamp(15px, 1.3vw, var(--body-lg-size, 18px)); }
+  [data-scene="07-close"] .cq__mascot { width: 66vw; opacity: .5; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="07-close"] .cq__qr path { stroke-dasharray: none; stroke-dashoffset: 0; }
+  [data-scene="07-close"] .cq__url { clip-path: none; }
+}

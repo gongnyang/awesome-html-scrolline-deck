@@ -1,0 +1,11 @@
+{
+  "engineVersion": "0.1.0",
+  "installedAt": "2026-09-20T15:53:05.768Z",
+  "engineHashes": {
+    "deck.css": "a40b0e8d21ff31dbc3553d5c68cf68c4aebcbd7092aee886463e7f089c83380d",
+    "deck.js": "5a5af18de93f479b6b40fd19bcb1f1aff2af576a0f1d4145fafbd4e7b11ffa5f",
+    "frame-scrub.js": "57ba5a2927926a9db0138e340b36e7b6cfb5cf85e8da3227ecbf97be13582a58",
+    "motion.js": "49a31c269f0395ec6e55059d8fe998a79ef47c6b91d6e9f4ba6aa535c5f71fea",
+    "scroll.js": "d980c382f3d09cdcb740a1189263a9bd0faf8b34916b99ff715aaca11fbde687"
+  }
+}

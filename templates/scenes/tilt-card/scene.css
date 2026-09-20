@@ -8,7 +8,7 @@
 [data-scene="{{id}}"] .tc__list li:last-child { border-bottom: 1px solid var(--hairline); }
 [data-scene="{{id}}"] .tc__portrait { position: absolute; z-index: 1; inset: 0 0 0 auto; width: 56vw; margin: 0; transform: perspective(1400px) rotateY(calc(var(--tilt, 0) * 1deg)) translateX(calc(var(--shift, 0) * 1%)); transform-origin: right center; }
 [data-scene="{{id}}"] .tc__portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center right; mask-image: linear-gradient(to right, transparent, var(--ink) 31%); -webkit-mask-image: linear-gradient(to right, transparent, var(--ink) 31%); }
-[data-scene="{{id}}"] .tc__portrait figcaption { position: absolute; right: var(--space-lg, 24px); bottom: var(--space-lg, 24px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .1em; }
+[data-scene="{{id}}"] .tc__portrait figcaption { position: absolute; right: var(--space-lg, 24px); bottom: var(--space-lg, 24px); color: var(--ink-subtle); text-shadow: 0 1px 2px var(--canvas), 0 0 14px var(--canvas); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .1em; }
 @media (max-width: 720px) {
   [data-scene="{{id}}"] .tc { align-items: flex-start; padding: 14svh var(--gutter, 20px) var(--space-section, 88px); }
   [data-scene="{{id}}"] .tc__copy { width: 100%; }

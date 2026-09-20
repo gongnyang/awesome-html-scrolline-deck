@@ -1,0 +1,16 @@
+
+/* ------------------------------------------------------------------
+   city-guide override — the fan is the argument, so it gets the room.
+   Appended by tools/build-city-guide.sh after `scrolline add`.
+   ------------------------------------------------------------------ */
+[data-scene="03-postcards"] .pa__copy { top: 10%; }
+[data-scene="03-postcards"] .pa__stage { width: min(96vw, 1340px); height: min(36vw, 460px); }
+[data-scene="03-postcards"] .pa__sheet {
+  width: min(41vw, 540px);
+  box-shadow: 0 30px 74px color-mix(in srgb, var(--canvas) 88%, transparent);
+}
+[data-scene="03-postcards"] .pa__line { bottom: 7%; }
+@media (max-width: 720px) {
+  [data-scene="03-postcards"] .pa__stage { width: 100%; height: 62vw; }
+  [data-scene="03-postcards"] .pa__sheet { width: 58vw; }
+}

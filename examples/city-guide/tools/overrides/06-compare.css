@@ -1,0 +1,15 @@
+
+/* ------------------------------------------------------------------
+   city-guide override — the third surface is a chart, not a snapshot,
+   so the rising sheet is set large enough to read its own bars.
+   ------------------------------------------------------------------ */
+[data-scene="06-compare"] .wt__stage--three { padding: 0 5vw 9vh 2vw; }
+[data-scene="06-compare"] .wt__stage--three img {
+  width: 48%;
+  max-height: 46vh;
+  box-shadow: 0 26px 64px color-mix(in srgb, var(--canvas) 84%, transparent);
+}
+[data-scene="06-compare"] .wt__step { font-size: clamp(26px, 3.1vw, 46px); }
+@media (max-width: 720px) {
+  [data-scene="06-compare"] .wt__stage--three img { width: 78%; max-height: 34vh; }
+}
