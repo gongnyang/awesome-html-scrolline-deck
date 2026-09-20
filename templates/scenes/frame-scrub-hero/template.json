@@ -1,0 +1,12 @@
+{
+  "technique": "frame-scrub-hero",
+  "pinVh": 260,
+  "pin": true,
+  "tags": ["opening", "media", "frames", "full-bleed"],
+  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 2 } },
+  "assets": { "frames": true, "poster": true, "images": { "min": 0, "max": 0 }, "video": false },
+  "hold": [0.3, 0.75],
+  "notesHint": "First words on stage. Say the one sentence the whole talk pays off.",
+  "description_en": "Opening scene: a full-bleed image sequence scrubs behind a standing title, then pushes past the audience.",
+  "description_ko": "오프닝 장면. 전면 프레임 시퀀스가 스크럽되는 동안 제목이 서 있고, 끝에서 화면을 밀고 지나간다."
+}

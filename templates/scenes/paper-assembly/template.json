@@ -1,0 +1,12 @@
+{
+  "technique": "paper-assembly",
+  "pinVh": 260,
+  "pin": true,
+  "tags": ["documents", "images", "gather", "proof"],
+  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 1 } },
+  "assets": { "frames": false, "images": { "min": 3, "max": 8 }, "video": false, "poster": false },
+  "hold": [0.3, 0.75],
+  "notesHint": "Wait for the fan before you speak. The count of pages is the point.",
+  "description_en": "Proof scene: three to eight pages fly in from off-stage, settle into a fan, then file away together.",
+  "description_ko": "증거 장면. 화면 밖에서 페이지 3~8장이 날아들어 부채꼴로 정리된 뒤 한 벌로 빠져나간다."
+}

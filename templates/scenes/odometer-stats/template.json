@@ -1,0 +1,12 @@
+{
+  "technique": "odometer-stats",
+  "pinVh": 220,
+  "pin": true,
+  "tags": ["numbers", "evidence", "no-assets", "typography"],
+  "slots": { "kicker": true, "title": true, "lines": { "min": 2, "max": 4 } },
+  "assets": { "frames": false, "images": { "min": 0, "max": 0 }, "video": false, "poster": false },
+  "hold": [0.3, 0.75],
+  "notesHint": "Let the reels stop before you say the number. Two to four figures, no more.",
+  "description_en": "Evidence scene: two to four figures spin up on odometer reels above their labels, on a single drawn horizon.",
+  "description_ko": "근거 장면. 숫자 2~4개가 오도미터 릴 위에서 돌아 멈추고, 그어진 수평선 위로 라벨이 붙는다."
+}

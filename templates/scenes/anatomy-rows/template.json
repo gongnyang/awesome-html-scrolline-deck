@@ -1,0 +1,35 @@
+{
+  "technique": "anatomy-rows",
+  "pinVh": 300,
+  "pin": true,
+  "tags": [
+    "explain",
+    "breakdown",
+    "image",
+    "rows"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 1,
+      "max": 1
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Read one row at a time. The highlight tells the room where you are.",
+  "description_en": "Breakdown scene: one artefact on the left, labelled rows on the right, each row drawing a connector to its mark.",
+  "description_ko": "해부 장면. 왼쪽에 대상 하나, 오른쪽에 라벨 붙은 행들, 각 행이 대상 위의 표시점까지 연결선을 긋는다."
+}

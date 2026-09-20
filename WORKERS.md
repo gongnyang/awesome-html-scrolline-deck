@@ -68,3 +68,40 @@ sha256File, fillTemplate, slugify, parseFlags, escapeHtml`).
 
 **엔진 버전** — `engine/VERSION` 0.1.0, `engine/MANIFEST.json`은 `node scripts/cli.mjs upgrade --manifest`로 재생성.
 `upgrade <dir>`는 `.scrolline.json`의 설치 시점 해시와 대조해 **수정된 파일은 `--force` 없이는 덮지 않는다**.
+
+## T notes
+
+12개 기법 템플릿 + `references/{techniques,choreography,design}.md` 완료.
+검증: `node templates/scenes/_selftest.mjs` → PASS (12/12). G가 같은 술어를 재사용하면 됨.
+
+인터페이스 가정(다르면 알려주세요):
+- **template.json** = `{technique, pinVh, pin, tags[], slots{kicker,title,lines{min,max}}, assets{frames?,images?{min,max},video?,poster?}, hold[0.30,0.75], notesHint, description_en, description_ko}`. `technique` = 폴더명.
+- **치환자는 `{{id}}` 하나뿐**. scene.css·scene.html·scene.js 어디든 `{{id}}` → 폴더명으로 치환하면 됨. 다른 `{{...}}` 없음(셀프테스트가 막음).
+- **frameScrub**: `references/contract.md §3` 그대로 `ctx.frameScrub(host, {pattern, mobilePattern, count, critical, poster, fit})` 호출. `fit`은 `'cover'`/`'contain-top'`만 씀.
+- **토큰**: 색은 `--canvas --surface-1 --hairline --ink --ink-muted --ink-subtle --accent-1..3`만 bare `var()`. 간격·타입은 tokens.css 이름을 쓰되 전부 fallback 포함(`var(--space-lg, 24px)`, `clamp(28px, 4.2vw, var(--display-lg-size, 56px))`) — 토큰 파일이 얇아져도 레이아웃이 안 깨짐. 타입은 토큰 값을 clamp 상한으로 씀(고정 px면 전면 덱에서 안 늘어남).
+- **스키마 밖 필드 3개**를 옵션으로 읽음(없어도 동작): `assets.rows` = `[{label,value}]`(anatomy-rows), `assets.caption`(tilt-card 크레딧), `assets.restartLabel`(closing-qr 버튼 문구). 스키마에 넣을지는 E 판단.
+- **`ctx.data.deck.links.site`**: closing-qr이 URL 폴백으로 읽지만 deck.schema.json에 `links`가 없음. 현재는 `copy.lines[0]`이 1순위라 없어도 무방. 스키마에 추가할지 E가 결정.
+- `copy.lines` 최대 4개(스키마)에 맞춰 모든 slots.lines.max ≤ 4로 맞춤.
+- **긴 미디어 트윈 예외**: 진입/홀드/퇴장 구간은 카피·구조에 적용. 프레임 스크럽·가로 팬·패럴랙스·단어 릴레이는 0→0.98을 관통하는 단일 트윈이며 이게 기법 자체임(choreography.md에 표로 명시). G2는 총합만 보면 됨 — 12종 전부 0.980에서 끝남.
+- `parallax-video`만 `pin: false`, pinVh 130.
+
+### D notes — 2차 (실주행 결과)
+
+- 샘플 덱 실주행 완료: `bash examples/sample-deck/tools/build-sample.sh` → `npm run build` → `check` → `verify`.
+  - `check` **PASS 6/6** (S0·G1·G2·G3·G4·LINT, 최장 타임라인 0.980).
+  - `verify` **11 PASS / 1 FAIL** — G5 핀 6장면 전부 ±2px, G6 캡처 18장(최소 가시 4), G7 착지 5회 오차 0px,
+    G8 콘솔 0, G9 넘침 0. **FAIL = G10 `04-gallery` 모션 축소 시 가시 요소 2개** → T에 원인·수정안 전달함
+    (reduced-motion에서 `.gal__track`이 1열 그리드가 되며 캡션이 여섯 화면 아래로 밀림).
+- 총 핀 1460vh(기법 기본값 합), 장면 6개. 실측 pin-spacer 높이가 `pinVh%`와 정확히 일치함(900px 뷰포트 기준
+  3240/2880/3060/3780/2880/2700).
+- 기법 표 3곳(SKILL.md·README 2종)을 `references/techniques.md` + `template.json` 기준으로 재동기화함
+  (pinVh 12행 + 에셋 요구량: anatomy-rows·tilt-card=이미지 1, paper-assembly=3–8, horizontal-gallery=3–10,
+  wipe-transform=2–5+video 선택).
+- **T에 보고한 템플릿 결함 3건**: ① closing-qr URL이 `ch` 폭 트윈 때문에 잘림 ② odometer-stats가 한글 접미사를
+  `height:1.04em` 박스에서 잘라 먹음(한국어 덱에서 치명적) ③ kinetic-titles의 `Title | bullet` 문법이
+  `add --lines`의 `|` 구분자와 충돌.
+- 샘플 덱 `.gitignore`에서 `qa/` 제외를 뺐다(캡처가 README 히어로 이미지라 커밋되어야 함). `build-sample.sh`가
+  `init --force` 후 이 패치를 자동 재적용한다.
+- **수정 3건(sd-docs 실주행 피드백 반영)**: ① closing-qr URL을 `ch` 폭 트윈 → `--type` 클립 리빌로 교체(긴 URL 최종 상태에서 잘리던 버그). ② kinetic-titles 불릿 구분자를 공백 감싼 `//`로(CLI `--lines`가 `|`로 쪼개서 왕복 불가), `|`도 계속 허용. ③ horizontal-gallery 모션 축소 레이아웃에서 캡션 `order: -1` + 2열 그리드(G10 가시 요소 2개 실패 → 해소).
+- **셀프테스트 술어 7번 추가**: scene.js에서 `width`를 `ch`/`em`으로 트윈하면 실패(위 ① 유형 재발 차단). 역검증 완료 — 옛 코드로 되돌리면 FAIL, 복구하면 PASS.
+- **수정 4건째(sd-docs)**: odometer-stats — ① 마스크·1.04em 클립을 `.od__odo` 전체 → `.od__reels`(릴만)로 좁히고 `.od__suffix`를 그 밖으로 빼 `.4em`/자체 line-height로 조판(한글 접미사 하단 잘림 해소). ② 파서를 `/^\s*([\d,]+)(\S*)\s*([\s\S]*)$/`로 교체 — 접미사는 숫자에 **붙어 있을 때만**, 공백 뒤는 전부 라벨. `12 장면`(맨숫자+한글 라벨)이 이제 가능, `2450vh of pin`·`98% 재방문`도 그대로.

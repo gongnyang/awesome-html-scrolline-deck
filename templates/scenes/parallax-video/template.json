@@ -1,0 +1,12 @@
+{
+  "technique": "parallax-video",
+  "pinVh": 130,
+  "pin": false,
+  "tags": ["breath", "video", "unpinned", "full-bleed"],
+  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 1 } },
+  "assets": { "frames": false, "images": { "min": 0, "max": 1 }, "video": true, "poster": true },
+  "hold": [0.3, 0.75],
+  "notesHint": "Say one sentence and keep scrolling. This scene is a breath, not a stop.",
+  "description_en": "The one unpinned technique: the section scrolls past a fixed muted clip while the copy drifts at its own rate.",
+  "description_ko": "유일한 비고정 기법. 고정된 무음 영상 위로 섹션이 지나가고, 카피가 다른 속도로 흘러간다."
+}

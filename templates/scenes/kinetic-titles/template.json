@@ -1,0 +1,12 @@
+{
+  "technique": "kinetic-titles",
+  "pinVh": 240,
+  "pin": true,
+  "tags": ["agenda", "typography", "no-assets", "structure"],
+  "slots": { "kicker": true, "title": true, "lines": { "min": 2, "max": 4 } },
+  "assets": { "frames": false, "images": { "min": 0, "max": 0 }, "video": false, "poster": false },
+  "hold": [0.3, 0.75],
+  "notesHint": "Name the sections once, in order. The accent walks with you.",
+  "description_en": "Agenda scene: two to four numbered titles throw themselves onto a diagonal that a traced light connects.",
+  "description_ko": "아젠다 장면. 번호가 붙은 제목 2~4개가 대각선 위로 날아들고, 빛이 그 선을 따라 그어지며 연결한다."
+}

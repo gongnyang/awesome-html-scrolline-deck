@@ -1,0 +1,35 @@
+{
+  "technique": "tilt-card",
+  "pinVh": 200,
+  "pin": true,
+  "tags": [
+    "person",
+    "portrait",
+    "list",
+    "quiet"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 1,
+      "max": 1
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "This is the scene where you say who is talking and why they get to.",
+  "description_en": "Quiet scene: a masked portrait holds one side while two to five hairline-ruled lines read on the other, under a slow tilt.",
+  "description_ko": "조용한 장면. 마스크 처리된 인물 사진이 한쪽을 잡고, 반대쪽에 머리카락선으로 구분된 2~5줄이 느린 기울기 아래 놓인다."
+}

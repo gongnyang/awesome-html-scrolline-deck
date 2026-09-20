@@ -1,0 +1,12 @@
+{
+  "technique": "frame-scrub-video",
+  "pinVh": 280,
+  "pin": true,
+  "tags": ["media", "frames", "process", "full-bleed"],
+  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 4 } },
+  "assets": { "frames": true, "poster": true, "images": { "min": 0, "max": 0 }, "video": false },
+  "hold": [0.3, 0.75],
+  "notesHint": "Stop on the frame that proves the point, then read the next line.",
+  "description_en": "Process scene: a clip exported as frames scrubs under the wheel while numbered lines land one per beat.",
+  "description_ko": "과정 장면. 프레임으로 뽑은 영상이 휠에 맞춰 스크럽되고, 번호 붙은 문장이 박자마다 하나씩 앉는다."
+}

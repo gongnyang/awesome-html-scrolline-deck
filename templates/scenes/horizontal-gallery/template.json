@@ -1,0 +1,12 @@
+{
+  "technique": "horizontal-gallery",
+  "pinVh": 320,
+  "pin": true,
+  "tags": ["showcase", "images", "gallery", "full-bleed"],
+  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 1 } },
+  "assets": { "frames": false, "images": { "min": 3, "max": 10 }, "video": false, "poster": false },
+  "hold": [0.3, 0.75],
+  "notesHint": "One sentence per image. Let the pan set your pace instead of clicking.",
+  "description_en": "Showcase scene: three to ten full-bleed images pan sideways under a fixed caption and a running counter.",
+  "description_ko": "쇼케이스 장면. 전면 이미지 3~10장이 고정된 캡션과 카운터 아래로 옆으로 지나간다."
+}

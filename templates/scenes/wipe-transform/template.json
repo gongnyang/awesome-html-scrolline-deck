@@ -1,0 +1,12 @@
+{
+  "technique": "wipe-transform",
+  "pinVh": 300,
+  "pin": true,
+  "tags": ["workflow", "transform", "video", "images"],
+  "slots": { "kicker": false, "title": true, "lines": { "min": 3, "max": 3 } },
+  "assets": { "frames": false, "images": { "min": 2, "max": 5 }, "video": true, "poster": true },
+  "hold": [0.3, 0.75],
+  "notesHint": "Three steps, one breath each. The wipe does the connecting, not your words.",
+  "description_en": "Workflow scene: one surface becomes the next under a diagonal wipe, with a numbered caption swapping at each step.",
+  "description_ko": "작업 흐름 장면. 대각선 와이프를 따라 한 화면이 다음 화면으로 바뀌고, 단계마다 번호 붙은 캡션이 교체된다."
+}
