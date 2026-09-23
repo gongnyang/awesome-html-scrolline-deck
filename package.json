@@ -4,6 +4,8 @@
   "description": "Scrolline Deck — a Claude Code skill and CLI that turns an outline into a scroll-driven cinematic HTML presentation (scrollytelling deck).",
   "type": "module",
   "license": "MIT",
+  "author": "gongnyang (공냥이)",
+  "repository": { "type": "git", "url": "git+https://github.com/gongnyang/awesome-html-scrolline-deck.git" },
   "engines": { "node": ">=20" },
   "bin": { "scrolline": "scripts/cli.mjs" },
   "scripts": {

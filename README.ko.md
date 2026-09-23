@@ -217,6 +217,8 @@ MIT. [LICENSE](LICENSE) 참조.
 
 ## 만들어진 배경
 
+만든 사람·관리: **[gongnyang (공냥이)](https://github.com/gongnyang)**.
+
 패스트캠퍼스 **「ChatGPT Astra」** 세미나용으로 만든 12장면 시네마 덱에서 뽑아냈다 — <https://fc-astra-site.vercel.app/deck/>. 핀 단위 버그, 스무스 스크롤 `prevent` 예외, CSS 변수 보간 실패는 전부 그 덱에서 몸으로 배운 것이다. 이 레포의 게이트는 같은 걸 다시 배우지 않으려고 있다.
 
 엔진은 [GSAP ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/) · [Lenis](https://lenis.darkroom.engineering/) · [Vite](https://vite.dev/) 위에 올라간다.

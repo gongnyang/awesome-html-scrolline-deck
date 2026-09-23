@@ -216,6 +216,8 @@ MIT. See [LICENSE](LICENSE).
 
 ## Credits
 
+Created and maintained by **[gongnyang (공냥이)](https://github.com/gongnyang)**.
+
 Extracted from the twelve-scene cinema deck built for the FastCampus **"ChatGPT Astra"** seminar — <https://fc-astra-site.vercel.app/deck/>. That deck is where the pin-unit bug, the smooth-scroll `prevent` exception and the CSS-variable interpolation failure were all found the hard way; the gates in this repo exist so you do not have to find them again.
 
 Built with [GSAP ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/), [Lenis](https://lenis.darkroom.engineering/) and [Vite](https://vite.dev/).
