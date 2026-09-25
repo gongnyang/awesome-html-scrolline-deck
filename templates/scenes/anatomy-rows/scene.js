@@ -58,18 +58,27 @@ export default {
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
     const assets = scene.assets || {};
-    const marks = Array.isArray(assets.marks) && assets.marks.length
-      ? assets.marks.map((m, i) => (Array.isArray(m) && m.length === 2 ? m : MARKS[i % MARKS.length]))
-      : MARKS;
-    const rows = toRows(scene).slice(0, marks.length);
+    const suppliedMarks = Array.isArray(assets.marks) ? assets.marks : [];
+    const rows = toRows(scene).slice(0, MARKS.length);
+    const marks = rows.map((_, index) => {
+      const mark = suppliedMarks[index];
+      return Array.isArray(mark) && mark.length === 2 && mark.every((value) => Number.isFinite(value) && value >= 0 && value <= 100)
+        ? mark : MARKS[index % MARKS.length];
+    });
     const image = (assets.images || [])[0];
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
 
     const art = root.querySelector('[data-role="art"]');
-    art.innerHTML = (image ? `<img src="${image}" alt="${esc(copy.title || '')}" decoding="async" />` : '')
-      + rows.map((row, index) => `<i class="an__mark" data-mark="r${index}" style="--ax:${marks[index][0]};--ay:${marks[index][1]}"></i>`).join('');
+    art.innerHTML = rows.map((row, index) => `<i class="an__mark" data-mark="r${index}" style="--ax:${marks[index][0]};--ay:${marks[index][1]}"></i>`).join('');
+    if (image) {
+      const img = document.createElement('img');
+      img.src = image;
+      img.alt = copy.title || '';
+      img.decoding = 'async';
+      art.append(img);
+    }
 
     root.querySelector('[data-role="rows"]').innerHTML = rows.map((row, index) =>
       `<div class="an__row" data-slot="r${index}"><span class="an__label">${esc(row.label)}</span><p class="an__value">${esc(row.value)}</p></div>`).join('');

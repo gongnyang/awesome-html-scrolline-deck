@@ -4,11 +4,13 @@
  *  L2 scene.css의 모든 선택자가 [data-scene="<id>"] 로 시작 (@keyframes 내부는 제외,
  *     html/body/:root[data-theme=…] 접두는 허용)
  *  L3 scene.html의 <path>가 그리기 안무(--draw · strokeDashoffset)를 쓰면 pathLength="1" 필수
+ *  L4 fallback 없는 CSS 변수는 프로젝트 토큰이나 장면 안에 정의되어야 한다.
  */
+import path from 'node:path';
 import { readDeck, sceneFolders, exists, readText, stripCssComments, lineAt } from './_util.mjs';
 
 export const id = 'LINT';
-export const title = 'scene.css 토큰만 · 선택자 스코프 · pathLength';
+export const title = 'scene.css 토큰·정의 · 선택자 스코프 · pathLength';
 export const needsBrowser = false;
 
 const ALLOWED_KEYWORDS = new Set(['transparent', 'currentcolor', 'inherit', 'initial', 'unset', 'revert', 'none', 'auto']);
@@ -50,10 +52,11 @@ function declarations(css) {
   return out;
 }
 
-export function lintCss(cssRaw, sceneId) {
+export function lintCss(cssRaw, sceneId, tokenNames = null) {
   const css = stripCssComments(cssRaw ?? '');
   const l1 = [];
   const l2 = [];
+  const l4 = [];
 
   for (const { prop, value, index } of declarations(css)) {
     if (prop.startsWith('--') && /^\s*$/.test(value)) continue;
@@ -64,6 +67,15 @@ export function lintCss(cssRaw, sceneId) {
       for (const word of value.toLowerCase().match(/[a-z]+/g) ?? []) {
         if (ALLOWED_KEYWORDS.has(word)) continue;
         if (NAMED_COLORS.has(word)) { l1.push(`${line}행 ${prop}: 색 이름 리터럴 (${word})`); break; }
+      }
+    }
+  }
+
+  if (tokenNames) {
+    const local = new Set([...css.matchAll(/(--[a-z][a-z0-9-]*)\s*:/gi)].map((match) => match[1]));
+    for (const match of css.matchAll(/var\(\s*(--[a-z][a-z0-9-]*)\s*\)/gi)) {
+      if (!tokenNames.has(match[1]) && !local.has(match[1])) {
+        l4.push(`${lineAt(css, match.index)}행 ${match[1]} 변수에 정의나 fallback이 없습니다`);
       }
     }
   }
@@ -99,7 +111,7 @@ export function lintCss(cssRaw, sceneId) {
     buffer += ch;
   }
 
-  return { l1, l2 };
+  return { l1, l2, l4 };
 }
 
 /** L3 — 그리기 안무를 쓰는 장면의 <path>는 pathLength="1" 이어야 progress 0..1 매핑이 성립한다. */
@@ -125,6 +137,8 @@ export async function run(ctx) {
   const folders = sceneFolders(ctx.dir, deck);
   const problems = [];
   let scanned = 0;
+  const tokens = readText(path.join(ctx.dir, 'src', 'tokens.css')) ?? '';
+  const tokenNames = new Set([...tokens.matchAll(/(--[a-z][a-z0-9-]*)\s*:/gi)].map((match) => match[1]));
 
   for (const folder of folders) {
     if (!folder.onDisk) continue;
@@ -135,9 +149,10 @@ export async function run(ctx) {
     scanned += 1;
 
     if (css) {
-      const { l1, l2 } = lintCss(css, folder.id);
+      const { l1, l2, l4 } = lintCss(css, folder.id, tokenNames);
       problems.push(...l1.map((m) => `L1 ${folder.id}/scene.css ${m}`));
       problems.push(...l2.map((m) => `L2 ${folder.id}/scene.css ${m}`));
+      problems.push(...l4.map((m) => `L4 ${folder.id}/scene.css ${m}`));
     }
     if (html) {
       problems.push(...lintPaths(html, { css, js }).map((m) => `L3 ${folder.id}/scene.html ${m}`));
@@ -146,7 +161,7 @@ export async function run(ctx) {
 
   return {
     ok: problems.length === 0,
-    details: problems.length === 0 ? `장면 ${scanned}개 린트 통과 (L1·L2·L3)` : `린트 위반 ${problems.length}건`,
+    details: problems.length === 0 ? `장면 ${scanned}개 린트 통과 (L1·L2·L3·L4)` : `린트 위반 ${problems.length}건`,
     items: problems,
   };
 }

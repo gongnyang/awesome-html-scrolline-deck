@@ -1,0 +1,49 @@
+{
+  "technique": "chart-reveal",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "chart",
+    "evidence",
+    "no-assets"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Use exact non-negative values in every line and state the unit in the title or line.",
+  "description_en": "Exact values label each bar; bar height is proportional to the largest supplied value.",
+  "description_ko": "입력한 값을 그대로 표시하고 가장 큰 값에 비례해 막대 높이를 정합니다.",
+  "responsive": "Keep category labels aligned to the bars; shorten the plot height and label spacing on narrow screens.",
+  "reducedMotion": "Show exact values and final proportional bar heights without entrance motion.",
+  "purpose": "하나의 수치 주장을 기준선과 라벨이 있는 막대 차트로 설명합니다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 분기 매출 (억원)",
+    "title": "매출은 늘었고 4분기 성장률은 둔화됐다",
+    "lines": [
+      "1분기: 312",
+      "2분기: 346",
+      "3분기: 391",
+      "4분기: 433"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/annual-report/03-trend"
+}

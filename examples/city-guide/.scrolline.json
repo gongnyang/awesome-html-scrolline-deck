@@ -1,11 +1,14 @@
 {
-  "engineVersion": "0.1.0",
+  "engineVersion": "1.0.0",
   "installedAt": "2026-09-20T15:53:05.768Z",
   "engineHashes": {
-    "deck.css": "a40b0e8d21ff31dbc3553d5c68cf68c4aebcbd7092aee886463e7f089c83380d",
-    "deck.js": "5a5af18de93f479b6b40fd19bcb1f1aff2af576a0f1d4145fafbd4e7b11ffa5f",
-    "frame-scrub.js": "57ba5a2927926a9db0138e340b36e7b6cfb5cf85e8da3227ecbf97be13582a58",
-    "motion.js": "49a31c269f0395ec6e55059d8fe998a79ef47c6b91d6e9f4ba6aa535c5f71fea",
-    "scroll.js": "d980c382f3d09cdcb740a1189263a9bd0faf8b34916b99ff715aaca11fbde687"
-  }
+    "asset-url.js": "ee91a6119f38acef95c93280c3ad4403df2f6eb53533ea3fad830d6e753f73dc",
+    "deck.css": "5d4142319f146dfdc4837b996e41e46da9c0ccde87ea6a323e2d6017d8a93ecf",
+    "deck.js": "bac90b012241a8eb301e3a2298906c256ac64fb77c484ef897f2ea700a782a1a",
+    "frame-scrub.js": "837a6f4aad21fed43476ca2b9a1a79ab7cf627ca2420bca2b789392167c3cfd7",
+    "media-fallback.svg": "fd633d4c7c78c59cd7a7502f112e3be6e8170f8f16cfa4e1c25c2c5ff7fe3f17",
+    "motion.js": "304b394d67fe25e63c248b950b7af35f8979d9593240b4c352ced536db944f8a",
+    "scroll.js": "f3309242ba66ef8c79cf26df9970375efe8aef1325eb4cba4d9270ebd2391547"
+  },
+  "upgradedAt": "2026-09-24T23:42:33.300Z"
 }

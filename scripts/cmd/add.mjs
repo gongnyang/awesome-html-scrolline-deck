@@ -2,7 +2,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import {
-  REPO_ROOT, ensureDir, readJson, writeJson, readText, writeText, walk,
+  REPO_ROOT, ensureDir, readJson, writeJson, readText, writeText,
   fillTemplate, parseFlags, escapeHtml, slugify,
 } from '../lib/fs.mjs';
 import { validate, formatErrors } from '../lib/schema.mjs';
@@ -12,78 +12,6 @@ const KNOWN_FLAGS = new Set(['dir', 'id', 'title', 'kicker', 'lines', 'pinVh', '
 
 const SCHEMA = readJson(path.join(REPO_ROOT, 'references/deck.schema.json'));
 const TECHNIQUES = SCHEMA.$defs.scene.properties.technique.enum;
-
-/* ------------------------------------------------------------------ *
- * Built-in fallback template.
- * Used when templates/scenes/<technique>/ does not exist yet, so a deck can
- * always be scaffolded. It follows the same contract: entrance 0–.30,
- * hold .30–.75, exit .75–1, timeline length exactly 1, tokens only.
- * ------------------------------------------------------------------ */
-const FALLBACK = {
-  'scene.html': `<div class="s-stage">
-  <p class="s-kicker t-eyebrow">{{kicker}}</p>
-  <h2 class="s-title t-display-lg">{{title}}</h2>
-  <ul class="s-lines">
-    <!-- each:line --><li class="s-line t-body-lg">{{line}}</li><!-- /each -->
-  </ul>
-</div>
-`,
-  'scene.css': `/* {{id}} — {{technique}} (built-in fallback template). Tokens only, no literal colours. */
-[data-scene="{{id}}"] { background: var(--canvas); }
-[data-scene="{{id}}"] .s-stage {
-  width: min(var(--container), calc(100vw - var(--gutter) * 2));
-  padding: 0 var(--gutter);
-}
-[data-scene="{{id}}"] .s-kicker { margin-bottom: var(--space-md); color: var(--ink-subtle); }
-[data-scene="{{id}}"] .s-title { margin-bottom: var(--space-lg); color: var(--ink); }
-[data-scene="{{id}}"] .s-lines { display: grid; gap: var(--space-xs); }
-[data-scene="{{id}}"] .s-line { color: var(--ink-muted); }
-`,
-  'scene.js': `/**
- * {{id}} — {{technique}}
- * Timeline bands: entrance 0–.30 · hold .30–.75 · exit .75–1. Total length stays 1.
- * Edit inside the marked blocks; do not call tl.play() and do not tween a var() string.
- */
-let root = null;
-
-export default {
-  id: '{{id}}',
-
-  mount(section) {
-    root = section;
-  },
-
-  build(tl, { gsap }) {
-    const q = gsap.utils.selector(root);
-
-    /* --- entrance 0 → .30 --- */
-    tl.fromTo(q('.s-kicker'), { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0)
-      .fromTo(q('.s-title'), { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.18 }, 0.06)
-      .fromTo(q('.s-line'), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.1, stagger: 0.04 }, 0.18);
-
-    /* --- hold .30 → .75: nothing moves, the audience reads --- */
-
-    /* --- exit .75 → 1 --- */
-    tl.to(q('.s-stage'), { autoAlpha: 0, y: -28, duration: 0.25 }, 0.75);
-  },
-
-  unmount() {
-    root = null;
-  },
-};
-`,
-  'template.json': `{
-  "technique": "{{technique}}",
-  "pinVh": 180,
-  "pin": true,
-  "tags": ["fallback"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 0, "max": 4 } },
-  "assets": {},
-  "hold": [0.3, 0.75],
-  "notesHint": "Say what this scene proves, in one breath."
-}
-`,
-};
 
 /** Expand <!-- each:line -->…<!-- /each --> blocks, then {{lines}} / {{line1..4}}. */
 function expandLines(text, lines) {
@@ -139,12 +67,15 @@ export async function run(argv) {
     return 2;
   }
 
-  // Template source: worker T's folder if present, otherwise the built-in fallback.
+  // A missing template is a packaging error, not a reason to make a generic scene.
   const templateDir = path.join(REPO_ROOT, 'templates/scenes', technique);
-  const useFallback = !fs.existsSync(path.join(templateDir, 'scene.js'));
-  const files = useFallback
-    ? Object.fromEntries(Object.entries(FALLBACK))
-    : Object.fromEntries(walk(templateDir).map((rel) => [rel, readText(path.join(templateDir, rel))]));
+  if (!fs.existsSync(path.join(templateDir, 'scene.js'))) {
+    process.stderr.write(`scrolline add: template ${technique} is incomplete or missing\n`);
+    return 1;
+  }
+  // Preview images document the template; only source files belong in a deck.
+  const sourceFiles = ['scene.html', 'scene.css', 'scene.js', 'template.json'];
+  const files = Object.fromEntries(sourceFiles.map((rel) => [rel, readText(path.join(templateDir, rel))]));
 
   const meta = (() => {
     try { return JSON.parse(files['template.json'] ?? '{}'); } catch { return {}; }
@@ -179,6 +110,10 @@ export async function run(argv) {
     id,
     order,
     technique,
+    purpose: '',
+    reason: '',
+    evidence: '',
+    source: '',
     pinVh,
     pin: meta.pin === false ? false : true,
     assets: {},
@@ -221,13 +156,10 @@ export async function run(argv) {
   writeJson(deckFile, deck);
 
   process.stdout.write(
-`Added ${id} (${technique}, pin ${pinVh}vh)${useFallback ? ' — built-in fallback template' : ''}
+`Added ${id} (${technique}, pin ${pinVh}vh)
   src/scenes/${id}/${written.join(', ')}
   deck.json scene ${deck.scenes.length}, total pin ${deck.scenes.reduce((s, x) => s + (x.pinVh || 0), 0)}vh
 `);
-  if (useFallback) {
-    process.stdout.write(`  note: templates/scenes/${technique}/ is not installed in this build, so the generic template was used.\n`);
-  }
   return 0;
 }
 

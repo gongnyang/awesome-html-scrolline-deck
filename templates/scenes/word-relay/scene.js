@@ -10,6 +10,12 @@ const parts = (title) => {
   const split = text.split(SPLIT).filter(Boolean);
   return split.length > 1 ? split : text.split(/\s+/).filter(Boolean);
 };
+const wordNode = (word) => {
+  const span = document.createElement('span');
+  span.className = 'relay__word';
+  span.textContent = word;
+  return span;
+};
 
 export default {
   id: '{{id}}',
@@ -20,20 +26,29 @@ export default {
     const copy = scene.copy || {};
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
-    root.querySelector('[data-role="words"]').innerHTML = parts(copy.title)
-      .map((word) => `<span class="relay__word">${word}</span>`)
-      .join('');
-    root.querySelector('[data-role="lines"]').innerHTML = (copy.lines || [])
-      .map((line) => `<p>${line}</p>`)
-      .join('');
+    const sequence = parts(copy.title);
+    const wordHost = root.querySelector('[data-role="words"]');
+    wordHost.setAttribute('aria-label', copy.title || '');
+    wordHost.replaceChildren(...sequence.map(wordNode));
+    root.querySelector('[data-role="sequence"]').textContent = ctx.reduced
+      ? `전체 · ${String(sequence.length).padStart(2, '0')}개`
+      : `${String(1).padStart(2, '0')} / ${String(sequence.length).padStart(2, '0')}`;
+    root.querySelector('[data-role="lines"]').replaceChildren(...(copy.lines || []).map((line) => {
+      const p = document.createElement('p');
+      p.textContent = line;
+      return p;
+    }));
   },
 
-  build(tl) {
+  build(tl, ctx) {
     const words = [...root.querySelectorAll('.relay__word')];
     const kicker = root.querySelector('.relay__kicker');
     const lines = root.querySelector('.relay__lines');
     const reveal = root.querySelector('.relay__reveal');
-    const span = 0.7;
+    const progress = root.querySelector('.relay__progress');
+    const sequence = root.querySelector('[data-role="sequence"]');
+    ctx.gsap.set(progress, { '--progress': 0 });
+    const span = 0.56;
     const step = span / Math.max(1, words.length);
 
     // enter — 0 .. 0.30. Kicker settles, the first word arrives from the right.
@@ -42,7 +57,7 @@ export default {
 
     // hold — 0.30 .. 0.75. Each word takes the stage, then hands it over.
     words.forEach((word, index) => {
-      const at = index * step;
+      const at = 0.14 + index * step;
       const last = index === words.length - 1;
       tl.fromTo(word,
         { xPercent: 70, autoAlpha: 0 },
@@ -50,8 +65,10 @@ export default {
       if (!last) {
         tl.to(word, { xPercent: -55, autoAlpha: 0, duration: step * 0.6, ease: 'power2.in' }, at + step * 0.85);
       }
+      tl.call(() => { sequence.textContent = `${String(index + 1).padStart(2, '0')} / ${String(words.length).padStart(2, '0')}`; }, [], at);
+      tl.to(progress, { '--progress': (index + 1) / Math.max(1, words.length), duration: step * 0.7 }, at);
     });
-    if (words.length) tl.to(words[words.length - 1], { scale: 1.1, duration: 0.08, ease: 'power2.out' }, 0.66);
+    if (words.length) tl.to(words[words.length - 1], { scale: 1.08, duration: 0.08, ease: 'power2.out' }, 0.68);
 
     // exit — 0.75 .. 1.00. A centre wipe closes over the last word.
     tl.fromTo(reveal,

@@ -1,0 +1,20 @@
+/* tilt-card — a portrait holds one side while hairline-ruled lines read on the other. */
+[data-scene="04-design"] .tc { position: relative; isolation: isolate; width: 100%; min-height: 100svh; display: flex; align-items: center; padding: clamp(var(--space-xl, 32px), 7vw, var(--space-section, 88px)); overflow: hidden; background: var(--canvas); }
+[data-scene="04-design"] .tc__copy { position: relative; z-index: 2; width: min(46vw, 620px); }
+[data-scene="04-design"] .tc__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="04-design"] .tc__title { margin: 0 0 var(--space-xl, 32px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; word-break: keep-all; }
+[data-scene="04-design"] .tc__list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+[data-scene="04-design"] .tc__list li { padding: var(--space-md, 16px) 0; border-top: 1px solid var(--hairline); color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.5; word-break: keep-all; }
+[data-scene="04-design"] .tc__list li:last-child { border-bottom: 1px solid var(--hairline); }
+[data-scene="04-design"] .tc__portrait { position: absolute; z-index: 1; inset: 5vh 0 5vh auto; width: min(56vw, 980px); margin: 0; overflow: hidden; border-radius: 2px; transform: perspective(1400px) rotateY(calc(var(--tilt, 0) * 1deg)) translateX(calc(var(--shift, 0) * 1%)); transform-origin: right center; }
+[data-scene="04-design"] .tc__portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center right; mask-image: linear-gradient(to right, transparent, var(--ink) 31%); -webkit-mask-image: linear-gradient(to right, transparent, var(--ink) 31%); }
+[data-scene="04-design"] .tc__portrait:after { position:absolute;inset:35% 0 0;content:"";pointer-events:none;background:linear-gradient(to bottom,transparent,var(--canvas) 110%);opacity:.36; }
+[data-scene="04-design"] .tc__portrait figcaption { position: absolute; right: var(--space-lg, 24px); bottom: var(--space-lg, 24px); color: var(--ink-subtle); text-shadow: 0 1px 2px var(--canvas), 0 0 14px var(--canvas); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .1em; }
+@media (max-width: 720px) {
+  [data-scene="04-design"] .tc { align-items: flex-start; padding: 14svh var(--gutter, 20px) var(--space-section, 88px); }
+  [data-scene="04-design"] .tc__copy { width: 100%; }
+  [data-scene="04-design"] .tc__portrait { inset:auto 0 0 auto;width:88vw;height:70%;opacity:.22; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="04-design"] .tc__portrait { transform: none; }
+}

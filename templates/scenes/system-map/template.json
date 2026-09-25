@@ -1,0 +1,47 @@
+{
+  "technique": "system-map",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "system",
+    "relationships",
+    "no-assets"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Explain how several actors or components influence one another.",
+  "description_en": "A central node connects to surrounding system actors with directional links.",
+  "description_ko": "중심 요소와 주변 구성요소의 관계를 연결선으로 설명합니다.",
+  "responsive": "Arrange surrounding components in three columns on desktop and two columns on narrow screens.",
+  "reducedMotion": "Show the center and all system nodes in place.",
+  "purpose": "중심 요소와 주변 구성요소의 관계를 연결선으로 설명합니다.",
+  "exampleCopy": {
+    "kicker": "예약과 현장 대기를 한 흐름으로",
+    "title": "모바일 대기표 · 상담 슬롯 · 직원 알림",
+    "lines": [
+      "기존 POS를 유지하며 현장 흐름만 연결한다.",
+      "화살표는 제안된 흐름을 나타냅니다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/client-proposal/05-solution"
+}

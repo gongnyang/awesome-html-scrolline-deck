@@ -2,11 +2,46 @@
   "technique": "word-relay",
   "pinVh": 220,
   "pin": true,
-  "tags": ["typography", "promise", "no-assets", "transition"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 0, "max": 3 } },
-  "assets": { "frames": false, "images": { "min": 0, "max": 0 }, "video": false, "poster": false },
-  "hold": [0.3, 0.75],
+  "tags": [
+    "typography",
+    "promise",
+    "no-assets",
+    "transition"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 0,
+      "max": 3
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
   "notesHint": "Say each word out loud as it lands. The last word is the promise of the talk.",
   "description_en": "The title splits into two to five words that relay across the stage; the final word stays and a centre wipe closes the scene.",
-  "description_ko": "제목을 2~5개 단어로 쪼개 차례로 화면을 가로지르고, 마지막 단어만 남긴 뒤 가운데 와이프로 장면을 닫는다."
+  "description_ko": "제목을 2~5개 단어로 쪼개 차례로 화면을 가로지르고, 마지막 단어만 남긴 뒤 가운데 와이프로 장면을 닫는다.",
+  "responsive": "At widths up to 720px, display each word on its own centered row and keep the progress rail below the phrase.",
+  "reducedMotion": "Show the full arrow-separated phrase and complete progress rail as a static composition.",
+  "purpose": "제목을 2~5개 단어로 쪼개 차례로 화면을 가로지르고, 마지막 단어만 남긴 뒤 가운데 와이프로 장면을 닫는다.",
+  "exampleCopy": {
+    "kicker": "학교 급식",
+    "title": "남기지 않기 → 함께 고르기 → 조금씩 담기",
+    "lines": [
+      "잔반 문제를 개인의 의지 탓으로만 설명하지 않고 선택과 배식 흐름을 살펴본다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "work/skill-trials/food-waste/01-hook"
 }

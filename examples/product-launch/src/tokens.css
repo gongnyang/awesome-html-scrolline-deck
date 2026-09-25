@@ -7,10 +7,18 @@
    ============================================================ */
 
 :root {
+  /* Scene composition aliases resolve to the active theme ladder. */
+  --accent: var(--accent-1);
+  --accent-soft: color-mix(in srgb, var(--accent-1) 18%, transparent);
+  --surface: var(--surface-1);
+  --surface-raised: var(--surface-2);
+  --line: var(--hairline);
+  --shadow: rgba(0, 0, 0, .3);
+
   /* ---------- accents ---------- */
-  --accent-1: #f2674a;   /* coral: the launch colour, marks and accents */
-  --accent-2: #7f9bff;   /* cobalt, lifted for a dark room */
-  --accent-3: #e0a34a;   /* amber: third beat, charge and warmth */
+  --accent-1: #f06442;   /* coral: the launch colour, marks and accents */
+  --accent-2: #829bff;   /* cobalt, lifted for a dark room */
+  --accent-3: #f4b942;   /* amber: third beat, charge and warmth */
   --on-accent: #1a120c;
 
   /* ---------- surface ladder ---------- */

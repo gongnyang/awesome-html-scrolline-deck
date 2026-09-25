@@ -1,0 +1,55 @@
+{
+  "technique": "option-matrix",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "decision",
+    "comparison",
+    "no-assets"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false,
+    "matrix": {
+      "options": "Optional array of up to three column labels.",
+      "criteria": "Optional array of up to three row labels.",
+      "values": "Optional row-major array of display values; omitted cells stay blank.",
+      "recommendedIndex": "Optional zero-based option index to emphasize."
+    }
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Compare choices against a small set of decision criteria.",
+  "description_en": "A decision matrix reveals criteria rows and emphasizes the recommended column.",
+  "description_ko": "선택지를 같은 기준으로 비교하고 추천안의 이유를 보여줍니다.",
+  "responsive": "Preserve row and column labels while tightening table cell padding on narrow screens.",
+  "reducedMotion": "Show all supplied option values or empty placeholders in the finished matrix.",
+  "purpose": "선택지를 같은 기준으로 비교하고 추천안의 이유를 보여줍니다.",
+  "exampleCopy": {
+    "kicker": "2027 가상 계획 · 이사회 결정",
+    "title": "투자 순서를 함께 정합니다",
+    "lines": [
+      "구독 유지",
+      "물류 자동화",
+      "신규 권역",
+      "기준: 현금 투입 · 회수 기간 · 현재 근거"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/annual-report/10-close"
+}

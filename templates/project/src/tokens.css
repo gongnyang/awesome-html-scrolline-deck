@@ -5,6 +5,14 @@
    ============================================================ */
 
 :root {
+  /* Scene composition aliases resolve to the active theme ladder. */
+  --accent: var(--accent-1);
+  --accent-soft: color-mix(in srgb, var(--accent-1) 18%, transparent);
+  --surface: var(--surface-1);
+  --surface-raised: var(--surface-2);
+  --line: var(--hairline);
+  --shadow: rgba(0, 0, 0, .3);
+
   /* ---------- accents ---------- */
   --accent-1: #5e6ad2;   /* primary accent: progress bar, key marks, focus */
   --accent-2: #f0b429;   /* secondary accent: numbers, highlights */

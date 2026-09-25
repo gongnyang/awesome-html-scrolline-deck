@@ -1,0 +1,46 @@
+{
+  "technique": "question-reveal",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "opening",
+    "question",
+    "typography"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Open with a specific question, then reveal the evidence that reframes it.",
+  "description_en": "A cinematic question card opens into a three-part answer.",
+  "description_ko": "질문을 먼저 크게 던지고, 답의 근거를 차례로 드러내는 오프닝 장면입니다.",
+  "responsive": "On narrow screens, put the answer rail below the oversized question.",
+  "reducedMotion": "Show the question and every answer clue together in the finished layout.",
+  "purpose": "질문을 먼저 크게 던지고, 답의 근거를 차례로 드러내는 오프닝 장면입니다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 고객은 어디에서 포기할까요?",
+    "title": "대기 8분을 넘으면 이탈이 늘어난다",
+    "lines": [
+      "피크 시간 문의와 결제 대기가 겹쳤습니다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/client-proposal/02-challenge"
+}

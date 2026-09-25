@@ -31,5 +31,18 @@
   ],
   "notesHint": "Read one row at a time. The highlight tells the room where you are.",
   "description_en": "Breakdown scene: one artefact on the left, labelled rows on the right, each row drawing a connector to its mark.",
-  "description_ko": "해부 장면. 왼쪽에 대상 하나, 오른쪽에 라벨 붙은 행들, 각 행이 대상 위의 표시점까지 연결선을 긋는다."
+  "description_ko": "해부 장면. 왼쪽에 대상 하나, 오른쪽에 라벨 붙은 행들, 각 행이 대상 위의 표시점까지 연결선을 긋는다.",
+  "responsive": "At widths up to 720px, move the artifact above the copy, narrow the label column, and hide connector rules and marks.",
+  "reducedMotion": "Show the full artifact and every annotation row; remove connector drawing and clipping.",
+  "purpose": "해부 장면. 왼쪽에 대상 하나, 오른쪽에 라벨 붙은 행들, 각 행이 대상 위의 표시점까지 연결선을 긋는다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 하루를 방해하지 않는 설계",
+    "title": "주변 소리는 낮추고, 착용 부담도 낮춘다",
+    "lines": [
+      "적응형 소음 제어 · 213g 경량 설계 · 버튼 한 번의 주변음 모드",
+      "핵심 주장과 근거를 같은 화면에서 읽습니다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/product-launch/05-features"
 }

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="이미지를 불러올 수 없습니다">
+  <defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#18242b"/><stop offset="1" stop-color="#354f4d"/></linearGradient></defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <circle cx="1210" cy="390" r="440" fill="none" stroke="#93bbad" stroke-opacity=".35" stroke-width="2"/>
+  <path d="M0 730 430 445 705 625 1055 310 1600 675v225H0Z" fill="#72998c" fill-opacity=".32"/>
+  <text x="92" y="790" fill="#f2f6f3" font-family="sans-serif" font-size="42">이미지를 불러올 수 없습니다</text>
+</svg>

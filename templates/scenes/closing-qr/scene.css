@@ -1,7 +1,7 @@
 /* closing-qr — the last frame stays on screen: thanks, a QR, a way back. */
 [data-scene="{{id}}"] .cq { position: relative; isolation: isolate; width: 100%; min-height: 100svh; display: grid; align-items: center; padding: clamp(var(--space-xl, 32px), 8vw, var(--space-section, 88px)); overflow: hidden; background: var(--canvas); }
 [data-scene="{{id}}"] .cq__bloom { --r: 70; position: absolute; z-index: 0; inset: 50% auto auto 42%; width: min(78vw, 1120px); aspect-ratio: 1; transform: translate(-50%, -50%); background: radial-gradient(circle, color-mix(in srgb, var(--accent-1) 30%, transparent) 0, color-mix(in srgb, var(--accent-1) 10%, transparent) calc(var(--r) * .38 * 1%), transparent calc(var(--r) * 1%)); filter: blur(clamp(32px, 7vw, 100px)); opacity: .8; pointer-events: none; }
-[data-scene="{{id}}"] .cq__copy { position: relative; z-index: 2; max-width: min(80vw, 1060px); }
+[data-scene="{{id}}"] .cq__copy { position: relative; z-index: 2; max-width: min(72vw, 1060px); }
 [data-scene="{{id}}"] .cq__lead { margin: 0 0 var(--space-lg, 24px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 [data-scene="{{id}}"] .cq__thanks { margin: 0; max-width: 12ch; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(38px, 6.4vw, var(--display-xl-size, 80px)); font-weight: 700; line-height: 1.02; letter-spacing: -.03em; word-break: keep-all; }
 [data-scene="{{id}}"] .cq__char { display: inline-block; white-space: pre; }
@@ -19,7 +19,7 @@
 [data-scene="{{id}}"] .cq__mascot:not([src]) { display: none; }
 @media (max-width: 720px) {
   [data-scene="{{id}}"] .cq { align-items: start; padding-top: 18svh; }
-  [data-scene="{{id}}"] .cq__copy { max-width: 100%; }
+  [data-scene="{{id}}"] .cq__copy { max-width: min(100%, 42rem); }
   [data-scene="{{id}}"] .cq__site { flex-direction: column; align-items: flex-start; gap: var(--space-md, 16px); }
   [data-scene="{{id}}"] .cq__qr { width: 128px; height: 128px; flex-basis: 128px; }
   [data-scene="{{id}}"] .cq__url { max-width: 100%; font-size: clamp(15px, 1.3vw, var(--body-lg-size, 18px)); }

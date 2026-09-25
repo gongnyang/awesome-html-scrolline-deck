@@ -1,0 +1,16 @@
+/* document-proof: a distinct presentation structure built around the scene's speaking job. */
+[data-scene="08-limits"] .d{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
+[data-scene="08-limits"] .d__head{margin-bottom:clamp(24px,5vh,60px)}
+[data-scene="08-limits"] .d__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
+[data-scene="08-limits"] .d__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
+[data-scene="08-limits"] .d h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
+[data-scene="08-limits"] .d p{color:var(--ink-muted);line-height:1.55}
+[data-scene="08-limits"] .d img{display:block;max-width:100%}
+[data-scene="08-limits"] .d__layout{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,7vw,96px);align-items:center}
+[data-scene="08-limits"] .d__paper{position:relative;display:grid;grid-template-columns:minmax(120px,.55fr) 1fr;align-items:center;gap:clamp(16px,3vw,40px);min-height:42vh;padding:clamp(20px,3vw,48px);background:var(--surface-raised);box-shadow:0 24px 80px var(--shadow);border:1px solid var(--line);transform:rotate(-1deg)}
+[data-scene="08-limits"] .d__image{width:100%;max-height:28vh;object-fit:contain;filter:saturate(.72)}
+[data-scene="08-limits"] .d__quote{margin:0;font-family:var(--font-display,inherit);font-size:clamp(22px,3.4vw,46px);line-height:1.25}
+[data-scene="08-limits"] .d__source{margin:0;border-left:2px solid var(--accent);padding:1rem clamp(14px,2vw,28px);font:500 clamp(14px,1.3vw,18px)/1.55 var(--font-mono,monospace);overflow-wrap:anywhere}
+[data-scene="08-limits"] .d__mark{background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
+@media(max-width:720px){[data-scene="08-limits"] .d{padding:36px 0;min-height:100svh}[data-scene="08-limits"] .d__layout{grid-template-columns:1fr;gap:1rem}[data-scene="08-limits"] .d__paper{grid-template-columns:1fr;min-height:28vh}[data-scene="08-limits"] .d__image{max-height:18vh;object-position:left center}}
+@media(prefers-reduced-motion:reduce){[data-scene="08-limits"] .d *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}

@@ -51,7 +51,7 @@ Commands
 
   storyboard [dir]            Print the scene table (id, technique, copy, pin, assets)
   check [dir]                 Static gates: module shape, timeline <= 1, tokens, no scrollTo
-  verify [dir]                Browser gates: pin distance, visibility, console, overflow
+  verify [dir] --strict       Browser gates: wheel, keyboard, media, contrast, reduced motion
   qr --url <url> --scene <id> Write a currentColor QR SVG and wire it into deck.json (or --out <file>)
   media <file> --scene NN-id  Copy/convert an image into public/media/<scene>/
   upgrade <dir> [--force]     Refresh <dir>/src/engine from this engine build
@@ -64,6 +64,9 @@ Techniques
   frame-scrub-hero  word-relay        kinetic-titles   horizontal-gallery
   anatomy-rows      frame-scrub-video parallax-video   paper-assembly
   odometer-stats    wipe-transform    tilt-card        closing-qr
+  question-reveal    agenda-path       chapter-transition chart-reveal
+  annotated-chart   before-after      document-proof     step-flow
+  system-map        timeline-roadmap  map-route          option-matrix
 
 Presenting keys: -> / Space next · <- previous · 1-9,0 jump · P auto-advance · F fullscreen · H hide cursor · N notes
 `;

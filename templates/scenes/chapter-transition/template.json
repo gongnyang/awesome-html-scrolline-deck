@@ -1,0 +1,47 @@
+{
+  "technique": "chapter-transition",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "transition",
+    "chapter",
+    "no-assets"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Mark a meaningful change in topic with a chapter number and a visual threshold.",
+  "description_en": "A large chapter numeral parts a layered color field before the new section settles.",
+  "description_ko": "큰 장 번호와 색면의 전환으로 다음 논점의 시작을 알립니다.",
+  "responsive": "On narrow screens, place the chapter number above the title.",
+  "reducedMotion": "Show the full chapter number and title as a static card.",
+  "purpose": "큰 장 번호와 색면의 전환으로 다음 논점의 시작을 알립니다.",
+  "exampleCopy": {
+    "kicker": "02 장 · 검증",
+    "title": "주장에서 증명으로",
+    "lines": [
+      "핵심 주장을 세웠다면",
+      "근거를 보여줄 차례입니다"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "work/preview-deck/01-chapter"
+}

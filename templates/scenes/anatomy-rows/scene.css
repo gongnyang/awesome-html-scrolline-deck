@@ -2,7 +2,7 @@
 [data-scene="{{id}}"] .an { position: relative; width: 100%; height: 100svh; overflow: hidden; background: var(--canvas); color: var(--ink); }
 [data-scene="{{id}}"] .an__art { --clip: 1; position: absolute; inset: 0 auto 0 0; width: 44vw; margin: 0; overflow: hidden; clip-path: inset(0 calc((1 - var(--clip)) * 100%) 0 0); }
 [data-scene="{{id}}"] .an__art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 58%, var(--canvas)); opacity: .4; }
-[data-scene="{{id}}"] .an__art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+[data-scene="{{id}}"] .an__art img { position:absolute;inset:0;z-index:0;display: block; width: 100%; height: 100%; object-fit: cover; }
 [data-scene="{{id}}"] .an__copy { position: absolute; z-index: 2; left: calc(44vw + clamp(var(--space-lg, 24px), 5vw, var(--space-section, 88px))); top: 16svh; width: min(47vw, 760px); }
 [data-scene="{{id}}"] .an__kicker { margin: 0 0 var(--space-sm, 12px); color: var(--accent-3); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 [data-scene="{{id}}"] .an__title { margin: 0 0 clamp(var(--space-xl, 32px), 5vh, var(--space-section, 88px)); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; word-break: keep-all; }

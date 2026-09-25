@@ -2,11 +2,46 @@
   "technique": "paper-assembly",
   "pinVh": 260,
   "pin": true,
-  "tags": ["documents", "images", "gather", "proof"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 1 } },
-  "assets": { "frames": false, "images": { "min": 3, "max": 8 }, "video": false, "poster": false },
-  "hold": [0.3, 0.75],
+  "tags": [
+    "documents",
+    "images",
+    "gather",
+    "proof"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 1,
+      "max": 1
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 3,
+      "max": 8
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
   "notesHint": "Wait for the fan before you speak. The count of pages is the point.",
   "description_en": "Proof scene: three to eight pages fly in from off-stage, settle into a fan, then file away together.",
-  "description_ko": "증거 장면. 화면 밖에서 페이지 3~8장이 날아들어 부채꼴로 정리된 뒤 한 벌로 빠져나간다."
+  "description_ko": "증거 장면. 화면 밖에서 페이지 3~8장이 날아들어 부채꼴로 정리된 뒤 한 벌로 빠져나간다.",
+  "responsive": "On narrow screens, tighten the image fan; with reduced motion, put pages into a static three-column grid.",
+  "reducedMotion": "Show the page set in a static grid instead of scattering and fanning it.",
+  "purpose": "증거 장면. 화면 밖에서 페이지 3~8장이 날아들어 부채꼴로 정리된 뒤 한 벌로 빠져나간다.",
+  "exampleCopy": {
+    "kicker": "가상 콘셉트 · 재료와 디테일",
+    "title": "오래 쓰고 쉽게 고치는 마감",
+    "lines": [
+      "재생 목재 · 저휘도 확산 조명 · 교체형 흡음 패널 · 손때가 남는 패브릭"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/spatial-proposal/05-materials"
 }

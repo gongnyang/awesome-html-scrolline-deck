@@ -6,6 +6,14 @@
    ============================================================ */
 
 :root {
+  /* Scene composition aliases resolve to the active theme ladder. */
+  --accent: var(--accent-1);
+  --accent-soft: color-mix(in srgb, var(--accent-1) 18%, transparent);
+  --surface: var(--surface-1);
+  --surface-raised: var(--surface-2);
+  --line: var(--hairline);
+  --shadow: rgba(0, 0, 0, .3);
+
   /* ---------- accents ---------- */
   --accent-1: #4fd1a5;   /* 민트: 진행바·포커스·주 강조 */
   --accent-2: #edb04a;   /* 앰버: 숫자·수평선·하이라이트 */

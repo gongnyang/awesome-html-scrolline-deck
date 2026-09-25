@@ -5,10 +5,18 @@
    ============================================================ */
 
 :root {
+  /* Scene composition aliases resolve to the active theme ladder. */
+  --accent: var(--accent-1);
+  --accent-soft: color-mix(in srgb, var(--accent-1) 18%, transparent);
+  --surface: var(--surface-1);
+  --surface-raised: var(--surface-2);
+  --line: var(--hairline);
+  --shadow: rgba(0, 0, 0, .3);
+
   /* ---------- accents ---------- */
-  --accent-1: #5e6ad2;   /* primary accent: progress bar, key marks, focus */
-  --accent-2: #f0b429;   /* secondary accent: numbers, highlights */
-  --accent-3: #e5484d;   /* tertiary accent: warnings, contrast beats */
+  --accent-1: #a8ff60;   /* primary accent: progress bar, key marks, focus */
+  --accent-2: #6477ed;   /* secondary accent: numbers, highlights */
+  --accent-3: #ff7c62;   /* tertiary accent: warnings, contrast beats */
   --on-accent: #ffffff;
 
   /* ---------- surface ladder ---------- */
@@ -98,7 +106,7 @@
   --ink-muted:  #3c4148;
   --ink-subtle: #6a7078;
 
-  --accent-1: #3a45b8;
+  --accent-1: #748b19;
   --accent-2: #9a6400;
   --accent-3: #c02a2f;
 }

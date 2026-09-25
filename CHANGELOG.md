@@ -19,3 +19,9 @@ First public release.
 - Gates: static S0, G1–G4, lint L1–L3; browser G5–G10 driven by real wheel events (Playwright optional, global install auto-detected).
 - Sample deck (6 scenes) with 18 QA captures; 28 tests; CI on Node 20/22.
 - Companion handbook (Korean, 46 pages): `docs/스크롤로-발표하라.pdf`.
+# 1.0.0 — Presentation-grade rebuild
+
+- Reworked the authoring skill around audience, claim, visual evidence, art direction, and presenter rehearsal.
+- Expanded to 24 runnable scene templates and eight independently styled, Korean-language example websites, including an image-rich spatial proposal.
+- Added original local imagery, deployment-relative asset URLs, strict image decode and production-subpath browser checks.
+- Made full browser verification mandatory before the GitHub Pages gallery is deployed.

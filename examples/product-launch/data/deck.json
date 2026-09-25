@@ -1,206 +1,325 @@
 {
-  "title": "Nimbus",
-  "subtitle": "무선 헤드폰 런칭 — 소음·무게·시간을 지운다",
+  "title": "Nimbus Air 출시 발표",
+  "subtitle": "가상의 무선 헤드폰 Nimbus Air 제품 공개",
   "lang": "ko",
   "presenter": {
-    "name": "Nimbus Audio",
+    "name": "Nimbus Audio 제품팀",
     "roles": [],
     "avatar": "",
-    "autoDurationSec": 180
+    "autoDurationSec": 240
   },
   "theme": {
-    "style": "light",
-    "accent": "#cf4224"
+    "style": "dark",
+    "accent": "#f06442"
   },
   "scenes": [
     {
-      "id": "01-open",
+      "id": "01-hero",
       "order": 1,
-      "technique": "kinetic-titles",
-      "pinVh": 240,
-      "pin": true,
-      "assets": {},
-      "copy": {
-        "kicker": "NIMBUS OVER-EAR",
-        "title": "우리가 지운 세 가지",
-        "lines": [
-          "소음 // 42dB를 덜어냈다 · 엔진 소리가 방 안 공기가 된다",
-          "무게 // 213g · 두 시간 뒤에는 쓴 것을 잊는다",
-          "시간 // 40시간 재생 · 출장에 충전기를 두고 간다"
-        ]
-      },
-      "transition": {
-        "in": "fade",
-        "out": "fade"
-      },
-      "notes": "세 단어만 말한다. 소음, 무게, 시간. 블록이 다 서면 '오늘은 이 셋을 어떻게 지웠는지만 말합니다'로 넘어간다.",
-      "fallback": "세 블록을 세로 목록으로 세운 정지 화면."
-    },
-    {
-      "id": "02-turn",
-      "order": 2,
-      "technique": "frame-scrub-video",
-      "pinVh": 280,
-      "pin": true,
-      "assets": {
-        "frames": "/frames/turn/f_%03d.jpg",
-        "count": 90,
-        "critical": [
-          1,
-          23,
-          45,
-          68,
-          90
-        ],
-        "poster": "/frames/turn/poster.jpg"
-      },
-      "copy": {
-        "kicker": "외형",
-        "title": "한 바퀴 돌려 본다",
-        "lines": [
-          "이어컵은 알루미늄 한 덩이를 깎아 만든다",
-          "힌지는 안쪽으로 접혀 가방 두께를 넘지 않는다",
-          "헤드밴드는 다섯 단계로 늘어난다"
-        ]
-      },
-      "transition": {
-        "in": "fade",
-        "out": "fade"
-      },
-      "notes": "휠을 천천히 굴린다. 한 바퀴가 다 돌 때까지 말을 아끼고, 줄이 하나씩 내려앉을 때마다 한 문장씩만 붙인다.",
-      "fallback": "포스터 한 장(45° 뷰) 위에 카피만 얹는다. 모바일은 시퀀스를 내려받지 않는다."
-    },
-    {
-      "id": "03-hero",
-      "order": 3,
       "technique": "tilt-card",
-      "pinVh": 200,
-      "pin": true,
-      "assets": {
-        "images": [
-          "/media/03-hero/exploded.webp"
-        ],
-        "caption": "EXPLODED VIEW · NB-01"
-      },
-      "copy": {
-        "kicker": "안쪽",
-        "title": "뜯어 보면 네 층",
-        "lines": [
-          "40mm 다이내믹 드라이버 — 리퀴드 크리스털 다이어프램",
-          "1,200mAh 셀 — 힌지 아래에 눕혔다",
-          "피드포워드·피드백 마이크 각 2개",
-          "메모리폼 이어패드 — 손으로 교체한다"
-        ]
-      },
-      "transition": {
-        "in": "fade",
-        "out": "fade"
-      },
-      "notes": "분해도를 가리키며 위에서 아래로 짚는다. 드라이버, 배터리, 마이크, 패드. 네 번째 줄에서 '수리해서 오래 쓰는 물건'이라는 말을 붙인다.",
-      "fallback": "분해도 정지 화면 옆에 네 줄이 그대로 선다."
-    },
-    {
-      "id": "04-features",
-      "order": 4,
-      "technique": "horizontal-gallery",
-      "pinVh": 320,
-      "pin": true,
-      "assets": {
-        "images": [
-          "/media/04-features/plate-01-battery.webp",
-          "/media/04-features/plate-02-anc.webp",
-          "/media/04-features/plate-03-weight.webp",
-          "/media/04-features/plate-04-codec.webp",
-          "/media/04-features/plate-05-color.webp"
-        ]
-      },
-      "copy": {
-        "kicker": "다섯 장면",
-        "title": "숫자로 먼저 본다",
-        "lines": [
-          "한 판에 하나씩, 다섯 판"
-        ]
-      },
-      "transition": {
-        "in": "fade",
-        "out": "fade"
-      },
-      "notes": "판을 하나씩 해설하지 않는다. 레일이 지나가는 동안 '재생·소음·무게·코덱·색' 다섯 축만 소리 내어 읽는다.",
-      "fallback": "판 다섯 장을 2열 그리드로 정지 배치하고 캡션을 맨 위로 올린다."
-    },
-    {
-      "id": "05-breathe",
-      "order": 5,
-      "technique": "parallax-video",
-      "pinVh": 130,
-      "pin": false,
-      "assets": {
-        "video": "/media/05-breathe/breathe.mp4",
-        "poster": "/media/05-breathe/poster.webp",
-        "images": []
-      },
-      "copy": {
-        "kicker": "잠깐",
-        "title": "소리가 사라진 자리",
-        "lines": [
-          "남는 것은 당신이 고른 소리뿐이다"
-        ]
-      },
-      "transition": {
-        "in": "fade",
-        "out": "fade"
-      },
-      "notes": "여기서는 한 문장만 말하고 계속 굴린다. 멈추면 숨 고르기가 아니라 정적이 된다.",
-      "fallback": "영상이 막히면 포스터(파형 정지 화면) 위로 카피만 흐른다."
-    },
-    {
-      "id": "06-specs",
-      "order": 6,
-      "technique": "odometer-stats",
       "pinVh": 220,
       "pin": true,
-      "assets": {},
+      "assets": {
+        "images": [
+          "/media/product-launch/01-hero/hero.webp"
+        ],
+        "caption": "NIMBUS AIR · CONCEPT RENDERING"
+      },
       "copy": {
-        "kicker": "스펙",
-        "title": "네 숫자로 끝낸다",
+        "kicker": "가상 제품 콘셉트 · Nimbus Air",
+        "title": "출근길의 소음을 접어 넣다",
         "lines": [
-          "40시간 연속 재생",
-          "42dB 노이즈 캔슬링",
-          "213g 헤드밴드 포함",
-          "6개 빔포밍 마이크"
+          "얇은 금속 이어컵과 접히는 힌지의 형태를 먼저 봅니다."
         ]
       },
       "transition": {
         "in": "fade",
         "out": "fade"
       },
-      "notes": "릴이 멈춘 뒤에 숫자를 읽는다. 마지막에 '전부 실험실 수치이고, 이 제품은 가상입니다'를 덧붙인다.",
-      "fallback": "네 숫자를 최종값 상태로 세운다."
+      "notes": "제품의 실루엣을 크게 공개하고 이름을 마지막에 읽는다. 가상 제품 발표다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 제품의 휴대성과 착용감이라는 핵심 약속을 실루엣에서 먼저 읽는다.",
+      "reason": "“출근길의 소음을 접어 넣다”을 물체 중심 카드로 크게 보여 주고 깊이를 더해, “얇은 금속 이어컵과 접히는 힌지의 형태를 먼저 봅니다”에서 말하는 형태·사용 장면을 설명 전에 먼저 관찰하게 한다.",
+      "evidence": "가상 제품의 콘셉트 렌더링이며 실제 판매 제품이나 시험 결과가 아닙니다.",
+      "source": "Nimbus Audio 발표용 가상 제품 브리프"
     },
     {
-      "id": "07-close",
-      "order": 7,
-      "technique": "closing-qr",
-      "pinVh": 200,
+      "id": "02-problem",
+      "order": 2,
+      "technique": "question-reveal",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "출근길에 무엇이 가장 먼저 지치나요?",
+        "title": "귀보다 먼저 집중력이 닳는다",
+        "lines": [
+          "지하철 저음, 오래 착용한 압박, 오후의 배터리 걱정이 겹칩니다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "청중이 가진 불편을 묻고 세 가지 문제를 짧게 멈춰 보여 준다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 귀보다 먼저 집중력이 닳는다을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“귀보다 먼저 집중력이 닳는다”이라는 질문·주장을 짧게 먼저 드러내 청중이 “지하철 저음, 오래 착용한 압박, 오후의 배터리 걱정이 겹칩니다” 상황을 자기 경험과 연결하고, 뒤이어 제시될 설명의 판단 기준을 세우게 한다."
+    },
+    {
+      "id": "03-promise",
+      "order": 3,
+      "technique": "kinetic-titles",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "세 가지를 줄였습니다",
+        "title": "소음 · 무게 · 충전 걱정",
+        "lines": [
+          "소음은 줄이고, 착용은 가볍게, 충전 걱정은 덜었습니다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "세 단어를 순서대로 강조한 뒤 각각의 근거를 예고한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 소음 · 무게 · 충전 걱정을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“소음 · 무게 · 충전 걱정”의 핵심 문장을 순차적으로 완성해 시선을 한 주장에 모으고, “소음은 줄이고, 착용은 가볍게, 충전 걱정은 덜었습니다”을 기억할 만한 발표의 요지로 남긴다."
+    },
+    {
+      "id": "04-design",
+      "order": 4,
+      "technique": "tilt-card",
+      "pinVh": 210,
       "pin": true,
       "assets": {
         "images": [
-          "/media/07-close/qr.svg"
+          "/media/product-launch/04-design/image.webp"
+        ],
+        "critical": [
+          1
         ]
       },
       "copy": {
-        "kicker": "가져가기",
-        "title": "감사합니다",
+        "kicker": "가방에 넣기 전에 한 바퀴",
+        "title": "접히는 힌지와 교체형 패드",
         "lines": [
-          "github.com/gongnyang/awesome-html-scrolline-deck"
+          "알루미늄 이어컵, 접히는 힌지, 교체 가능한 쿠션.",
+          "형태를 먼저 보고 설계 이유를 이어서 설명합니다."
         ]
       },
       "transition": {
         "in": "fade",
         "out": "fade"
       },
-      "notes": "QR을 띄운 채로 질문을 받는다. 화면을 넘기지 않는다.",
-      "fallback": "QR과 주소를 정지 상태로 함께 띄운다."
+      "notes": "회전 시제품 이미지는 생성 콘셉트 시각화이며 실물 증거가 아니다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 접히는 힌지와 교체형 패드을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“접히는 힌지와 교체형 패드”을 물체 중심 카드로 크게 보여 주고 깊이를 더해, “알루미늄 이어컵, 접히는 힌지, 교체 가능한 쿠션”에서 말하는 형태·사용 장면을 설명 전에 먼저 관찰하게 한다."
+    },
+    {
+      "id": "05-features",
+      "order": 5,
+      "technique": "anatomy-rows",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {
+        "images": [
+          "/media/product-launch/05-features/image.webp"
+        ],
+        "critical": [
+          1
+        ]
+      },
+      "copy": {
+        "kicker": "가상 사례 · 하루를 방해하지 않는 설계",
+        "title": "주변 소리는 낮추고, 착용 부담도 낮춘다",
+        "lines": [
+          "적응형 소음 제어 · 213g 경량 설계 · 버튼 한 번의 주변음 모드",
+          "핵심 주장과 근거를 같은 화면에서 읽습니다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "세 기능을 실제 사용 순간과 연결한다. 사양은 가상 예시다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 주변 소리는 낮추고, 착용 부담도 낮춘다을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“주변 소리는 낮추고, 착용 부담도 낮춘다”을 구성 요소별 행으로 나눠 각 항목과 “적응형 소음 제어 · 213g 경량 설계 · 버튼 한 번의 주변음 모드” 근거를 직접 맞대어 읽고 기능과 주장 사이의 연결을 판단하게 한다.",
+      "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+    },
+    {
+      "id": "06-evidence",
+      "order": 6,
+      "technique": "annotated-chart",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {
+        "series": [
+          28,
+          64,
+          100,
+          92,
+          69,
+          43
+        ]
+      },
+      "copy": {
+        "kicker": "가상 시험 · 상대 감쇠 지수 (0–100)",
+        "title": "150Hz 구간에서 감쇠가 가장 컸다",
+        "lines": [
+          "해석: 150Hz에서 최대 42dB 감쇠",
+          "출처: 가상 제품 시험 · 80·120·150·250·500·1000Hz 순"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "조건을 먼저 밝힌 뒤 비교축과 수치를 읽는다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 저주파 소음 최대 42dB 감쇠을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“해석: 150Hz에서 최대 42dB 감쇠”의 해석을 실제 데이터 계열과 같은 화면에 표시해, 청중이 “150Hz 구간에서 감쇠가 가장 컸다”에 해당하는 추세와 근거의 범위를 함께 읽도록 한다.",
+      "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+    },
+    {
+      "id": "07-battery",
+      "order": 7,
+      "technique": "odometer-stats",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "가상 사례 · 충전은 주말 한 번",
+        "title": "40시간 재생 · USB-C 급속 충전",
+        "lines": [
+          "40시간 ANC 켜짐 기준 최대 재생"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "측정 조건과 가상 제품임을 함께 안내한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 40시간 재생 · USB-C 급속 충전을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“40시간 재생 · USB-C 급속 충전”의 핵심 지표를 각각 독립된 큰 숫자로 읽게 해, “ANC 켜짐 기준 최대 40시간이라는 가상 시험 결과”에서 강조하는 규모와 서로 다른 지표의 의미를 혼동하지 않게 한다.",
+      "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+    },
+    {
+      "id": "08-options",
+      "order": 8,
+      "technique": "option-matrix",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {
+        "matrix": {
+          "options": [
+            "차콜",
+            "클라우드",
+            "코랄"
+          ],
+          "criteria": [
+            "소재",
+            "기능",
+            "제안가"
+          ],
+          "values": [
+            [
+              "알루미늄",
+              "알루미늄",
+              "알루미늄"
+            ],
+            [
+              "동일",
+              "동일",
+              "동일"
+            ],
+            [
+              "₩289,000",
+              "₩289,000",
+              "₩289,000"
+            ]
+          ]
+        }
+      },
+      "copy": {
+        "kicker": "세 가지 색, 같은 구성",
+        "title": "세 가지 색, 구성은 같다",
+        "lines": [
+          "차콜",
+          "클라우드",
+          "코랄",
+          "기준: 소재 · 기능 · 제안가"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "색상과 가격 정보를 비교하되 가격은 가상 출시안이라고 표시한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 차콜 · 클라우드 · 코랄을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“세 가지 색, 구성은 같다”의 선택지를 같은 기준의 표에 놓아, “차콜” 조건에서 어떤 안이 적합한지 청중이 근거를 보고 판단하게 한다."
+    },
+    {
+      "id": "09-availability",
+      "order": 9,
+      "technique": "timeline-roadmap",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "가상 출시 일정 · 일정 확정 전",
+        "title": "예약 · 체험 · 정식 출시",
+        "lines": [
+          "10월 1일: 사전 예약: 체험 알림 시작",
+          "10월 12일: 청음 행사: 서울 1개 팝업",
+          "11월 3일: 첫 배송: 예약 제품 출고"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "발표용 가상 일정임을 밝힌다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 예약 · 체험 · 정식 출시을 실제 사용 경험과 연결해 구매 판단 근거로 삼는다.",
+      "reason": "“예약 · 체험 · 정식 출시”의 사건을 시간순으로 배치해 “10월 1일: 사전 예약: 체험 알림 시작”에서 말하는 실행 순서와 성과·검토 시점의 관계를 구분하게 한다.",
+      "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+    },
+    {
+      "id": "10-close",
+      "order": 10,
+      "technique": "step-flow",
+      "pinVh": 180,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "다음 행동",
+        "title": "먼저 듣고, 착용한 뒤 결정하세요",
+        "lines": [
+          "청음: 자주 듣는 출근길 소리를 고른다",
+          "착용: 안경·귀 형태와 무게를 비교한다",
+          "결정: 체험 뒤 예약 여부를 정한다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "신청 QR을 띄우고 청중 질문을 받는다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "청중이 제품을 판단할 수 있는 세 가지 현실적인 체험 순서를 기억한다.",
+      "reason": "“청음: 자주 듣는 출근길 소리를 고른다”의 각 단계를 한 번에 하나씩 이어 보여 주어 청중이 “먼저 듣고, 착용한 뒤 결정하세요”에 담긴 선후 관계와 다음 행동을 정확히 따라가게 한다."
     }
   ],
   "links": {

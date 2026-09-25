@@ -1,0 +1,15 @@
+/* option-matrix: a distinct presentation structure built around the scene's speaking job. */
+[data-scene="09-checklist"] .o{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
+[data-scene="09-checklist"] .o__head{margin-bottom:clamp(24px,5vh,60px)}
+[data-scene="09-checklist"] .o__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
+[data-scene="09-checklist"] .o__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
+[data-scene="09-checklist"] .o h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
+[data-scene="09-checklist"] .o p{color:var(--ink-muted);line-height:1.55}
+[data-scene="09-checklist"] .o img{display:block;max-width:100%}
+[data-scene="09-checklist"] .o__table{display:grid;grid-template-columns:minmax(7rem,1.1fr) repeat(var(--option-columns,3),minmax(0,1fr));border-top:1px solid var(--line);margin-top:5vh}
+[data-scene="09-checklist"] .o__cell{padding:1rem;border-bottom:1px solid var(--line);border-right:1px solid var(--line);min-width:0;font-variant-numeric:tabular-nums}
+[data-scene="09-checklist"] .o__criterion{font-weight:650}
+[data-scene="09-checklist"] .o__head{font:600 .8rem var(--font-mono,monospace);color:var(--ink-muted);background:var(--surface-raised)}
+[data-scene="09-checklist"] .o__cell--recommended{color:var(--accent);font-weight:700;background:var(--accent-soft)}
+@media(max-width:720px){[data-scene="09-checklist"] .o{padding:36px 0;min-height:100svh}[data-scene="09-checklist"] .o__cell{padding:.65rem .4rem;font-size:.82rem}}
+@media(prefers-reduced-motion:reduce){[data-scene="09-checklist"] .o *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}

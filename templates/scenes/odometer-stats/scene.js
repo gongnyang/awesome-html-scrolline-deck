@@ -3,13 +3,19 @@
 let root = null;
 
 const STRIP = Array.from({ length: 30 }, (_, index) => `<i>${index % 10}</i>`).join('');
+const el = (tag, className, text = '') => {
+  const node = document.createElement(tag);
+  node.className = className;
+  node.textContent = text;
+  return node;
+};
 
 // "12 scenes" -> 12 + label. "2450vh of pin" -> 2450 + suffix vh + label.
 // A suffix has to be attached to the number; anything after a space is a label,
 // so "12 \uc7a5\uba74" reads as a bare count with a Korean label.
 const parseStat = (line) => {
   const match = String(line).match(/^\s*([\d,]+)(\S*)\s*([\s\S]*)$/);
-  if (!match) return { digits: '0', suffix: '', label: String(line).trim() };
+  if (!match) return { digits: '', suffix: '', label: String(line).trim() };
   return { digits: match[1].replace(/,/g, ''), suffix: match[2] || '', label: (match[3] || '').trim() };
 };
 
@@ -27,16 +33,31 @@ export default {
 
     const stats = root.querySelector('[data-role="stats"]');
     stats.style.setProperty('--cols', String(Math.max(1, lines.length)));
-    stats.innerHTML = lines.map((line, index) => {
+    stats.replaceChildren(...lines.map((line, index) => {
       const stat = parseStat(line);
-      const reels = stat.digits.split('').map((digit) =>
-        `<span class="od__reel" data-target="${digit}" style="--y:${digit}"><span class="od__strip">${STRIP}</span></span>`).join('');
-      return `<div class="od__stat" data-accent="${(index % 3) + 1}">`
-        + `<dd class="od__odo" aria-label="${stat.digits}${stat.suffix}">`
-        + `<span class="od__reels">${reels}</span>`
-        + (stat.suffix ? `<span class="od__suffix">${stat.suffix}</span>` : '')
-        + `</dd><dt class="od__unit">${stat.label}</dt></div>`;
-    }).join('');
+      const card = el('div', 'od__stat');
+      card.setAttribute('data-accent', String((index % 3) + 1));
+      const definition = el('dd', 'od__odo');
+      definition.setAttribute('aria-label', `${stat.digits}${stat.suffix}`);
+      if (stat.digits) {
+        const reels = el('span', 'od__reels');
+        for (const digit of stat.digits) {
+          const reel = el('span', 'od__reel');
+          reel.dataset.target = digit;
+          reel.style.setProperty('--y', digit);
+          const strip = el('span', 'od__strip');
+          strip.innerHTML = STRIP;
+          reel.append(strip);
+          reels.append(reel);
+        }
+        definition.append(reels);
+        if (stat.suffix) definition.append(el('span', 'od__suffix', stat.suffix));
+      } else {
+        definition.append(el('span', 'od__empty', '—'));
+      }
+      card.append(definition, el('dt', 'od__unit', stat.label));
+      return card;
+    }));
   },
 
   build(tl, ctx) {

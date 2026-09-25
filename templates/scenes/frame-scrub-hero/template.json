@@ -2,11 +2,46 @@
   "technique": "frame-scrub-hero",
   "pinVh": 260,
   "pin": true,
-  "tags": ["opening", "media", "frames", "full-bleed"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 2 } },
-  "assets": { "frames": true, "poster": true, "images": { "min": 0, "max": 0 }, "video": false },
-  "hold": [0.3, 0.75],
+  "tags": [
+    "opening",
+    "media",
+    "frames",
+    "full-bleed"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 1,
+      "max": 2
+    }
+  },
+  "assets": {
+    "frames": true,
+    "poster": true,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
   "notesHint": "First words on stage. Say the one sentence the whole talk pays off.",
   "description_en": "Opening scene: a full-bleed image sequence scrubs behind a standing title, then pushes past the audience.",
-  "description_ko": "오프닝 장면. 전면 프레임 시퀀스가 스크럽되는 동안 제목이 서 있고, 끝에서 화면을 밀고 지나간다."
+  "description_ko": "오프닝 장면. 전면 프레임 시퀀스가 스크럽되는 동안 제목이 서 있고, 끝에서 화면을 밀고 지나간다.",
+  "responsive": "On narrow screens, place the image first and the left-aligned title and supporting copy directly below it.",
+  "reducedMotion": "Skip frame scrubbing and retain the configured poster or first frame behind the title.",
+  "purpose": "오프닝 장면. 전면 프레임 시퀀스가 스크럽되는 동안 제목이 서 있고, 끝에서 화면을 밀고 지나간다.",
+  "exampleCopy": {
+    "kicker": "해가 지는 세 시간",
+    "title": "서울을 천천히 걷는 저녁",
+    "lines": [
+      "골목의 불이 켜질 때, 도시의 속도도 달라집니다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/city-guide/01-hero"
 }

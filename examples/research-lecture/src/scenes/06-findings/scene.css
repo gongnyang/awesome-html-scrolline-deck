@@ -1,0 +1,11 @@
+/* chart-reveal: a distinct presentation structure built around the scene's speaking job. */
+[data-scene="06-findings"] .ch{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
+[data-scene="06-findings"] .ch__head{margin-bottom:clamp(24px,5vh,60px)}
+[data-scene="06-findings"] .ch__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
+[data-scene="06-findings"] .ch__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
+[data-scene="06-findings"] .ch h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
+[data-scene="06-findings"] .ch p{color:var(--ink-muted);line-height:1.55}
+[data-scene="06-findings"] .ch img{display:block;max-width:100%}
+[data-scene="06-findings"] .ch__chart{display:flex;align-items:end;gap:clamp(12px,3vw,36px);height:42vh;border-bottom:1px solid var(--ink-muted);padding:0 1rem}[data-scene="06-findings"] .ch__bar{flex:1;min-width:12px;background:linear-gradient(180deg,var(--accent),var(--accent-2));transform-origin:bottom}[data-scene="06-findings"] .ch__bar span{display:block;transform:translateY(-1.8em);text-align:center;font-variant-numeric:tabular-nums}[data-scene="06-findings"] .ch__labels{display:flex;gap:clamp(12px,3vw,36px);padding:1rem}[data-scene="06-findings"] .ch__labels span{flex:1;text-align:center;font-size:.85rem}
+@media(max-width:720px){[data-scene="06-findings"] .ch{padding:36px 0;min-height:100svh}[data-scene="06-findings"] .ch__chart{height:34vh}}
+@media(prefers-reduced-motion:reduce){[data-scene="06-findings"] .ch *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}

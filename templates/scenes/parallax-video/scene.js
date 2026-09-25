@@ -19,12 +19,27 @@ export default {
     const host = root.querySelector('[data-role="media"]');
     const poster = assets.poster || (assets.images || [])[0] || '';
     if (assets.video && !ctx.reduced) {
-      host.innerHTML = `<video muted playsinline loop preload="metadata" poster="${poster}" aria-hidden="true"><source src="${assets.video}" type="video/mp4" /></video>`;
+      const video = document.createElement('video');
+      const source = document.createElement('source');
+      video.muted = true;
+      video.playsInline = true;
+      video.loop = true;
+      video.preload = 'metadata';
+      video.poster = poster;
+      video.setAttribute('aria-hidden', 'true');
+      source.src = assets.video;
+      source.type = 'video/mp4';
+      video.append(source);
+      host.replaceChildren(video);
       media = host.querySelector('video');
       const play = media && media.play();
       if (play && typeof play.catch === 'function') play.catch(() => {});
     } else if (poster) {
-      host.innerHTML = `<img src="${poster}" alt="" decoding="async" />`;
+      const image = document.createElement('img');
+      image.src = poster;
+      image.alt = '';
+      image.decoding = 'async';
+      host.replaceChildren(image);
     }
   },
 

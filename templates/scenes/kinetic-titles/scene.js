@@ -4,11 +4,15 @@ let root = null;
 
 const VB = { w: 1000, h: 700 };
 
-const words = (text) => String(text)
-  .split(/(\s+)/)
-  .filter(Boolean)
-  .map((word) => `<span class="kt__word">${/^\s+$/.test(word) ? '&nbsp;' : word}</span>`)
-  .join('');
+const element = (tag, className, text = '') => {
+  const node = document.createElement(tag);
+  node.className = className;
+  node.textContent = text;
+  return node;
+};
+
+const words = (text) => String(text).split(/(\s+)/).filter(Boolean).map((word) =>
+  element('span', 'kt__word', /^\s+$/.test(word) ? '\u00a0' : word));
 
 // "Title // bullet · bullet" adds bullets under a block. Prefer "//": the CLI
 // splits its own `--lines` value on "|", so a pipe never survives the round trip.
@@ -59,15 +63,25 @@ export default {
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    root.querySelector('[data-role="blocks"]').innerHTML = lines.map((line, index) => {
+    const blocks = lines.map((line, index) => {
       const item = parse(line);
       const at = spot(index, lines.length);
-      return `<article class="kt__block" data-accent="${(index % 3) + 1}" style="--bx:${at.x};--by:${at.y}">`
-        + `<p class="kt__num">${String(index + 1).padStart(2, '0')}</p>`
-        + `<h3 class="kt__title">${words(item.title)}</h3>`
-        + (item.bullets.length ? `<ul class="kt__bullets">${item.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>` : '')
-        + '</article>';
-    }).join('');
+      const block = element('article', 'kt__block');
+      block.setAttribute('data-accent', String((index % 3) + 1));
+      block.style.setProperty('--bx', String(at.x));
+      block.style.setProperty('--by', String(at.y));
+      block.append(element('p', 'kt__num', String(index + 1).padStart(2, '0')));
+      const title = element('h3', 'kt__title');
+      title.replaceChildren(...words(item.title));
+      block.append(title);
+      if (item.bullets.length) {
+        const list = element('ul', 'kt__bullets');
+        list.replaceChildren(...item.bullets.map((bullet) => element('li', '', bullet)));
+        block.append(list);
+      }
+      return block;
+    });
+    root.querySelector('[data-role="blocks"]').replaceChildren(...blocks);
 
     const points = railPoints(root.querySelector('[data-role="blocks"]'), lines.length)
       .map(([x, y]) => `${Math.round(x / 100 * VB.w)} ${Math.round(y / 100 * VB.h)}`);

@@ -1,0 +1,55 @@
+/* base.css — reset, Korean-safe text defaults, type utilities. Scene CSS adds nothing global. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font: var(--body-weight) var(--body-size)/var(--body-lh) var(--font-body);
+  letter-spacing: var(--body-ls);
+  /* Korean must break on word boundaries, not per character. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img, video, canvas, svg { display: block; max-width: 100%; }
+img, video { height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- type utilities ---------- */
+.t-display-xl { font: var(--display-xl-weight) var(--display-xl-size)/var(--display-xl-lh) var(--font-display); letter-spacing: var(--display-xl-ls); }
+.t-display-lg { font: var(--display-lg-weight) var(--display-lg-size)/var(--display-lg-lh) var(--font-display); letter-spacing: var(--display-lg-ls); }
+.t-display-md { font: var(--display-md-weight) var(--display-md-size)/var(--display-md-lh) var(--font-display); letter-spacing: var(--display-md-ls); }
+.t-headline   { font: var(--headline-weight) var(--headline-size)/var(--headline-lh) var(--font-display); letter-spacing: var(--headline-ls); }
+.t-card-title { font: var(--card-title-weight) var(--card-title-size)/var(--card-title-lh) var(--font-display); letter-spacing: var(--card-title-ls); }
+.t-subhead    { font: var(--subhead-weight) var(--subhead-size)/var(--subhead-lh) var(--font-display); letter-spacing: var(--subhead-ls); }
+.t-body-lg    { font: var(--body-lg-weight) var(--body-lg-size)/var(--body-lg-lh) var(--font-body); letter-spacing: var(--body-lg-ls); }
+.t-body       { font: var(--body-weight) var(--body-size)/var(--body-lh) var(--font-body); letter-spacing: var(--body-ls); }
+.t-body-sm    { font: var(--body-sm-weight) var(--body-sm-size)/var(--body-sm-lh) var(--font-body); letter-spacing: var(--body-sm-ls); }
+.t-caption    { font: var(--caption-weight) var(--caption-size)/var(--caption-lh) var(--font-body); letter-spacing: var(--caption-ls); }
+.t-eyebrow    { font: var(--eyebrow-weight) var(--eyebrow-size)/var(--eyebrow-lh) var(--font-body); letter-spacing: var(--eyebrow-ls); text-transform: uppercase; color: var(--ink-subtle); }
+.t-mono       { font: var(--mono-weight) var(--mono-size)/var(--mono-lh) var(--font-mono); letter-spacing: var(--mono-ls); }

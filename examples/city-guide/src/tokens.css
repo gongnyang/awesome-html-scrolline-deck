@@ -9,10 +9,18 @@
    ============================================================ */
 
 :root {
+  /* Scene composition aliases resolve to the active theme ladder. */
+  --accent: var(--accent-1);
+  --accent-soft: color-mix(in srgb, var(--accent-1) 18%, transparent);
+  --surface: var(--surface-1);
+  --surface-raised: var(--surface-2);
+  --line: var(--hairline);
+  --shadow: rgba(0, 0, 0, .3);
+
   /* ---------- accents: a teal stream, a tangerine sun ---------- */
-  --accent-1: #3fc7b4;   /* progress bar, focus ring, the water */
-  --accent-2: #ffc06b;   /* lit windows, times, figures */
-  --accent-3: #ff8a4c;   /* the route, the active row, step numbers */
+  --accent-1: #43d6bd;   /* progress bar, focus ring, the water */
+  --accent-2: #f2b75e;   /* lit windows, times, figures */
+  --accent-3: #e78b68;   /* the route, the active row, step numbers */
   --on-accent: #141026;
 
   /* ---------- surface ladder: deep indigo into plum ---------- */

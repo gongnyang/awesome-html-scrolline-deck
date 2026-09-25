@@ -1,0 +1,45 @@
+{
+  "technique": "before-after",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "comparison",
+    "images"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 2,
+      "max": 2
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Compare two states of the same subject and make the change legible.",
+  "description_en": "A split frame aligns before and after states with a moving divider and labels.",
+  "description_ko": "같은 대상을 전후로 나란히 놓아 변화의 차이를 한눈에 보입니다.",
+  "responsive": "Keep both image states side by side at all widths, with compact labels on narrow screens.",
+  "reducedMotion": "Show both distinct comparison images at once without the reveal wipe.",
+  "purpose": "같은 대상을 전후로 나란히 놓아 변화의 차이를 한눈에 보입니다.",
+  "exampleCopy": {
+    "kicker": "가상 콘셉트 · 현재와 제안",
+    "title": "1층 주민센터에 2층을 증축합니다",
+    "lines": [
+      "기존은 단층 주민센터이며, 제안은 도서관 기능과 2층 증축을 더한 모습입니다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/spatial-proposal/02-before"
+}

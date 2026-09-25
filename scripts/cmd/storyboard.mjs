@@ -24,7 +24,7 @@ export async function run(argv) {
   const scenes = [...(deck.scenes ?? [])].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
   if (scenes.length === 0) {
-    process.stdout.write(`${deck.title ?? 'deck'} — no scenes yet. Add one:\n  scrolline add kinetic-titles --id 01-open --title "…"\n`);
+    process.stdout.write(`${deck.title ?? 'deck'} — no scenes yet. Choose a scene by purpose, then add it with scrolline add <technique>.\n`);
     return 0;
   }
 
@@ -40,9 +40,11 @@ export async function run(argv) {
       : '—',
     pin: `${s.pinVh ?? 0}${s.pin === false ? ' (no pin)' : ''}`,
     notes: (s.notes ?? '').trim() ? 'yes' : 'MISSING',
+    purpose: cut(s.purpose, 22),
+    reason: cut(s.reason, 32),
   }));
 
-  const head = { id: 'id', technique: 'technique', kicker: 'kicker', title: 'title', lines: 'ln', asset: 'asset', pin: 'pinVh', notes: 'notes' };
+  const head = { id: 'id', technique: 'technique', purpose: 'purpose', reason: 'why this scene', title: 'claim', asset: 'asset', pin: 'pinVh', notes: 'notes' };
   const cols = Object.keys(head);
   const widths = Object.fromEntries(cols.map((c) => [c, Math.max(width(head[c]), ...rows.map((r) => width(r[c])))]));
   const line = (r) => `| ${cols.map((c) => pad(r[c], widths[c])).join(' | ')} |`;

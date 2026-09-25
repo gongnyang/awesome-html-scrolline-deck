@@ -32,7 +32,7 @@ function normalize(result) {
 /** deck.json의 에셋 경로를 디스크 경로로 푼다. '/media/x.webp' → <dir>/public/media/x.webp */
 function resolveAsset(paths, assetPath) {
   const clean = String(assetPath).split('?')[0].split('#')[0];
-  if (/^(https?:)?\/\//.test(clean) || clean.startsWith('data:')) return null; // 외부 URL은 보지 않는다
+  if (/^(https?:)?\/\//.test(clean) || clean.startsWith('data:')) return null;
   const relPath = clean.replace(/^\/+/, '');
   const candidates = [];
   if (paths.publicDir) candidates.push(path.join(paths.publicDir, relPath));
@@ -65,14 +65,19 @@ export async function run(ctx) {
     if (assets.video) wanted.push(assets.video);
     if (Array.isArray(assets.images)) wanted.push(...assets.images);
     if (assets.frames && Number.isInteger(assets.count) && assets.count > 0) {
-      // 전량 확인은 120장을 세는 일이라 첫 장·끝 장·critical만 본다.
-      const probes = new Set([1, assets.count, ...(Array.isArray(assets.critical) ? assets.critical : [])]);
-      for (const n of probes) if (Number.isInteger(n) && n >= 1 && n <= assets.count) wanted.push(framePath(assets.frames, n));
+      for (let n = 1; n <= assets.count; n += 1) wanted.push(framePath(assets.frames, n));
+    }
+    if (assets.mobileFrames && Number.isInteger(assets.count) && assets.count > 0) {
+      for (let n = 1; n <= assets.count; n += 1) wanted.push(framePath(assets.mobileFrames, n));
     }
     for (const asset of wanted) {
       if (typeof asset !== 'string' || !asset.trim()) continue;
       const resolved = resolveAsset(paths, asset);
-      if (resolved && !resolved.found) missing.push(`${scene.id}: ${asset} (찾은 곳: ${resolved.candidates.map((c) => rel(ctx.dir, c)).join(', ')})`);
+      if (!resolved) {
+        missing.push(`${scene.id}: 외부 미디어 URL은 배포 안정성을 위해 허용하지 않습니다: ${asset}`);
+      } else if (!resolved.found) {
+        missing.push(`${scene.id}: ${asset} (찾은 곳: ${resolved.candidates.map((c) => rel(ctx.dir, c)).join(', ')})`);
+      }
     }
   }
 

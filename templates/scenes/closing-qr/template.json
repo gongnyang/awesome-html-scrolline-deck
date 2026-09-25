@@ -2,11 +2,46 @@
   "technique": "closing-qr",
   "pinVh": 200,
   "pin": true,
-  "tags": ["closing", "qr", "handoff", "typography"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 1 } },
-  "assets": { "frames": false, "images": { "min": 0, "max": 2 }, "video": false, "poster": false },
-  "hold": [0.3, 0.75],
+  "tags": [
+    "closing",
+    "qr",
+    "handoff",
+    "typography"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 1,
+      "max": 1
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 2
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
   "notesHint": "Stop talking and leave this frame up. Someone is still photographing it.",
   "description_en": "Closing scene: thanks set letter by letter beside a QR that draws itself, a typed URL, and a link back to the first scene.",
-  "description_ko": "마무리 장면. 감사 인사가 글자 단위로 놓이고, QR이 스스로 그려지며 주소가 타이핑되고, 첫 장면으로 돌아가는 링크가 남는다."
+  "description_ko": "마무리 장면. 감사 인사가 글자 단위로 놓이고, QR이 스스로 그려지며 주소가 타이핑되고, 첫 장면으로 돌아가는 링크가 남는다.",
+  "responsive": "On narrow screens, stack the QR above its URL and keep the restart action within the copy column.",
+  "reducedMotion": "Show the complete QR, URL, thank-you and restart control without drawing or typing.",
+  "purpose": "마무리 장면. 감사 인사가 글자 단위로 놓이고, QR이 스스로 그려지며 주소가 타이핑되고, 첫 장면으로 돌아가는 링크가 남는다.",
+  "exampleCopy": {
+    "kicker": "첫 행동",
+    "title": "다음 점심 한 가지를 바꿔보기",
+    "lines": [
+      "가장 남기기 쉬운 메뉴와 바꿀 배식 선택지를 적어보기"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "work/skill-trials/food-waste/06-ask"
 }

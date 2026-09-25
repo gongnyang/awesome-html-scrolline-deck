@@ -2,11 +2,47 @@
   "technique": "horizontal-gallery",
   "pinVh": 320,
   "pin": true,
-  "tags": ["showcase", "images", "gallery", "full-bleed"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 1 } },
-  "assets": { "frames": false, "images": { "min": 3, "max": 10 }, "video": false, "poster": false },
-  "hold": [0.3, 0.75],
+  "tags": [
+    "showcase",
+    "images",
+    "gallery",
+    "full-bleed"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 1,
+      "max": 1
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 3,
+      "max": 10
+    },
+    "imageAlt": "Optional array of meaningful alternative text matching images.",
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
   "notesHint": "One sentence per image. Let the pan set your pace instead of clicking.",
   "description_en": "Showcase scene: three to ten full-bleed images pan sideways under a fixed caption and a running counter.",
-  "description_ko": "쇼케이스 장면. 전면 이미지 3~10장이 고정된 캡션과 카운터 아래로 옆으로 지나간다."
+  "description_ko": "쇼케이스 장면. 전면 이미지 3~10장이 고정된 캡션과 카운터 아래로 옆으로 지나간다.",
+  "responsive": "Keep full-bleed horizontal frames on screen; with reduced motion, place the caption above a static image grid, single column on mobile.",
+  "reducedMotion": "Replace the scroll pan with a static responsive image grid and keep the full caption visible.",
+  "purpose": "쇼케이스 장면. 전면 이미지 3~10장이 고정된 캡션과 카운터 아래로 옆으로 지나간다.",
+  "exampleCopy": {
+    "kicker": "가상 콘셉트 · 공간 프로그램",
+    "title": "두 층, 여섯 가지 쓰임",
+    "lines": [
+      "어린이 책마루 · 집중석 · 열린 서가 · 동네 테이블 · 작은 강연 · 창가 휴식"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/spatial-proposal/04-gallery"
 }

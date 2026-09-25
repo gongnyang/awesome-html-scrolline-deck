@@ -2,7 +2,7 @@ name: pages
 on:
   push:
     branches: [main]
-    paths: ['examples/**', 'engine/**', 'scripts/site/**', '.github/workflows/pages.yml']
+    paths: ['examples/**', 'engine/**', 'templates/**', 'scripts/**', 'references/**', 'videos/**', 'package.json', 'package-lock.json', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions: { contents: read, pages: write, id-token: write }
 concurrency: { group: pages, cancel-in-progress: true }
@@ -13,7 +13,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - run: npm ci && npm install --no-save --package-lock=false playwright@1.63.0 && npx playwright install --with-deps chromium
+      - run: node scripts/ci/verify-all.mjs
       - run: node scripts/site/build-examples.mjs
+      - run: node scripts/ci/smoke-site.mjs
       - uses: actions/upload-pages-artifact@v3
         with: { path: site }
   deploy:
@@ -23,3 +26,8 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci && npm install --no-save --package-lock=false playwright@1.63.0 && npx playwright install --with-deps chromium
+      - run: node scripts/ci/smoke-site.mjs "${{ steps.deployment.outputs.page_url }}"
