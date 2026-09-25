@@ -46,7 +46,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/product-launch/08-options",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "같은 제품/대상의 색이나 마감 차이만 청중이 고르면 되는 장면.",
     "unfit": "기능·가격·성능·지속성 등 옵션별 실질 차이가 있거나 더 나은 안을 주장해야 하는 비교.",
     "requiredInputs": "같은 구도·대상 크기의 triptych 한 장 또는 순서가 맞는 개별 이미지 3장; assets.colorways에 정확히 세 라벨; scene.evidence 또는 copy.lines에 사양과 가격의 동등성을 확인한 문장.",
@@ -58,6 +58,10 @@
     "reducedMotion": "세 선택지의 모든 이미지와 라이브 텍스트 라벨 및 동등성 문장을 정적으로 보인다. 한 선택지만 어둡거나 사라지지 않는다.",
     "exampleContent": "assets.images 한 장에 동일한 헤드폰의 차콜·클라우드·코랄을 왼쪽부터 배열하고 assets.colorways에 마감명을, scene.evidence에 동등한 기능·가격 문장을 둔다.",
     "nextImplementation": "—",
-    "estimatedEffort": "—"
+    "estimatedEffort": "—",
+    "relation": "equivalent-options",
+    "failureFallback": "동등 조건을 보장할 수 없으면 옵션 간 우열을 연출하지 말고 확인된 차이만 설명한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다.",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 기능·가격·성능·지속성 등 옵션별 실질 차이가 있거나 더 나은 안을 주장해야 하는 비교."
   }
 }

@@ -8,7 +8,7 @@
       "skipped": false,
       "details": "장면 10개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
       "items": [],
-      "ms": 4
+      "ms": 20
     },
     {
       "id": "G1",
@@ -17,14 +17,14 @@
       "skipped": false,
       "details": "장면 모듈 10개 계약 충족",
       "items": [],
-      "ms": 72
+      "ms": 235
     },
     {
       "id": "G2",
       "title": "타임라인 총 길이 ≤ 1.001 · order 정합",
       "ok": true,
       "skipped": false,
-      "details": "장면 10개 · 최장 타임라인 1.000",
+      "details": "장면 10개 · 최장 타임라인 0.740",
       "items": [],
       "ms": 22
     },
@@ -35,7 +35,7 @@
       "skipped": false,
       "details": "scene.js 10개에 var( ) tween 없음",
       "items": [],
-      "ms": 4
+      "ms": 10
     },
     {
       "id": "G4",
@@ -44,7 +44,7 @@
       "skipped": false,
       "details": "파일 14개 · 직접 스크롤 이동 없음",
       "items": [],
-      "ms": 3
+      "ms": 8
     },
     {
       "id": "LINT",
@@ -53,23 +53,23 @@
       "skipped": false,
       "details": "장면 10개 린트 통과 (L1·L2·L3·L4)",
       "items": [],
-      "ms": 10
+      "ms": 35
     },
     {
       "id": "G5",
-      "title": "핀 거리 = pinVh% × 뷰포트 (±2px)",
+      "title": "핀 거리 = pace.scrollVh% × 뷰포트 (±2px)",
       "ok": true,
       "skipped": false,
       "details": "핀 장면 10개 전부 ±2px 이내",
       "items": [],
-      "ms": 159577
+      "ms": 199685
     },
     {
       "id": "G6",
-      "title": "홀드 55%에서 가시 요소 ≥3 · 장면/cue 캡처",
+      "title": "홀드와 퇴장 경계 가시성 · 장면/cue 캡처",
       "ok": true,
       "skipped": false,
-      "details": "장면 10개 · 캡처 36장 · 최소 가시 5(01-hero) · qa/",
+      "details": "장면 10개 · 캡처 62장 · 최소 가시 5(01-hero) · qa/",
       "items": [],
       "ms": 0
     },
@@ -78,9 +78,9 @@
       "title": "ArrowRight 착지 오차 ≤4px · 착지 화면 구성 완료",
       "ok": true,
       "skipped": false,
-      "details": "키 착지 14회 · 최대 오차 0px",
+      "details": "키 착지 12회 · 최대 오차 0px",
       "items": [],
-      "ms": 17302
+      "ms": 22414
     },
     {
       "id": "G8",
@@ -93,12 +93,12 @@
     },
     {
       "id": "G9",
-      "title": "가로 넘침 0 (1440 · 390)",
+      "title": "가로 넘침 0 · 모바일 글자 열/충돌",
       "ok": true,
       "skipped": false,
-      "details": "가로 넘침 없음 (1440 · 390) · 모바일 캡처 10장",
+      "details": "가로 넘침 없음 (1440 · 390) · 모바일 글자 기하 통과 · 캡처 50장",
       "items": [],
-      "ms": 58004
+      "ms": 190512
     },
     {
       "id": "G10",
@@ -107,16 +107,16 @@
       "skipped": false,
       "details": "핀 0개 · 장면 10개 정지 프레임 완성",
       "items": [],
-      "ms": 22957
+      "ms": 23140
     },
     {
       "id": "G11",
       "title": "배포 경로의 모든 이미지 로드·디코딩",
       "ok": true,
       "skipped": false,
-      "details": "4개 이미지 디코딩 검사 · 실패 0개",
+      "details": "5개 이미지 디코딩 검사 · 실패 0개",
       "items": [],
-      "ms": 408
+      "ms": 564
     },
     {
       "id": "G12",
@@ -132,10 +132,19 @@
       "title": "이미지 장면의 실제 렌더링",
       "ok": true,
       "skipped": false,
-      "details": "4개 이미지 장면 중 화면 미표시 0개",
+      "details": "5개 이미지 장면 중 화면 미표시 0개",
       "items": [],
       "ms": 0
+    },
+    {
+      "id": "G14",
+      "title": "1920×1080 진입·정지·퇴장 및 글자 기하",
+      "ok": true,
+      "skipped": false,
+      "details": "1920×1080 캡처 50장 · 96/99% 퇴장 · 글자 기하 확인",
+      "items": [],
+      "ms": 165093
     }
   ],
-  "ts": "2026-09-25T06:01:04.589Z"
+  "ts": "2026-09-25T14:21:39.383Z"
 }

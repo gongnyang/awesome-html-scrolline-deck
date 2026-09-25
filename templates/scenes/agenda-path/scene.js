@@ -27,7 +27,7 @@ export default {
     }));
   },
   build(tl) {
-    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 0, duration: .1 }, .85); return; }
+    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 1, duration: .1 }, .85); return; }
     const stops = [...root.querySelectorAll('.p__stop')];
     const route = root.querySelector('.p__route');
     const activate = (i) => stops.forEach((s, j) => s.classList.toggle('is-active', i === j));
@@ -38,7 +38,7 @@ export default {
     // hold — the whole agenda stays legible while focus moves through the section promises.
     stops.forEach((_, i) => tl.call(activate, [i], .34 + i * .08));
     // exit — dismiss the agenda after the final section is introduced.
-    tl.to(root, { y: -12, autoAlpha: 0, duration: .13 }, .85);
+    tl.to(root, { y: -12, autoAlpha: 1, duration: .13 }, .85);
   },
   unmount() { root = null; invalid = false; },
 };

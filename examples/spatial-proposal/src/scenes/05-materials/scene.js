@@ -23,7 +23,7 @@ export default {
     root.querySelector('[data-role="note"]').textContent = copy.note || '';
     const board = root.querySelector('[data-role="materials"]');
     board.replaceChildren(...materials.slice(0, 4).map((material, index) => {
-      const item = node('li', 'materials__item');
+      const item = node("li", "materials__item " + (index === 0 ? "materials__item--lead" : "materials__item--support"));
       const figure = node('figure', 'materials__figure');
       const image = node('img', 'materials__image');
       image.src = images[index] || '';
@@ -34,7 +34,9 @@ export default {
 
       const copyBlock = node('div', 'materials__copy');
       copyBlock.append(node('span', 'materials__number', String(material.number || String(index + 1).padStart(2, '0'))));
+      copyBlock.append(node('span', 'materials__priority', material.priority || `우선순위 ${index + 1}`));
       copyBlock.append(node('h3', 'materials__name', material.name || ''));
+      copyBlock.append(node('p', 'materials__location', `적용 위치 · ${material.location || '공간별 협의'}`));
       copyBlock.append(node('p', 'materials__reason', material.reason || ''));
       item.append(figure, copyBlock);
       return item;
@@ -62,7 +64,7 @@ export default {
         { scale: 1.08 },
         { scale: 1, duration: 0.2, ease: 'power2.out' }, start);
     });
-    tl.to(root, { autoAlpha: 0, y: -18, duration: 0.14, ease: 'none' }, 0.86);
+    tl.to(root, { y: -18, duration: 0.14, ease: 'none' }, 0.86);
   },
 
   unmount() { root = null; },

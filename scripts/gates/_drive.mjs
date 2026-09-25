@@ -14,7 +14,8 @@ import {
 } from '../lib/wheel.mjs';
 import { deckPaths, orderedScenes } from './_util.mjs';
 
-export const PROBES = [30, 55, 85];
+// Include the last five percent: older scenes faded to an empty pinned canvas there.
+export const PROBES = [30, 55, 85, 96, 99];
 
 async function solidTextContrast(page, id) {
   return page.evaluate((sceneId) => {
@@ -81,7 +82,7 @@ export async function mainDrive(ctx) {
   const { qaDir } = deckPaths(ctx.dir);
   fs.mkdirSync(qaDir, { recursive: true });
   for (const file of fs.readdirSync(qaDir)) {
-    if (/-(?:30|55|85|cue-\d{2})\.jpg$/.test(file)) fs.rmSync(path.join(qaDir, file));
+    if (/-(?:30|55|85|96|99|cue-\d{2})\.jpg$/.test(file)) fs.rmSync(path.join(qaDir, file));
   }
 
   const innerHeight = await page.evaluate(() => window.innerHeight);
@@ -94,6 +95,7 @@ export async function mainDrive(ctx) {
   await wheelHome(page);
 
   const visible = new Map();
+  const exitVisible = new Map();
   const contrast = new Map();
   const mediaVisible = new Map();
   const captures = [];
@@ -103,7 +105,9 @@ export async function mainDrive(ctx) {
   for (const scene of ordered) {
     const range = byId.get(scene.id);
     if (!range) continue;
-    const cueProbes = Array.isArray(scene.cues) ? scene.cues.map((ratio, index) => ({ ratio, file: `${scene.id}-cue-${String(index + 1).padStart(2, '0')}.jpg` })) : [];
+    const cueRatios = Array.isArray(scene.pace?.cueStates) && scene.pace.cueStates.length
+      ? scene.pace.cueStates.map((cue) => cue.at) : (scene.cues ?? []);
+    const cueProbes = cueRatios.map((ratio, index) => ({ ratio, file: `${scene.id}-cue-${String(index + 1).padStart(2, '0')}.jpg` }));
     const probes = [
       ...PROBES.map((probe) => ({ ratio: probe / 100, file: `${scene.id}-${probe}.jpg`, isHold: probe === 55 })),
       ...cueProbes,
@@ -115,20 +119,7 @@ export async function mainDrive(ctx) {
         const entries = await collectEntries(page, scene.id);
         visible.set(scene.id, countVisible(entries, { width: 1440, height: 900 }));
         contrast.set(scene.id, await solidTextContrast(page, scene.id));
-        mediaVisible.set(scene.id, await page.evaluate((id) => {
-          const section = document.querySelector(`[data-scene="${id}"]`);
-          if (!section) return 0;
-          return [...section.querySelectorAll('img,canvas,video')].filter((el) => {
-            const rect = el.getBoundingClientRect();
-            const style = getComputedStyle(el);
-            const loaded = el.tagName === 'IMG' ? el.naturalWidth > 0
-              : el.tagName === 'CANVAS' ? el.width > 0 && el.height > 0
-              : el.readyState >= 2 || Boolean(el.poster);
-            return loaded && rect.width > 20 && rect.height > 20
-              && rect.right > 0 && rect.bottom > 0 && rect.left < innerWidth && rect.top < innerHeight
-              && style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity) > .05;
-          }).length;
-        }, scene.id));
+        mediaVisible.set(scene.id, countVisible(entries.filter((entry) => entry.loaded && ['img', 'canvas', 'video'].includes(entry.kind)), { width: 1440, height: 900 }));
       }
       const file = path.join(qaDir, probe.file);
       try {
@@ -137,10 +128,14 @@ export async function mainDrive(ctx) {
       } catch (err) {
         errors.push(`capture: ${probe.file} ${String(err?.message ?? err).split('\n')[0]}`);
       }
+      if (probe.ratio >= .96 && range.pinDistance > 0) {
+        const entries = await collectEntries(page, scene.id);
+        exitVisible.set(`${scene.id}-${Math.round(probe.ratio * 100)}`, countVisible(entries, { width: 1440, height: 900 }));
+      }
     }
   }
 
-  const result = { ranges, visible, contrast, mediaVisible, captures, errors, overflow, innerHeight, page, context };
+  const result = { ranges, visible, exitVisible, contrast, mediaVisible, captures, errors, overflow, innerHeight, page, context };
   ctx.cache.mainDrive = result;
   ctx.cleanups.push(async () => { try { await context.close(); } catch { /* 무시 */ } });
   return result;

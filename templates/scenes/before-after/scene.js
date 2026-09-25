@@ -38,7 +38,7 @@ export default {
 
     // exit — finish on the changed state, carrying the claim into the next scene.
     tl.to(after, { '--split': 100, duration: 0.12, ease: 'power2.inOut' }, 0.82);
-    tl.to([before, after, head, root.querySelector('.b__seam')], { autoAlpha: 0, duration: 0.08 }, 0.92);
+    tl.to([before, after, head, root.querySelector('.b__seam')], { autoAlpha: 1, duration: 0.08 }, 0.92);
   },
   unmount() { root = null; },
 };

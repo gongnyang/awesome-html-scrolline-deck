@@ -25,7 +25,10 @@
     },
     "video": false
   },
-  "hold": [0.3, 0.82],
+  "hold": [
+    0.3,
+    0.82
+  ],
   "notesHint": "Mark each cue at the frame where a real, visible step becomes clear. Pause there so the audience can inspect the evidence. Cite the recording and name any reenactment.",
   "description_en": "Evidence scene: the scroll position scrubs an attributable process recording while its numbered observations appear at the matching frames.",
   "description_ko": "근거 장면. 출처가 확인된 작업 영상을 스크롤로 되감고, 실제 화면에서 확인되는 순서와 일치하도록 관찰 문장을 공개한다.",
@@ -44,7 +47,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/sample-deck/08-demo",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "촬영 가능한 조립·수리·실험·현장 작업처럼 진행 순서가 핵심 근거인 설명.",
     "unfit": "실시간 반응, 소리만으로 구별되는 행동, 출처·촬영 동의가 없는 클립.",
     "requiredInputs": "출처·촬영 허가가 확인된 프레임, 핵심 포스터, 데스크톱 및 모바일 시퀀스, 실제 프레임에 대응하는 1–4개 관찰 문장.",
@@ -57,6 +60,9 @@
     "exampleContent": "가상 조립 순서를 설명하기 위한 예시 문안. 실제 발표에서는 동작을 직접 촬영하고 관찰 문장을 화면에 확인되는 프레임에 맞춘다.",
     "unsupportedReason": "이전 버전은 타이밍이 고정되어 덱의 근거 지점과 어긋날 수 있었고, 인용·출처 표기와 반응형 프레임 적합성이 약했다.",
     "nextImplementation": "장면별 cues로 관찰 문장과 프레임 시퀀스를 맞추고, 현재 단계·진행률을 보조기술과 화면 모두에 제공한다.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "process-over-time",
+    "failureFallback": "프레임별 관찰을 검증할 수 없으면 영상을 고정 포스터로 두고 출처가 있는 단계 설명으로 바꾼다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

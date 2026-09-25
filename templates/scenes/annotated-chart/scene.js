@@ -79,7 +79,7 @@ export default {
     const error = root.querySelector('[data-role="error"]');
     if (hasError) {
       tl.fromTo(error, { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0);
-      tl.to(error, { autoAlpha: 0, duration: .1 }, .85);
+      tl.to(error, { autoAlpha: 1, duration: .1 }, .85);
       return;
     }
     if (ctx?.reduced) return;
@@ -96,8 +96,8 @@ export default {
     tl.fromTo(dots.filter((dot) => dot !== target), { autoAlpha: 0 }, { autoAlpha: .8, duration: .08, stagger: .02 }, .40);
     // hold — complete series, peak/selected value, exact axes, interpretation, source, and caveat remain together.
     // exit — release the chart and its claim as one composed scene.
-    tl.to(figure, { y: -10, autoAlpha: 0, duration: .12 }, .85);
-    tl.to(root.querySelector('.ac__head'), { y: -8, autoAlpha: 0, duration: .1 }, .87);
+    tl.to(figure, { y: -10, autoAlpha: 1, duration: .12 }, .85);
+    tl.to(root.querySelector('.ac__head'), { y: -8, autoAlpha: 1, duration: .1 }, .87);
   },
   unmount() { root = null; hasError = false; revealRect = null; },
 };

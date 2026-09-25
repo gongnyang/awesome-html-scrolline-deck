@@ -13,7 +13,7 @@
 [data-scene="{{id}}"] .b__head { position: absolute; z-index: 4; top: clamp(32px, 7vh, 84px); left: max(var(--gutter, 20px), calc((100% - 1320px) / 2)); width: min(920px, calc(100% - var(--gutter, 20px) * 2)); }
 [data-scene="{{id}}"] .b__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-muted); font: 600 clamp(12px, .95vw, var(--eyebrow-size, 13px)) var(--font-mono, monospace); letter-spacing: .12em; }
 [data-scene="{{id}}"] .b__title { max-width: 16ch; margin: 0; color: var(--ink); font: 700 clamp(38px, 6.4vw, 88px)/1.02 var(--font-display, inherit); letter-spacing: -.035em; word-break: keep-all; text-wrap: balance; }
-[data-scene="{{id}}"] .b__label { position: absolute; z-index: 2; bottom: clamp(28px, 6vh, 72px); max-width: min(38vw, 520px); color: var(--ink); font: 650 clamp(18px, 2vw, 28px)/1.2 var(--font-display, inherit); letter-spacing: -.015em; word-break: keep-all; text-shadow: 0 1px 12px var(--canvas); }
+[data-scene="{{id}}"] .b__label { position: absolute; z-index: 2; bottom: clamp(28px, 6vh, 72px); max-width: min(38vw, 520px); padding: .55em .7em; color: var(--ink); background: color-mix(in srgb, var(--canvas) 90%, transparent); font: 650 clamp(18px, 2vw, 28px)/1.2 var(--font-display, inherit); letter-spacing: -.015em; word-break: keep-all; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 [data-scene="{{id}}"] .b__image--before .b__label { left: max(var(--gutter, 20px), calc((100% - 1320px) / 2)); }
 [data-scene="{{id}}"] .b__image--after .b__label { right: max(var(--gutter, 20px), calc((100% - 1320px) / 2)); text-align: right; }
 @media (max-width: 720px) {
@@ -21,14 +21,14 @@
   [data-scene="{{id}}"] .b__head { position: relative; top: auto; left: auto; grid-row: 1; width: auto; }
   [data-scene="{{id}}"] .b__image { position: relative; inset: auto; min-height: 0; }
   [data-scene="{{id}}"] .b__image--before { grid-row: 2; }
-  [data-scene="{{id}}"] .b__image--after { grid-row: 3; clip-path: inset(calc((100 - var(--split)) * 1%) 0 0 0); }
+  [data-scene="{{id}}"] .b__image--after { grid-row: 3; clip-path: none; }
   [data-scene="{{id}}"] .b__image img { object-position: center; }
   [data-scene="{{id}}"] .b__scrim,
   [data-scene="{{id}}"] .b__seam { display: none; }
   [data-scene="{{id}}"] .b__title { max-width: 13ch; font-size: clamp(34px, 10vw, 56px); }
-  [data-scene="{{id}}"] .b__label { bottom: 8svh; max-width: 44vw; font-size: clamp(16px, 4.6vw, 20px); }
-  [data-scene="{{id}}"] .b__image--before .b__label { left: var(--gutter, 20px); }
-  [data-scene="{{id}}"] .b__image--after .b__label { right: var(--gutter, 20px); }
+  [data-scene="{{id}}"] .b__label { bottom: 8px; left: 8px; right: 8px; width: calc(100% - 16px); max-width: none; font-size: clamp(14px, 4vw, 17px); text-align: left; }
+  [data-scene="{{id}}"] .b__image--before .b__label,
+  [data-scene="{{id}}"] .b__image--after .b__label { left: 8px; right: 8px; text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) {
   [data-scene="{{id}}"] .b { --split: 50; }

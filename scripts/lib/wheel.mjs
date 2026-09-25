@@ -33,6 +33,17 @@ export function expectedPinDistance(pinVh, innerHeight) {
   return (Number(pinVh) / 100) * Number(innerHeight);
 }
 
+/** Resolve v2 pacing without changing the geometry of legacy decks. */
+export function scenePace(scene) {
+  return {
+    mode: scene.pace?.mode ?? (scene.pin === false ? 'pass' : 'scrub'),
+    scrollVh: Number(scene.pace?.scrollVh ?? scene.pinVh ?? 0),
+    cues: Array.isArray(scene.pace?.cueStates) && scene.pace.cueStates.length
+      ? scene.pace.cueStates.map((cue) => cue.at)
+      : Array.isArray(scene.cues) && scene.cues.length ? scene.cues : [HOLD_RATIO],
+  };
+}
+
 /** 장면 진행률 p(0..1) 지점의 문서 좌표. */
 export function progressY(range, p) {
   return Math.round(range.start + range.pinDistance * Math.min(1, Math.max(0, p)));
@@ -47,6 +58,12 @@ export function probeY(range, p, innerHeight = 900) {
   if (range.pinDistance > 0) return Math.round(range.start + range.pinDistance * clamped);
   const span = range.height + innerHeight;
   return Math.max(0, Math.round(range.start - innerHeight + span * clamped));
+}
+
+/** A final unpinned scene stays fully in view at the document end; it has no exit into a following scene. */
+export function reachableProbeY(range, p, innerHeight, maxY, terminal = false) {
+  const target = probeY(range, p, innerHeight);
+  return terminal && range.pinDistance === 0 ? Math.min(target, maxY) : target;
 }
 
 /** 키 이동(ArrowRight) 착지 지점. 진입 애니메이션이 아니라 첫 홀드 프레임에 선다. */
@@ -239,6 +256,10 @@ export async function collectEntries(page, sceneId) {
         kind,
         opacity,
         tag,
+        loaded: tag === 'IMG' ? el.naturalWidth > 0
+          : tag === 'CANVAS' ? el.width > 0 && el.height > 0
+          : tag === 'VIDEO' ? el.readyState >= 2 || Boolean(el.poster)
+          : true,
         rect: { top: r.top, left: r.left, right: r.right, bottom: r.bottom, width: r.width, height: r.height },
       });
     }
@@ -251,4 +272,11 @@ export async function visibleCount(page, sceneId) {
   const entries = await collectEntries(page, sceneId);
   const view = page.viewportSize() ?? { width: 1440, height: 900 };
   return countVisible(entries, view);
+}
+
+/** 화면에 실제로 남은 미디어 수. 조상 opacity까지 반영한다. */
+export async function visibleMediaCount(page, sceneId) {
+  const entries = await collectEntries(page, sceneId);
+  const view = page.viewportSize() ?? { width: 1440, height: 900 };
+  return countVisible(entries.filter((entry) => entry.loaded && ['img', 'canvas', 'video'].includes(entry.kind)), view);
 }

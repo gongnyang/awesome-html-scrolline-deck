@@ -56,9 +56,10 @@ export default {
     // hold — 0.30 .. 0.75. The copy drifts at a different rate than the page.
     tl.fromTo(copy, { yPercent: 16 }, { yPercent: -13, duration: 0.8, ease: 'none' }, 0.06);
 
-    // exit — 0.75 .. 1.00. The clip lets go before the next scene pins.
-    tl.to(host, { autoAlpha: 0, duration: 0.12, ease: 'none' }, 0.86);
-    tl.to(veil, { autoAlpha: 0, duration: 0.12, ease: 'none' }, 0.86);
+    // Keep the image composed through the section boundary. The following
+    // scene takes over with its own background as the page continues.
+    tl.to(host, { autoAlpha: 1, duration: 0.12, ease: 'none' }, 0.86);
+    tl.to(veil, { autoAlpha: 1, duration: 0.12, ease: 'none' }, 0.86);
   },
 
   unmount() {

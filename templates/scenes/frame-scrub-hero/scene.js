@@ -68,7 +68,7 @@ export default {
 
     // exit — 0.75 .. 1.00. Push into the frame and wash out.
     tl.to(media, { scale: 1.09, duration: 0.18, ease: 'power2.in' }, 0.8);
-    tl.to(copy, { scale: 1.06, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
+    tl.to(copy, { scale: 1.06, autoAlpha: 1, duration: 0.18, ease: 'power2.in' }, 0.8);
     tl.to(veil, { autoAlpha: 1, duration: 0.16 }, 0.82);
   },
 

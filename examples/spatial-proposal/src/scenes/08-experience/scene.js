@@ -48,14 +48,14 @@ export default {
     const veil = root.querySelector('.pv__veil');
     const copy = root.querySelector('.pv__copy');
 
-    // enter — 0 .. 0.30. The clip fades up behind the incoming copy.
-    tl.fromTo(host, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.02);
-    tl.fromTo(veil, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12, ease: 'none' }, 0.04);
-
-    // hold — 0.30 .. 0.75. The copy drifts at a different rate than the page.
-    tl.fromTo(copy, { yPercent: 8 }, { yPercent: -8, duration: 0.8, ease: 'none' }, 0.06);
-
-    // exit — 0.75 .. 1.00. The clip lets go before the next scene pins.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      tl.set([host, veil, copy], { autoAlpha: 1, yPercent: 0 });
+      return;
+    }
+    // Keep the identifying claim and photo in place through the scene boundary.
+    tl.fromTo(host, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.08, ease: 'none' }, 0.02);
+    tl.fromTo(veil, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.04);
+    tl.fromTo(copy, { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.12, ease: 'power2.out' }, 0.04);
   },
 
   unmount() {

@@ -13,7 +13,7 @@ const server = http.createServer((request, response) => {
   const player = url.pathname.match(/^\/player\/([\w-]+)$/);
   if (player) {
     response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    response.end(`<!doctype html><html lang="ko"><meta charset="utf-8"><video controls muted playsinline preload="auto"><source src="/${player[1]}.mp4" type="video/mp4"><track kind="captions" srclang="ko" src="/${player[1]}.vtt" default></video>`);
+    response.end(`<!doctype html><html lang="ko"><meta charset="utf-8"><video controls playsinline preload="auto"><source src="/${player[1]}.mp4" type="video/mp4"><track kind="captions" srclang="ko" src="/${player[1]}.vtt" default></video>`);
     return;
   }
   const file = path.resolve(VIDEO_DIR, `.${decodeURIComponent(url.pathname)}`);
@@ -58,8 +58,9 @@ try {
     const before = await video.evaluate((element) => ({ duration: element.duration, width: element.videoWidth, height: element.videoHeight }));
     await video.evaluate((element) => element.play());
     await page.waitForTimeout(1500);
-    const after = await video.evaluate((element) => ({ currentTime: element.currentTime, paused: element.paused }));
+    const after = await video.evaluate((element) => ({ currentTime: element.currentTime, paused: element.paused, audioDecodedBytes: element.webkitAudioDecodedByteCount ?? null }));
     if (after.currentTime <= .2 || after.paused) throw new Error(`${slug}: playback did not advance`);
+    if (after.audioDecodedBytes !== null && after.audioDecodedBytes <= 0) throw new Error(`${slug}: audio track did not decode`);
     results.push({ slug, ...before, playbackAdvancedSeconds: Number(after.currentTime.toFixed(2)) });
   }
   if (failures.length) throw new Error(`Browser errors: ${failures.join('; ')}`);

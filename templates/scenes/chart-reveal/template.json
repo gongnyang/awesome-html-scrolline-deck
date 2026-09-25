@@ -47,7 +47,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/annual-report/03-trend",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "소수의 실제 수치 사이에서 한 가지 추세나 차이를 설명할 때.",
     "unfit": "불분명한 모집단·단위·원천 데이터, 한 화면에 모든 지표가 필요한 대시보드, 독립된 범주의 과도한 비교.",
     "requiredInputs": "2–4개의 `범주:값` 행, 일관된 단위와 출처, 값의 범위·0 기준선이 분명한 제목.",
@@ -59,6 +59,10 @@
     "reducedMotion": "모든 막대, 정확한 값, 축 기준선, 범주 라벨을 한 번에 표시한다.",
     "exampleContent": "가상의 연도 4개가 아닌, 검증된 분기별 매출 데이터를 실제 단위와 출처를 달아 보여준다.",
     "nextImplementation": "—",
-    "estimatedEffort": "—"
+    "estimatedEffort": "—",
+    "relation": "magnitude-comparison",
+    "failureFallback": "수치의 분모·단위·출처가 없으면 막대 길이를 만들지 말고 확인된 문장으로 제한한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다.",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 불분명한 모집단·단위·원천 데이터, 한 화면에 모든 지표가 필요한 대시보드, 독립된 범주의 과도한 비교."
   }
 }

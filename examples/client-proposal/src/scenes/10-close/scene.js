@@ -28,7 +28,7 @@ export default {
     tl.fromTo(root.querySelector('.commit__giant'), { scale: 1.4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .25, ease: 'power3.out' }, .08);
     [...root.querySelectorAll('.commit__ask')].forEach((item, i) => tl.fromTo(item, { x: 64, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: .09, ease: 'power2.out' }, .17 + i * .1));
     tl.fromTo(root.querySelector('.commit__sign'), { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .1 }, .46);
-    tl.to(root, { autoAlpha: 0, y: -22, duration: .12 }, .87);
+
   },
   unmount() { root = null; },
 };

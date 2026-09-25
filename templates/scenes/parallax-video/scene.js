@@ -75,9 +75,9 @@ export default {
     }
     // exit — the image/video leaves with the section; no animation
     // continues without scroll input.
-    tl.to(host, { autoAlpha: 0, duration: 0.12, ease: 'none' }, 0.86);
-    tl.to(veil, { autoAlpha: 0, duration: 0.12, ease: 'none' }, 0.86);
-    tl.to(copy, { y: -18, autoAlpha: 0, duration: 0.1, ease: 'none' }, 0.88);
+    tl.to(host, { autoAlpha: 1, duration: 0.12, ease: 'none' }, 0.86);
+    tl.to(veil, { autoAlpha: 1, duration: 0.12, ease: 'none' }, 0.86);
+    tl.to(copy, { y: -18, autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.88);
   },
 
   unmount() {

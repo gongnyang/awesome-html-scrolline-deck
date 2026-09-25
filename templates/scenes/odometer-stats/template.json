@@ -46,7 +46,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/product-launch/07-battery",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "비교 대상이 같고 규모를 보여주는 검증된 핵심 값 최대 2개.",
     "unfit": "수치가 없거나 정의/단위/분모/시점이 모호한 경우, 단독 숫자 장식.",
     "requiredInputs": "assets.stats에 value·unit·label·definition·period를 입력하고 scene.source에 출처 또는 가상 목표임을 명시한다.",
@@ -59,6 +59,9 @@
     "exampleContent": "공식 측정된 2개 수치가 동일 정의로 비교될 때.",
     "unsupportedReason": "명시된 정의와 출처 없이 수치만 전달하는 경우에는 사용하지 않는다.",
     "nextImplementation": "실제 수치로 교체할 때는 측정 조건과 출처를 다시 확인한다.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "defined-measures",
+    "failureFallback": "정의와 기간을 확인할 수 없는 수치는 크게 강조하지 않고 삭제하거나 정량 표현 없이 서술한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

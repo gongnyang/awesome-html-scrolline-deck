@@ -45,7 +45,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/city-guide/01-hero",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "주제만으로도 관심을 끄는 장소·물체·현장 변화가 4–8초 정도의 프레임 시퀀스에 담길 때.",
     "unfit": "순서가 중요하지 않은 정지 이미지, 차트나 다량의 카피, 설명 없이는 영상이 무슨 주장인지 모르는 경우.",
     "requiredInputs": "로컬 포스터와 동기화한 프레임 시퀀스(또는 명확한 포스터), 짧은 주장형 제목, 보조문 최대 1개.",
@@ -57,6 +57,10 @@
     "reducedMotion": "정지 포스터 + 동일한 제목/보조문. 프레임 스크럽과 큰 줌 효과를 제거한다.",
     "exampleContent": "해가 지는 시각별 골목 불빛의 변화를 프레임으로 쓸고, “도시의 속도는 해질녘에 달라진다”라는 주장에 도착한다.",
     "nextImplementation": "—",
-    "estimatedEffort": "—"
+    "estimatedEffort": "—",
+    "relation": "visual-change-over-time",
+    "failureFallback": "의미 있는 프레임 변화가 없으면 스크럽을 제거하고 한 장의 정지 이미지와 명확한 제목을 사용한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다.",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 순서가 중요하지 않은 정지 이미지, 차트나 다량의 카피, 설명 없이는 영상이 무슨 주장인지 모르는 경우."
   }
 }

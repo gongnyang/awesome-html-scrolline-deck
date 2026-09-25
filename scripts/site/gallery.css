@@ -110,15 +110,26 @@ button:focus-visible, a:focus-visible, input:focus-visible, video:focus-visible 
 .template-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 26px 18px; }
 .template-card { min-width: 0; border-top: 1px solid rgba(16,24,18,.26); padding-top: 10px; }
 .template-card[hidden] { display: none; }
-.template-preview { position: relative; display: block; color: inherit; text-decoration: none; overflow: hidden; background: #bbc6b8; aspect-ratio: 1.38; }
-.template-preview img { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; opacity: .9; transition: transform .55s ease, opacity .3s ease; }
-.template-preview:hover img { transform: scale(1.035); opacity: 1; }
+.template-preview { position: relative; display: block; color: inherit; text-decoration: none; overflow: hidden; background: #111913; aspect-ratio: 16/10; }
+.template-preview img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .55s ease; }
+.template-preview:hover img { transform: scale(1.025); }
+.review-badge { position: absolute; left: 10px; top: 10px; padding: 7px 9px; background: #192319; color: #f3f4e9; font: 10px/1 var(--sans); font-weight: 750; letter-spacing: .01em; }
+.review-badge.status-production { background: #203c21; color: #e6ffd0; }
+.review-badge.status-blocked { background: #752d20; color: #fff0e8; }
 .preview-cta { position: absolute; right: 10px; bottom: 10px; font: 9px var(--mono); color: white; background: rgba(13,22,15,.8); padding: 8px 9px; }
 .template-card .type { display: flex; justify-content: space-between; gap: 8px; color: #52614e; font: 9px var(--mono); letter-spacing: .09em; margin: 11px 0 8px; text-transform: uppercase; }
 .template-card h3 { font-size: 18px; line-height: 1.18; letter-spacing: -.045em; margin: 0 0 7px; }
 .template-card h3 a { text-decoration: none; }
 .template-card h3 a:hover { text-decoration: underline; text-decoration-color: #647b47; text-underline-offset: 4px; }
 .template-card p { color: #475247; font-size: 12px; line-height: 1.55; margin: 0; }
+.template-card .template-relation { display: flex; gap: 9px; align-items: baseline; margin-top: 12px; padding-top: 9px; border-top: 1px solid rgba(16,24,18,.16); color: #263325; font-size: 10px; }
+.template-relation b { flex: 0 0 auto; color: #53634d; font-size: 9px; }
+.template-guidance { margin-top: 8px; border-bottom: 1px solid rgba(16,24,18,.16); color: #344332; }
+.template-guidance summary { padding: 8px 0; cursor: pointer; font-size: 10px; font-weight: 700; }
+.template-guidance summary::marker { color: #69804b; }
+.template-guidance dl { margin: 0; padding: 2px 0 12px; }
+.template-guidance dt { margin-top: 8px; color: #53634d; font: 9px var(--mono); text-transform: uppercase; }
+.template-guidance dd { margin: 3px 0 0; color: #344332; font-size: 10px; line-height: 1.55; }
 .no-results { display: none; padding: 48px 0; color: #455344; }
 .no-results.is-visible { display: block; }
 
@@ -127,8 +138,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, video:focus-visible 
 .film { min-width: 0; }
 .film-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding: 11px 0; }
 .film-head span { color: var(--quiet); font: 10px var(--mono); }
-.film video { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; background: #0a0d0b; }
-.film:first-child video { aspect-ratio: 9/12; object-fit: contain; background: #080b09; }
+.film video { display: block; width: 100%; aspect-ratio: 16/9; object-fit: contain; background: #0a0d0b; }
+.film:first-child video { aspect-ratio: 9/16; object-fit: contain; background: #080b09; }
 .film h3 { font-size: 20px; line-height: 1.2; letter-spacing: -.04em; margin: 14px 0 8px; }
 .film p { color: var(--muted); font-size: 12px; line-height: 1.65; margin: 0 0 12px; }
 .caption-link { color: var(--accent); font: 10px var(--mono); text-underline-offset: 4px; }
@@ -195,7 +206,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, video:focus-visible 
   .template-card .type { font-size: 8px; }
   .preview-cta { right: 6px; bottom: 6px; font-size: 8px; padding: 6px; }
   .film-grid { grid-template-columns: 1fr; gap: 32px; }
-  .film:first-child video, .film video { aspect-ratio: 16/9; object-fit: cover; }
+  .film video { aspect-ratio: 16/9; object-fit: contain; }
+  .film:first-child video { aspect-ratio: 9/16; max-height: 70vh; }
   .closing { display: block; }
   .closing-nav { justify-content: start; margin-top: 28px; }
   .legal { margin-top: 26px; flex-direction: column; gap: 8px; }

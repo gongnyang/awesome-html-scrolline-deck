@@ -38,6 +38,17 @@ function toMap(input) {
 
 const esc = (s) => String(s ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 
+/** Legacy pinVh remains readable while new scenes declare their speaking pace. */
+const paceOf = (scene) => ({
+  mode: scene.pace?.mode ?? (scene.pin === false ? 'pass' : 'scrub'),
+  scrollVh: Number(scene.pace?.scrollVh ?? scene.pinVh ?? 0),
+});
+const cueRatios = (scene) => {
+  const states = scene.pace?.cueStates;
+  if (Array.isArray(states) && states.length) return states.map((state) => state.at);
+  return Array.isArray(scene.cues) && scene.cues.length ? scene.cues : [0.35];
+};
+
 /** Readable screen from deck.json alone, for scenes whose folder does not exist yet. */
 function fallbackHTML(scene) {
   const { kicker, title, lines = [] } = scene.copy ?? {};
@@ -46,7 +57,7 @@ function fallbackHTML(scene) {
   <p class="scene__kicker t-eyebrow">${esc(kicker)}</p>
   <h2 class="scene__title t-display-md">${esc(title ?? scene.id)}</h2>
   <ul class="scene__lines">${lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
-  <span class="scene__tag">${esc(scene.id)} · ${esc(scene.technique)} · ${Number(scene.pinVh) || 0}vh</span>
+  <span class="scene__tag">${esc(scene.id)} · ${esc(scene.technique)} · ${paceOf(scene).scrollVh}vh</span>
 </div>`;
 }
 
@@ -202,15 +213,16 @@ export async function createDeck({
 
     let trigger = null;
     if (!isReduced) {
-      // `pin: false` scenes are scrubbed while they pass by instead of being held.
-      const shouldPin = scene.pin !== false && Number(scene.pinVh) > 0;
+      // A short narrative bridge passes naturally; holds and meaningful scrub scenes pin.
+      const pace = paceOf(scene);
+      const shouldPin = pace.mode !== 'pass' && pace.scrollVh > 0;
       trigger = shouldPin
         ? ScrollTrigger.create({
             trigger: section,
             start: 'top top',
             // Resolve the contract against the viewport, independent of trigger height.
             // ScrollTrigger's relative `%` end can scale with a tall, wrapped section.
-            end: () => `+=${Math.round((Number(scene.pinVh) / 100) * window.innerHeight)}`,
+            end: () => `+=${Math.round((pace.scrollVh / 100) * window.innerHeight)}`,
             pin: true,
             scrub: true,
             animation: tl,
@@ -273,30 +285,36 @@ export async function createDeck({
   function goTo(index) {
     const target = mounted[Math.min(mounted.length - 1, Math.max(0, index))];
     if (!target) return;
-    const pinDistance = !isReduced && target.scene.pin !== false && Number(target.scene.pinVh) > 0
-      ? (Number(target.scene.pinVh) / 100) * window.innerHeight
+    const pace = paceOf(target.scene);
+    const pinDistance = !isReduced && pace.mode !== 'pass' && pace.scrollVh > 0
+      ? (pace.scrollVh / 100) * window.innerHeight
       : 0;
     // Land inside the first hold frame, never mid-entrance.
-    scrollToPx(lenis, startPx(target) + pinDistance * 0.35);
+    scrollToPx(lenis, startPx(target) + pinDistance * cueRatios(target.scene)[0]);
   }
 
   // Presenters need repeatable stops *inside* a scene. A scene may declare
   // meaningful, settled scroll states; old decks retain one 35% stop per scene.
-  const cueRatios = (scene) => Array.isArray(scene.cues) && scene.cues.length
-    ? scene.cues : [0.35];
-  const hasExplicitCues = !isReduced && mounted.some((entry) => Array.isArray(entry.scene.cues) && entry.scene.cues.length);
+  const hasExplicitCues = !isReduced && mounted.some((entry) =>
+    (Array.isArray(entry.scene.cues) && entry.scene.cues.length) ||
+    (Array.isArray(entry.scene.pace?.cueStates) && entry.scene.pace.cueStates.length));
   const cueStops = () => mounted.flatMap((entry, sceneIndex) => {
-    const distance = !isReduced && entry.scene.pin !== false && Number(entry.scene.pinVh) > 0
-      ? (Number(entry.scene.pinVh) / 100) * window.innerHeight : 0;
+    const pace = paceOf(entry.scene);
+    const distance = !isReduced && pace.mode !== 'pass' && pace.scrollVh > 0
+      ? (pace.scrollVh / 100) * window.innerHeight : 0;
     return cueRatios(entry.scene).map((ratio, cueIndex) => ({
       sceneIndex, cueIndex, y: startPx(entry) + distance * ratio,
     }));
   });
   let keyTarget = null;
+  let lastStepAt = -Infinity;
   function stepCue(direction) {
     const stops = cueStops();
     if (!stops.length) return;
     const now = performance.now();
+    // Let a destination settle before accepting another remote-control step.
+    // Deliberate scene jumps remain available through the number keys.
+    if (now - lastStepAt < 600) return;
     // Lenis can still be animating when a presenter presses the remote again.
     // Advance from the previous destination instead of the intermediate scrollY.
     const from = keyTarget && now - keyTarget.at < 1500 ? keyTarget.y : window.scrollY;
@@ -304,6 +322,7 @@ export async function createDeck({
       ? stops.find((entry) => entry.y > from + 6)
       : stops.findLast((entry) => entry.y < from - 6);
     if (!stop) return;
+    lastStepAt = now;
     keyTarget = { y: stop.y, at: now };
     scrollToPx(lenis, stop.y, { duration: 0.55 });
   }
@@ -339,8 +358,12 @@ export async function createDeck({
   }
 
   function onKey(e) {
-    if (e.target instanceof HTMLElement && /input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.target instanceof HTMLElement && (/input|textarea|select/i.test(e.target.tagName) || e.target.isContentEditable)) return;
     const key = e.key;
+    if (e.repeat && (key === 'ArrowRight' || key === 'ArrowLeft' || key === ' ' || key === 'Spacebar')) {
+      e.preventDefault();
+      return;
+    }
     if (presenterTimer && key.toLowerCase() !== 'p') stopPresenter();
     if (key === 'ArrowRight' || key === ' ' || key === 'Spacebar') {
       e.preventDefault();
@@ -352,9 +375,11 @@ export async function createDeck({
       else goTo(currentIndex() - 1);
     } else if (/^[1-9]$/.test(key)) {
       e.preventDefault();
+      keyTarget = null;
       goTo(Number(key) - 1);
     } else if (key === '0') {
       e.preventDefault();
+      keyTarget = null;
       goTo(9);
     } else if (key.toLowerCase() === 'f') {
       if (document.fullscreenElement) document.exitFullscreen?.();
@@ -377,8 +402,28 @@ export async function createDeck({
   ScrollTrigger.refresh();
   onScroll();
   paintNotes(0);
-  // Measure once more after images and pin-spacers have laid out.
-  window.requestAnimationFrame(() => { ScrollTrigger.refresh(); onScroll(); });
+  // Gallery links can land on the speaking hold of a representative scene.
+  // Resolve the target after pin-spacers exist so a direct link never lands
+  // partway through the preceding scene.
+  const linkedScene = new URL(window.location.href).searchParams.get('scene');
+  window.requestAnimationFrame(() => {
+    ScrollTrigger.refresh();
+    onScroll();
+    if (!linkedScene) return;
+    window.requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      // Lenis was created before the scenes were mounted. Refresh its scroll
+      // limit before jumping to a deep link in the same page load.
+      lenis?.resize?.();
+      const target = mounted.find((entry) => entry.scene.id === linkedScene);
+      if (!target) return;
+      const pace = paceOf(target.scene);
+      const distance = !isReduced && pace.mode !== 'pass' && pace.scrollVh > 0
+        ? (pace.scrollVh / 100) * window.innerHeight : 0;
+      scrollToPx(lenis, startPx(target) + distance * cueRatios(target.scene)[0], { immediate: true });
+      onScroll();
+    });
+  });
 
   return {
     scenes: mounted,

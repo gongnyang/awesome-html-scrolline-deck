@@ -118,9 +118,9 @@ export default {
 
     // exit — 0.75 .. 1.00. Rules retract, rows close, the art pushes out.
     if (rules.length) tl.to(rules, { '--draw': 0, duration: 0.1, stagger: 0.015 }, 0.76);
-    tl.to(rows, { autoAlpha: 0, duration: 0.1, stagger: 0.015 }, 0.8);
-    tl.to(art, { scale: 1.04, autoAlpha: 0, duration: 0.14 }, 0.84);
-    tl.to(copy, { autoAlpha: 0, duration: 0.1, ease: 'none' }, 0.86);
+    tl.to(rows, { autoAlpha: 1, duration: 0.1, stagger: 0.015 }, 0.8);
+    tl.to(art, { scale: 1.04, autoAlpha: 1, duration: 0.14 }, 0.84);
+    tl.to(copy, { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.86);
   },
 
   unmount() {

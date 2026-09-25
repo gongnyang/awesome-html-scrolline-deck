@@ -11,5 +11,6 @@
 [data-scene="08-competition"] .o__criterion{font-weight:650}
 [data-scene="08-competition"] .o__head{font:600 .8rem var(--font-mono,monospace);color:var(--ink-muted);background:var(--surface-raised)}
 [data-scene="08-competition"] .o__cell--recommended{color:var(--accent);font-weight:700;background:var(--accent-soft)}
+[data-scene="08-competition"] .o__source{margin:16px 0 0;color:var(--ink-subtle);font:500 clamp(11px,.95vw,13px)/1.45 var(--font-body,inherit);word-break:keep-all}
 @media(max-width:720px){[data-scene="08-competition"] .o{padding:36px 0;min-height:100svh}[data-scene="08-competition"] .o__cell{padding:.65rem .4rem;font-size:.82rem}}
 @media(prefers-reduced-motion:reduce){[data-scene="08-competition"] .o *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}

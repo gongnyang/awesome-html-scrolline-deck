@@ -30,10 +30,7 @@ export default {
     tl.fromTo(root.querySelector('.q__stage'), { y: 32, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.18 }, 0);
     tl.fromTo(items, { x: 28, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.1, stagger: 0.04 }, 0.12);
     tl.to(root.querySelector('.q__title'), { scale: 1.03, duration: 0.1, yoyo: true, repeat: 1 }, 0.42);
-    tl.to(root, { autoAlpha: 0, y: -24, duration: 0.16 }, 0.82);
-    // hold — 0.30 .. 0.75
-    // Keep the composed state readable while the presenter speaks.
-    // exit — 0.75 .. 1.00
+    // Keep the audience question and answer scaffold through the scene boundary.
   },
   unmount() { root = null; },
 };

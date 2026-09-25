@@ -1,12 +1,5 @@
-// anatomy-rows — take one artefact apart. Rows come from assets.rows
-// ([{label, value}]) or from copy.lines written as "Label: sentence".
-// Mark positions (% of the image, [x, y]) come from assets.marks when given,
-// so a row can point at a real feature of the picture; MARKS is the fallback.
+// Product detail board: one product photo with three adjacent visual crops and labels.
 let root = null;
-let observer = null;
-let frame = 0;
-
-const MARKS = [[24, 31], [64, 41], [42, 70], [75, 78], [33, 52], [58, 22]];
 
 const esc = (value) => String(value).replace(/[&<>]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]));
 
@@ -58,75 +51,62 @@ export default {
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
     const assets = scene.assets || {};
-    const suppliedMarks = Array.isArray(assets.marks) ? assets.marks : [];
-    const rows = toRows(scene).slice(0, MARKS.length);
-    const marks = rows.map((_, index) => {
-      const mark = suppliedMarks[index];
-      return Array.isArray(mark) && mark.length === 2 && mark.every((value) => Number.isFinite(value) && value >= 0 && value <= 100)
-        ? mark : MARKS[index % MARKS.length];
-    });
+    const rows = toRows(scene).slice(0, 3);
     const image = (assets.images || [])[0];
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
 
     const art = root.querySelector('[data-role="art"]');
-    art.innerHTML = rows.map((row, index) => `<i class="an__mark" data-mark="r${index}" style="--ax:${marks[index][0]};--ay:${marks[index][1]}"></i>`).join('');
     if (image) {
       const img = document.createElement('img');
       img.src = image;
       img.alt = copy.title || '';
       img.decoding = 'async';
       art.append(img);
+      const details = document.createElement('div');
+      details.className = 'an__closeups';
+      details.replaceChildren(...rows.map((row, index) => {
+        const figure = document.createElement('figure');
+        figure.className = `an__closeup an__closeup--${index + 1}`;
+        const cropFrame = document.createElement('div');
+        cropFrame.className = 'an__closeup-image';
+        const crop = document.createElement('img');
+        crop.src = image;
+        crop.alt = '';
+        crop.setAttribute('aria-hidden', 'true');
+        const caption = document.createElement('figcaption');
+        const label = document.createElement('strong');
+        label.textContent = row.label;
+        const description = document.createElement('span');
+        description.textContent = row.value;
+        caption.append(label, description);
+        cropFrame.append(crop);
+        figure.append(cropFrame, caption);
+        return figure;
+      }));
+      art.append(details);
     }
 
     root.querySelector('[data-role="rows"]').innerHTML = rows.map((row, index) =>
       `<div class="an__row" data-slot="r${index}"><span class="an__label">${esc(row.label)}</span><p class="an__value">${esc(row.value)}</p></div>`).join('');
 
-    root.querySelector('[data-role="rules"]').innerHTML = rows
-      .map((row, index) => `<path data-rule="r${index}" pathLength="1" />`).join('');
-
-    if (typeof ResizeObserver === 'function') {
-      observer = new ResizeObserver(schedule);
-      observer.observe(root);
-    }
-    schedule();
   },
 
   build(tl, ctx) {
     const art = root.querySelector('[data-role="art"]');
     const copy = root.querySelector('.an__copy');
     const rows = [...root.querySelectorAll('.an__row')];
-    const marks = [...root.querySelectorAll('.an__mark')];
-    const rules = [...root.querySelectorAll('[data-role="rules"] path')];
-    const setActive = (index) => rows.forEach((row, i) => row.classList.toggle('is-active', i === index));
+    const details = [...root.querySelectorAll('.an__closeup')];
 
-    ctx.gsap.set(rows, { '--line': 0, '--reveal': 0 });
-
-    // enter — 0 .. 0.30. The art wipes in, then each row draws its own rule.
-    tl.fromTo(art, { '--clip': 0 }, { '--clip': 1, duration: 0.1, ease: 'power2.out' }, 0);
+    // Enter: reveal product and its three actual close crops; hold them beside their labels.
+    tl.fromTo(art, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.12, ease: 'power2.out' }, 0);
     tl.fromTo(copy, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1 }, 0);
-    rows.forEach((row, index) => {
-      const at = 0.04 + index * 0.03;
-      tl.to(row, { '--line': 1, '--reveal': 1, duration: 0.09 }, at);
-      if (rules[index]) tl.fromTo(rules[index], { '--draw': 0, '--ext': 0 }, { '--draw': 1, '--ext': 1, duration: 0.09 }, at);
-      if (marks[index]) tl.fromTo(marks[index], { '--pop': 0, autoAlpha: 0 }, { '--pop': 1, autoAlpha: 1, duration: 0.05 }, at + 0.04);
-    });
+    tl.fromTo(details, { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, stagger: 0.03 }, 0.08);
+    tl.fromTo(rows, { x: 16, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.1, stagger: 0.03 }, 0.1);
 
-    // hold — 0.30 .. 0.75. Walk the rows one at a time while you explain them.
-    rows.forEach((_, index) => tl.call(setActive, [index], 0.32 + index * 0.075));
-
-    // exit — 0.75 .. 1.00. Rules retract, rows close, the art pushes out.
-    if (rules.length) tl.to(rules, { '--draw': 0, duration: 0.1, stagger: 0.015 }, 0.76);
-    tl.to(rows, { autoAlpha: 0, duration: 0.1, stagger: 0.015 }, 0.8);
-    tl.to(art, { scale: 1.04, autoAlpha: 0, duration: 0.14 }, 0.84);
-    tl.to(copy, { autoAlpha: 0, duration: 0.1, ease: 'none' }, 0.86);
+    // Keep the claim, product image and adjacent labels complete through the exit.
   },
 
-  unmount() {
-    if (typeof cancelAnimationFrame === 'function') cancelAnimationFrame(frame);
-    if (observer) observer.disconnect();
-    observer = null;
-    root = null;
-  },
+  unmount() { root = null; },
 };

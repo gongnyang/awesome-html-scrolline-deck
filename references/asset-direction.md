@@ -15,7 +15,7 @@
 | Deck | Visual identity | Image subjects |
 |---|---|---|
 | `sample-deck` | Ink blue, amber light, independent documentary photography | A Seoul rooftop recovering its night sky; close scene details that make the scroll and presentation metaphor tangible; six distinct visual studies for the template gallery. |
-| `product-launch` | Silver, graphite and electric lime; tactile industrial product photography | A fictional Nimbus home energy device in use, its design details and a human scale reference. Keep the hardware consistent across images. |
+| `product-launch` | Silver, graphite and electric lime; tactile industrial product photography | A fictional Nimbus Air over-ear headphone in use, with matching hinge, cushion and microphone details. Keep the hardware consistent across images. |
 | `annual-report` | Charcoal, ivory and restrained vermilion; formal architectural editorial photography | Work, logistics and organizational change as metaphorical scenes. Put all actual performance evidence in SVG charts and state that the example is fictional. |
 | `city-guide` | Indigo dusk, coral sunset and lantern amber; observational Seoul travel photography | River paths, neighborhood streets, food and rest stops. Build six postcard images as separate photographs with distinct locations and subjects. |
 | `investor-pitch` | Cobalt dusk, warm brass and neighborhood cafe photography | A fictional local reservation service that helps independent cafes fill quiet hours. Show real cafe contexts, owners and nearby guests; render market and pilot figures in HTML/SVG and label them as fictional. |
@@ -32,7 +32,7 @@
 
 ## Generated asset manifest
 
-Every image below is an original `source=generated` image. Prompts described the subject and art direction in the intent column, requested composition for the named scene, and prohibited legible generated text or false evidence where relevant. Files are optimized WebP crops. Hero crops are 1920 × 1080; gallery crops are 1200 × 900; other supporting crops are 1600 × 900. The alt column describes the focal subject for each individual file.
+Photographic entries are original `source=generated` images unless the source column says otherwise. Prompts described the subject and art direction in the intent column, requested composition for the named scene, and prohibited legible generated text or false evidence where relevant. Files are optimized WebP crops. Hero crops are usually 1920 × 1080; gallery crops are usually 1200 × 900; other supporting crops are usually 1600 × 900. The alt column describes the focal subject for each individual file.
 
 ### Seven presentation decks
 
@@ -45,10 +45,10 @@ Every image below is an original `source=generated` image. Prompts described the
 | `examples/sample-deck/public/media/sample-deck/07-templates/image-04.webp` | generated | Sculptural folded cream paper catches amber light. | 1200 × 900 | Folded paper forms an angular sculpture. |
 | `examples/sample-deck/public/media/sample-deck/07-templates/image-05.webp` | generated | Small mechanical assembly arranged diagonally. | 1200 × 900 | Metal mechanism parts sit in a diagonal row. |
 | `examples/sample-deck/public/media/sample-deck/07-templates/image-06.webp` | generated | Six amber glass specimens form a still life. | 1200 × 900 | Six amber glass forms align against charcoal blue. |
-| `examples/sample-deck/public/media/sample-deck/08-demo/poster.webp` | generated | Presenter silhouette beside an abstract projection on a Seoul studio stage. | 1600 × 900 | Presenter stands beside a large abstract projection. |
-| `examples/product-launch/public/media/product-launch/01-hero/hero.webp` | generated | Fictional Nimbus energy device in an apartment at dawn; silver, graphite and lime. | 1920 × 1080 | Compact graphite home energy device by a bright window. |
-| `examples/product-launch/public/media/product-launch/04-design/image.webp` | generated | Three-quarter product view emphasizes seams, proportion and status light. | 1600 × 900 | Sculpted graphite energy unit in an apartment alcove. |
-| `examples/product-launch/public/media/product-launch/05-features/image.webp` | generated | Macro view of vents, magnetic seam and status ring. | 1600 × 900 | Circular vents and lime status ring on graphite. |
+| `examples/sample-deck/public/media/sample-deck/08-demo/poster.webp` | generated, legacy | Earlier abstract projection on a Seoul studio stage. | 1600 × 900 | Presenter stands beside a large abstract projection. |
+| `examples/product-launch/public/media/product-launch/01-hero/hero-v2.webp` | generated | Fictional Nimbus Air over-ear headphones in a commuter setting, with silver hinge and graphite cushions. | 1600 × 900 | Listener wears the graphite and silver headphones on a city commute. |
+| `examples/product-launch/public/media/product-launch/04-design/image-v2.webp` | generated | Close view of the matching headphone hinge, brushed metal cup and padded headband. | 1600 × 900 | Brushed hinge joins the cup and padded band. |
+| `examples/product-launch/public/media/product-launch/05-features/image-v2.webp` | generated | Close view of the matching graphite ear cup, soft cushion and small microphone openings. | 1600 × 900 | Ear cushion and microphone ports on a low profile ear cup. |
 | `examples/annual-report/public/media/annual-report/01-hero/hero.webp` | generated | Analyst and illuminated archive aisle frame a fictional annual review. | 1920 × 1080 | Analyst faces a hall of warm vertical lights. |
 | `examples/annual-report/public/media/annual-report/06-mix/image-01.webp` | generated | Earlier fictional revenue mix: staff prepare a seasonal pop-up display. | 1600 × 900 | Worker prepares a temporary retail display. |
 | `examples/annual-report/public/media/annual-report/06-mix/image-02.webp` | generated | Later fictional revenue mix: repeat orders move through organized fulfillment. | 1600 × 900 | Worker packs repeat orders in a neat warehouse. |
@@ -123,3 +123,37 @@ The following original images were made for scene IDs that were removed while th
 
 | `examples/research-lecture/public/media/research-lecture/01-hero/hero.webp` | generated | Korean pedestrian walking from harsh sun into tree shade on a Seoul street; urban heat and shade access lecture opener. | 1672 × 941, served as responsive 16:9 hero | Korean pedestrian crosses a strong sun/shade boundary beneath city trees. |
 | `examples/investor-pitch/public/media/investor-pitch/01-hero/hero-v2.webp` | generated | A quiet Seoul cafe at dusk with open seats, an owner greeting a guest and another customer checking a reservation; fictional cafe marketplace opener. | 1672 × 941, served as responsive 16:9 hero | Open cafe tables and local guests at a warm-lit Seoul cafe. |
+
+### Rebuild additions and media audit
+
+The image files below were generated for the revised storyboards. They are illustrative scenes for fictional examples. Their crops were inspected at presentation scale and decoded after WebP export. Photography supports the stated scene; it does not establish measurements, actual customer behavior, or project outcomes.
+
+| Asset | Source | Message and subject | Crop | Alt / focal point |
+|---|---|---|---|---|
+| `examples/sample-deck/public/media/sample-deck/08-demo/demonstration.webp` | generated | A presenter uses one potted maple to make a before / during / after change understandable. | 1672 × 941, 16:9 | Presenter gestures to the maple's three visible growth states. |
+| `examples/sample-deck/public/media/sample-deck/08-demo/sequence-before.webp` | generated crop | The same maple before leaves appear. | 390 × 505, portrait panel crop | Bare potted maple on the presentation display. |
+| `examples/sample-deck/public/media/sample-deck/08-demo/sequence-during.webp` | generated crop | The same maple as its first leaves appear. | 400 × 505, portrait panel crop | Potted maple with fresh leaves. |
+| `examples/sample-deck/public/media/sample-deck/08-demo/sequence-after.webp` | generated crop | The same maple with a full canopy. | 425 × 505, portrait panel crop | Leafy potted maple on the presentation display. |
+| `examples/sample-deck/public/media/sample-deck/07-templates/sample-screen-readable.webp` | rendered from the sample deck | A full browser capture of the sample deck's evidence scene, chosen as a readable example of claim and visual support on one screen. | 1920 × 1080, 16:9 | The sample deck pairs one claim with visual support and a source line. |
+| `examples/investor-pitch/public/media/investor-pitch/02-problem/sequence.webp` | generated | Fictional cafe owner notices open seats, marks a reservation, then welcomes the arriving guest. | 1672 × 941, three-panel 16:9 | Cafe owner serves a guest after filling an empty table. |
+| `examples/investor-pitch/public/media/investor-pitch/02-problem/quiet-hour.webp` | generated crop | Start state: empty seats are visible while the owner notices the quiet hour. | 555 × 941, portrait panel crop | Cafe owner looks toward an empty window table. |
+| `examples/investor-pitch/public/media/investor-pitch/02-problem/booking.webp` | generated crop | Middle state: owner prepares a reservation marker as a guest approaches. | 553 × 941, portrait panel crop | Owner prepares a table as a guest enters. |
+| `examples/investor-pitch/public/media/investor-pitch/02-problem/arrival.webp` | generated crop | End state: the guest sits at the previously empty table. | 556 × 941, portrait panel crop | Owner welcomes a seated guest. |
+| `examples/product-launch/public/media/product-launch/03-promise/commute-calm-v2.webp` | generated, informed by Nimbus hero product silhouette | Evening commuter wearing over-ear headphones against a motion-blurred station, with open space for live headline. This illustrates the use situation rather than measured noise reduction. | 1672 × 941, 16:9 | Person finds a moment of calm on a busy commute. |
+
+The sample deck screenshot is an actual browser capture of HTML/CSS. Its text is rasterized because the captured slide is shown as an image inside the gallery; the slide itself remains browser-rendered HTML.
+
+#### Deck-wide audit notes
+
+| Deck | Media review and implementation note |
+|---|---|
+| Sample | The six gallery photos are separate visual studies, not evidence for presentation advice. The old `08-demo/poster.webp` depicts an abstract projection; use the maple demonstration assets above for a legible object change. The full `demonstration.webp` is a presentation photo; the three panel crops are optional staged states. |
+| Nimbus Air | The current product photos consistently show over-ear headphones. Use the `hero-v2.webp`, `04-design/image-v2.webp` and `05-features/image-v2.webp` variants. The older `image.webp` files in design / feature folders depict a home appliance and are stale. The generated `04-features/plate-*.webp` files contain baked-in Korean copy and spec graphics; treat them as legacy, and render claims, units and targets as HTML/SVG with explicit fictional / design-target labels. |
+| City guide | Keep location photography distinct from precise route and travel-time evidence. Use HTML/SVG for routes and comparison values; label fictional itinerary details in copy. |
+| Research lecture | The Seoul shade photos are scene setting only. The lecture's sample counts and values are synthesized; maps, observation blocks and charts must be encoded from explicit values in HTML/SVG, with denominator and synthetic-data labels in view. |
+| Spatial proposal | The existing image set covers the exterior, before / after, library use, materials, seating, accessibility and operations. Keep each crop attached to its actual design choice; generated images show a fictional concept, not a built project. The four material photos are distinct and support a material-priority board without extra photography. |
+| Investor pitch | Earlier water-sampling and analyzer photos are unrelated to the cafe story and should not be referenced. The new cafe sequence is an illustrative fictional case; any occupancy, booking or revenue values belong in HTML/SVG with scenario labels. |
+| Annual report | Work and operations photos are illustrative. Financial and organizational claims must be rendered from explicit fictional data in HTML/SVG and labeled as a sample report. |
+| Client proposal | Bookshop photos show one fictional customer journey. Keep generated imagery adjacent to an illustrative-case label; pilot and impact figures remain proposed scenarios in HTML/SVG. |
+
+Legacy files stay on disk when an existing consumer may still reference them; inspect active asset references before removing any file.

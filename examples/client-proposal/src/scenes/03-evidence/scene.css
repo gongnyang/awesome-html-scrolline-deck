@@ -9,7 +9,7 @@
 [data-scene="03-evidence"] .queue-chart__metric-foot { width:100%; margin-top:8px; color:var(--ink-subtle); font:500 14px/1.3 var(--font-mono); }
 [data-scene="03-evidence"] .queue-chart__plot { position:relative; height:clamp(330px,45vh,500px); max-width:1440px; width:100%; margin:clamp(20px,4vh,44px) auto 0; padding:0 0 48px 60px; }
 [data-scene="03-evidence"] .queue-chart__grid { position:absolute; inset:0 0 48px 60px; }
-[data-scene="03-evidence"] .queue-chart__grid span { position:absolute;left:-58px;right:0;display:flex;align-items:center;gap:12px;color:var(--ink-subtle);font:600 13px/1 var(--font-mono);transform:translateY(-50%); }
+[data-scene="03-evidence"] .queue-chart__grid span { position:absolute;left:-58px;right:0;display:flex;align-items:center;gap:12px;color:var(--ink-subtle);font:600 15px/1 var(--font-mono);transform:translateY(-50%); }
 [data-scene="03-evidence"] .queue-chart__grid span::after { content:"";flex:1;border-top:1px solid var(--hairline); }
 [data-scene="03-evidence"] .queue-chart__grid span:nth-child(1) { top:9.375%; }
 [data-scene="03-evidence"] .queue-chart__grid span:nth-child(2) { top:48.4375%; }
@@ -22,12 +22,14 @@
 [data-scene="03-evidence"] .queue-chart__band { position:absolute; z-index:0; top:0; bottom:48px; left:calc(60px + (100% - 60px) * .587); width:1px; border-left:2px dashed var(--accent); }
 [data-scene="03-evidence"] .queue-chart__band span { position:absolute; top:10px; left:16px; color:var(--accent); font:700 14px/1.3 var(--font-mono); white-space:nowrap; }
 [data-scene="03-evidence"] .queue-chart__hours { position:absolute; left:60px; right:0; bottom:0; height:42px; display:flex; justify-content:space-between; align-items:end; color:var(--ink-muted); font:650 clamp(15px,1.2vw,19px)/1 var(--font-mono); }
-[data-scene="03-evidence"] .queue-chart__hours span:nth-child(4), [data-scene="03-evidence"] .queue-chart__hours span:nth-child(5) { color:var(--accent); }
-[data-scene="03-evidence"] .queue-chart__source { display:flex; gap:24px; align-items:center; max-width:1440px; width:100%; margin:20px auto 0; padding-top:15px; border-top:1px solid var(--hairline); color:var(--ink-subtle); font:500 clamp(12px,.9vw,14px)/1.4 var(--font-mono); }
+[data-scene="03-evidence"] .queue-chart__hours span:nth-child(4) { color:var(--accent); }
+[data-scene="03-evidence"] .queue-chart__source { display:flex; gap:24px; align-items:center; max-width:1440px; width:100%; margin:20px auto 0; padding-top:15px; border-top:1px solid var(--hairline); color:var(--ink-subtle); font:500 15px/1.4 var(--font-mono); }
 [data-scene="03-evidence"] .queue-chart__source span { color:var(--accent); text-transform:uppercase; letter-spacing:.08em; white-space:nowrap; }
 [data-scene="03-evidence"] .queue-chart__source p { margin:0; }
+[data-scene="03-evidence"] .queue-chart__bar { fill:color-mix(in srgb,var(--accent) 72%,var(--canvas)); transform-box:fill-box; transform-origin:center bottom; }
+[data-scene="03-evidence"] .queue-chart__bar--peak { fill:var(--accent); }
 @media(max-width:720px) {
-  [data-scene="03-evidence"] .queue-chart { padding:48px var(--gutter) 34px; }
+  [data-scene="03-evidence"] .queue-chart { padding:48px var(--gutter) 72px; }
   [data-scene="03-evidence"] .queue-chart__head { grid-template-columns:1fr; gap:22px; }
   [data-scene="03-evidence"] .queue-chart__title { font-size:clamp(40px,10vw,60px); }
   [data-scene="03-evidence"] .queue-chart__metric { width:max-content; max-width:100%; display:block; padding-top:10px; }
@@ -42,9 +44,9 @@
   [data-scene="03-evidence"] .queue-chart__band { left:calc(35px + (100% - 35px) * .587); }
   [data-scene="03-evidence"] .queue-chart__band span { font-size:11px; }
   [data-scene="03-evidence"] .queue-chart__hours { left:35px; font-size:12px; }
-  [data-scene="03-evidence"] .queue-chart__source { display:block; font-size:11px; }
+  [data-scene="03-evidence"] .queue-chart__source { display:block; font-size:13px; }
 }
 @media(prefers-reduced-motion:reduce) {
-  [data-scene="03-evidence"] [data-role="reveal"] { width:1000px; }
-  [data-scene="03-evidence"] .queue-chart__band,[data-scene="03-evidence"] .queue-chart__metric,[data-scene="03-evidence"] .queue-chart__peak { opacity:1!important; }
+  [data-scene="03-evidence"] .queue-chart__bar { transform:none!important; }
+  [data-scene="03-evidence"] .queue-chart__band,[data-scene="03-evidence"] .queue-chart__metric { opacity:1!important; }
 }

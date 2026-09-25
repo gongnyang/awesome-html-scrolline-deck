@@ -1,34 +1,38 @@
-# Nimbus Air 출시 발표
+# Nimbus AIR 제품 콘셉트 발표
 
-가상의 무선 헤드폰 Nimbus Air 제품 공개
+가상 헤드폰 콘셉트를 출퇴근 중 사용 장면, 설계 의도, 검증 전 목표, 체험 제안 순서로 소개하는 **10장** 발표 예시입니다.
 
 ## 장면 흐름
 
-| # | scene id | 장면 템플릿 | 발표에서 하는 일 |
+| # | 장면 | 화면 관계 | 발표에서 하는 일 |
 |---:|---|---|---|
-| 1 | `01-hero` | `frame-scrub-hero` | Nimbus Air |
-| 2 | `02-problem` | `question-reveal` | 귀보다 먼저 집중력이 닳는다 |
-| 3 | `03-promise` | `kinetic-titles` | 소음 · 무게 · 충전 걱정 |
-| 4 | `04-design` | `product-rotation` | 접히는 힌지와 교체형 패드 |
-| 5 | `05-features` | `feature-points` | 주변 소리는 낮추고, 착용 부담도 낮춘다 |
-| 6 | `06-evidence` | `annotated-chart` | 저주파 소음 최대 42dB 감쇠 |
-| 7 | `07-battery` | `odometer-stats` | 40시간 재생 · USB-C 급속 충전 |
-| 8 | `08-options` | `option-matrix` | 차콜 · 클라우드 · 코랄 |
-| 9 | `09-availability` | `timeline-roadmap` | 예약 · 체험 · 정식 출시 |
-| 10 | `10-close` | `closing-qr` | Nimbus Air 사전 체험 신청 |
+| 1 | `01-hero` | `tilt-card` | Nimbus AIR의 가상 제품 콘셉트와 형태를 소개합니다. |
+| 2 | `02-problem` | `question-reveal` | 지하철 소음, 장시간 착용, 배터리 잔량이라는 사용 상황을 제시합니다. |
+| 3 | `03-promise` | `use-case-sequence` | 출퇴근길 소음 제어와 안내 방송 때 주변음 모드를 선택하는 가상 사용 흐름입니다. |
+| 4 | `04-design` | `tilt-card` | 알루미늄 이어컵, 접히는 힌지, 교체형 쿠션을 휴대와 관리의 설계 이유에 연결합니다. |
+| 5 | `05-features` | `anatomy-rows` | 제품 사진에 인접한 라벨로 쿠션, 마이크 개구부, 낮은 하우징 위치를 살펴봅니다. |
+| 6 | `06-evidence` | `design-target-board` | 150 Hz 저음 대응 방향과 별개의 42 dB 목표를 설명합니다. |
+| 7 | `07-battery` | `usage-comparison` | ANC 켜짐 기준 최대 40시간이라는 설계 목표와 하루 4시간 사용 가정을 비교합니다. |
+| 8 | `08-options` | `colorway-reveal` | 같은 기능을 공유하는 차콜·클라우드·코랄 마감 콘셉트를 보여 줍니다. |
+| 9 | `09-availability` | `timeline-roadmap` | 10월 1일 체험 알림, 10월 12일 청음 행사, 11월 3일 첫 배송이라는 가상 일정을 제시합니다. |
+| 10 | `10-close` | `experience-cta` | 버튼으로 3장 출퇴근 사용 장면을 다시 열어 설계 의도를 확인합니다. |
 
-각 장면에는 발표자 노트가 포함되어 있습니다. 실행 중 `N` 키를 누르면 현재 장면의 노트를 열 수 있습니다. 화살표 키나 스페이스로 장면을 이동하고, `F`로 전체 화면을 전환합니다.
+## 콘셉트와 목표 안내
+
+Nimbus AIR와 제품 사진은 가상 제품 콘셉트입니다. 실제 판매 제품이나 고객 조사 결과를 나타내지 않습니다. 150 Hz와 42 dB는 서로 별개의 실측 전 설계 목표이며, 감쇠 성능을 측정한 결과가 아닙니다. ANC 켜짐 기준 40시간도 실물 배터리 시험 전 최대 재생 목표입니다. 10월·11월 일정은 확정된 예약, 행사 또는 배송 안내가 아닙니다.
 
 ## 실행
 
-저장소 루트에서 의존성을 설치한 뒤 다음 명령을 실행합니다.
+저장소 루트에서 다음 명령을 실행합니다.
 
 ```sh
 cd examples/product-launch
-pnpm install
-pnpm run dev
+npm ci
+npm run dev
 ```
 
-## 발표 자료 안내
+정적 빌드는 `npm run build`, 빌드 결과 미리보기는 `npm run preview`입니다.
 
-브랜드, 성과 지표, 시장 수치, 일정은 모두 발표 설계를 보여 주기 위한 가상 사례입니다.
+## 조작과 접근성
+
+화살표 키나 스페이스로 장면을 이동하고 `F` 키로 전체 화면을 전환합니다. `N` 키를 누르면 현재 장면의 발표자 노트를 열 수 있습니다. 모션 감소 환경에서도 핵심 내용은 정지 화면에서 확인할 수 있습니다.

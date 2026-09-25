@@ -45,9 +45,9 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/annual-report/07-quarters",
+  "previewSource": "examples/product-launch/09-availability",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "두 날짜 이상에 걸친 실제 사건·계획·변화가 시점 순서와 결정 관계로 설명되어야 할 때.",
     "unfit": "발표의 구간 예고(agenda-path), 인과 절차(step-flow), 날짜 없는 장소 경로(map-route)일 때.",
     "requiredInputs": "copy.lines 2–4개, 각 `날짜/기간: 이정표: 의미 또는 결과` 형식. 계획 날짜와 확정 사건을 명확히 구별.",
@@ -58,8 +58,11 @@
     "mobile": "연표를 세로로 유지해 날짜·이정표·결과를 순서대로 쌓는다.",
     "reducedMotion": "모든 날짜와 결과를 완성된 정적 상태로 동시에 표시한다.",
     "exampleContent": "가상의 2027년 분기 계획처럼 Q1 기준 정의부터 Q4 의사결정까지 각 시점의 구체 산출물을 제시.",
-    "unsupportedReason": "",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 발표의 구간 예고(agenda-path), 인과 절차(step-flow), 날짜 없는 장소 경로(map-route)일 때.",
     "nextImplementation": "Use only with the stated source, chronology/relationship evidence, and presenter-readable hold; review the authored instance for claim accuracy.",
-    "estimatedEffort": ""
+    "estimatedEffort": "",
+    "relation": "dated-sequence",
+    "failureFallback": "시점이나 계획 상태가 불확실하면 연표를 만들지 말고 확인된 순서만 표시한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

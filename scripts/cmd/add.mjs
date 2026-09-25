@@ -8,7 +8,14 @@ import {
 import { validate, formatErrors } from '../lib/schema.mjs';
 import { makeQrSvg } from './qr.mjs';
 
-const KNOWN_FLAGS = new Set(['dir', 'id', 'title', 'kicker', 'lines', 'pinVh', 'notes', 'url']);
+const KNOWN_FLAGS = new Set([
+  'dir', 'id', 'title', 'kicker', 'lines', 'pinVh', 'notes', 'url',
+  'purpose', 'claim', 'relation', 'evidence', 'source', 'evidenceStatus',
+  'presenterAction', 'visualChange', 'reason', 'pace', 'scrollVh', 'cue',
+]);
+const RELATIONS = new Set(['question', 'comparison', 'change', 'sequence', 'spatial', 'structure', 'decision', 'atmosphere']);
+const STATUSES = new Set(['sourced', 'synthetic', 'design-target', 'concept', 'none']);
+const PACES = new Set(['pass', 'hold', 'scrub']);
 
 const SCHEMA = readJson(path.join(REPO_ROOT, 'references/deck.schema.json'));
 const TEMPLATE_ROOT = path.join(REPO_ROOT, 'templates/scenes');
@@ -55,6 +62,29 @@ export async function run(argv) {
   }
   const deck = readJson(deckFile);
   deck.scenes ??= [];
+  const isV2 = (deck.schemaVersion ?? 1) >= 2;
+
+  if (isV2) {
+    const required = ['title', 'purpose', 'claim', 'relation', 'reason', 'presenterAction', 'visualChange', 'evidenceStatus', 'pace', 'notes'];
+    const missing = required.filter((name) => typeof flags[name] !== 'string' || !flags[name].trim());
+    if (missing.length) {
+      process.stderr.write(`scrolline add: schemaVersion 2 needs ${missing.map((name) => `--${name}`).join(', ')}\nWrite the argument and evidence before choosing a scene module.\n`);
+      return 2;
+    }
+    if (!RELATIONS.has(flags.relation) || !STATUSES.has(flags.evidenceStatus) || !PACES.has(flags.pace)) {
+      process.stderr.write(`scrolline add: invalid --relation, --evidenceStatus, or --pace\n`);
+      return 2;
+    }
+    if (flags.evidenceStatus === 'sourced' && String(flags.source ?? '').trim().length < 8) {
+      process.stderr.write('scrolline add: sourced evidence needs a specific --source\n');
+      return 2;
+    }
+    if (['synthetic', 'design-target', 'concept'].includes(flags.evidenceStatus) &&
+        !/(가상|합성|목표|콘셉트|예시|synthetic|fictional|target|concept)/i.test(String(flags.source ?? ''))) {
+      process.stderr.write('scrolline add: synthetic, design-target, and concept scenes need an explicit --source label\n');
+      return 2;
+    }
+  }
 
   const order = deck.scenes.reduce((max, s) => Math.max(max, Number(s.order) || 0), 0) + 1;
   const title = typeof flags.title === 'string' ? flags.title : '';
@@ -84,12 +114,27 @@ export async function run(argv) {
   const meta = (() => {
     try { return JSON.parse(files['template.json'] ?? '{}'); } catch { return {}; }
   })();
+  if (meta.sceneContract?.status !== 'production') {
+    process.stderr.write(`scrolline add: ${technique} is a selection candidate (${meta.sceneContract?.status ?? 'unreviewed'}); adapt the claim, evidence, composition, and scroll beats, then approve the rendered scene in every required viewport.\n`);
+  }
 
   const lines = typeof flags.lines === 'string'
     ? flags.lines.split('|').map((s) => s.trim()).filter(Boolean).slice(0, 4)
     : [];
   const kicker = typeof flags.kicker === 'string' ? flags.kicker : '';
   const pinVh = Number(flags.pinVh ?? meta.pinVh ?? 180);
+  const paceMode = isV2 ? flags.pace : null;
+  const scrollVh = isV2 ? Number(flags.scrollVh ?? (paceMode === 'pass' ? 0 : pinVh)) : pinVh;
+  if (isV2 && (!Number.isInteger(scrollVh) || scrollVh < 0 || scrollVh > 400 ||
+      (paceMode === 'pass' && scrollVh !== 0) || (paceMode !== 'pass' && scrollVh === 0))) {
+    process.stderr.write('scrolline add: --scrollVh must be 0 for pass and 1–400 for hold/scrub\n');
+    return 2;
+  }
+  const cueAt = isV2 ? Number(flags.cue ?? (paceMode === 'pass' ? 0 : 0.55)) : null;
+  if (isV2 && (!Number.isFinite(cueAt) || cueAt < 0 || cueAt > 1)) {
+    process.stderr.write('scrolline add: --cue must be a ratio from 0 to 1\n');
+    return 2;
+  }
   const notes = typeof flags.notes === 'string' && flags.notes.trim()
     ? flags.notes
     : (meta.notesHint || `TODO — speaker notes for ${id}.`);
@@ -100,31 +145,32 @@ export async function run(argv) {
     order: String(order),
   };
 
-  const sceneDir = path.join(dir, 'src/scenes', id);
-  ensureDir(sceneDir);
-  const written = [];
-  for (const [rel, raw] of Object.entries(files)) {
-    if (rel === 'template.json') continue; // template metadata stays in the skill
-    const filled = fillTemplate(expandLines(String(raw), lines), values);
-    writeText(path.join(sceneDir, rel), filled);
-    written.push(rel);
-  }
-
   const entry = {
     id,
     order,
     technique,
-    purpose: '',
-    reason: '',
-    evidence: '',
-    source: '',
-    pinVh,
-    pin: meta.pin === false ? false : true,
+    purpose: typeof flags.purpose === 'string' ? flags.purpose : '',
+    reason: typeof flags.reason === 'string' ? flags.reason : '',
+    evidence: typeof flags.evidence === 'string' ? flags.evidence : '',
+    source: typeof flags.source === 'string' ? flags.source : '',
     assets: {},
     copy: { kicker, title, lines },
     transition: { in: meta.transitionIn ?? 'fade', out: meta.transitionOut ?? 'fade' },
     notes,
   };
+  if (isV2) {
+    Object.assign(entry, {
+      claim: flags.claim,
+      relation: flags.relation,
+      presenterAction: flags.presenterAction,
+      visualChange: flags.visualChange,
+      evidenceStatus: flags.evidenceStatus,
+      pace: { mode: paceMode, scrollVh, cueStates: [{ at: cueAt, message: flags.claim }] },
+    });
+  } else {
+    entry.pinVh = pinVh;
+    entry.pin = meta.pin === false ? false : true;
+  }
   // Pre-declare the asset keys the technique expects, so the author sees what to fill.
   // template.json writes either a boolean or a { min, max } range.
   const wants = (slot) => slot === true || (slot && typeof slot === 'object' && Number(slot.max ?? 1) > 0);
@@ -134,6 +180,7 @@ export async function run(argv) {
 
   // --url: write a QR for the link and wire it as images[0] (closing-qr reads it there).
   const url = typeof flags.url === 'string' ? flags.url : '';
+  let qrAsset = null;
   if (url) {
     let svg;
     try {
@@ -143,10 +190,9 @@ export async function run(argv) {
       return 1;
     }
     const publicPath = `/media/${id}/qr.svg`;
-    writeText(path.join(dir, 'public', publicPath), svg);
+    qrAsset = { publicPath, svg };
     entry.assets.images = [publicPath, ...(entry.assets.images ?? [])];
     deck.links = { ...(deck.links ?? {}), site: url };
-    written.push(`public${publicPath}`);
   }
 
   deck.scenes.push(entry);
@@ -157,12 +203,25 @@ export async function run(argv) {
     process.stderr.write(`scrolline add: deck.json would become invalid\n${formatErrors(result.errors)}\n`);
     return 1;
   }
+  const sceneDir = path.join(dir, 'src/scenes', id);
+  ensureDir(sceneDir);
+  const written = [];
+  for (const [rel, raw] of Object.entries(files)) {
+    if (rel === 'template.json') continue; // template metadata stays in the skill
+    const filled = fillTemplate(expandLines(String(raw), lines), values);
+    writeText(path.join(sceneDir, rel), filled);
+    written.push(rel);
+  }
+  if (qrAsset) {
+    writeText(path.join(dir, 'public', qrAsset.publicPath), qrAsset.svg);
+    written.push(`public${qrAsset.publicPath}`);
+  }
   writeJson(deckFile, deck);
 
   process.stdout.write(
-`Added ${id} (${technique}, pin ${pinVh}vh)
+`Added ${id} (${technique}, ${isV2 ? `${paceMode} ${scrollVh}vh` : `pin ${pinVh}vh`})
   src/scenes/${id}/${written.join(', ')}
-  deck.json scene ${deck.scenes.length}, total pin ${deck.scenes.reduce((s, x) => s + (x.pinVh || 0), 0)}vh
+  deck.json scene ${deck.scenes.length}, total scroll ${deck.scenes.reduce((s, x) => s + (x.pace?.scrollVh ?? x.pinVh ?? 0), 0)}vh
 `);
   return 0;
 }

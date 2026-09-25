@@ -92,7 +92,7 @@ export default {
     });
     // hold — the presenter can explain each phase while the proportional schedule stays in view.
     // exit — clear the timeline for the decision scene.
-    tl.to(root, { autoAlpha: 0, y: -18, duration: 0.14 }, 0.86);
+
   },
   unmount() { root = null; },
 };

@@ -23,42 +23,33 @@ export default {
       return item;
     }));
 
-    const host = root.querySelector('[data-role="scrub-host"]');
-    if (assets.poster) host.style.backgroundImage = `url("${assets.poster}")`;
-    if ((assets.frames || assets.poster) && typeof ctx.frameScrub === 'function') {
-      scrub = ctx.frameScrub(host, {
-        pattern: assets.frames,
-        mobilePattern: assets.mobileFrames,
-        count: assets.count,
-        critical: assets.critical,
-        poster: assets.poster,
-        fit: 'cover',
-      });
-    }
+    const sequence = root.querySelector('[data-role="sequence"]');
+    sequence.replaceChildren(...(assets.images || []).map((src, index) => {
+      const figure = document.createElement('figure');
+      figure.className = 'fsv__state';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = assets.imageAlt?.[index] || ['변화 전', '변화 중', '변화 후'][index];
+      const caption = document.createElement('figcaption');
+      caption.textContent = ['변화 전', '변화 중', '변화 후'][index];
+      figure.append(img, caption);
+      return figure;
+    }));
   },
 
   build(tl) {
     const copy = root.querySelector('.fsv__copy');
     const lines = [...root.querySelectorAll('.fsv__lines li')];
-    const film = { value: 0 };
-    const step = lines.length > 1 ? 0.44 / (lines.length - 1) : 0;
+    const states = [...root.querySelectorAll('.fsv__state')];
 
-    // enter — 0 .. 0.30. Copy settles; the first beat of the clip plays.
+    // Reveal a real, recognizable subject in three clear stages.
     tl.fromTo(copy, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0);
-    tl.to(film, {
-      value: 1,
-      duration: 0.98,
-      ease: 'none',
-      onUpdate: () => scrub && scrub.setProgress(film.value),
-    }, 0);
-
-    // hold — 0.30 .. 0.75. One line per beat of the clip.
+    tl.fromTo(states, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .14, stagger: .09 }, .06);
     lines.forEach((line, index) => {
-      tl.fromTo(line, { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.09, ease: 'power2.out' }, 0.16 + index * step);
+      tl.fromTo(line, { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.09, ease: 'power2.out' }, 0.36 + index * .08);
     });
 
-    // exit — 0.75 .. 1.00. Only the copy leaves; the frame stays full-bleed.
-    tl.to(copy, { y: -18, autoAlpha: 0, duration: 0.14, ease: 'power2.in' }, 0.82);
+    // Keep the three-state explanation with the recognizable subject through the exit.
   },
 
   unmount() {

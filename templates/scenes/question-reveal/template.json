@@ -48,7 +48,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/client-proposal/02-challenge",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "답이 실제 한 장의 이미지에서 확인되는 구체 관찰 2–4개로 뒷받침될 때.",
     "unfit": "수치 계열/비교가 주된 증거(차트 사용), 이미지가 관찰을 뒷받침하지 않거나 질문에 대한 입증 가능한 답이 없을 때.",
     "requiredInputs": "질문 copy.title; 관련 이미지 1장과 alt; 각 관찰과 위치를 짝지은 2–4개 `라벨: 관찰 → 답과의 관계` 줄 및 일대일 assets.marks; 결론 scene.evidence; 이미지와 근거의 scene.source.",
@@ -61,6 +61,9 @@
     "exampleContent": "화면의 실제 부품 온도센서·공기 배출구·부하 라벨 위치를 표시하고, 각 관찰로 과열 원인을 설명하는 강의 도입.",
     "unsupportedReason": "—",
     "nextImplementation": "—",
-    "estimatedEffort": "—"
+    "estimatedEffort": "—",
+    "relation": "question-to-observation",
+    "failureFallback": "질문을 답하는 직접 관찰이 없으면 질문을 보류하거나 출처가 있는 설명 장면으로 바꾼다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

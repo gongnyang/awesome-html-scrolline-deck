@@ -53,7 +53,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/sample-deck/09-checklist",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "최대 3개 선택지와 비교 기준 2–4개를 같은 근거로 대조할 때.",
     "unfit": "기준이 다수이거나 근거가 일관되지 않아 행렬로 판단할 수 없을 때.",
     "requiredInputs": "선택지 2–3개, 최대 4개 기준, 각 칸의 명시 값 또는 빈칸 표시, 출처와 추천 이유.",
@@ -66,6 +66,9 @@
     "exampleContent": "브라우저 검수 방식 세 가지를 화면 가독성·진행·이미지·발표 흐름 기준으로 비교한다.",
     "unsupportedReason": "네 가지 기준을 넘기거나 칸마다 다른 정의를 쓰는 비교에는 적합하지 않다.",
     "nextImplementation": "실제 발표에서는 표의 값과 추천 이유를 독립 출처로 재확인한다.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "criteria-based-decision",
+    "failureFallback": "기준 자료가 불완전하면 표를 채우지 말고 평가가 완료된 기준만 좁혀 비교한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

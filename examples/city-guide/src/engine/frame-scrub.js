@@ -1,6 +1,6 @@
 /**
  * frame-scrub.js — paints an image sequence onto a canvas at a given progress.
- * Under reduced motion (and on mobile without a mobile sequence) only the poster is drawn.
+ * Under reduced motion (and on mobile without a mobile sequence) a still is drawn.
  */
 import { isMobile, reduced } from './motion.js';
 
@@ -26,8 +26,8 @@ export function createFrameScrub(host, opts = {}) {
 
   const mobile = isMobile();
   const activePattern = mobile && mobilePattern ? mobilePattern : pattern;
-  // Poster-only mode: reduced motion, no sequence at all, or mobile without a light sequence.
-  const lite = reduced() || !activePattern || count < 2 || (mobile && !mobilePattern && !!poster);
+  // Still-only mode: reduced motion, no sequence at all, or mobile without a light sequence.
+  const lite = reduced() || !activePattern || count < 2 || (mobile && !mobilePattern);
   const total = lite ? 1 : count;
   const frames = new Array(total);
   let current = -1;
@@ -46,7 +46,8 @@ export function createFrameScrub(host, opts = {}) {
         still.src = !lite && poster ? poster : mediaFallback;
       }
     };
-    img.src = lite ? poster : framePath(activePattern, i + 1);
+    img.src = lite ? (poster || (activePattern && count > 0 ? framePath(activePattern, 1) : mediaFallback))
+      : framePath(activePattern, i + 1);
     frames[i] = img;
     return img;
   };

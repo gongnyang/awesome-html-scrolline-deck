@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">회수와 세척을 거치는 재사용 용기</title>
+  <desc id="desc">가상의 시장 운영 개념 그림: 다회용 용기와 회수 바구니</desc>
+  <rect width="900" height="600" fill="#dce9e1"/>
+  <path d="M60 485h780" stroke="#aebfb3" stroke-width="3"/>
+  <g transform="translate(152 142)">
+    <path d="M25 65h304l-25 250H55z" fill="#97c6b4" stroke="#244d45" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M14 65q8-40 165-40t165 40" fill="#e9f1e9" stroke="#244d45" stroke-width="8"/>
+    <path d="M85 123h184" stroke="#557d6e" stroke-width="8" stroke-linecap="round"/>
+    <path d="M105 166h144" stroke="#557d6e" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(560 354)" fill="#496c5a">
+    <path d="M0 0h235l-24 126H24z" fill="#729782" stroke="#244d45" stroke-width="8"/>
+    <path d="M35 0v126M84 0v126M133 0v126M182 0v126" stroke="#dce9e1" stroke-width="8" opacity=".85"/>
+    <path d="M48-5q12-56 70-56t70 56" fill="none" stroke="#244d45" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>

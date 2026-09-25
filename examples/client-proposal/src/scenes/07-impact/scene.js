@@ -21,7 +21,7 @@ export default {
         tl.fromTo(root.querySelector('.b__after'), { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 0.28, ease: 'power2.inOut' }, 0.04);
     tl.fromTo(root.querySelector('.b__label'), { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.12, stagger: 0.04 }, 0.28);
     tl.fromTo(root.querySelector('.b__title'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12 }, 0);
-    tl.to(root, { autoAlpha: 0, scale: 0.98, duration: 0.16 }, 0.82);
+
     // hold — 0.30 .. 0.75
     // Keep the composed state readable while the presenter speaks.
     // exit — 0.75 .. 1.00

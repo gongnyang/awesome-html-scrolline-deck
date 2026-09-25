@@ -9,4 +9,6 @@ test('public assets resolve within a deployed deck subpath', () => {
   assert.equal(resolveAssetURL('https://example.com/logo.svg', base), 'https://example.com/logo.svg');
   assert.deepEqual(resolveAssets({ images: ['/media/a.webp'], poster: '/media/poster.webp' }, base).images,
     [`${base}media/a.webp`]);
+  assert.deepEqual(resolveAssets({ photos: ['/media/arrival.webp', '/media/booking.webp'] }, base).photos,
+    [`${base}media/arrival.webp`, `${base}media/booking.webp`]);
 });

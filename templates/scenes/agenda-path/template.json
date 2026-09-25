@@ -47,7 +47,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/annual-report/09-next",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "한 발표 안의 2–4개 실제 구간을 미리 알려 청중이 논리적 흐름을 따라오게 할 때.",
     "unfit": "연도별 사건/계획이면 timeline, 한 절차의 단계별 원인 결과면 step-flow가 더 적합할 때.",
     "requiredInputs": "copy.lines 2–4개, 각 `발표 구간: 청중이 알게 될 내용` 형식. 실제 발표 본문과 일치하는 구간.",
@@ -58,8 +58,11 @@
     "mobile": "세로 축을 유지하고 각 구간명과 약속을 한 묶음으로 배치한다.",
     "reducedMotion": "의제 전체와 모든 청중 약속을 정적으로 제공한다.",
     "exampleContent": "관측한 지표→원인 설명→근거 검증→의사결정으로 이어지는 실제 발표 의제.",
-    "unsupportedReason": "",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 연도별 사건/계획이면 timeline, 한 절차의 단계별 원인 결과면 step-flow가 더 적합할 때.",
     "nextImplementation": "Use only with the stated source, chronology/relationship evidence, and presenter-readable hold; review the authored instance for claim accuracy.",
-    "estimatedEffort": ""
+    "estimatedEffort": "",
+    "relation": "talk-sequence",
+    "failureFallback": "경로 의미가 약하면 실제 장별 주장 3개를 큰 번호와 짧은 문장으로 나열하고, 발표 중 현재 위치만 강조한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

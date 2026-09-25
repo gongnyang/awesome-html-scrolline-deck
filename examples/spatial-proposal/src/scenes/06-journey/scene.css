@@ -15,16 +15,18 @@
 }
 @media (prefers-reduced-motion: reduce) {
   /* No pin, no pan: the caption has to lead so the first screen still reads. */
-  [data-scene="06-journey"] .gal { height: auto; min-height: 100svh; display: flex; flex-direction: column; }
-  [data-scene="06-journey"] .gal__caption { order: -1; position: relative; left: auto; bottom: auto; width: auto; padding: var(--space-xl, 32px) var(--gutter, 20px) var(--space-lg, 24px); }
-  [data-scene="06-journey"] .gal__track { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; width: 100%; height: auto; transform: none; }
-  [data-scene="06-journey"] .gal__item { height: 32vw; }
+  [data-scene="06-journey"] .gal { box-sizing: border-box; height: auto; min-height: 100svh; display: flex; flex-direction: column; padding: 26px 0 32px; }
+  [data-scene="06-journey"] .gal__caption { order: -1; position: relative; left: auto; bottom: auto; width: min(1320px,calc(100% - 48px)); margin: 0 auto 18px; padding: 0; }
+  [data-scene="06-journey"] .gal__track { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: min(1320px,calc(100% - 48px)); height: auto; margin: 0 auto; transform: none; }
+  [data-scene="06-journey"] .gal__item { height: min(29vh,270px); }
   [data-scene="06-journey"] .gal__item img { clip-path: none; }
   [data-scene="06-journey"] .gal__scrim { display: none; }
 }
 @media (prefers-reduced-motion: reduce) and (max-width: 720px) {
-  [data-scene="06-journey"] .gal__track { grid-template-columns: minmax(0, 1fr); }
-  [data-scene="06-journey"] .gal__item { height: 56vw; }
+  [data-scene="06-journey"] .gal { padding: 18px 0 24px; }
+  [data-scene="06-journey"] .gal__caption { width: calc(100% - 36px); margin-bottom: 10px; }
+  [data-scene="06-journey"] .gal__track { width: calc(100% - 36px); grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  [data-scene="06-journey"] .gal__item { height: 38vw; min-height: 132px; }
 }
 
 /* Each stop in the walk has its own readable statement. */
@@ -39,6 +41,7 @@
   [data-scene="06-journey"] .gal__line { font-size: 17px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  [data-scene="06-journey"] .gal__count { display: none; }
   [data-scene="06-journey"] .gal__caption { width: auto; }
   [data-scene="06-journey"] .gal__item-label { display: block; position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 8px 12px; background: var(--canvas); color: var(--ink); font: 600 18px/1.3 var(--font-display); }
   [data-scene="06-journey"] .gal__item { position: relative; }

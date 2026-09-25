@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T06:07:59.328Z",
+  "generatedAt": "2026-09-25T13:35:23.439Z",
   "results": [
     {
       "slug": "01-promo-shorts",
@@ -15,9 +15,9 @@
     },
     {
       "slug": "03-education-scene-design",
-      "seconds": 68.625,
+      "seconds": 76.583333,
       "dimensions": "1920x1080",
-      "beats": 16
+      "beats": 13
     }
   ]
 }

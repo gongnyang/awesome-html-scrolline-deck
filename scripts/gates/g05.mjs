@@ -6,11 +6,11 @@
  * 뷰포트 픽셀을 전달하고, 이 게이트는 section 자체의 초과 높이를 제외해 측정한다.
  */
 import { orderedScenes } from './_util.mjs';
-import { expectedPinDistance } from '../lib/wheel.mjs';
+import { expectedPinDistance, scenePace } from '../lib/wheel.mjs';
 import { mainDrive } from './_drive.mjs';
 
 export const id = 'G5';
-export const title = '핀 거리 = pinVh% × 뷰포트 (±2px)';
+export const title = '핀 거리 = pace.scrollVh% × 뷰포트 (±2px)';
 export const needsBrowser = true;
 export const TOLERANCE = 2;
 
@@ -24,19 +24,20 @@ export async function run(ctx) {
     const range = byId.get(scene.id);
     if (!range) { problems.push(`${scene.id}: 페이지에서 [data-scene] 섹션을 찾지 못했습니다`); continue; }
 
-    const shouldPin = scene.pin !== false && Number(scene.pinVh) > 0;
+    const pace = scenePace(scene);
+    const shouldPin = pace.mode !== 'pass' && pace.scrollVh > 0;
     if (!shouldPin) {
-      if (range.pinned) problems.push(`${scene.id}: pin:false 인데 pin-spacer가 생겼습니다`);
+      if (range.pinned) problems.push(`${scene.id}: pass 장면인데 pin-spacer가 생겼습니다`);
       continue;
     }
     if (!range.pinned) { problems.push(`${scene.id}: 핀이 걸리지 않았습니다 (pin-spacer 없음)`); continue; }
 
-    const expected = expectedPinDistance(scene.pinVh, drive.innerHeight);
+    const expected = expectedPinDistance(pace.scrollVh, drive.innerHeight);
     const delta = range.pinDistance - expected;
     measured.push({ id: scene.id, expected: Math.round(expected), actual: range.pinDistance, delta: Math.round(delta) });
     if (Math.abs(delta) > TOLERANCE) {
       problems.push(
-        `${scene.id}: 핀 거리 ${range.pinDistance}px, 기대 ${Math.round(expected)}px (pinVh ${scene.pinVh}) — 차이 ${Math.round(delta)}px`,
+        `${scene.id}: 핀 거리 ${range.pinDistance}px, 기대 ${Math.round(expected)}px (scrollVh ${pace.scrollVh}) — 차이 ${Math.round(delta)}px`,
       );
     }
   }

@@ -99,7 +99,7 @@ export default {
     tl.to(horizon, { '--flash': 1, duration: 0.03, yoyo: true, repeat: 1 }, 0.34);
 
     // exit — 0.75 .. 1.00. The whole board lifts away.
-    tl.to(root, { yPercent: -8, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
+    tl.to(root, { yPercent: -8, autoAlpha: 1, duration: 0.18, ease: 'power2.in' }, 0.8);
   },
 
   unmount() { root = null; },

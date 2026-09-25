@@ -12,28 +12,38 @@ export default {
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
     const images = (scene.assets || {}).images || [];
+    const slides = images.length ? images : [null];
     cards = (scene.assets || {}).galleryItems || [];
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
     root.querySelector('[data-role="line"]').textContent = (copy.lines || [])[0] || '';
     const alt = (scene.assets || {}).imageAlt || [];
-    root.querySelector('[data-role="track"]').replaceChildren(...images.map((src, index) => {
+    root.querySelector('[data-role="track"]').replaceChildren(...slides.map((src, index) => {
       const figure = document.createElement('figure');
       figure.className = 'gal__item';
-      const image = document.createElement('img');
-      image.src = src;
-      image.alt = alt[index] || `${copy.title || '장면'} ${index + 1}`;
-      image.decoding = 'async';
-      image.loading = index === 0 ? 'eager' : 'lazy';
-      if (index === 0) image.setAttribute('fetchpriority', 'high');
+      if (src) {
+        const image = document.createElement('img');
+        image.src = src;
+        image.alt = alt[index] || `${copy.title || '장면'} ${index + 1}`;
+        image.decoding = 'async';
+        image.loading = index === 0 ? 'eager' : 'lazy';
+        if (index === 0) image.setAttribute('fetchpriority', 'high');
+        figure.append(image);
+      }
       const label = document.createElement('figcaption');
       label.className = 'gal__item-label';
       label.textContent = cards[index]?.title || alt[index] || '';
-      figure.append(image, label);
+      figure.append(label);
+      if (index === 0) {
+        const sample = document.createElement('div');
+        sample.className = 'gal__sample-board';
+        sample.innerHTML = '<span class="sample-board__label">샘플 발표 화면 · 완성 상태</span><strong>한 장면에는<br>한 가지 주장</strong><div class="sample-board__proof"><article><b>주장</b><p>청중이 기억할 한 문장</p></article><article><b>시각 근거</b><p>설명을 뒷받침하는 예시</p></article><article><b>출처</b><p>근거를 다시 확인할 정보</p></article></div><small>발표 중에도 주장과 근거를 함께 읽을 수 있도록 구성한 화면</small>';
+        figure.append(sample);
+      }
       return figure;
     }));
-    root.querySelector('[data-role="count"]').textContent = `${pad(1)} / ${pad(images.length)}`;
+    root.querySelector('[data-role="count"]').textContent = `${pad(1)} / ${pad(slides.length)}`;
     const first = cards[0];
     if (first) {
       root.querySelector('[data-role="kicker"]').textContent = first.kicker || copy.kicker || '';
@@ -58,10 +68,12 @@ export default {
     tl.fromTo(caption, { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.14, ease: 'power2.out' }, 0);
 
     // hold — a short move is followed by a full-frame speaking stop for each example.
-    const interval = 0.6 / Math.max(1, total - 1);
+    // Let the selected native sample read as a complete screen before the
+    // gallery moves on to contrasting examples.
+    const interval = 0.48 / Math.max(1, total - 1);
     for (let index = 1; index < total; index += 1) {
-      const at = 0.2 + (index - 1) * interval;
-      const duration = interval * 0.5;
+      const at = 0.3 + (index - 1) * interval;
+      const duration = interval * 0.42;
       tl.to(track, { xPercent: -(index * 100), duration, ease: 'power2.inOut' }, at);
       tl.to(pan, {
         p: index / (total - 1), duration, ease: 'none',
@@ -77,8 +89,7 @@ export default {
       }, at);
     }
 
-    // exit — 0.75 .. 1.00. Dim into the next scene.
-    tl.to(root.querySelector('.gal__dim'), { opacity: 0.72, duration: 0.18 }, 0.8);
+    // Keep the sample board and its selection reason legible through the exit.
   },
 
   unmount() { root = null; cards = []; },

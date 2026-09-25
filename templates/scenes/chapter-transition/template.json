@@ -45,7 +45,7 @@
   "preview": "preview.webp",
   "previewSource": "work/template-qa-chapter/01-chapter",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "A real section change whose next two to four questions/proof steps can be stated in concise text.",
     "unfit": "A title-only pause, a repeated divider, or a section whose evidence needs an image/data visual.",
     "requiredInputs": "A chapter number in copy.kicker, a specific section claim in copy.title, and two to four ordered copy.lines.",
@@ -58,6 +58,9 @@
     "exampleContent": "Chapter 02 · From claim to evidence, followed by the questions the evidence will answer.",
     "unsupportedReason": "Do not use it to pad a deck with a decorative divider or repeat its numbered card grammar.",
     "nextImplementation": "Keep agenda lines concrete and review desktop, mobile, reduced-motion, and the .55 hold.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "argument-sequence",
+    "failureFallback": "새 근거가 없으면 장 전환을 생략하고 다음 주장 장면으로 바로 이어간다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

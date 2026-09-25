@@ -46,7 +46,7 @@ export default {
       tl.fromTo(fill, axis, { ...done, duration: 0.4, ease: 'power2.out' }, 0.03);
       tl.fromTo(steps, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.14, stagger: 0.1, ease: 'power2.out' }, 0.08);
     }
-    tl.to(root, { autoAlpha: 0, y: -18, duration: 0.14 }, 0.86);
+
   },
   unmount() { root = null; },
 };

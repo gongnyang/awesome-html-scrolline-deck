@@ -88,7 +88,7 @@ export default {
       tl.fromTo(line, { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .065, ease: 'power2.out' }, cue);
     });
     // exit — leave the concluding frame visible until the final part of the pin.
-    tl.to(copy, { y: -10, autoAlpha: 0, duration: .08, ease: 'power2.in' }, .92);
+    tl.to(copy, { y: -10, autoAlpha: 1, duration: .08, ease: 'power2.in' }, .92);
   },
 
   unmount() {

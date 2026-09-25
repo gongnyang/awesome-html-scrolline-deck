@@ -76,7 +76,7 @@ export default {
     tl.call(label('03', lines[2] || ''), null, 0.63);
 
     // exit — 0.75 .. 1.00. The finished surface pushes out of frame.
-    tl.to(root, { scale: 1.05, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
+    tl.to(root, { scale: 1.05, autoAlpha: 1, duration: 0.18, ease: 'power2.in' }, 0.8);
   },
 
   unmount() { root = null; },

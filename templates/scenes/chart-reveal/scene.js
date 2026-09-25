@@ -65,8 +65,8 @@ export default {
     // hold — every bar, category, value, zero baseline, and source stay visible.
 
     // exit — send the completed evidence upward as the next question enters.
-    tl.to(figure, { y: -18, autoAlpha: 0, duration: 0.14, ease: 'power2.in' }, 0.84);
-    tl.to(head, { y: -10, autoAlpha: 0, duration: 0.1 }, 0.86);
+    tl.to(figure, { y: -18, autoAlpha: 1, duration: 0.14, ease: 'power2.in' }, 0.84);
+    tl.to(head, { y: -10, autoAlpha: 1, duration: 0.1 }, 0.86);
   },
   unmount() { root = null; },
 };

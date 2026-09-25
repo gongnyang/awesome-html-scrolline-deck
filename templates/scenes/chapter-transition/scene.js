@@ -52,7 +52,7 @@ export default {
     });
     // exit — clear the section transition before the next evidence scene.
     tl.to(field, { scaleX: 0, transformOrigin: 'right center', duration: 0.12, ease: 'none' }, 0.86);
-    tl.to(root, { autoAlpha: 0, duration: 0.1, ease: 'none' }, 0.9);
+    tl.to(root, { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.9);
   },
   unmount() { root = null; },
 };

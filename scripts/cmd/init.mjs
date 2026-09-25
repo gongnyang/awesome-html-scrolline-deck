@@ -80,7 +80,7 @@ export async function run(argv) {
 Next
   1. cd ${rel} && npm install
   2. storyboard the audience, claim, evidence, visual direction and scene jobs
-  3. scrolline add <technique> --id 01-open --title "…" --lines "a|b"
+  3. scrolline add <technique> --id 01-open --title "…" --purpose "…" --claim "…" --relation question --reason "…" --evidenceStatus none --presenterAction "…" --visualChange "…" --pace hold --notes "…"
   4. npm run dev            open http://localhost:5173
   5. scrolline check .      then scrolline verify . --strict before the talk
 `);

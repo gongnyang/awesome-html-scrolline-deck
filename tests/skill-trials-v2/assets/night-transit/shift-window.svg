@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Night shift time-window concept</title>
+  <desc id="desc">An abstract timeline linking shift end, transit check, and a backup plan. No real service times are shown.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101a32"/><stop offset="1" stop-color="#243c59"/></linearGradient>
+    <linearGradient id="route" x2="1"><stop stop-color="#86aaff"/><stop offset="1" stop-color="#ffbf69"/></linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="28" fill="url(#bg)"/>
+  <text x="64" y="82" fill="#c2d5ff" font-family="Arial,sans-serif" font-size="23" letter-spacing="4">TIME WINDOW · CONCEPT</text>
+  <path d="M146 378 H1048" fill="none" stroke="#405575" stroke-width="18" stroke-linecap="round"/>
+  <path d="M146 378 H1048" fill="none" stroke="url(#route)" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#0c1425" stroke="#b6ceff" stroke-width="7">
+    <circle cx="190" cy="378" r="42"/><circle cx="600" cy="378" r="42"/><circle cx="1008" cy="378" r="42"/>
+  </g>
+  <g fill="#f3f6ff" font-family="Arial,sans-serif" text-anchor="middle">
+    <text x="190" y="260" font-size="30" font-weight="700">SHIFT ENDS</text>
+    <text x="600" y="260" font-size="30" font-weight="700">CHECK SERVICE</text>
+    <text x="1008" y="260" font-size="30" font-weight="700">KEEP BACKUP</text>
+    <text x="190" y="492" font-size="21" fill="#b9c8df">actual end time</text>
+    <text x="600" y="492" font-size="21" fill="#b9c8df">official live schedule</text>
+    <text x="1008" y="492" font-size="21" fill="#b9c8df">if a leg is unavailable</text>
+  </g>
+  <text x="64" y="658" fill="#ffd99a" font-family="Arial,sans-serif" font-size="22">CONCEPT DIAGRAM · NO CITY, ROUTE OR SERVICE TIMES</text>
+</svg>

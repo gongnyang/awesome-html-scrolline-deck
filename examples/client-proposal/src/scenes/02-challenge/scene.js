@@ -59,7 +59,7 @@ export default {
     tl.fromTo(items, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.12, stagger: 0.045 }, 0.4);
     // hold — let the presenter explain why the eight-minute boundary is a hypothesis.
     // exit — fade the scene before the measured evidence arrives.
-    tl.to(root, { autoAlpha: 0, scale: 0.985, duration: 0.16, ease: 'power1.in' }, 0.84);
+
   },
   unmount() { root = null; },
 };

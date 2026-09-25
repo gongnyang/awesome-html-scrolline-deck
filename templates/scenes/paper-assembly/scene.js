@@ -69,7 +69,7 @@ export default {
     // hold — the claim and all labels stay readable for the presenter.
     tl.fromTo(line, { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0.42);
     // exit — the assembled page set leaves as one composition.
-    tl.to([copy, line, ...sheets], { autoAlpha: 0, duration: 0.1, ease: 'none' }, 0.9);
+    tl.to([copy, line, ...sheets], { autoAlpha: 1, duration: 0.1, ease: 'none' }, 0.9);
   },
   unmount() { root = null; },
 };

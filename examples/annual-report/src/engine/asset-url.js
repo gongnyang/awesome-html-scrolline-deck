@@ -9,6 +9,7 @@ export function resolveAssets(assets = {}, baseURI) {
   return {
     ...assets,
     images: Array.isArray(assets.images) ? assets.images.map(url) : assets.images,
+    photos: Array.isArray(assets.photos) ? assets.photos.map(url) : assets.photos,
     poster: url(assets.poster),
     video: url(assets.video),
     frames: url(assets.frames),

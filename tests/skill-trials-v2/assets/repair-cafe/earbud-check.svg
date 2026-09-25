@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">수리 카페의 이어폰 점검 콘셉트 그림</title>
+  <desc id="desc">특정 상품이 아닌 유선 이어폰의 연결부와 케이블을 보여 주는 콘셉트 일러스트</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151925"/><stop offset="1" stop-color="#313044"/></linearGradient>
+    <linearGradient id="metal" x1="0" x2="1"><stop stop-color="#d4dbe5"/><stop offset=".5" stop-color="#737d91"/><stop offset="1" stop-color="#eef1f4"/></linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <ellipse cx="607" cy="600" rx="410" ry="38" fill="#070a10" opacity=".52"/>
+  <path d="M350 445 C290 530 335 602 472 576 C610 550 616 460 748 456 C840 453 857 530 957 498" fill="none" stroke="#d4d8e0" stroke-width="17" stroke-linecap="round"/>
+  <path d="M350 445 C290 530 335 602 472 576 C610 550 616 460 748 456 C840 453 857 530 957 498" fill="none" stroke="#717d8c" stroke-width="5" stroke-linecap="round"/>
+  <g transform="translate(263 270) rotate(-18)">
+    <path d="M22 40 C-3 4 24 -26 58 -23 C90 -20 102 11 86 36 L77 51 L77 93 Q77 111 60 111 Q42 111 42 94 L42 57Z" fill="#dce1e9"/>
+    <path d="M42 80 L76 80" stroke="#7e8795" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="59" cy="4" rx="11" ry="7" fill="#798393"/>
+  </g>
+  <g transform="translate(908 430) rotate(8)">
+    <rect x="0" y="-18" width="104" height="36" rx="12" fill="url(#metal)"/>
+    <rect x="94" y="-10" width="64" height="20" rx="7" fill="#b5bfcc"/>
+    <path d="M126 -8v16M142 -8v16" stroke="#556171" stroke-width="5"/>
+  </g>
+  <circle cx="369" cy="425" r="26" fill="#f1b963" opacity=".14"/><circle cx="369" cy="425" r="7" fill="#f1b963"/>
+  <circle cx="961" cy="429" r="26" fill="#8ce2cc" opacity=".14"/><circle cx="961" cy="429" r="7" fill="#8ce2cc"/>
+  <text x="58" y="76" fill="#e8ecf2" font-family="Arial,sans-serif" font-size="20" letter-spacing="3">CONCEPT ILLUSTRATION · NO SPECIFIC PRODUCT</text>
+</svg>

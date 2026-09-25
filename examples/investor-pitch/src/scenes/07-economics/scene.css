@@ -1,16 +1,14 @@
-/* annotated-chart: a distinct presentation structure built around the scene's speaking job. */
-[data-scene="07-economics"] .a{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
-[data-scene="07-economics"] .a__head{margin-bottom:clamp(24px,5vh,60px)}
-[data-scene="07-economics"] .a__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
-[data-scene="07-economics"] .a__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
-[data-scene="07-economics"] .a h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
-[data-scene="07-economics"] .a p{color:var(--ink-muted);line-height:1.55}
-[data-scene="07-economics"] .a img{display:block;max-width:100%}
-[data-scene="07-economics"] .a__plot{height:44vh;position:relative;margin-left:2.5rem;border-left:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0 24%,var(--line) 24.2% 24.5%)}
-[data-scene="07-economics"] .a__scale{position:absolute;inset:0 auto 0 -2.5rem;display:flex;flex-direction:column;justify-content:space-between;width:2rem;color:var(--ink-subtle);font:500 .68rem var(--font-mono,monospace);text-align:right}
-[data-scene="07-economics"] .a__line{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-[data-scene="07-economics"] .a__callout{position:absolute;left:clamp(4%,calc(var(--callout-x,60)*1%),88%);top:clamp(12%,calc(var(--callout-y,30)*1%),85%);max-width:min(15rem,45%);transform:translate(-50%,-100%);border-left:2px solid var(--accent);padding:.5rem 1rem;background:var(--surface);color:var(--ink);box-shadow:0 8px 28px var(--shadow)}
-[data-scene="07-economics"] .a__empty{position:absolute;left:50%;top:50%;max-width:28rem;margin:0;padding:1rem 1.2rem;transform:translate(-50%,-50%);border:1px dashed var(--line);background:var(--surface);color:var(--ink-muted);text-align:center}
-[data-scene="07-economics"] .a__source{margin:var(--space-sm,12px) 0 0 2.5rem;color:var(--ink-subtle);font:500 .75rem var(--font-mono,monospace)}
-@media(max-width:720px){[data-scene="07-economics"] .a{padding:36px 0;min-height:100svh}[data-scene="07-economics"] .a__plot{height:35vh}[data-scene="07-economics"] .a__callout{max-width:60%;font-size:.8rem}[data-scene="07-economics"] .a__source{overflow-wrap:anywhere}}
-@media(prefers-reduced-motion:reduce){[data-scene="07-economics"] .a *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}[data-scene="07-economics"] .a__line path{stroke-dashoffset:0}}
+[data-scene="07-economics"] .channels{box-sizing:border-box;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;padding:clamp(42px,7vh,82px) 0;display:flex;flex-direction:column;justify-content:center;color:var(--ink)}
+[data-scene="07-economics"] .channels__head{max-width:1100px;margin:0 0 clamp(26px,5vh,50px)}
+[data-scene="07-economics"] .channels__kicker{margin:0 0 12px;color:var(--accent);font:700 13px/1.35 var(--font-mono,monospace);letter-spacing:.12em}
+[data-scene="07-economics"] .channels__title{max-width:18ch;margin:0;font:760 clamp(36px,5.2vw,70px)/1.05 var(--font-display,inherit);letter-spacing:-.04em;text-wrap:balance;word-break:keep-all}
+[data-scene="07-economics"] .channels__intro{max-width:60ch;margin:14px 0 0;color:var(--ink-muted);font:450 clamp(16px,1.45vw,20px)/1.5 var(--font-body,inherit);word-break:keep-all}
+[data-scene="07-economics"] .channels__board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,26px)}
+[data-scene="07-economics"] .channels__card{min-width:0;min-height:250px;padding:20px 18px 16px;border-top:4px solid var(--accent);border-bottom:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;align-items:flex-start}
+[data-scene="07-economics"] .channels__number{color:var(--accent);font:700 13px/1 var(--font-mono,monospace)}
+[data-scene="07-economics"] .channels__name{margin:20px 0 10px;color:var(--ink);font:720 clamp(22px,2.2vw,30px)/1.15 var(--font-display,inherit);word-break:keep-all}
+[data-scene="07-economics"] .channels__description{margin:0;color:var(--ink-muted);font:450 clamp(15px,1.25vw,18px)/1.5 var(--font-body,inherit);word-break:keep-all}
+[data-scene="07-economics"] .channels__measure{margin:auto 0 0;padding-top:16px;color:var(--ink);font:650 clamp(13px,1.1vw,15px)/1.4 var(--font-body,inherit);word-break:keep-all}
+[data-scene="07-economics"] .channels__source{margin:20px 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--ink-subtle);font:500 12px/1.45 var(--font-body,inherit);word-break:keep-all}
+@media(max-width:720px){[data-scene="07-economics"] .channels{padding:34px 0;justify-content:flex-start}[data-scene="07-economics"] .channels__head{margin-bottom:20px}[data-scene="07-economics"] .channels__title{font-size:clamp(33px,9vw,46px)}[data-scene="07-economics"] .channels__board{grid-template-columns:1fr;gap:10px}[data-scene="07-economics"] .channels__card{min-height:0;padding:14px}[data-scene="07-economics"] .channels__name{margin:8px 0 4px;font-size:21px}[data-scene="07-economics"] .channels__measure{margin-top:10px;padding-top:8px}}
+@media(prefers-reduced-motion:reduce){[data-scene="07-economics"] .channels *{animation-duration:.01ms!important;transition-duration:.01ms!important}}

@@ -11,7 +11,10 @@
   "slots": {
     "kicker": true,
     "title": true,
-    "lines": { "min": 2, "max": 4 }
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
   },
   "assets": {
     "frames": false,
@@ -23,7 +26,10 @@
     "video": false,
     "poster": false
   },
-  "hold": [0.3, 0.82],
+  "hold": [
+    0.3,
+    0.82
+  ],
   "notesHint": "Name the speaker, role and interview date; provide a permitted photograph, verbatim quote, source and confirmation of consent. Each supporting image must show the speaker or work they directly describe.",
   "description_en": "Human evidence scene: a sourced quote remains legible while one to three photos move from the speaker to the work and setting that give the quote context.",
   "description_ko": "인물 근거 장면. 출처가 확인된 인용문을 고정해 읽히게 하고, 인물·직접 한 일·발언 맥락을 보여주는 사진을 스크롤에 따라 연결한다.",
@@ -42,7 +48,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/product-launch/01-hero",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "실제 경험을 말한 사람이 결과나 작업에 직접 참여해, 그 사람의 관찰이 주장을 이해하는 근거가 될 때.",
     "unfit": "스톡 인물, 배우가 실제 참여자처럼 보이는 장면, 인용 동의나 발언 출처가 확인되지 않은 후기.",
     "requiredInputs": "인물과 실제 작업이 식별되는 허가된 사진 1–3장, 원문 그대로의 인용, 이름·역할·날짜, 출처 링크와 촬영·인용 동의.",
@@ -55,6 +61,9 @@
     "exampleContent": "위 문구는 가상 인터뷰 예시다. 실제 발표에서는 서면 동의를 받은 발언과 발언자가 직접 설명한 작업 사진으로 교체한다.",
     "unsupportedReason": "이전 버전은 출처가 없는 인물 프로필과 장식적인 기울기만 제공해 발언의 근거와 당사자의 관여를 확인하기 어려웠다.",
     "nextImplementation": "인물 발언의 출처 필드를 명확히 하고, 사진 순서를 스크롤 비트와 연결해 인터뷰 증거의 맥락을 따라가게 한다.",
-    "estimatedEffort": "L"
+    "estimatedEffort": "L",
+    "relation": "person-to-testimony",
+    "failureFallback": "실제 동의와 발언 출처가 없으면 인물 사진·인용을 사용하지 않고 익명화된 사례 사실을 제시한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

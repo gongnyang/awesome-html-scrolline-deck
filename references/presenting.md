@@ -4,8 +4,8 @@
 
 | Key | What it does |
 |---|---|
-| `→` or `Space` | Next scene — lands 35% into the pin, the first hold frame |
-| `←` | Previous scene |
+| `→` or `Space` | Next declared presenter cue; repeated keydown cannot skip cues |
+| `←` | Previous declared presenter cue |
 | `1`–`9`, `0` | Jump to scene 1–9, `0` is scene 10 |
 | `P` | Presenter auto-advance. Any wheel, touch or key input stops it |
 | `F` | Fullscreen |
@@ -23,8 +23,9 @@ first scene, and take the wheel back whenever you want — one scroll cancels it
 2. `scrolline verify .` **on the machine that will drive the projector**. Pin
    distances are measured in viewport heights, so a different screen is a
    different deck.
-3. Read the three captures per scene in `qa/` (30%, 55%, 85%). If 55% looks
-   unfinished, the entrance band is too long.
+3. Read the entry, every declared cue, 96% and 99% exit captures at 1440×900 and
+   1920×1080; then review mobile and reduced-motion captures. A cue that looks
+   unfinished cannot support a spoken explanation.
 4. `scrolline storyboard .` and check that every scene has notes.
 5. Press `F`, then `H`. Both are one-way switches your audience never sees.
 6. Walk the deck once with `→` alone. Every landing should be readable without
@@ -39,20 +40,19 @@ first scene, and take the wheel back whenever you want — one scroll cancels it
 
 ## During
 
-- Scroll gently. One notch is roughly a tenth of a scene, and the scrub has
-  0.6s of smoothing, so the picture keeps moving after your hand stops.
+- Scroll gently and stop at the authored cue when explaining evidence. The
+  required scroll distance varies by scene and viewport.
 - If the deck stalls, press a number key. Jumps are absolute and always recover.
-- If the projector shows a blank scene, the machine is probably in reduced-motion
-  mode: the deck renders every scene in its final state, with no pin. That is the
-  designed fallback, and the talk still works.
+- If the projector shows a blank scene, use a number key to recover and report
+  the scene as broken. Reduced motion should show a complete static screen.
 
 ## Numbers worth knowing
 
 | Thing | Value |
 |---|---|
 | Reference stage | 1440×900 |
-| Landing point | 35% of the pin distance |
-| Scrub smoothing | 0.6s |
+| Landing point | Each scene's declared `pace.cueStates` |
+| Scroll distance | Set from the scene's speaking beat and information change |
 | Default auto-advance | 180s for the whole deck |
-| Speaking time per scene | about 1.5 minutes |
-| Pin per scene | 100–400vh, 180 is the common default |
+| Speaking time | Rehearse the actual narration and pauses |
+| Pin per scene | `pass` 0; `hold`/`scrub` according to content |

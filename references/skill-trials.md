@@ -1,66 +1,38 @@
-# Independent skill generation trials
+# Independent v2 skill generation trials
 
-Date: 2026-09-25
-Purpose: check whether the Scrolline skill can develop distinct Korean talks from topics outside the eight bundled example decks.
+## Scope and reproduction
 
-## Setup and commands
+Date: 2026-09-25. These three small Korean decks test new topics beyond the eight packaged examples. Each storyboard has three scenes and is saved as a compact JSON snapshot under `tests/skill-trials-v2/`; source illustrations are preserved beside those snapshots. Earlier v1 work is archived at the end of this page.
 
-Ran from the repository root. Used the bundled Node and pnpm executables because Windows PATH does not provide Node/npm:
+### Recreate and verify
 
-```powershell
-$node = 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe'
-$pnpm = 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\fallback\pnpm.cmd'
-```
-
-Scaffold commands:
+Run from the repository root with Node.js; on machines without Node on `PATH`, point `$node` to the installed executable. For each topic, recreate the scaffold with its title/theme, then add the ordered scenes using the exact `technique`, `id`, `purpose`, `claim`, `relation`, `reason`, `evidenceStatus`, `source`, `presenterAction`, `visualChange`, `pace`, `scrollVh`, `cue`, `notes`, and `copy` values in its snapshot. Use `assets` as saved; the companion SVGs are in `tests/skill-trials-v2/assets/<slug>/`. The initial scaffold and verification commands are:
 
 ```powershell
-& $node scripts/cli.mjs init work/skill-trials/heat-island --title '도시 열섬을 식히는 동네 설계' --subtitle '폭염 대응을 위한 생활권 선택' --style light
-& $node scripts/cli.mjs init work/skill-trials/food-waste --title '급식 잔반을 줄이는 학교 실험' --subtitle '학생 참여로 바꾸는 한 끼의 운영' --style dark
-& $node scripts/cli.mjs init work/skill-trials/library-resilience --title '동네 도서관은 폭염 쉼터가 될 수 있을까' --subtitle '생활권 회복력의 작은 기반시설' --style light
+$node = (Get-Command node -ErrorAction Stop).Source
+& $node scripts/cli.mjs init work/skill-trials-v2/repair-cafe --title '고장 난 이어폰, 어디까지 고칠까' --subtitle '점검 순서와 안전한 선택' --style dark
+& $node scripts/cli.mjs init work/skill-trials-v2/night-transit --title '막차 뒤의 이동 선택' --subtitle '교대 근무자의 안전한 귀가 판단' --style light
+& $node scripts/cli.mjs init work/skill-trials-v2/market-returnables --title '다회용 포장, 어디서부터 시작할까' --subtitle '회수 운영을 포함한 작은 실험' --style light
+& $node scripts/cli.mjs check work/skill-trials-v2/repair-cafe
+& $node scripts/cli.mjs check work/skill-trials-v2/night-transit
+& $node scripts/cli.mjs check work/skill-trials-v2/market-returnables
+& $node scripts/cli.mjs verify work/skill-trials-v2/repair-cafe --strict
+& $node scripts/cli.mjs verify work/skill-trials-v2/night-transit --strict
+& $node scripts/cli.mjs verify work/skill-trials-v2/market-returnables --strict
 ```
 
-For each row below, ran:
+The snapshots are the canonical per-scene inputs and preserve scene order and purpose/reason text: [repair-cafe](../tests/skill-trials-v2/repair-cafe.json), [night-transit](../tests/skill-trials-v2/night-transit.json), and [market-returnables](../tests/skill-trials-v2/market-returnables.json).
 
-```powershell
-& $node scripts/cli.mjs add <technique> --dir work/skill-trials/<deck> --id <id> --kicker '<kicker>' --title '<title>' --lines '<line1>|<line2>|...' --notes '<speaker notes>'
-```
+### Storyboards and results
 
-The resulting `data/deck.json` in each trial directory contains the exact copy and speaker notes. Compact copies are saved in `tests/skill-trials/*.json` so the three storyboards remain reviewable after temporary builds are removed. Their scenes also have `purpose`, `reason`, `evidence`, and `source` fields filled in after generation.
+| Trial | Scene order and purpose | Status and evidence |
+| --- | --- | --- |
+| `repair-cafe` | `question-reveal` introduces cable/plug observations → `step-flow` sequences safe exterior checks before disassembly → `option-matrix` compares repair check, parts recovery, and specialist disposal by shared qualitative criteria. | Static 6/6; strict 16/16. Entry/hold/exit and mobile/reduced-motion gates pass. Fictional repair-café example; no product diagnosis asserted. |
+| `night-transit` | `question-reveal` relates shift end to the official last-trip check → `map-route` orders transit checks and alternatives on a conceptual route (explicitly not a street map or verified schedule) → `timeline-roadmap` assigns three checks to before departure, shift end, and a service change. | Static 6/6; strict 16/16 on final source. A baked-in SVG footer label conflicted with the scene source caption; the label was removed and strict captures regenerated. No real transit time or safety claim. |
+| `market-returnables` | `before-after` compares disposable and returnable package paths → `step-flow` assigns return, cleaning, and redistribution responsibilities → `option-matrix` chooses a small pilot scope without invented performance figures. | Static 6/6; strict 16/16. An initial 390px visual review found the before/after labels colliding with illustration details and the stacked after-state partly hidden, despite passing automated gates. The original template now gives labels a canvas-tinted backing and, in stacked mobile mode, shows both complete images with full-width labels. The trial uses this updated source template and final strict passes 16/16. Concept illustrations and fictional planning example. |
 
-| Deck | Ordered scene mix and narrative reason |
-|---|---|
-| `heat-island` — urban heat and neighborhood shade | `question-reveal` (open with a daily-life question) → `map-route` (frame three observation stops) → `chart-reveal` (compare clearly labeled illustrative scores) → `system-map` (show proposed collaborators) → `option-matrix` (compare interventions on shared criteria) → `timeline-roadmap` (propose a seasonal pilot) → `closing-qr` (ask for one local observation; no QR/link claimed) |
-| `food-waste` — a school lunch waste experiment | `word-relay` (state a participation-centered thesis) → `step-flow` (turn it into a classroom experiment) → `chart-reveal` (show uncollected indicators as zero/start values) → `agenda-path` (assign roles) → `odometer-stats` (emphasize the proposed four-week plan) → `closing-qr` (end with a small next-lunch action) |
-| `library-resilience` — neighborhood libraries and heat preparedness | `kinetic-titles` (define three readiness conditions) → `question-reveal` (surface different access needs) → `system-map` (show a proposed operating network) → `timeline-roadmap` (sequence readiness work) → `map-route` (show an explicitly abstract last-mile route) → `option-matrix` (choose one first improvement) |
+Full strict reports are saved as `tests/skill-trials-v2/reports/<slug>-strict.json`. Representative 1440px and 390px captures are saved in `tests/skill-trials-v2/captures/`; the complete per-scene QA set remains under `work/skill-trials-v2/<slug>/qa/`. Visual review covered 1440px holds and 390px mobile for each topic. The repair evidence markers align to the illustrated plug/cable points. The night route stays legible as a conceptual route, not a street map. The returnables comparison initially had overlapping labels on mobile; the general before-after template CSS was corrected, then the market trial was regenerated and strictly rechecked. The before-after preview remains a desktop example; mobile behavior was verified in the generated trial captures. These limited trials pass the configured gates; they are not a claim of universal audience or presentation-quality approval.
 
-No images or external claims were supplied. Notes label the heat comparison values as fictional planning scores, the food-waste zeroes as pre-collection values, and route/timeline content as proposals. Claims about specific municipalities, schools, or libraries were avoided. These topic and scene sequences differ from the example deck topics and their supplied scene orders.
+## Historical v1 trials
 
-## Install, static check, build, and strict browser verification
-
-Installed each scaffold's declared dependencies with the bundled pnpm. Pnpm initially blocked esbuild's install script; after approving only `esbuild`, its postinstall also required the bundled Node directory on PATH. Then ran:
-
-```powershell
-$env:PATH = 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin;' + $env:PATH
-Push-Location work/skill-trials/heat-island; & $pnpm approve-builds esbuild; & $pnpm install; & $pnpm run build; Pop-Location
-Push-Location work/skill-trials/food-waste; & $pnpm approve-builds esbuild; & $pnpm install; & $pnpm run build; Pop-Location
-Push-Location work/skill-trials/library-resilience; & $pnpm approve-builds esbuild; & $pnpm install; & $pnpm run build; Pop-Location
-& $node scripts/cli.mjs check work/skill-trials/heat-island
-& $node scripts/cli.mjs check work/skill-trials/food-waste
-& $node scripts/cli.mjs check work/skill-trials/library-resilience
-& $node scripts/cli.mjs verify work/skill-trials/heat-island --strict --build
-& $node scripts/cli.mjs verify work/skill-trials/food-waste --strict --build
-& $node scripts/cli.mjs verify work/skill-trials/library-resilience --strict --build
-```
-
-All three installs and production builds passed. Static checks passed all six gates for each deck. Strict Playwright verification passed all reported gates: 14 for `heat-island` and 15 each for `food-waste` and `library-resilience`. The browser reports recorded 21, 18, and 18 screenshots. Reports and captures are in each deck's `qa/` directory under `work/skill-trials/`.
-
-## Visual review and findings
-
-Reviewed representative 55% and 85% captures. The initial heat-island `chart-reveal` screenshot (`work/skill-trials/heat-island/qa/03-example-55.jpg`) showed the title, values, and category labels but no visible bars, even though G6 passed. The parent updated the shared chart template to assign a direct bar height, and the generated scene was refreshed from it. The first strict rerun passed all 15 gates but still showed no bars. A direct browser measurement at 1440×900 found a 378px chart and bars with heights 251.3px, 125.7px, and 377px, each at opacity 1 and identity transform; their computed background image was `none` and background color transparent. The chart template uses `var(--accent)`, but the deck tokens originally defined only `--accent-1` and `--accent-2`, leaving the gradient invalid. The parent added the scene composition aliases to the scaffold and example tokens; I copied those aliases into the heat-island trial tokens and reran strict verification. All 15 gates passed again, 21 captures were regenerated, and `03-example-55.jpg` now shows all three colored bars. The final browser measurement reports `linear-gradient(rgb(58, 69, 184), rgb(154, 100, 0))` for every bar background. The food-waste chart uses zero values before collection, so its absent bars are expected.
-
-At initial inspection, CLI `help` listed 12 techniques while the documentation and schema listed 24. The trials succeeded with additional techniques such as `question-reveal`, `map-route`, `chart-reveal`, and `system-map`, because `add` reads its supported techniques from the schema. The parent updated `help` to list all 24; a follow-up `node scripts/cli.mjs help` confirmed the full list.
-
-## Outcome
-
-The skill and CLI generated three distinct Korean scene mixes from unseen topics, carried speaker notes and storyboard rationales, and passed static and browser gates. This is evidence against simple copying of the bundled examples for these three topics. It does not establish quality across all audiences or all 25 current production templates. The chart issue exposed in the first run was resolved in the refreshed trial through the updated template and theme aliases.
+The earlier exploratory runs predate the v2 scene contract and are not current release evidence. Their setup, failures, and fixes are archived in [skill-trials-v1-archive.md](skill-trials-v1-archive.md).

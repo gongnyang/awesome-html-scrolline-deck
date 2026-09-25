@@ -37,7 +37,6 @@ export default {
         const cells = [...root.querySelectorAll('.o__cell')];
     tl.fromTo(cells, { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, stagger: 0.012 }, 0.04);
     tl.fromTo(root.querySelector('.o__title'), { x: -20, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.13 }, 0);
-    tl.to(root, { autoAlpha: 0, y: -20, duration: 0.16 }, 0.82);
     // hold — 0.30 .. 0.75
     // Keep the composed state readable while the presenter speaks.
     // exit — 0.75 .. 1.00

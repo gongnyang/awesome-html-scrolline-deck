@@ -45,7 +45,7 @@
   "preview": "preview.webp",
   "previewSource": "work/template-qa-parallax/01-breath",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "A supplied real clip whose visual change adds context to one concise spoken sentence.",
     "unfit": "Autoplay backgrounds, unrelated stock loops, unseekable media, or a claim that needs changing text during the hold.",
     "requiredInputs": "A seekable muted MP4 plus a representative poster. Keep the scene to one short contextual sentence.",
@@ -58,6 +58,9 @@
     "exampleContent": "A short field clip illustrating how light changes along a walk; the poster is its matching held frame.",
     "unsupportedReason": "The visual must change with scroll input and remain still without it; timed playback breaks the presenter hold.",
     "nextImplementation": "Check that currentTime is tied to scroll and remains paused, then inspect the held frame, mobile layout, and poster fallback.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "visual-context",
+    "failureFallback": "영상의 이동이 발표 정보를 설명하지 않으면 장식을 끄고 안정된 스틸 이미지로 대체한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

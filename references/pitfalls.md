@@ -6,9 +6,9 @@ usually bite.
 ## 1. `vh` is not a ScrollTrigger unit
 
 ```js
-end: `+=${scene.pinVh}vh`   // wrong — vh is not parsed as a relative unit
-end: `+=${scene.pinVh}%`    // wrong — changes when the trigger grows with wrapped text
-end: () => `+=${Math.round(scene.pinVh / 100 * window.innerHeight)}` // viewport pixels
+end: `+=${scene.pace.scrollVh}vh`   // wrong — vh is not parsed as a relative unit
+end: `+=${scene.pace.scrollVh}%`    // wrong — changes when the trigger grows with wrapped text
+end: () => `+=${Math.round(scene.pace.scrollVh / 100 * window.innerHeight)}` // viewport pixels
 ```
 
 ScrollTrigger accepts pixels and percentages in a relative end string. `vh` is
@@ -73,12 +73,13 @@ frame, which sends the HUD and every key jump to the top of the deck. Measure
 from the layout anchor instead: if the section's parent is a `.pin-spacer`, use
 the spacer's offset. The engine's `startPx()` does this.
 
-## 8. Keyboard landing at 35%
+## 8. Keyboard landing at a declared cue
 
 Jumping to a scene's start lands mid-entrance, where the title is still flying.
-The engine lands at `start + pinDistance * 0.35`, the first frame of the hold.
-Keep the entrance band under 30% or the landing shows an unfinished scene.
-Gate G7 checks the landing position and the visible element count.
+The engine lands at `start + pinDistance * scene.pace.cueStates[0].at` and
+advances through the remaining cues. Each cue must be a complete screen where
+the spoken claim and evidence coexist. Gate G7 checks the landing position and
+visible element count. Legacy scenes without `pace` retain a 35% fallback.
 
 ## 9. Reduced motion is a different deck
 
@@ -90,9 +91,11 @@ and requires three visible elements per section and zero pin spacers.
 
 ## 10. Frame sequences get heavy fast
 
-Keep a scrub sequence under 120 frames and 10 MB, and list the frames the
-opening needs in `critical` so they are fetched before the rest. On mobile the
-engine draws the poster only, unless `mobileFrames` points at a narrow sequence.
+Budget a scrub sequence according to the opening load and the presentation
+machine. List the frames the opening needs in `critical` so they are fetched
+before the rest. On mobile the engine draws the poster unless `mobileFrames`
+points at a narrow sequence; without a poster it uses the first frame.
+Reduced motion makes the same still-image choice. Image-heavy decks should defer later scenes.
 
 ## 11. Boxes are not a layout
 
@@ -100,6 +103,16 @@ A card with a border is the default a deck should avoid: at projector distance
 it reads as noise. Use the full bleed, type scale and negative space instead.
 Colours come from tokens only — gate L1 fails on a literal hex, `rgb()` or a
 colour keyword in any `scene.css`.
+
+## 12. A premature exit fade erases the speaking frame
+
+The 2026-09 v2 trial generated an option comparison that hid its entire root at
+timeline 0.91. The last 5% of its pin showed only a background, even though
+the decision was the point of that scene. Most earlier catalog candidates used
+the same exit pattern. Their late `autoAlpha: 0` fades were changed to retain
+the finished claim and evidence while the next scene approaches. A new scene
+must still be checked at 85%, 96%, and 99% in desktop and mobile captures;
+passing the template self-test alone does not establish a usable boundary.
 
 *Not applicable here:* the HalfFloat bloom workaround from WebGL decks. This
 engine paints frames onto a 2D canvas, so there is no float-precision pass to

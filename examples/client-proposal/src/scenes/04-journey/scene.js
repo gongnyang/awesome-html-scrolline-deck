@@ -100,7 +100,7 @@ export default {
     });
     // hold — each image and caption gets a speaking beat as its section becomes active.
     // exit — leave the last customer moment on screen until the next scene takes over.
-    tl.to(root, { autoAlpha: 0, y: -20, duration: 0.14 }, 0.84);
+
   },
   unmount() { root = null; },
 };

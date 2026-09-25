@@ -10,7 +10,7 @@ export async function run(ctx) {
   const drive = await mainDrive(ctx);
   const expected = orderedScenes(ctx.deck).filter((scene) => {
     const assets = scene.assets ?? {};
-    return Boolean(assets.poster || assets.frames || assets.video || assets.images?.length);
+    return Boolean(assets.poster || assets.frames || assets.video || assets.images?.length || assets.photos?.length);
   });
   const missing = expected.filter((scene) => !(drive.mediaVisible.get(scene.id) > 0));
   return { ok: missing.length === 0,

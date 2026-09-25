@@ -3,6 +3,17 @@ const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
 }[character]));
 
 const pad = (value) => String(value).padStart(2, '0');
+const RELATION_LABELS = {
+  'talk-sequence': '발표 순서', 'part-to-whole': '부분과 전체', 'time-series-event': '시간 변화와 사건',
+  'controlled-change': '조건을 맞춘 변화', 'argument-sequence': '논증의 단계', 'magnitude-comparison': '수치 크기 비교',
+  'decision-to-action': '결론과 행동', 'equivalent-options': '동등 조건의 선택지', 'claim-to-source': '주장과 원문 근거',
+  'visual-change-over-time': '시간에 따른 시각 변화', 'process-over-time': '과정의 시간 변화',
+  'ordered-visual-evidence': '순서가 있는 시각 근거', 'spatial-route': '공간 경로', 'defined-measures': '정의된 핵심 수치',
+  'criteria-based-decision': '기준에 따른 결정', 'source-collection': '출처 자료의 관계', 'visual-context': '장면의 맥락',
+  'question-to-observation': '질문과 관찰 근거', 'causal-sequence': '원인과 결과의 순서',
+  'component-relationships': '요소 사이의 관계', 'person-to-testimony': '인물과 증언', 'dated-sequence': '날짜별 변화',
+  'state-transformation': '상태의 변화', 'phrase-transformation': '문구의 의미 변화',
+};
 
 function renderDeck(card, index) {
   const scenes = card.scenes.slice(0, 3);
@@ -33,16 +44,21 @@ function renderDeck(card, index) {
 }
 
 function renderTemplate(template) {
-  const title = template.exampleCopy?.title || template.description_ko || template.name;
+  const title = template.galleryTitle || template.exampleCopy?.title || template.description_ko || template.name;
+  const relation = RELATION_LABELS[template.sceneContract?.relation] || template.sceneContract?.relation || template.familyLabel;
+  const linked = Boolean(template.previewHref);
   return `
-        <article class="template-card" data-family="${esc(template.family)}" data-search="${esc(template.searchText)}">
-          <a class="template-preview" href="${esc(template.previewHref)}" aria-label="${esc(title)}가 적용된 덱 보기">
-            <img loading="lazy" src="./_templates/${esc(template.name)}.webp" alt="${esc(template.alt)}" />
-            <span class="preview-cta">실제 덱에서 보기 ↗</span>
-          </a>
+        <article class="template-card" data-family="${esc(template.family)}" data-status="${esc(template.status)}" data-search="${esc(template.searchText)}">
+          <${linked ? `a class="template-preview" href="${esc(template.previewHref)}" aria-label="${esc(title)}가 적용된 덱 보기"` : 'div class="template-preview"'}>
+            <img loading="lazy" src="./_templates/${esc(template.previewImage)}" alt="${esc(template.alt)}" />
+            <span class="review-badge status-${esc(template.status)}">${esc(template.statusLabel)}</span>
+            <span class="preview-cta">${linked ? '해당 장면 보기 ↗' : '기법 미리보기 · 검수 전'}</span>
+          </${linked ? 'a' : 'div'}>
           <p class="type"><span>${esc(template.familyLabel)}</span><span>${esc(template.name)}</span></p>
-          <h3><a href="${esc(template.previewHref)}">${esc(title)}</a></h3>
+          <h3>${linked ? `<a href="${esc(template.previewHref)}">${esc(title)}</a>` : esc(title)}</h3>
           <p>${esc(template.purpose || template.description_ko)}</p>
+          <p class="template-relation"><b>보여줄 관계</b><span>${esc(relation)}</span></p>
+          <details class="template-guidance"><summary>적합한 조건과 대안</summary><dl><dt>적합</dt><dd>${esc(template.sceneContract?.fit)}</dd><dt>필요한 자료</dt><dd>${esc(template.sceneContract?.requiredInputs)}</dd><dt>맞지 않으면</dt><dd>${esc(template.sceneContract?.failureFallback)}</dd><dt>검수 상태</dt><dd>${esc(template.sceneContract?.reviewNote)}</dd></dl></details>
         </article>`;
 }
 
@@ -75,7 +91,7 @@ export function renderGallery({ decks, templates, videos, families, sceneTypeCou
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#101411" />
-  <meta name="description" content="${decks.length}개의 한국어 스크롤 웹덱과 ${sceneTypeCount}개의 실행 가능한 장면 유형을 둘러보세요." />
+  <meta name="description" content="${decks.length}개의 한국어 스크롤 웹덱과 ${sceneTypeCount}개의 장면 선택 후보를 용도와 근거 기준으로 살펴보세요." />
   <title>Scrolline — 장면으로 보는 발표</title>
   <link rel="preload" as="image" href="./media/gallery-hero.webp" fetchpriority="high" />
   <link rel="stylesheet" href="./assets/gallery.css" />
@@ -85,7 +101,7 @@ export function renderGallery({ decks, templates, videos, families, sceneTypeCou
   <div class="shell">
     <nav class="topbar" aria-label="주요 메뉴">
       <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> SCROLLINE DECK</a>
-      <div class="top-count">${decks.length} DECKS · ${sceneTypeCount} SCENE TYPES · ${videos.length} FILMS</div>
+      <div class="top-count">${decks.length} DECKS · ${sceneTypeCount} SCENE CANDIDATES · ${videos.length} FILMS</div>
       <div class="nav-links"><a href="#decks">덱 둘러보기</a><a href="#templates">장면 찾기</a><a href="#videos">영상 보기</a></div>
     </nav>
   </div>
@@ -109,7 +125,7 @@ export function renderGallery({ decks, templates, videos, families, sceneTypeCou
     </section>
     <div class="shell stats-band" aria-label="컬렉션 통계">
       <div class="stat"><b>${decks.length}</b><span>완성된 발표 덱</span></div>
-      <div class="stat"><b>${sceneTypeCount}</b><span>실행 가능한 장면 유형</span></div>
+      <div class="stat"><b>${sceneTypeCount}</b><span>정보 관계별 장면 메커니즘</span></div>
       <div class="stat"><b>${videos.length}</b><span>한국어 자막 영상</span></div>
     </div>
 
@@ -129,8 +145,8 @@ export function renderGallery({ decks, templates, videos, families, sceneTypeCou
       <div class="shell">
         <div class="section-head">
           <span class="section-index">02 — CHOOSE A SCENE BY JOB</span>
-          <div><p class="eyebrow">Scene library · ${sceneTypeCount} production-ready types</p><h2 class="library-title" id="templates-title">장면의 역할부터<br/><em>고르세요.</em></h2></div>
-          <p>효과 이름 대신 발표에서 해야 할 일을 기준으로 탐색합니다. 검색하거나 시작·근거·설명·결정 유형을 골라보세요.</p>
+          <div><p class="eyebrow">Scene library · ${sceneTypeCount} selection candidates</p><h2 class="library-title" id="templates-title">장면의 역할부터<br/><em>고르세요.</em></h2></div>
+          <p>효과 이름 대신 청중이 이해해야 할 관계로 탐색합니다. 각 후보에는 맞는 자료와 맞지 않을 때의 대안이 적혀 있습니다. 완성 덱의 실제 장면을 먼저 보고 새 콘텐츠에 맞게 다시 설계하세요.</p>
         </div>
         <div class="library-tools">
           <label class="search-wrap"><span class="visually-hidden">장면 검색</span><input class="template-search" id="template-search" type="search" placeholder="숫자, 비교, 질문…" autocomplete="off" /></label>
@@ -138,7 +154,7 @@ export function renderGallery({ decks, templates, videos, families, sceneTypeCou
             <button class="family-filter" type="button" data-family-filter="all" aria-pressed="true">전체 <span>${sceneTypeCount}</span></button>${familyControls}
           </div>
         </div>
-        <p class="filter-status" id="template-result" role="status" aria-live="polite">${sceneTypeCount}개 장면 유형</p>
+        <p class="filter-status" id="template-result" role="status" aria-live="polite">${sceneTypeCount}개 장면 선택 후보</p>
         <div class="template-grid" id="template-grid">${templates.map(renderTemplate).join('')}</div>
         <p class="no-results" id="no-results">조건에 맞는 장면이 없습니다. 검색어를 바꾸거나 전체 유형을 선택해 주세요.</p>
       </div>
@@ -151,7 +167,7 @@ export function renderGallery({ decks, templates, videos, families, sceneTypeCou
         <p>홍보 몽타주, 출처가 있는 실제 사례, 장면 설계 교육 영상입니다. 플레이어에서 바로 한국어 자막을 켤 수 있습니다.</p>
       </div>
       <div class="film-grid">${videos.map(renderFilm).join('')}</div>
-      <p class="source-note">실제 사례 영상의 역사 장면은 AI 재구성 이미지입니다. 기간과 구간은 <a href="https://english.seoul.go.kr/service/amusement/stream/1-cheonggyecheon/">서울시 청계천 안내</a>, 냉각에 관한 설명은 <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002009246">김경태·송재민(2015)</a>을 참고했습니다.</p>
+      <p class="source-note">실제 사례 영상의 역사 장면은 AI 재구성 이미지입니다. 기간과 구간은 <a href="https://english.seoul.go.kr/service/amusement/stream/1-cheonggyecheon/">서울시 청계천 안내</a>, 측정 구간의 온열 변화는 <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002009075">김정호·이주승·윤용한(2015)</a>을 참고했습니다.</p>
     </section>
   </main>
   <footer class="shell closing">
@@ -175,7 +191,7 @@ export function renderGallery({ decks, templates, videos, families, sceneTypeCou
         card.hidden = !(matchesFamily && matchesText);
         if (!card.hidden) visible += 1;
       }
-      result.textContent = visible + '개 장면 유형';
+      result.textContent = visible + '개 장면 선택 후보';
       empty.classList.toggle('is-visible', visible === 0);
     }
     buttons.forEach((button) => button.addEventListener('click', () => {
