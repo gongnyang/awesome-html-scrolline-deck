@@ -15,3 +15,19 @@
 [data-scene="02-problem"] .q__item b{color:var(--accent);font:600 .75rem var(--font-mono,monospace);padding-top:.2rem}
 @media(max-width:720px){[data-scene="02-problem"] .q{padding:36px 0;min-height:100svh}[data-scene="02-problem"] .q__stage{grid-template-columns:1fr;gap:2rem;min-height:auto}[data-scene="02-problem"] .q__title{max-width:12ch;font-size:clamp(36px,10vw,60px)}[data-scene="02-problem"] .q__answer{border-left:0;border-top:1px solid var(--line);padding:1rem 0 0}}
 @media(prefers-reduced-motion:reduce){[data-scene="02-problem"] .q *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* A time-stamped fictional transaction makes the information gap concrete. */
+[data-scene="02-problem"] .pitch-problem .story-head{max-width:1280px;margin:0 auto clamp(24px,4vh,42px)}
+[data-scene="02-problem"] .pitch-problem.story-panel{width:min(1280px,calc(100% - 80px));margin-inline:auto}
+[data-scene="02-problem"] .pitch-problem .story-title{max-width:19ch;font-size:clamp(36px,5.3vw,72px);line-height:1.04;text-wrap:balance;word-break:keep-all}
+[data-scene="02-problem"] .pitch-problem .story-deck{max-width:54ch;margin-top:14px;font-size:clamp(17px,1.45vw,21px);line-height:1.5}
+[data-scene="02-problem"] .reservation-case{width:100%;margin:0 auto}
+[data-scene="02-problem"] .reservation-stage{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:min(48vh,520px);gap:clamp(28px,4vw,64px)}
+[data-scene="02-problem"] .case-label{display:inline-block;margin-bottom:18px;padding:7px 10px;background:color-mix(in srgb,var(--accent) 13%,var(--surface));color:var(--ink);font:700 13px/1.25 var(--font-mono,monospace);letter-spacing:.035em}
+[data-scene="02-problem"] .reservation-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:case}
+[data-scene="02-problem"] .reservation-steps li{min-width:0;min-height:172px;padding:20px 18px;border-top:3px solid var(--accent);background:var(--surface);display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+[data-scene="02-problem"] .reservation-steps time{color:var(--accent);font:700 clamp(20px,2vw,28px)/1 var(--font-mono,monospace);font-variant-numeric:tabular-nums}
+[data-scene="02-problem"] .reservation-steps b{font:700 clamp(17px,1.6vw,21px)/1.25 var(--font-display,inherit);color:var(--ink)}
+[data-scene="02-problem"] .reservation-steps span{color:var(--ink-muted);font-size:clamp(14px,1.18vw,16px);line-height:1.45;word-break:keep-all}
+[data-scene="02-problem"] .case-takeaway{margin:18px 0 0;padding-left:16px;border-left:4px solid var(--accent);color:var(--ink);font:700 clamp(20px,2.2vw,30px)/1.3 var(--font-display,inherit);word-break:keep-all}
+@media(max-width:720px){[data-scene="02-problem"] .pitch-problem .story-head{margin:0 auto 22px}[data-scene="02-problem"] .pitch-problem .story-title{font-size:clamp(32px,9vw,48px)}[data-scene="02-problem"] .reservation-case{width:calc(100% - 40px)}[data-scene="02-problem"] .case-label{font-size:11px;margin-bottom:12px}[data-scene="02-problem"] .reservation-steps{grid-template-columns:minmax(0,1fr);gap:8px}[data-scene="02-problem"] .reservation-steps li{min-height:0;display:grid;grid-template-columns:76px minmax(0,1fr);gap:4px 12px;padding:12px;border-top-width:2px}[data-scene="02-problem"] .reservation-steps time{grid-row:span 2;font-size:19px;padding-top:2px}[data-scene="02-problem"] .reservation-steps b{font-size:16px}[data-scene="02-problem"] .reservation-steps span{font-size:13px}[data-scene="02-problem"] .case-takeaway{font-size:19px;margin-top:14px}}

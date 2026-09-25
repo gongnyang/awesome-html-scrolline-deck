@@ -34,7 +34,6 @@ export default {
         const cards = [...root.querySelectorAll('.s__step')];
     tl.fromTo(cards, { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.14, stagger: 0.055 }, 0.04);
     tl.fromTo(root.querySelector('[data-role="image"]'), { scale: 1.08 }, { scale: 1, duration: 0.8, ease: 'none' }, 0);
-    tl.to(root, { autoAlpha: 0, x: 24, duration: 0.16 }, 0.82);
     // hold — 0.30 .. 0.75
     // Keep the composed state readable while the presenter speaks.
     // exit — 0.75 .. 1.00

@@ -5,7 +5,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  computeRange, expectedPinDistance, progressY, probeY, landingY,
+  computeRange, expectedPinDistance, progressY, probeY, reachableProbeY, landingY,
   isVisibleEntry, countVisible, HOLD_RATIO, MIN_AREA,
 } from '../scripts/lib/wheel.mjs';
 
@@ -58,6 +58,13 @@ test('핀 없는 장면의 탐침 좌표는 섹션 통과 구간을 쓴다', () 
   assert.equal(probeY(flat, 0.5, 900), 3000);
   assert.equal(probeY(flat, 0, 900), 2100);
   assert.equal(probeY(flat, 1, 900), 3900);
+});
+
+test('마지막 비고정 장면은 문서 끝의 완성 화면을 탐침 종료점으로 쓴다', () => {
+  const finalPass = computeRange({ top: 0, height: 1080, scrollY: 3000, innerHeight: 1080, pinned: false });
+  assert.equal(reachableProbeY(finalPass, .30, 1080, 3000, true), 2568);
+  assert.equal(reachableProbeY(finalPass, .99, 1080, 3000, true), 3000);
+  assert.equal(reachableProbeY(finalPass, .99, 1080, 3000, false), 4058);
 });
 
 test('가시 판정: 면적·불투명도·종류', () => {

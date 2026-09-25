@@ -123,10 +123,10 @@ export default {
 
     // exit — the full route holds through the spoken transition, then clears together.
     if (bullets.length) tl.to(bullets, { '--reveal': 0, duration: 0.08, stagger: 0.01 }, 0.76);
-    blocks.forEach((block) => tl.to(block, { y: -14, autoAlpha: 0, duration: 0.12, ease: 'power2.in' }, 0.84));
+    blocks.forEach((block) => tl.to(block, { y: -14, autoAlpha: 1, duration: 0.12, ease: 'power2.in' }, 0.84));
     tl.to(line, { '--draw': 0, duration: 0.14 }, 0.82);
     tl.to(head, { '--head-on': 0, duration: 0.14 }, 0.82);
-    tl.to(heading, { y: -24, autoAlpha: 0, duration: 0.1 }, 0.88);
+    tl.to(heading, { y: -24, autoAlpha: 1, duration: 0.1 }, 0.88);
   },
 
   unmount() { root = null; },

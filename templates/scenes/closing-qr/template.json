@@ -45,7 +45,7 @@
   "preview": "preview.webp",
   "previewSource": "work/template-qa-closing/01-ask",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "A conclusion that states one specific next action for the audience; QR is an optional follow-up resource.",
     "unfit": "Thank-you-only endings, multiple competing asks, or an invented/unclear QR destination.",
     "requiredInputs": "copy.title contains the conclusion or action; copy.lines contains the action detail. Optional deck.links.site and matching SVG in assets.images[0].",
@@ -58,6 +58,9 @@
     "exampleContent": "A concise recommendation, one concrete next step, optional source or registration URL.",
     "unsupportedReason": "A QR cannot substitute for a missing conclusion or a clear reason to take action.",
     "nextImplementation": "The URL is supplied from deck.links.site and QR is generated from that same URL. Review the .55/mobile/reduced hold when adapting content.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "decision-to-action",
+    "failureFallback": "구체적 청중 행동이 없으면 QR을 제거하고 발표 결론과 다음 질문을 한 문장으로 닫는다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

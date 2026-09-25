@@ -13,17 +13,8 @@
   <div class="queue-chart__plot">
     <div class="queue-chart__band" aria-hidden="true"><span>13시 · 최고 혼잡</span></div>
     <div class="queue-chart__grid" aria-hidden="true"><span>100</span><span>50</span><span>0</span></div>
-    <svg class="queue-chart__svg" viewBox="0 0 1000 320" preserveAspectRatio="none" role="img" aria-label="10시부터 15시까지의 상대 혼잡 지수. 13시에 최고점에 도달한 뒤 낮아집니다.">
-      <defs>
-        <linearGradient id="queue-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".28"></stop><stop offset="1" stop-color="var(--accent)" stop-opacity=".02"></stop></linearGradient>
-        <clipPath id="queue-reveal"><rect data-role="reveal" x="0" y="0" width="1000" height="320"></rect></clipPath>
-      </defs>
-      <g clip-path="url(#queue-reveal)">
-        <path class="queue-chart__area" data-role="area"></path>
-        <path class="queue-chart__line" data-role="line"></path>
-      </g>
-      <circle class="queue-chart__pulse" data-role="pulse" r="32" aria-hidden="true"></circle>
-      <circle class="queue-chart__peak" data-role="peak" r="9"></circle>
+    <svg class="queue-chart__svg" viewBox="0 0 1000 320" preserveAspectRatio="none" role="img" aria-label="가상 시나리오의 시간대별 혼잡 지수. 10시부터 15시까지 개별 시간대 지수를 막대로 비교하며 13시가 100으로 가장 높습니다.">
+      <g data-role="bars"></g>
     </svg>
     <div class="queue-chart__hours" data-role="hours"></div>
   </div>

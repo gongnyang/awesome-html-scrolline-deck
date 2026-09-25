@@ -1,148 +1,49 @@
-// kinetic-titles — each copy.lines entry becomes a numbered block on a
-// diagonal. Write a line as "Title // bullet · bullet" to add bullets.
+// A hypothetical commute demonstrates the product response as one state change.
 let root = null;
 
-const VB = { w: 1000, h: 700 };
-
-const element = (tag, className, text = '') => {
-  const node = document.createElement(tag);
-  node.className = className;
-  node.textContent = text;
-  return node;
-};
-
-const words = (text) => String(text).split(/(\s+)/).filter(Boolean).map((word) =>
-  element('span', 'kt__word', /^\s+$/.test(word) ? '\u00a0' : word));
-
-// "Title // bullet · bullet" adds bullets under a block. Prefer "//": the CLI
-// splits its own `--lines` value on "|", so a pipe never survives the round trip.
-const parse = (line) => {
-  const text = String(line);
-  // "//" has to be surrounded by spaces so a URL in a title survives.
-  const sep = text.match(/\s\/\/\s|\s*\|\s*/);
-  if (!sep) return { title: text.trim(), bullets: [] };
-  const bullets = text.slice(sep.index + sep[0].length)
-    .split(/\s*[·;]\s*/).map((item) => item.trim()).filter(Boolean);
-  return { title: text.slice(0, sep.index).trim(), bullets };
-};
-
-// Blocks march down the diagonal. y starts at 26% so block 01 clears the
-// scene heading (kicker + title end near 18% on a 700px-tall viewport).
-const spot = (index, total) => {
-  const t = total > 1 ? index / (total - 1) : 0.5;
-  return { x: 4 + t * 52, y: 26 + t * 48 };
-};
-
-// The light runs a rail, not a straight diagonal: down each block's left
-// margin, then across the gap to the next number. A straight line through the
-// staircase would cut through the titles themselves.
-const RAIL_GAP = 2.4; // % of width, left of the block's text edge
-const railPoints = (blocksEl, total) => {
-  const stageH = Number(blocksEl && blocksEl.offsetHeight) || 0;
-  const blocks = blocksEl && blocksEl.querySelectorAll ? Array.from(blocksEl.querySelectorAll('.kt__block')) : [];
-  const points = [];
-  for (let index = 0; index < total; index += 1) {
-    const at = spot(index, total);
-    const el = blocks[index];
-    const hPct = stageH && el && Number(el.offsetHeight) ? (Number(el.offsetHeight) / stageH) * 100 : 18;
-    const rail = at.x - RAIL_GAP;
-    points.push([rail, at.y + 1.2]);
-    points.push([rail, Math.min(at.y + hPct, 96)]);
-  }
-  return points;
-};
+const MOMENTS = [
+  ['주변 소음이 큰 출근길', '열차 소음이 이어지는 상황에서 착용을 시작합니다.'],
+  ['노이즈 캔슬링을 켠다', '소음을 줄이는 기능을 켜는 사용 흐름을 보여 줍니다.'],
+  ['안내 방송을 들을 때', '주변음 모드로 바꾸는 선택을 제안합니다. 성능은 시험 전입니다.'],
+];
 
 export default {
   id: '03-promise',
-
   mount(section, ctx) {
-    root = section.querySelector('.kt') || section;
+    section.id = '03-promise';
+    root = section.querySelector('.commute') || section;
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
-    const lines = (copy.lines || []).slice(0, 4);
-
+    const image = (scene.assets?.images || [])[0];
+    const photo = root.querySelector('[data-role="image"]');
+    if (image) photo.src = image;
+    photo.alt = scene.assets?.imageAlt || '지하철에서 헤드폰을 착용한 인물 · 제품 사용 장면 콘셉트 이미지';
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    const blocks = lines.map((line, index) => {
-      const item = parse(line);
-      const at = spot(index, lines.length);
-      const block = element('article', 'kt__block');
-      block.setAttribute('data-accent', String((index % 3) + 1));
-      block.style.setProperty('--bx', String(at.x));
-      block.style.setProperty('--by', String(at.y));
-      block.append(element('p', 'kt__num', String(index + 1).padStart(2, '0')));
-      const title = element('h3', 'kt__title');
-      title.replaceChildren(...words(item.title));
-      block.append(title);
-      if (item.bullets.length) {
-        const list = element('ul', 'kt__bullets');
-        list.replaceChildren(...item.bullets.map((bullet) => element('li', '', bullet)));
-        block.append(list);
-      }
-      return block;
-    });
-    root.querySelector('[data-role="blocks"]').replaceChildren(...blocks);
-
-    const points = railPoints(root.querySelector('[data-role="blocks"]'), lines.length)
-      .map(([x, y]) => `${Math.round(x / 100 * VB.w)} ${Math.round(y / 100 * VB.h)}`);
-    const d = points.length > 1 ? `M ${points.join(' L ')}` : `M 0 0 L ${VB.w} ${VB.h}`;
-    const path = root.querySelector('[data-role="line"]');
-    path.setAttribute('d', d);
-    path.setAttribute('pathLength', '1');
-    root.querySelector('[data-role="head"]').style.offsetPath = `path('${d}')`;
+    root.querySelector('[data-role="note"]').textContent = '가상 사용 상황 · 소음 감소 및 주변음 성능은 실제 시험 전';
   },
-
-  build(tl, ctx) {
-    const grid = root.querySelector('.kt__grid');
-    const heading = root.querySelector('.kt__head-copy');
-    const line = root.querySelector('[data-role="line"]');
-    const head = root.querySelector('[data-role="head"]');
-    const blocks = [...root.querySelectorAll('.kt__block')];
-    const titles = blocks.map((block) => block.querySelector('.kt__title'));
-    const bullets = blocks.map((block) => [...block.querySelectorAll('.kt__bullets li')]).flat();
-    const setActive = (index) => blocks.forEach((block, i) => block.classList.toggle('is-active', i === index));
-    const entries = [
-      { from: { xPercent: -120, rotation: 8, autoAlpha: 0 } },
-      { from: { xPercent: 120, rotation: -8, autoAlpha: 0 } },
-      { from: { yPercent: 120, rotation: 4, autoAlpha: 0 } },
-      { from: { yPercent: -120, rotation: -4, autoAlpha: 0 } },
-    ];
-
-    ctx.gsap.set(grid, { '--grid': 0 });
-    ctx.gsap.set(line, { '--draw': 0 });
-    ctx.gsap.set(head, { '--head': 0, '--head-on': 0 });
-    if (bullets.length) ctx.gsap.set(bullets, { '--reveal': 0 });
-
-    // enter — 0 .. 0.30. Grid, heading, then the titles throw themselves in.
-    tl.to(grid, { '--grid': 1, duration: 0.06 }, 0);
-    tl.fromTo(heading, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.08 }, 0);
-    titles.forEach((title, index) => {
-      tl.fromTo(title, entries[index % entries.length].from,
-        { xPercent: 0, yPercent: 0, rotation: 0, autoAlpha: 1, duration: 0.09, ease: 'power3.out' }, 0.03 + index * 0.05);
-    });
-    tl.to(line, { '--draw': 1, duration: 0.2, ease: 'power2.out' }, 0.06);
-    tl.to(head, { '--head': 1, '--head-on': 1, duration: 0.2 }, 0.06);
-    if (bullets.length) tl.to(bullets, { '--reveal': 1, duration: 0.06, stagger: 0.015 }, 0.2);
-
-    // hold — 0.30 .. 0.75. The accent walks block to block as you talk.
-    blocks.forEach((_, index) => tl.call(setActive, [index], 0.36 + index * 0.1));
-
-    // exit — 0.75 .. 1.00. Bullets close, blocks leave the way they arrived.
-    if (bullets.length) tl.to(bullets, { '--reveal': 0, duration: 0.08, stagger: 0.01 }, 0.76);
-    blocks.forEach((block, index) => {
-      const from = entries[index % entries.length].from;
-      tl.to(block, {
-        xPercent: from.xPercent ? Math.sign(from.xPercent) * 18 : 0,
-        yPercent: from.yPercent ? Math.sign(from.yPercent) * 18 : 0,
-        autoAlpha: 0,
-        duration: 0.14,
-        ease: 'power2.in',
-      }, 0.82);
-    });
-    tl.to(line, { '--draw': 0, duration: 0.14 }, 0.82);
-    tl.to(head, { '--head-on': 0, duration: 0.14 }, 0.82);
-    tl.to(heading, { y: -24, autoAlpha: 0, duration: 0.1 }, 0.88);
+  build(tl) {
+    const moment = root.querySelector('[data-role="moment"]');
+    const note = root.querySelector('[data-role="note"]');
+    const setMoment = (index) => {
+      moment.replaceChildren();
+      const number = document.createElement('span');
+      number.className = 'commute__step';
+      number.textContent = `0${index + 1}`;
+      const title = document.createElement('strong');
+      title.textContent = MOMENTS[index][0];
+      const body = document.createElement('p');
+      body.textContent = MOMENTS[index][1];
+      moment.append(number, title, body);
+      note.textContent = index === 2
+        ? '가상 사용 상황 · 주변음 기능의 성능은 실제 시험 전'
+        : '가상 출퇴근 장면 · 기능 성능을 측정한 자료가 아님';
+    };
+    tl.fromTo(root.querySelector('.commute__copy'), { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, 0);
+    tl.call(setMoment, [0], .12);
+    tl.call(setMoment, [1], .42);
+    tl.call(setMoment, [2], .72);
+    tl.to(root.querySelector('.commute__shade'), { '--shade': .86, duration: .12 }, .02);
   },
-
   unmount() { root = null; },
 };

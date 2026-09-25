@@ -203,7 +203,7 @@ for (const folder of folders) {
   }
   if (template.technique !== folder) problems.push(`${folder}: template.json technique is "${template.technique}"`);
   const contract = template.sceneContract;
-  for (const key of ['status', 'fit', 'unfit', 'requiredInputs', 'scrollBeatSemantics', 'stableHold', 'projectorTypeCriteria', 'labelCriteria', 'mobile', 'reducedMotion', 'exampleContent']) {
+  for (const key of ['status', 'relation', 'fit', 'unfit', 'requiredInputs', 'scrollBeatSemantics', 'stableHold', 'projectorTypeCriteria', 'labelCriteria', 'mobile', 'reducedMotion', 'exampleContent', 'failureFallback', 'reviewNote']) {
     if (typeof contract?.[key] !== 'string' || !contract[key].trim()) problems.push(`${folder}: sceneContract is missing a useful "${key}" declaration`);
   }
   if (!['production', 'experimental', 'blocked'].includes(contract?.status)) problems.push(`${folder}: sceneContract.status must be production, experimental, or blocked`);

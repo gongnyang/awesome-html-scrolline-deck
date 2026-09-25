@@ -30,6 +30,7 @@ export default {
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
+    root.querySelector('[data-role="source"]').textContent = copy.source || scene.source || '';
 
     const stats = root.querySelector('[data-role="stats"]');
     stats.style.setProperty('--cols', String(Math.max(1, lines.length)));
@@ -66,6 +67,14 @@ export default {
     const reels = [...root.querySelectorAll('.od__reel')];
     const units = [...root.querySelectorAll('.od__unit')];
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      ctx.gsap.set(horizon, { '--draw': 1, '--flash': 0, yPercent: 0 });
+      ctx.gsap.set(reels, { '--vel': 0, '--y': (index, target) => Number(target.dataset.target) + 20, clearProps: 'filter' });
+      ctx.gsap.set(units, { '--unit': 1, clearProps: 'transform,opacity' });
+      ctx.gsap.set([copy, ...root.querySelectorAll('.od__source')], { autoAlpha: 1, y: 0 });
+      return;
+    }
+
     ctx.gsap.set(horizon, { '--draw': 0, yPercent: 30 });
     ctx.gsap.set(reels, { '--y': 0, '--vel': 0 });
     ctx.gsap.set(units, { '--unit': 0 });
@@ -89,7 +98,7 @@ export default {
     tl.to(horizon, { '--flash': 1, duration: 0.03, yoyo: true, repeat: 1 }, 0.34);
 
     // exit — 0.75 .. 1.00. The whole board lifts away.
-    tl.to(root, { yPercent: -8, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
+    tl.to(root, { yPercent: -3, duration: 0.18, ease: 'power2.in' }, 0.8);
   },
 
   unmount() { root = null; },

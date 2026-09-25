@@ -52,7 +52,7 @@ export default {
   build(tl) {
     if (hasError) {
       tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0);
-      tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 0, duration: 0.1 }, 0.85);
+      tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 1, duration: 0.1 }, 0.85);
       return;
     }
     const page = root.querySelector('.dp__page');
@@ -68,8 +68,8 @@ export default {
     tl.fromTo(source, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0.28);
     // hold — locator, full page anchor, legible crop, exact quote, context, and citation stay together.
     // exit — move on after the audience has seen the cited passage in context.
-    tl.to(root.querySelector('.dp__proof'), { y: -12, autoAlpha: 0, duration: 0.13 }, 0.85);
-    tl.to(root.querySelector('.dp__head'), { autoAlpha: 0, duration: 0.1 }, 0.87);
+    tl.to(root.querySelector('.dp__proof'), { y: -12, autoAlpha: 1, duration: 0.13 }, 0.85);
+    tl.to(root.querySelector('.dp__head'), { autoAlpha: 1, duration: 0.1 }, 0.87);
   },
   unmount() { root = null; hasError = false; },
 };

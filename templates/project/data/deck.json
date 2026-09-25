@@ -1,4 +1,5 @@
 {
+  "schemaVersion": 2,
   "title": "{{title}}",
   "subtitle": "{{subtitle}}",
   "lang": "{{lang}}",

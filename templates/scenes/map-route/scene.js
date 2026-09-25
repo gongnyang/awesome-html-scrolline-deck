@@ -41,7 +41,7 @@ export default {
     root.querySelector('[data-role="caption"]').textContent = `지도·경로 출처 · ${scene.source}`;
   },
   build(tl) {
-    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 0, duration: .1 }, .85); return; }
+    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 1, duration: .1 }, .85); return; }
     const path = root.querySelector('.r__route path');
     const len = path.getTotalLength?.() || 1;
     path.style.strokeDasharray = String(len); path.style.strokeDashoffset = String(len);
@@ -56,7 +56,7 @@ export default {
     // hold — keep full map and all stop labels visible while highlighting the current stop.
     stops.forEach((_, i) => tl.call(activate, [i], .38 + i * .075));
     // exit — release the geographic scene after its route has been explained.
-    tl.to(root, { autoAlpha: 0, duration: .12 }, .86);
+    tl.to(root, { autoAlpha: 1, duration: .12 }, .86);
   },
   unmount() { root = null; invalid = false; },
 };

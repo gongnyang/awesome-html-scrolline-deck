@@ -43,3 +43,4 @@
   [data-scene="08-options"] .o__source{margin-top:12px;font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){[data-scene="08-options"] .o *{scroll-behavior:auto;animation:none!important;transition:none!important}}
+@media(max-width:720px){[data-scene="08-options"] .o__decision-head{align-items:start;gap:14px}[data-scene="08-options"] .o__standard{color:var(--accent);text-decoration:none}[data-scene="08-options"] .o__reason{font-size:14px;line-height:1.42}[data-scene="08-options"] .o__evidence{margin-top:30px}}

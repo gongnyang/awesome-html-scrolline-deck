@@ -48,7 +48,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/annual-report/04-drivers",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "실제 기록 또는 명시적 설계 시나리오의 시계열을 근거로 선택한 한 지점을 설명할 때.",
     "unfit": "범주 간 단순 비교(chart-reveal), 실제 축·단위/자료 출처/한계가 없거나 과장된 그래프 효과가 값을 왜곡하는 경우.",
     "requiredInputs": "assets.series 2–20개 정확한 숫자, 동일 길이 xLabels(숫자 범주에는 단위 포함), y 단위 unit, 유효 annotationIndex, scene.source와 scene.evidence(측정/설계 목표 여부·범위), copy.lines 1–4개.",
@@ -61,6 +61,9 @@
     "exampleContent": "가상의 대역별 설계 목표 중 선택 주파수의 42 dB 값을 큰 claim으로 보여주고 실측 전 시뮬레이션 목표임을 같은 화면에 표시.",
     "nextImplementation": "On each authored use, verify that the selected peak is actually present in supplied series and that labels preserve the measurement unit and caveat.",
     "estimatedEffort": "",
-    "unsupportedReason": ""
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 범주 간 단순 비교(chart-reveal), 실제 축·단위/자료 출처/한계가 없거나 과장된 그래프 효과가 값을 왜곡하는 경우.",
+    "relation": "time-series-event",
+    "failureFallback": "정확한 수치와 단위가 없으면 선을 그리지 말고 관찰 가능한 사건을 날짜와 출처가 있는 연표로 표현한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

@@ -1,6 +1,6 @@
 /**
  * G6 — 홀드 구간(진행률 55%)에서 장면마다 보이는 요소가 3개 이상이고,
- *      30/55/85%와 발표용 cue 캡처가 qa/에 남는다.
+ *      30/55/85/96/99%와 발표용 cue 캡처가 qa/에 남는다.
  *
  * 빈 화면으로 지나가는 장면(진입만 하고 홀드가 없거나, 퇴장이 너무 빠른 장면)을 잡는다.
  * 캡처는 사람이 읽어야 한다 — 게이트는 "찍혔다"까지만 보증한다.
@@ -10,7 +10,7 @@ import { orderedScenes, rel } from './_util.mjs';
 import { mainDrive, PROBES } from './_drive.mjs';
 
 export const id = 'G6';
-export const title = '홀드 55%에서 가시 요소 ≥3 · 장면/cue 캡처';
+export const title = '홀드와 퇴장 경계 가시성 · 장면/cue 캡처';
 export const needsBrowser = true;
 export const MIN_VISIBLE = 3;
 
@@ -27,11 +27,19 @@ export async function run(ctx) {
     if (count < MIN_VISIBLE) {
       problems.push(`${scene.id}: 홀드 55%에서 보이는 요소가 ${count}개입니다 (최소 ${MIN_VISIBLE})`);
     }
+    if (scene.pace?.mode !== 'pass' && scene.pin !== false) {
+      for (const probe of [96, 99]) {
+        const last = drive.exitVisible.get(`${scene.id}-${probe}`);
+        if (last === undefined || last < 1) {
+          problems.push(`${scene.id}: 퇴장 ${probe}%에서 발표 화면이 비었습니다`);
+        }
+      }
+    }
     for (const probe of PROBES) {
       const file = `${scene.id}-${probe}.jpg`;
       if (!captured.has(file)) problems.push(`${scene.id}: 캡처 ${file}가 없습니다`);
     }
-    (scene.cues || []).forEach((_, index) => {
+    (scene.pace?.cueStates ?? scene.cues ?? []).forEach((_, index) => {
       const file = `${scene.id}-cue-${String(index + 1).padStart(2, '0')}.jpg`;
       if (!captured.has(file)) problems.push(`${scene.id}: 발표 cue 캡처 ${file}가 없습니다`);
     });

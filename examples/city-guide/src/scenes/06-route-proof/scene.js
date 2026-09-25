@@ -23,9 +23,10 @@ export default {
   build(tl, ctx) {
         // enter — 0 .. 0.30
         const stops = [...root.querySelectorAll('.p__stop')];
-    tl.fromTo(stops, { y: 36, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.12, stagger: 0.06 }, 0.04);
+    // The route facts stay readable as this scene enters. Motion adds a small
+    // positional cue; it must not hide the evidence at the previous boundary.
+    tl.fromTo(stops, { y: 18 }, { y: 0, duration: 0.12, stagger: 0.06 }, 0.04);
     tl.fromTo(root.querySelector('.p__route'), { '--route': 0 }, { '--route': 1, duration: 0.22 }, 0.05);
-    tl.to(root, { autoAlpha: 0, x: -32, duration: 0.16 }, 0.82);
     // hold — 0.30 .. 0.75
     // Keep the composed state readable while the presenter speaks.
     // exit — 0.75 .. 1.00

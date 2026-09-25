@@ -68,38 +68,21 @@ export default {
       return card;
     }));
     root.querySelector('[data-role="source"]').textContent = scene.assets?.source || scene.source || '출처 또는 가상 설계 목표 표기 필요';
+    const target = Number(String(statsData[0]?.value || '').replace(/[^\d.]/g, ''));
+    const dailyHours = 4;
+    const days = target ? Math.floor(target / dailyHours) : 0;
+    root.querySelector('[data-role="use-case"]').innerHTML = `<div><span>비교 가정</span><strong>하루 ${dailyHours}시간 사용</strong></div><b aria-hidden="true">→</b><div><span>계산상 사용 기간</span><strong>약 ${days}일</strong></div><small>가상 설계 목표 ${target}시간 ÷ 하루 4시간 · 실측 배터리 결과가 아님</small>`;
   },
 
   build(tl, ctx) {
     const copy = root.querySelector('.od__copy');
-    const horizon = root.querySelector('.od__horizon');
-    const reels = [...root.querySelectorAll('.od__reel')];
-    const units = [...root.querySelectorAll('.od__unit')];
-
-    ctx.gsap.set(horizon, { '--draw': 0, yPercent: 30 });
-    ctx.gsap.set(reels, { '--y': 0, '--vel': 0 });
-    ctx.gsap.set(units, { '--unit': 0 });
-
-    // enter — 0 .. 0.30. Horizon draws, then every reel spins to its digit.
-    tl.fromTo(copy, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.08 }, 0);
-    tl.to(horizon, { '--draw': 1, yPercent: 0, duration: 0.08 }, 0);
-    if (reels.length) {
-      tl.to(reels, {
-        '--y': (index, target) => Number(target.dataset.target) + 20,
-        '--vel': 1,
-        duration: 0.14,
-        stagger: 0.015,
-        ease: 'expo.out',
-      }, 0.06);
-      tl.to(reels, { '--vel': 0, duration: 0.06, stagger: 0.015 }, 0.2);
-    }
-    if (units.length) tl.to(units, { '--unit': 1, duration: 0.07, stagger: 0.02 }, 0.18);
-
-    // hold — 0.30 .. 0.75. The horizon pulses once so the numbers land.
-    tl.to(horizon, { '--flash': 1, duration: 0.03, yoyo: true, repeat: 1 }, 0.34);
-
-    // exit — 0.75 .. 1.00. The whole board lifts away.
-    tl.to(root, { yPercent: -8, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
+    const stats = root.querySelector('[data-role="stats"]');
+    const useCase = root.querySelector('[data-role="use-case"]');
+    if (ctx?.reduced) return;
+    // The declared goal stays complete while its usage assumption appears.
+    tl.fromTo(copy, { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, 0);
+    tl.fromTo(stats, { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, .06);
+    tl.fromTo(useCase, { y: 10, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, .12);
   },
 
   unmount() { root = null; },

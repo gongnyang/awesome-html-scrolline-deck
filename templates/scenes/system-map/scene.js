@@ -34,7 +34,7 @@ export default {
     }));
   },
   build(tl) {
-    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 0, duration: .1 }, .85); return; }
+    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 1, duration: .1 }, .85); return; }
     const nodes = [...root.querySelectorAll('.m__node')];
     const activate = (i) => nodes.forEach((n, j) => n.classList.toggle('is-active', i === j));
     tl.fromTo(root.querySelector('.m__head'), { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .12 }, 0);
@@ -44,7 +44,7 @@ export default {
     // hold — keep the central system and every named relationship visible as focus moves between links.
     nodes.forEach((_, i) => tl.call(activate, [i], .34 + i * .07));
     // exit — leave the assembled relationship map after the explanation.
-    tl.to(root, { autoAlpha: 0, duration: .13 }, .85);
+    tl.to(root, { autoAlpha: 1, duration: .13 }, .85);
   },
   unmount() { root = null; invalid = false; },
 };

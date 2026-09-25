@@ -46,7 +46,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/client-proposal/05-solution",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "중심 요소와 2–4개 구성 요소의 실제 관계를 짧게 설명하고, 모든 관계를 같은 화면에 둬야 할 때.",
     "unfit": "방향·의미가 불명확하거나 요소가 다섯 개 이상이거나 모든 쌍 사이를 연결해야 할 때.",
     "requiredInputs": "copy.lines 2–4개, 각 `구성 요소: 중심 요소와의 관계` 형식. 관계는 제안이면 제안임을 명시.",
@@ -57,8 +57,11 @@
     "mobile": "허브 아래에 관계 레일을 세로로 쌓고 요소명과 관계문을 함께 읽게 한다.",
     "reducedMotion": "모든 관계 설명과 중심 요소를 한 화면에 정적으로 제공한다.",
     "exampleContent": "모바일 대기 서비스와 POS, 상담 슬롯, 직원 알림 사이의 역할과 전달 정보.",
-    "unsupportedReason": "",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 방향·의미가 불명확하거나 요소가 다섯 개 이상이거나 모든 쌍 사이를 연결해야 할 때.",
     "nextImplementation": "Use only with the stated source, chronology/relationship evidence, and presenter-readable hold; review the authored instance for claim accuracy.",
-    "estimatedEffort": ""
+    "estimatedEffort": "",
+    "relation": "component-relationships",
+    "failureFallback": "관계와 방향을 뒷받침할 자료가 없으면 선을 지우고 구성요소를 가까운 그룹으로 배치한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

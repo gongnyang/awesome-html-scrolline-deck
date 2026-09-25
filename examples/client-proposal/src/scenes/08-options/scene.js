@@ -84,7 +84,7 @@ export default {
       autoAlpha: 1, y: 0, duration: 0.08, stagger: 0.03, ease: 'power2.out',
     }, 0.41);
     tl.fromTo(root.querySelector('.o__source'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.08 }, 0.42);
-    tl.to(root, { autoAlpha: 0, y: -16, duration: 0.1 }, 0.89);
+
   },
   unmount() { root = null; },
 };

@@ -43,7 +43,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/spatial-proposal/02-before",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "카메라 각도·크기·조건이 맞는 전후 비교로 실제 변화 하나를 설명할 때.",
     "unfit": "비교 조건이 다른 이미지, 근거 불명의 성과 주장, 여러 변경점이 섞여 원인을 알 수 없는 경우.",
     "requiredInputs": "같은 시점과 구도의 전/후 이미지 2장, 정직한 상태 라벨 2개, 변화의 해석 제목.",
@@ -55,6 +55,10 @@
     "reducedMotion": "두 상태를 동시에 정적으로 표시하고 선택적 경계선/일치 기준을 남긴다.",
     "exampleContent": "같은 도로의 동일 카메라 위치에서 촬영한 빗물 배수 전후 이미지를 비교해 보도 높이의 효과를 설명한다.",
     "nextImplementation": "—",
-    "estimatedEffort": "—"
+    "estimatedEffort": "—",
+    "relation": "controlled-change",
+    "failureFallback": "촬영 조건이나 배율이 다르면 직접 비교하지 말고 각 상태의 조건을 나란히 설명한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다.",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 비교 조건이 다른 이미지, 근거 불명의 성과 주장, 여러 변경점이 섞여 원인을 알 수 없는 경우."
   }
 }

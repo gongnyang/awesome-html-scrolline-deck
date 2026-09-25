@@ -31,31 +31,30 @@ export async function run(argv) {
   const rows = scenes.map((s) => ({
     id: s.id,
     technique: s.technique ?? '',
-    kicker: cut(s.copy?.kicker, 18),
-    title: cut(s.copy?.title, 30),
-    lines: String((s.copy?.lines ?? []).length),
+    claim: cut(s.claim ?? s.copy?.title, 36),
+    relation: s.relation ?? 'legacy',
     asset: s.assets?.frames ? `frames×${s.assets.count ?? 0}`
       : s.assets?.video ? 'video'
       : (s.assets?.images ?? []).length ? `images×${s.assets.images.length}`
       : '—',
-    pin: `${s.pinVh ?? 0}${s.pin === false ? ' (no pin)' : ''}`,
+    pace: `${s.pace?.mode ?? (s.pin === false ? 'pass' : 'legacy')} ${s.pace?.scrollVh ?? s.pinVh ?? 0}vh`,
     notes: (s.notes ?? '').trim() ? 'yes' : 'MISSING',
-    purpose: cut(s.purpose, 22),
-    reason: cut(s.reason, 32),
+    evidence: s.evidenceStatus ?? 'legacy',
+    change: cut(s.visualChange, 30),
   }));
 
-  const head = { id: 'id', technique: 'technique', purpose: 'purpose', reason: 'why this scene', title: 'claim', asset: 'asset', pin: 'pinVh', notes: 'notes' };
+  const head = { id: 'id', claim: 'claim', relation: 'relation', evidence: 'evidence', change: 'scroll reveals', pace: 'pace', asset: 'asset', notes: 'notes' };
   const cols = Object.keys(head);
   const widths = Object.fromEntries(cols.map((c) => [c, Math.max(width(head[c]), ...rows.map((r) => width(r[c])))]));
   const line = (r) => `| ${cols.map((c) => pad(r[c], widths[c])).join(' | ')} |`;
 
-  const totalPin = scenes.reduce((sum, s) => sum + (Number(s.pinVh) || 0), 0);
+  const totalScroll = scenes.reduce((sum, s) => sum + (Number(s.pace?.scrollVh ?? s.pinVh) || 0), 0);
   process.stdout.write(`${deck.title ?? 'deck'}${deck.subtitle ? ` — ${deck.subtitle}` : ''}\n\n`);
   process.stdout.write(`${line(head)}\n`);
   process.stdout.write(`|${cols.map((c) => '-'.repeat(widths[c] + 2)).join('|')}|\n`);
   rows.forEach((r) => process.stdout.write(`${line(r)}\n`));
   process.stdout.write(
-`\n${scenes.length} scene${scenes.length === 1 ? '' : 's'} · total pin ${totalPin}vh · about ${(scenes.length * 1.5).toFixed(0)} minutes spoken
+`\n${scenes.length} scene${scenes.length === 1 ? '' : 's'} · total scroll ${totalScroll}vh · speaking time must be rehearsed
 theme ${deck.theme?.style ?? 'dark'} · presenter auto-advance ${deck.presenter?.autoDurationSec ?? 180}s\n`);
 
   const missing = rows.filter((r) => r.notes === 'MISSING').map((r) => r.id);

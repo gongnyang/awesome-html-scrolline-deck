@@ -46,7 +46,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/city-guide/09-packing",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "짧은 절차의 앞 상태가 어떤 행동을 거쳐 어떤 새 상태로 바뀌는지 청중이 따라가야 할 때.",
     "unfit": "단순 체크리스트, 인과관계가 없는 항목, 다섯 단계 이상이 필요한 복잡한 절차.",
     "requiredInputs": "copy.lines 2–4개. 각 줄 형식 `단계명: 입력 → 행동 → 결과`; 각 항목은 실제 수행·검증된 변화여야 한다.",
@@ -59,6 +59,9 @@
     "exampleContent": "저녁 산책을 위해 예보 확인→준비물 결정→귀가 시각 선택으로 각 단계 입력과 결과를 보인다.",
     "unsupportedReason": "—",
     "nextImplementation": "—",
-    "estimatedEffort": "—"
+    "estimatedEffort": "—",
+    "relation": "causal-sequence",
+    "failureFallback": "입력·행동·결과가 연결되지 않으면 단계를 줄이거나 순서 없는 사실 목록으로 표현한다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

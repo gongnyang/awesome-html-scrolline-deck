@@ -60,7 +60,7 @@ export default {
   build(tl) {
     if (hasError) {
       tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0);
-      tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 0, duration: 0.1 }, 0.85);
+      tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 1, duration: 0.1 }, 0.85);
       return;
     }
     const steps = [...root.querySelectorAll('.sf__step')];
@@ -76,7 +76,7 @@ export default {
     // hold — scroll moves the active point through a complete causal chain; all inputs/results remain visible.
     steps.forEach((_, index) => tl.call(setActive, [index], 0.32 + index * 0.075));
     // exit — dismiss the completed process as the next claim enters.
-    tl.to(root, { y: -14, autoAlpha: 0, duration: 0.14 }, 0.84);
+    tl.to(root, { y: -14, autoAlpha: 1, duration: 0.14 }, 0.84);
   },
   unmount() { root = null; hasError = false; },
 };

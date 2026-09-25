@@ -1,34 +1,9 @@
-/* kinetic-titles — numbered titles fly onto a diagonal that a light traces. */
-[data-scene="03-claim"] .kt { position: relative; isolation: isolate; width: min(1320px, calc(100% - var(--gutter, 20px) * 2)); min-height: 100svh; overflow: hidden; }
-[data-scene="03-claim"] .kt__grid { position: absolute; inset: 0; opacity: var(--grid, 1); background-image: repeating-linear-gradient(145deg, transparent 0 76px, var(--hairline) 77px, transparent 78px), repeating-linear-gradient(35deg, transparent 0 144px, var(--hairline) 145px, transparent 146px); mask-image: linear-gradient(90deg, transparent, var(--ink) 14% 86%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, var(--ink) 14% 86%, transparent); }
-[data-scene="03-claim"] .kt__light { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; overflow: visible; }
-[data-scene="03-claim"] .kt__line { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--draw, 1)); }
-[data-scene="03-claim"] .kt__head { fill: var(--accent-1); opacity: var(--head-on, 1); offset-distance: calc(var(--head, 1) * 100%); }
-[data-scene="03-claim"] .kt__head-copy { position: absolute; z-index: 1; top: clamp(var(--space-xl, 32px), 7vh, var(--space-section, 88px)); left: 0; }
-[data-scene="03-claim"] .kt__kicker { margin: 0; color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
-[data-scene="03-claim"] .kt__heading { margin: var(--space-xs, 8px) 0 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; word-break: keep-all; }
-[data-scene="03-claim"] .kt__blocks { position: relative; z-index: 1; height: 100svh; }
-[data-scene="03-claim"] .kt__block { position: absolute; width: min(34vw, 460px); top: calc(var(--by, 40) * 1%); left: calc(var(--bx, 20) * 1%); color: var(--ink); }
-[data-scene="03-claim"] .kt__num { margin: 0 0 var(--space-sm, 12px); color: var(--accent-1); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .16em; }
-[data-scene="03-claim"] .kt__block[data-accent="2"] .kt__num { color: var(--accent-2); }
-[data-scene="03-claim"] .kt__block[data-accent="3"] .kt__num { color: var(--accent-3); }
-[data-scene="03-claim"] .kt__title { margin: 0; max-width: 100%; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(30px, 3.6vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; word-break: keep-all; }
-[data-scene="03-claim"] .kt__word { display: inline-block; white-space: pre; }
-[data-scene="03-claim"] .kt__bullets { display: grid; gap: var(--space-xs, 8px); max-width: 46ch; margin: var(--space-md, 16px) 0 0; padding: 0; list-style: none; color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(15px, 1.3vw, var(--body-lg-size, 18px)); line-height: 1.6; word-break: keep-all; }
-[data-scene="03-claim"] .kt__bullets li { padding-left: var(--space-sm, 12px); border-left: 1px solid var(--accent-1); clip-path: inset(0 calc((1 - var(--reveal, 1)) * 100%) 0 0); }
-[data-scene="03-claim"] .kt__block[data-accent="2"] .kt__bullets li { border-left-color: var(--accent-2); }
-[data-scene="03-claim"] .kt__block[data-accent="3"] .kt__bullets li { border-left-color: var(--accent-3); }
-[data-scene="03-claim"] .kt__block.is-active .kt__title { color: var(--accent-1); }
-[data-scene="03-claim"] .kt__block.is-active[data-accent="2"] .kt__title { color: var(--accent-2); }
-[data-scene="03-claim"] .kt__block.is-active[data-accent="3"] .kt__title { color: var(--accent-3); }
-@media (max-width: 720px) {
-  [data-scene="03-claim"] .kt { overflow: visible; }
-  [data-scene="03-claim"] .kt__head-copy { position: relative; padding-top: var(--space-xl, 32px); }
-  [data-scene="03-claim"] .kt__blocks { height: auto; display: grid; gap: var(--space-section, 88px); padding: var(--space-section, 88px) 0; }
-  [data-scene="03-claim"] .kt__block { position: relative; inset: auto; top: auto; left: auto; width: auto; }
-  [data-scene="03-claim"] .kt__light { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-scene="03-claim"] .kt__light { --draw: 1; --head: 1; }
-  [data-scene="03-claim"] .kt__bullets li { clip-path: none; }
-}
+[data-scene="03-claim"] .kt{box-sizing:border-box;width:min(1320px,calc(100% - var(--gutter,20px)*2));min-height:100svh;margin:auto;padding:clamp(56px,10vh,112px) 0;display:flex;flex-direction:column;justify-content:center;gap:clamp(32px,7vh,64px);color:var(--ink)}
+[data-scene="03-claim"] .kt__kicker{margin:0 0 12px;color:var(--ink-subtle);font:600 clamp(12px,.95vw,14px)/1.4 var(--font-mono,monospace);letter-spacing:.14em}
+[data-scene="03-claim"] .kt__heading{max-width:18ch;margin:0;font:750 clamp(40px,6vw,82px)/1.04 var(--font-display,inherit);letter-spacing:-.04em;word-break:keep-all;text-wrap:balance}
+[data-scene="03-claim"] .kt__case{position:relative;align-self:flex-start;box-sizing:border-box;width:min(860px,86%);padding:clamp(20px,3vw,36px) clamp(22px,3vw,42px);display:grid;grid-template-columns:1fr auto;gap:10px 24px;border-left:6px solid var(--accent-1)}
+[data-scene="03-claim"] .kt__case-label{grid-column:1/-1;color:var(--ink-muted);font:600 clamp(14px,1.15vw,17px)/1.4 var(--font-mono,monospace)}
+[data-scene="03-claim"] .kt__case-time{font:760 clamp(64px,9vw,120px)/.9 var(--font-display,inherit);letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+[data-scene="03-claim"] .kt__case-place{align-self:center;color:var(--ink-muted);font:550 clamp(16px,1.5vw,22px)/1.4 var(--font-body,inherit);word-break:keep-all}
+[data-scene="03-claim"] .kt__case-state{grid-column:1/-1;justify-self:start;padding:8px 12px;background:var(--accent-1);color:var(--surface);font:650 clamp(15px,1.2vw,18px)/1.3 var(--font-body,inherit)}
+@media(max-width:720px){[data-scene="03-claim"] .kt{justify-content:flex-start;gap:clamp(30px,6vh,52px);padding:clamp(30px,6vh,48px) 0}[data-scene="03-claim"] .kt__heading{font-size:clamp(38px,10vw,58px)}[data-scene="03-claim"] .kt__case{align-self:stretch;width:100%;padding:18px 20px;grid-template-columns:1fr}[data-scene="03-claim"] .kt__case-label,[data-scene="03-claim"] .kt__case-state{grid-column:auto}[data-scene="03-claim"] .kt__case-time{font-size:clamp(76px,22vw,112px)}}

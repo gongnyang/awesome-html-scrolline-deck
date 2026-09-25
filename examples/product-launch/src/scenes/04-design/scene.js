@@ -49,7 +49,7 @@ export default {
     tl.fromTo(portrait, { '--tilt': -1.6, '--shift': 1.2 }, { '--tilt': 1.6, '--shift': -1.2, duration: 0.42, ease: 'none' }, 0.32);
 
     // exit — 0.75 .. 1.00. The whole frame drops away.
-    tl.to(root, { yPercent: 14, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
+    // Keep the product detail and selection rationale visible through exit.
   },
 
   unmount() { root = null; },

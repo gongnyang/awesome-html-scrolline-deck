@@ -39,8 +39,19 @@ Commands
       --kicker "…"            Eyebrow line
       --title "…"             Scene title
       --lines "a|b|c"         Body lines, pipe separated (max 4)
-      --pinVh 100..400        Pin distance, default from the technique template
-      --notes "…"             Speaker notes (required by the schema; a hint is used if omitted)
+      --purpose "…"           Speaking job of this scene (v2 required)
+      --claim "…"             One sentence the audience must understand (v2 required)
+      --relation <type>       question|comparison|change|sequence|spatial|structure|decision|atmosphere
+      --reason "…"            Why this visual form and pace fit the relation (v2 required)
+      --evidenceStatus <type> sourced|synthetic|design-target|concept|none
+      --source "…"            Specific citation or explicit fictional/concept label
+      --presenterAction "…"   What the presenter says or asks at the hold
+      --visualChange "…"      What scrolling reveals, or why a static pass works
+      --pace <mode>           pass|hold|scrub; required in schemaVersion 2
+      --scrollVh 0..400       Scroll distance (0 for pass; positive for hold/scrub)
+      --cue 0..1             First stable presenter stop, default 0.55
+      --notes "…"             Speaker notes (required in schemaVersion 2)
+      --pinVh 100..400        Legacy schemaVersion 1 distance
 
   frames <video> [dir]        Cut a video into /public/frames/<name>/f_%03d.jpg (needs ffmpeg)
       --name hero             Sequence folder name
@@ -49,7 +60,7 @@ Commands
       --mobile 640            Also write a narrow sequence at this width
       --scene NN-id           Write frames/count/critical into that deck.json scene
 
-  storyboard [dir]            Print the scene table (id, technique, copy, pin, assets)
+  storyboard [dir]            Print the argument and pacing table
   check [dir]                 Static gates: module shape, timeline <= 1, tokens, no scrollTo
   verify [dir] --strict       Browser gates: wheel, keyboard, media, contrast, reduced motion
   qr --url <url> --scene <id> Write a currentColor QR SVG and wire it into deck.json (or --out <file>)
@@ -60,7 +71,7 @@ Commands
   help, --help                This text
   version, --version          ${VERSION}
 
-Techniques
+Techniques (implemented selection candidates; adapt and visually approve each deck scene)
   frame-scrub-hero  word-relay        kinetic-titles   horizontal-gallery
   anatomy-rows      frame-scrub-video parallax-video   paper-assembly
   odometer-stats    wipe-transform    tilt-card        closing-qr

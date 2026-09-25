@@ -99,7 +99,7 @@ export default {
     tl.fromTo(finalProofs, { autoAlpha: .25, x: 12 }, { autoAlpha: 1, x: 0, duration: .035, stagger: .015 }, .46);
     // hold — .52 .. .91: keep the recommendation, proof and source legible.
     // exit — .91 .. 1.00.
-    tl.to(root, { autoAlpha: 0, y: -18, duration: .09 }, .91);
+    tl.to(root, { autoAlpha: 1, y: -18, duration: .09 }, .91);
   },
   unmount() { root = null; },
 };

@@ -30,14 +30,14 @@ export default {
     }));
   },
   build(tl, ctx) {
-    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 0, duration: .1 }, .85); return; }
+    if (invalid) { tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 }, 0); tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 1, duration: .1 }, .85); return; }
     // enter — establish the dated progression before revealing its milestones.
     const events = [...root.querySelectorAll('.t__event')];
     tl.fromTo(events, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.13, stagger: 0.06 }, 0.06);
     tl.fromTo(root.querySelector('.t__rail'), { '--progress': 0 }, { '--progress': 1, duration: 0.25 }, 0);
     // hold — keep every date, milestone, and consequence together on screen.
     // exit — leave the completed chronology before the next scene.
-    tl.to(root, { autoAlpha: 0, y: -16, duration: 0.13 }, 0.85);
+    tl.to(root, { autoAlpha: 1, y: -16, duration: 0.13 }, 0.85);
   },
   unmount() { root = null; invalid = false; },
 };

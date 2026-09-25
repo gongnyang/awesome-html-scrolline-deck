@@ -4,6 +4,7 @@ export default {
   id: '09-availability',
   mount(section, ctx) {
     root = section.querySelector('.t') || section;
+    section.id = '09-availability';
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
     const lines = (copy.lines || []).slice(0, 4);
@@ -24,7 +25,7 @@ export default {
         const events = [...root.querySelectorAll('.t__event')];
     tl.fromTo(events, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.13, stagger: 0.06 }, 0.06);
     tl.fromTo(root.querySelector('.t__rail'), { '--progress': 0 }, { '--progress': 1, duration: 0.25 }, 0);
-    tl.to(root, { autoAlpha: 0, y: -24, duration: 0.16 }, 0.82);
+    // Keep the last date and virtual schedule label visible through exit.
     // hold — 0.30 .. 0.75
     // Keep the composed state readable while the presenter speaks.
     // exit — 0.75 .. 1.00

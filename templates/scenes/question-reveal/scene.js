@@ -74,7 +74,7 @@ export default {
   build(tl) {
     if (hasError) {
       tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0);
-      tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 0, duration: 0.1 }, 0.85);
+      tl.to(root.querySelector('[data-role="error"]'), { autoAlpha: 1, duration: 0.1 }, 0.85);
       return;
     }
     const rows = [...root.querySelectorAll('.qr__item')];
@@ -97,7 +97,7 @@ export default {
     tl.fromTo(answer, { y: 8, autoAlpha: 0.25 }, { y: 0, autoAlpha: 1, duration: 0.1 }, 0.58);
     tl.call(() => answer.classList.add('is-ready'), null, 0.68);
     // exit — the answered question leaves as the next scene begins.
-    tl.to(root, { y: -12, autoAlpha: 0, duration: 0.14 }, 0.85);
+    tl.to(root, { y: -12, autoAlpha: 1, duration: 0.14 }, 0.85);
   },
   unmount() { root = null; hasError = false; },
 };

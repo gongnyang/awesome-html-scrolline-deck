@@ -17,8 +17,6 @@
       "id": "01-hero",
       "order": 1,
       "technique": "frame-scrub-hero",
-      "pinVh": 280,
-      "pin": true,
       "assets": {
         "frames": null,
         "count": 0,
@@ -41,14 +39,27 @@
       "purpose": "고객이 매장 경험이 달라집니다을 운영 문제와 파일럿 결정에 연결한다.",
       "reason": "첫 1–2개 장면에서 “매장 경험이 달라집니다”을 큰 이미지와 깊이감으로 먼저 보여 주어 “혼잡한 시간대의 고객 이탈을 줄이는 90일 실험을 제안합니다” 상황에 관심을 모으고, 발표의 문제와 제안 범위를 직관적으로 파악하게 한다.",
       "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
-      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)",
+      "claim": "고객은 계산 전에 떠난다",
+      "relation": "question",
+      "presenterAction": "가상 매장 피크 시간의 고객 이탈 가설을 연다.",
+      "visualChange": "고객의 이동과 대기 지점이 순서대로 드러난다.",
+      "evidenceStatus": "synthetic",
+      "pace": {
+        "mode": "scrub",
+        "scrollVh": 200,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "고객의 이동과 대기 지점이 순서대로 드러난다."
+          }
+        ]
+      }
     },
     {
       "id": "02-challenge",
       "order": 2,
       "technique": "question-reveal",
-      "pinVh": 210,
-      "pin": true,
       "assets": {
         "poster": "/media/client-proposal/02-challenge/peak-queue.webp"
       },
@@ -71,19 +82,27 @@
       "purpose": "대기 8분을 사실로 단정하지 않고 파일럿에서 확인할 운영 가설로 제시한다.",
       "reason": "피크 시간의 실제 매장 재구성 이미지 위에서 08분을 크게 띄워 관심을 모으고, 문의 지연→계산 대기→이탈 가설의 경로와 측정 방법을 한 화면에 보여 다음 장의 수치 근거를 질문으로 연다.",
       "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
-      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)",
+      "claim": "문의 대기와 계산 대기가 한 줄에 겹칩니다",
+      "relation": "structure",
+      "presenterAction": "문의 대기와 계산 대기가 겹치는 위치를 짚는다.",
+      "visualChange": "한 줄에 합쳐진 두 대기의 경로가 분리되어 보인다.",
+      "evidenceStatus": "synthetic",
+      "pace": {
+        "mode": "scrub",
+        "scrollVh": 160,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "한 줄에 합쳐진 두 대기의 경로가 분리되어 보인다."
+          }
+        ]
+      }
     },
     {
       "id": "03-evidence",
       "order": 3,
       "technique": "annotated-chart",
-      "pinVh": 290,
-      "pin": true,
-      "cues": [
-        0.2,
-        0.43,
-        0.67
-      ],
       "assets": {
         "series": [
           35,
@@ -112,14 +131,27 @@
       "purpose": "고객이 피크 시간 대기 중앙값 8.4분을 운영 문제와 파일럿 결정에 연결한다.",
       "reason": "“해석: 13–14시 혼잡이 최고, 대기 중앙값 8.4분”의 해석을 실제 데이터 계열과 같은 화면에 표시해, 청중이 “병목은 결제대 앞 피크 시간에 모인다”에 해당하는 추세와 근거의 범위를 함께 읽도록 한다.",
       "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
-      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)",
+      "claim": "대기는 점심 피크에 쌓인다",
+      "relation": "change",
+      "presenterAction": "가상 6일·420건의 시간대별 대기 패턴을 설명한다.",
+      "visualChange": "13–14시 피크가 다른 시간과 비교되어 드러난다.",
+      "evidenceStatus": "synthetic",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 150,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "13–14시 피크가 다른 시간과 비교되어 드러난다."
+          }
+        ]
+      }
     },
     {
       "id": "04-journey",
       "order": 4,
       "technique": "step-flow",
-      "pinVh": 210,
-      "pin": true,
       "assets": {
         "images": [
           "/media/client-proposal/04-journey/discovery.webp",
@@ -143,14 +175,28 @@
       "notes": "스크롤을 내리며 탐색, 상담, 결제의 장면을 순서대로 짚는다. 이미지는 가상 매장 상황을 위해 생성한 재구성 이미지이며, 인물·행동은 실제 고객 관찰 자료가 아니다.",
       "fallback": "정지 화면에서는 세 단계와 설명이 읽기 순서대로 쌓인다. 이미지의 가상 사례 표기를 유지한다.",
       "purpose": "고객 여정 중 문의가 상담과 결제 대기에 합쳐지는 위치를 순서대로 이해시킨다.",
-      "reason": "서로 다른 세 장면이 스크롤에 맞춰 화면을 이어받고 경로 표시가 현재 단계를 따라간다. 발표자는 사진 속 행동을 짚으며 어디서 대기가 겹치는지 설명한다."
+      "reason": "서로 다른 세 장면이 스크롤에 맞춰 화면을 이어받고 경로 표시가 현재 단계를 따라간다. 발표자는 사진 속 행동을 짚으며 어디서 대기가 겹치는지 설명한다.",
+      "claim": "대기는 고객 여정의 세 지점에서 쌓입니다",
+      "relation": "sequence",
+      "presenterAction": "탐색·상담·결제에서 대기가 어떻게 전달되는지 설명한다.",
+      "visualChange": "고객 여정의 세 지점과 병목이 차례로 드러난다.",
+      "evidenceStatus": "synthetic",
+      "source": "가상 고객 제안 시나리오 · 관측 결과 아님",
+      "pace": {
+        "mode": "scrub",
+        "scrollVh": 180,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "고객 여정의 세 지점과 병목이 차례로 드러난다."
+          }
+        ]
+      }
     },
     {
       "id": "05-solution",
       "order": 5,
       "technique": "system-map",
-      "pinVh": 210,
-      "pin": true,
       "assets": {},
       "copy": {
         "kicker": "예약과 현장 대기를 한 흐름으로",
@@ -181,14 +227,28 @@
       "notes": "시스템 관계와 운영자 역할을 함께 그린다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
       "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
       "purpose": "고객이 모바일 대기표 · 상담 슬롯 · 직원 알림을 운영 문제와 파일럿 결정에 연결한다.",
-      "reason": "고객 접수에서 직원 안내까지의 세 단계를 하나의 스크롤 연결선으로 드러내고, 기존 POS 유지라는 제약을 큰 문장으로 고정해 솔루션의 범위와 운영 흐름을 바로 이해하게 한다."
+      "reason": "고객 접수에서 직원 안내까지의 세 단계를 하나의 스크롤 연결선으로 드러내고, 기존 POS 유지라는 제약을 큰 문장으로 고정해 솔루션의 범위와 운영 흐름을 바로 이해하게 한다.",
+      "claim": "POS는 그대로, 대기부터 안내까지 한 흐름으로",
+      "relation": "structure",
+      "presenterAction": "기존 POS를 유지하며 대기표·상담 슬롯·직원 알림을 연결한다.",
+      "visualChange": "세 구성요소의 입력과 결과가 연결된다.",
+      "evidenceStatus": "synthetic",
+      "source": "가상 고객 제안 시나리오 · 관측 결과 아님",
+      "pace": {
+        "mode": "scrub",
+        "scrollVh": 160,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "세 구성요소의 입력과 결과가 연결된다."
+          }
+        ]
+      }
     },
     {
       "id": "06-pilot",
       "order": 6,
       "technique": "timeline-roadmap",
-      "pinVh": 210,
-      "pin": true,
       "assets": {},
       "copy": {
         "kicker": "가상 파일럿 · 기준 측정 → 적용 → 평가",
@@ -208,14 +268,27 @@
       "purpose": "실행 기간과 단계별 책임·측정 항목을 비례 일정과 스크롤 강조로 합의한다.",
       "reason": "2주·8주·2주의 실제 기간 비율을 한 줄의 시간축에 보이고 스크롤마다 현재 단계의 책임과 산출물을 바꿔 읽힌다. 비례 막대와 주차 표기가 시각적으로 즉시 비교돼 기간을 과장하지 않는다.",
       "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
-      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)",
+      "claim": "3개 점포에서 12주 운영 가설을 검증합니다",
+      "relation": "sequence",
+      "presenterAction": "2주 측정·8주 적용·2주 평가의 책임과 산출물을 설명한다.",
+      "visualChange": "주차 비율과 단계별 산출물이 함께 읽힌다.",
+      "evidenceStatus": "design-target",
+      "pace": {
+        "mode": "scrub",
+        "scrollVh": 170,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "주차 비율과 단계별 산출물이 함께 읽힌다."
+          }
+        ]
+      }
     },
     {
       "id": "07-impact",
       "order": 7,
       "technique": "before-after",
-      "pinVh": 210,
-      "pin": true,
       "assets": {
         "images": [
           "/media/client-proposal/07-impact/image-01.webp",
@@ -243,14 +316,27 @@
       "purpose": "고객이 대기 중앙값 8.4분 → 5분 이하을 운영 문제와 파일럿 결정에 연결한다.",
       "reason": "“대기 중앙값 8.4분 → 5분 이하”의 두 상태를 같은 크기와 기준으로 나란히 비교해 “고객 이탈률 18% → 12% 이하를 목표로 두되 보장 수치는 아니다”에서 제기한 변화가 어디에서 생기는지 확인하게 한다.",
       "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
-      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)"
+      "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)",
+      "claim": "대기 중앙값 8.4분 → 5분 이하",
+      "relation": "comparison",
+      "presenterAction": "기준선과 목표치를 구분해 파일럿의 성공 조건을 설명한다.",
+      "visualChange": "가상 기준선과 설계 목표가 동일 척도에서 비교된다.",
+      "evidenceStatus": "design-target",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 120,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "가상 기준선과 설계 목표가 동일 척도에서 비교된다."
+          }
+        ]
+      }
     },
     {
       "id": "08-options",
       "order": 8,
       "technique": "option-matrix",
-      "pinVh": 210,
-      "pin": true,
       "assets": {
         "matrix": {
           "options": [
@@ -302,14 +388,27 @@
       "fallback": "모션을 줄이면 세 선택지의 간단한 비교와 표준안, 세 가지 운영 기준, 추천 이유, 출처를 한 화면에서 읽는다.",
       "purpose": "고객이 세 가지 도입 범위의 차이를 보고 3개 점포 파일럿에 맞는 선택안을 결정한다.",
       "reason": "초반의 세 선택지 요약이 스크롤에 따라 걷히고 표준안이 화면을 차지한다. 3곳·주 1회·대기+슬롯을 각 기준명과 세로 정렬해 즉시 비교하게 하고, 다른 선택지는 작게 남겨 결정 이유가 먼저 보이게 한다.",
-      "source": "가상 고객 제안 시나리오 · 파일럿 범위 예시"
+      "source": "가상 고객 제안 시나리오 · 파일럿 범위 예시",
+      "claim": "첫 검증은 표준안으로 세 점포에서 시작합니다",
+      "relation": "decision",
+      "presenterAction": "세 도입안의 범위를 같은 항목으로 비교해 표준안을 제안한다.",
+      "visualChange": "선택 기준과 추천안의 근거가 정렬되어 드러난다.",
+      "evidenceStatus": "synthetic",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 130,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "선택 기준과 추천안의 근거가 정렬되어 드러난다."
+          }
+        ]
+      }
     },
     {
       "id": "09-governance",
       "order": 9,
       "technique": "system-map",
-      "pinVh": 210,
-      "pin": true,
       "assets": {
         "images": [
           "/media/client-proposal/09-governance/operations-v2.webp"
@@ -336,19 +435,26 @@
       "reason": "실제 운영 대화 이미지를 맥락으로 두고, 스크롤할수록 0건의 식별 정보와 관찰→익명화→집계 경로가 드러난다. 30일 보유·접근 최소화는 검토할 가상 제안 조건으로 명시한다.",
       "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
       "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)",
-      "cues": [
-        0.2,
-        0.35,
-        0.47,
-        0.6
-      ]
+      "claim": "개인정보 없이 흐름만 집계",
+      "relation": "structure",
+      "presenterAction": "고객 식별 정보를 저장하지 않는 집계 원칙을 설명한다.",
+      "visualChange": "관찰에서 익명 집계까지의 데이터 경계가 드러난다.",
+      "evidenceStatus": "synthetic",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 120,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "관찰에서 익명 집계까지의 데이터 경계가 드러난다."
+          }
+        ]
+      }
     },
     {
       "id": "10-close",
       "order": 10,
       "technique": "agenda-path",
-      "pinVh": 210,
-      "pin": true,
       "assets": {},
       "copy": {
         "kicker": "공동 제안 · 결정 요청",
@@ -369,15 +475,25 @@
       "reason": "큰 03을 결론의 시각 앵커로 쓰고 세 결정 사항을 스크롤로 하나씩 드러낸 뒤, 모두 읽을 수 있는 정지 화면에서 90일 검증의 다음 행동을 요청한다.",
       "evidence": "가상 사례를 위해 구성한 수치와 시나리오이며 실제 실적·시험·관측 결과가 아닙니다.",
       "source": "Scrolline Deck 발표 예시의 가상 데이터 (2026)",
-      "cues": [
-        0.2,
-        0.3,
-        0.4,
-        0.55
-      ]
+      "claim": "세 점포 파일럿의 기준선을 합의합시다",
+      "relation": "decision",
+      "presenterAction": "대상 점포·지표·운영 담당자 합의를 요청한다.",
+      "visualChange": "파일럿 시작 전에 필요한 세 결정을 한 화면에 모은다.",
+      "evidenceStatus": "synthetic",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 100,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "파일럿 시작 전에 필요한 세 결정을 한 화면에 모은다."
+          }
+        ]
+      }
     }
   ],
   "links": {
     "site": "https://github.com/gongnyang/awesome-html-scrolline-deck"
-  }
+  },
+  "schemaVersion": 2
 }

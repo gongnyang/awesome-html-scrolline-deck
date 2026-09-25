@@ -1,16 +1,21 @@
-/* frame-scrub-video — a clip turned into frames, so the wheel is the play head. */
-[data-scene="08-demo"] .fsv { position: relative; width: 100%; min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
-[data-scene="08-demo"] .fsv__frame { position: absolute; inset: 0; overflow: hidden; background-color: var(--surface-1); background-position: center; background-size: cover; background-repeat: no-repeat; }
-[data-scene="08-demo"] .fsv__scrim { position: absolute; z-index: 0; inset: 0; pointer-events: none; background: linear-gradient(to top, var(--canvas) 0%, var(--canvas) 14%, transparent 68%); }
-[data-scene="08-demo"] .fsv__copy { position: absolute; z-index: 1; left: clamp(var(--gutter, 20px), 6vw, var(--space-section, 88px)); bottom: clamp(var(--space-xl, 32px), 8vh, var(--space-section, 88px)); width: min(660px, calc(100% - var(--gutter, 20px) * 2)); pointer-events: none; }
+/* Three legible states of one recognizable subject replace abstract frame motion. */
+[data-scene="08-demo"] .fsv { box-sizing:border-box;position:relative;width:min(1440px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;padding:clamp(30px,5vh,60px) 0;display:grid;grid-template-rows:auto 1fr;gap:clamp(24px,4vh,42px);color:var(--ink); }
+[data-scene="08-demo"] .fsv__sequence { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,2vw,24px);align-items:center;min-height:0; }
+[data-scene="08-demo"] .fsv__state { min-width:0;margin:0;opacity:.8; }
+[data-scene="08-demo"] .fsv__state img { display:block;width:100%;height:min(46svh,420px);object-fit:contain;object-position:center;background:var(--surface-1);border-radius:4px; }
+[data-scene="08-demo"] .fsv__state figcaption { margin-top:12px;color:var(--accent-1);font:650 clamp(13px,1vw,16px)/1.3 var(--font-mono,monospace); }
+[data-scene="08-demo"] .fsv__copy { grid-row:1;grid-column:1;position:relative;z-index:1;width:min(720px,100%);pointer-events:none; }
 [data-scene="08-demo"] .fsv__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 [data-scene="08-demo"] .fsv__title { margin: 0 0 var(--space-xl, 32px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; word-break: keep-all; }
 [data-scene="08-demo"] .fsv__lines { display: grid; gap: var(--space-sm, 12px); margin: 0; padding: 0; list-style: none; color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.5; word-break: keep-all; }
 [data-scene="08-demo"] .fsv__lines li { display: grid; grid-template-columns: 2.6em minmax(0, 1fr); gap: var(--space-sm, 12px); }
 [data-scene="08-demo"] .fsv__lines b { color: var(--accent-1); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); font-weight: 500; letter-spacing: .12em; line-height: 2; }
 @media (max-width: 720px) {
-  [data-scene="08-demo"] .fsv__copy { left: var(--gutter, 20px); right: var(--gutter, 20px); width: auto; bottom: var(--space-xl, 32px); }
-  [data-scene="08-demo"] .fsv__title { margin-bottom: var(--space-lg, 24px); }
+  [data-scene="08-demo"] .fsv{grid-template-rows:auto 1fr;}
+  [data-scene="08-demo"] .fsv__sequence{grid-template-columns:1fr;align-content:start;gap:18px;}
+  [data-scene="08-demo"] .fsv__state{display:grid;grid-template-columns:minmax(100px,34%) 1fr;gap:12px;align-items:center;}
+  [data-scene="08-demo"] .fsv__state img{height:clamp(130px,28vw,190px);}
+  [data-scene="08-demo"] .fsv__state figcaption{margin:0;font-size:13px;}
 }
 @media (prefers-reduced-motion: reduce) {
   [data-scene="08-demo"] .fsv__scrim { background: linear-gradient(to top, var(--canvas) 0%, var(--canvas) 26%, transparent 78%); }

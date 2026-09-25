@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">야간 이동 개념도</title>
+  <desc id="desc">실제 지도가 아닌 추상적인 야간 이동의 구간 배경</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#11192c"/>
+      <stop offset="1" stop-color="#26354a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7c86b" stop-opacity=".08"/>
+      <stop offset=".52" stop-color="#f7c86b" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#8dd9cc" stop-opacity=".34"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#night)"/>
+  <path d="M-30 590 C190 470 170 335 410 380 S745 540 875 330 1080 170 1240 220" fill="none" stroke="#435169" stroke-width="92" opacity=".52"/>
+  <path d="M-30 590 C190 470 170 335 410 380 S745 540 875 330 1080 170 1240 220" fill="none" stroke="#111a2a" stroke-width="68" opacity=".92"/>
+  <path d="M-30 590 C190 470 170 335 410 380 S745 540 875 330 1080 170 1240 220" fill="none" stroke="url(#glow)" stroke-width="2" stroke-dasharray="10 18"/>
+  <g fill="#b3c3d6" opacity=".12">
+    <path d="M70 80h250v130H70zM390 40h180v220H390zM740 64h240v150H740zM1010 82h130v180h-130z"/>
+    <path d="M30 278h230v120H30zM598 292h196v142H598zM940 410h230v130H940zM302 520h220v126H302z"/>
+  </g>
+  <g fill="#f3ead7" opacity=".48">
+    <circle cx="120" cy="123" r="3"/><circle cx="206" cy="152" r="3"/><circle cx="452" cy="107" r="3"/>
+    <circle cx="512" cy="184" r="3"/><circle cx="803" cy="123" r="3"/><circle cx="1091" cy="150" r="3"/>
+    <circle cx="134" cy="330" r="3"/><circle cx="685" cy="347" r="3"/><circle cx="1034" cy="465" r="3"/>
+  </g>
+</svg>

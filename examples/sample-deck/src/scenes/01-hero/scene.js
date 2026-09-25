@@ -43,7 +43,6 @@ export default {
   build(tl, ctx) {
     const media = root.querySelector('.hero__media');
     const copy = root.querySelector('.hero__copy');
-    const veil = root.querySelector('.hero__veil');
     const titleWords = root.querySelectorAll('.hero__title span');
     const film = { value: 0 };
 
@@ -66,10 +65,7 @@ export default {
       onUpdate: () => scrub && scrub.setProgress(film.value),
     }, 0);
 
-    // exit — 0.75 .. 1.00. Push into the frame and wash out.
-    tl.to(media, { scale: 1.09, duration: 0.18, ease: 'power2.in' }, 0.8);
-    tl.to(copy, { scale: 1.06, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
-    tl.to(veil, { autoAlpha: 1, duration: 0.16 }, 0.82);
+    // Keep the hero subject and core claim visible through the scene boundary.
   },
 
   unmount() {

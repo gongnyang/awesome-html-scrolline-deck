@@ -17,7 +17,7 @@ const TEMPLATE_ROOT = path.join(ROOT, 'templates', 'scenes');
 const VIDEOS = [
   ['01-promo-shorts', '홍보 쇼츠', '8개 덱의 서로 다른 장면을 19.5초 세로 영상으로 소개합니다.'],
   ['02-real-case-cheonggyecheon', '실제 사례 스토리', '청계천 복원 연혁과 제한된 현장 측정 결과를 59.7초로 다룹니다. 일부 역사 장면은 AI 재구성입니다.'],
-  ['03-education-scene-design', '장면 설계 교육', '질문·주장·시각 근거의 순서를 68.6초에 설명합니다.'],
+  ['03-education-scene-design', '장면 설계 교육', '질문·주장·시각 근거의 순서를 76.6초에 설명합니다.'],
 ];
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const useInstalledDependencies = process.env.SCROLLINE_USE_INSTALLED_DEPS === '1';
@@ -38,8 +38,8 @@ const cards = [];
 for (const name of decks) {
   const dir = path.join(EX, name);
   const deck = JSON.parse(fs.readFileSync(path.join(dir, 'data/deck.json'), 'utf8'));
-  if (!Array.isArray(deck.scenes) || deck.scenes.length < 8 || deck.scenes.length > 12) {
-    throw new Error(`${name}: expected 8–12 distinct scenes, found ${deck.scenes?.length ?? 0}`);
+  if (!Array.isArray(deck.scenes) || deck.scenes.length < 2) {
+    throw new Error(`${name}: a presentation needs at least an opening and a conclusion`);
   }
   const reportPath = path.join(dir, 'qa', 'report.json');
   if (!fs.existsSync(reportPath)) throw new Error(`${name}: qa/report.json is missing; run strict verify first`);
@@ -61,7 +61,9 @@ for (const name of decks) {
   fs.mkdirSync(path.join(SITE, '_qa', name), { recursive: true });
   for (const f of shots.slice(0, 4)) fs.copyFileSync(path.join(qa, f), path.join(SITE, '_qa', name, f));
   const scenes = (deck.scenes || []).sort((a, b) => a.order - b.order);
-  const pin = scenes.reduce((s, x) => s + (x.pin === false ? 0 : x.pinVh || 0), 0);
+  const pin = scenes.reduce((sum, scene) => sum +
+    ((scene.pace?.mode ?? (scene.pin === false ? 'pass' : 'scrub')) === 'pass'
+      ? 0 : (scene.pace?.scrollVh ?? scene.pinVh ?? 0)), 0);
   const heroScene = scenes.find((scene) => scene.id === '01-hero');
   const heroAsset = Object.values(heroScene?.assets || {}).flatMap((value) =>
     typeof value === 'string' ? [value] : Array.isArray(value) ? value : []).find((value) =>
@@ -69,8 +71,8 @@ for (const name of decks) {
   cards.push({ name, title: deck.title, subtitle: deck.subtitle || '', style: deck.theme?.style || 'dark', accent: deck.theme?.accent || '#a8ff60', scenes, pin, shots, heroAsset });
   console.log(`built ${name}: ${scenes.length} scenes, ${pin}vh`);
 }
-// A template is publishable when its runnable files, teaching metadata, and
-// representative preview are all present. The registry grows without a fixed count.
+// The public scene picker shows mechanisms with a verified, currently published
+// deck scene. Unrepresented templates remain available to authors as experiments.
 const REQUIRED_FILES = ['scene.html', 'scene.css', 'scene.js', 'preview.webp'];
 const REQUIRED_TEXT = ['description_ko', 'purpose', 'notesHint', 'responsive', 'reducedMotion'];
 const TAG_FAMILIES = [
@@ -93,31 +95,43 @@ fs.mkdirSync(path.join(SITE, '_templates'), { recursive: true });
 for (const name of templateNames) {
   const dir = path.join(TEMPLATE_ROOT, name);
   const template = JSON.parse(fs.readFileSync(path.join(dir, 'template.json'), 'utf8'));
-  if (template.sceneContract?.status !== 'production') {
-    console.warn(`excluded unreviewed template ${name}`);
+  const status = template.sceneContract?.status;
+  if (!['production', 'experimental', 'blocked'].includes(status)) {
+    console.warn(`excluded template with unknown review status ${name}: ${status}`);
     continue;
   }
   const missingFiles = REQUIRED_FILES.filter((file) => !fs.existsSync(path.join(dir, file)));
   const missingFields = REQUIRED_TEXT.filter((field) => !String(template[field] || '').trim());
-  if (missingFiles.length || missingFields.length || !template.exampleCopy?.title || !Array.isArray(template.tags) || !template.tags.length) {
-    console.warn(`excluded incomplete production template ${name}: ${[...missingFiles, ...missingFields].join(', ') || 'exampleCopy.title or tags missing'}`);
+  if (missingFiles.length || missingFields.length || !template.exampleCopy?.title || !Array.isArray(template.tags) || !template.tags.length || !template.sceneContract?.relation || !template.sceneContract?.failureFallback) {
+    console.warn(`excluded incomplete template ${name}: ${[...missingFiles, ...missingFields, ...(!template.sceneContract?.relation ? ['sceneContract.relation'] : []), ...(!template.sceneContract?.failureFallback ? ['sceneContract.failureFallback'] : [])].join(', ') || 'exampleCopy.title or tags missing'}`);
     continue;
   }
-  const previewName = `${name}.webp`;
-  fs.copyFileSync(path.join(dir, 'preview.webp'), path.join(SITE, '_templates', previewName));
   const source = String(template.previewSource || '');
-  const match = source.match(/^examples\/([^/]+)\//);
-  const deckName = match?.[1] && cards.some((card) => card.name === match[1]) ? match[1] : cards[0]?.name;
-  const deckCard = cards.find((card) => card.name === deckName);
+  const match = source.match(/^examples\/([^/]+)\/([^/]+)$/);
+  const preferred = match && cards.find((card) => card.name === match[1])?.scenes.find((scene) =>
+    scene.id === match[2] && scene.technique === name);
+  const representative = preferred
+    ? { card: cards.find((card) => card.name === match[1]), scene: preferred }
+    : cards.flatMap((card) => card.scenes.map((scene) => ({ card, scene }))).find(({ scene }) => scene.technique === name);
+  if (!representative) {
+    console.warn(`excluded unrepresented template ${name}; keep it experimental until a complete deck scene is reviewed`);
+    continue;
+  }
+  const { card, scene } = representative;
+  const capture = path.join(EX, card.name, 'qa', `${scene.id}-55.jpg`);
+  if (!fs.existsSync(capture)) throw new Error(`${name}: missing verified representative capture ${capture}`);
+  const previewImage = `${name}.jpg`;
+  fs.copyFileSync(capture, path.join(SITE, '_templates', previewImage));
   const title = template.exampleCopy.title;
   templateCards.push({
     ...template, name, family: classify(template.tags), familyLabel: FAMILY_LABELS[classify(template.tags)],
-    searchText: [name, title, template.purpose, template.description_ko, ...template.tags].join(' '),
-    previewHref: deckName ? `./${deckName}/` : '#decks',
-    alt: `${title} 장면 템플릿 미리보기`,
+    status, statusLabel: status === 'production' ? '검수 완료' : status === 'blocked' ? '사용 보류' : '사용 후보',
+    searchText: [name, title, template.purpose, template.description_ko, template.sceneContract.relation, template.sceneContract.fit, template.sceneContract.requiredInputs, ...template.tags].join(' '),
+    previewHref: `./${card.name}/?scene=${encodeURIComponent(scene.id)}`, previewImage,
+    galleryTitle: scene.copy?.title || title,
+    alt: `${card.title}의 ${scene.copy?.title || scene.id} 장면을 실제 발표 화면에서 캡처`,
   });
 }
-if (templateCards.length < 24) throw new Error(`At least 24 reviewed scene templates are required; found ${templateCards.length}.`);
 const familyCounts = Object.fromEntries(Object.keys(FAMILY_LABELS).map((family) =>
   [family, templateCards.filter((template) => template.family === family).length]));
 
@@ -145,4 +159,4 @@ for (const [slug] of VIDEOS) {
 const families = Object.entries(FAMILY_LABELS).map(([id, label]) => ({ id, label, count: familyCounts[id] }));
 const html = renderGallery({ decks: cards, templates: templateCards, videos: VIDEOS, families, sceneTypeCount: templateCards.length });
 fs.writeFileSync(path.join(SITE, 'index.html'), html);
-console.log(`gallery: ${cards.length} decks, ${templateCards.length} production scene types`);
+console.log(`gallery: ${cards.length} decks, ${templateCards.length} scene candidates (${templateCards.filter((template) => template.status === 'production').length} reviewed)`);

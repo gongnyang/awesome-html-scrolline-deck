@@ -43,7 +43,7 @@ function resolveAsset(paths, assetPath) {
   return { relPath, candidates, found: candidates.find(exists) ?? null };
 }
 
-const framePath = (pattern, n) => String(pattern).replace('%03d', String(n).padStart(3, '0'));
+const framePath = (pattern, n) => String(pattern).replace(/%0(\d)d/, (_, width) => String(n).padStart(Number(width), '0'));
 
 export async function run(ctx) {
   const { deck, paths, error } = readDeck(ctx.dir);
@@ -60,8 +60,59 @@ export async function run(ctx) {
   const items = normalized.errors.slice(0, 20);
   const missing = [];
   let cueErrors = 0;
+  let narrativeErrors = 0;
+  const version = deck.schemaVersion ?? 1;
 
   for (const scene of orderedScenes(deck)) {
+    // Vite's scene glob silently omits a missing scene.js, so a successful
+    // build alone does not prove every storyboard scene is actually mounted.
+    for (const file of ['scene.html', 'scene.css', 'scene.js']) {
+      if (!exists(path.join(paths.root, 'src', 'scenes', scene.id, file))) {
+        items.push(`${scene.id}: 장면 파일 없음 src/scenes/${scene.id}/${file}`);
+        narrativeErrors += 1;
+      }
+    }
+    if (version === 1 && !Number.isFinite(Number(scene?.pinVh))) {
+      items.push(`${scene.id}: legacy deck requires pinVh`);
+      narrativeErrors += 1;
+    }
+    if (version >= 2) {
+      for (const field of ['purpose', 'claim', 'relation', 'reason', 'presenterAction', 'visualChange', 'evidenceStatus']) {
+        if (typeof scene?.[field] !== 'string' || !scene[field].trim()) {
+          items.push(`${scene.id}: ${field} is required in schemaVersion 2`);
+          narrativeErrors += 1;
+        }
+      }
+      const pace = scene?.pace;
+      if (!pace || !['pass', 'hold', 'scrub'].includes(pace.mode)) {
+        items.push(`${scene.id}: pace.mode must be pass, hold, or scrub`);
+        narrativeErrors += 1;
+      } else {
+        if (pace.mode !== 'pass' && !(pace.scrollVh > 0)) {
+          items.push(`${scene.id}: a ${pace.mode} scene needs a positive scrollVh`);
+          narrativeErrors += 1;
+        }
+        if (pace.mode === 'pass' && pace.scrollVh !== 0) {
+          items.push(`${scene.id}: pass scenes must use scrollVh 0`);
+          narrativeErrors += 1;
+        }
+        if (!Array.isArray(pace.cueStates) || pace.cueStates.length === 0 ||
+            pace.cueStates.some((cue, index) => !Number.isFinite(cue.at) ||
+              (index > 0 && cue.at <= pace.cueStates[index - 1].at))) {
+          items.push(`${scene.id}: pace.cueStates must contain ascending, meaningful stops`);
+          narrativeErrors += 1;
+        }
+      }
+      if (scene.evidenceStatus === 'sourced' && (!scene.source || scene.source.trim().length < 8)) {
+        items.push(`${scene.id}: sourced evidence needs a specific source`);
+        narrativeErrors += 1;
+      }
+      if (['synthetic', 'design-target', 'concept'].includes(scene.evidenceStatus) &&
+          (!scene.source || !/(가상|합성|목표|콘셉트|예시|synthetic|fictional|target|concept)/i.test(scene.source))) {
+        items.push(`${scene.id}: ${scene.evidenceStatus} must be identified in source`);
+        narrativeErrors += 1;
+      }
+    }
     if (Array.isArray(scene?.cues) && scene.cues.some((cue, index) => index > 0 && cue <= scene.cues[index - 1])) {
       items.push(`${scene.id}: cues는 중복 없이 오름차순이어야 합니다`);
       cueErrors += 1;
@@ -72,6 +123,7 @@ export async function run(ctx) {
     if (assets.poster) wanted.push(assets.poster);
     if (assets.video) wanted.push(assets.video);
     if (Array.isArray(assets.images)) wanted.push(...assets.images);
+    if (Array.isArray(assets.photos)) wanted.push(...assets.photos);
     if (assets.frames && Number.isInteger(assets.count) && assets.count > 0) {
       for (let n = 1; n <= assets.count; n += 1) wanted.push(framePath(assets.frames, n));
     }
@@ -94,7 +146,7 @@ export async function run(ctx) {
   const sceneCount = Array.isArray(deck?.scenes) ? deck.scenes.length : 0;
   const details = ok
     ? `장면 ${sceneCount}개 · 스키마(${source}) 통과 · 에셋 경로 이상 없음`
-    : `스키마 오류 ${normalized.errors.length + cueErrors}건, 없는 에셋 ${missing.length}건 (검증기: ${source})`;
+    : `스키마·스토리보드 오류 ${normalized.errors.length + cueErrors + narrativeErrors}건, 없는 에셋 ${missing.length}건 (검증기: ${source})`;
   return { ok, details, items };
 }
 

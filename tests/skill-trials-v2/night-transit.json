@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 2,
+  "title": "야간 근무 뒤 귀가를 설계하다",
+  "subtitle": "운행 정보와 이동 선택을 확인하는 세 단계",
+  "lang": "ko",
+  "theme": {
+    "style": "light",
+    "accent": "#5e6ad2"
+  },
+  "recreate": [
+    "node scripts/cli.mjs init work/skill-trials-v2/night-transit --title \"야간 근무 뒤 귀가를 설계하다\" --subtitle \"운행 정보와 이동 선택을 확인하는 세 단계\" --style [object Object]",
+    "node scripts/cli.mjs add <technique> work/skill-trials-v2/night-transit --id <scene-id> ... (scene values below)",
+    "node scripts/cli.mjs check work/skill-trials-v2/night-transit",
+    "node scripts/cli.mjs verify work/skill-trials-v2/night-transit --strict"
+  ],
+  "scenes": [
+    {
+      "id": "01-last-trip",
+      "technique": "question-reveal",
+      "purpose": "근무 종료 시각과 막차 정보 사이에서 귀가 계획에 필요한 확인 조건을 분명히 한다.",
+      "reason": "실제 시각을 꾸며 넣지 않은 시간 관계 도식에 근무 종료·공식 운행 확인·대안을 표시해 무엇을 찾아야 하는지 보여 준다.",
+      "claim": "귀가 계획은 근무 종료 시각과 실제 환승 운행 정보를 함께 확인해야 한다.",
+      "relation": "question",
+      "evidenceStatus": "concept",
+      "evidence": "도시나 노선별 실제 정보 없이 워크숍 콘셉트로만 제시한다.",
+      "source": "가상 야간 귀가 워크숍 콘셉트; 실제 교통 정보 미포함",
+      "presenterAction": "청중에게 막차가 떠난 뒤 계획을 바꾸어야 했던 경험이 있는지 묻는다.",
+      "visualChange": "질문이 나타난 뒤 계획에 필요한 시간 조건 세 가지를 드러낸다.",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 90,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "귀가 계획은 근무 종료 시각과 실제 환승 운행 정보를 함께 확인해야 한다."
+          }
+        ]
+      },
+      "copy": {
+        "kicker": "야간 이동",
+        "title": "마지막 환승 뒤에도|갈 길이 남습니다",
+        "lines": [
+          "근무 종료: 실제 퇴근 시각을 확인한다 → 이동 계획의 시작 조건을 정한다",
+          "막차 확인: 운영 기관의 최신 시각을 확인한다 → 노선과 환승 조건을 확인한다",
+          "대안: 운행을 놓칠 때 이동 방법을 미리 살핀다 → 특정 경로나 안전을 추정하지 않는다"
+        ]
+      },
+      "notes": "특정 도시·노선·막차 정보를 제공하거나 귀갓길 안전성을 보장하는 내용이 아니다.",
+      "assets": {
+        "images": [
+          "/media/night-transit/shift-window.svg"
+        ],
+        "imageAlt": [
+          "실제 도시·운행 시각이 아닌 근무 종료, 공식 운행 확인, 대안 마련의 시간 관계 개념도"
+        ],
+        "marks": [
+          [
+            18,
+            53
+          ],
+          [
+            50,
+            53
+          ],
+          [
+            84,
+            53
+          ]
+        ]
+      }
+    },
+    {
+      "id": "02-route-options",
+      "technique": "map-route",
+      "purpose": "하나의 확정 노선이라고 주장하지 않고 이동 구간과 대안 확인 지점을 구분한다.",
+      "reason": "추상 동선 위에 3개 확인점을 누적해 보행 연결과 대중교통 확인을 설명하되 실재 위치와 안전 상태로 오인되지 않게 한다.",
+      "claim": "이동 선택지는 하나의 선 대신 확인 가능한 구간과 대안을 묶어 보여 줘야 한다.",
+      "relation": "spatial",
+      "evidenceStatus": "concept",
+      "evidence": "개념 동선이며 위치·조명·치안·운행을 나타내지 않는다.",
+      "source": "가상 동네 교통 동선; 지도와 운영 자료 없음",
+      "presenterAction": "각 구간에서 확인할 운영 정보와 대안을 청중과 짚는다.",
+      "visualChange": "추상적인 경로 구간을 차례로 드러내고 마지막에 대체 연결을 함께 보여 준다.",
+      "pace": {
+        "mode": "scrub",
+        "scrollVh": 120,
+        "cueStates": [
+          {
+            "at": 0.28,
+            "message": "운행 중인 환승 구간을 확인한다."
+          },
+          {
+            "at": 0.55,
+            "message": "도보로 연결할 구간의 조건을 확인한다."
+          },
+          {
+            "at": 0.78,
+            "message": "동행이나 호출 대안을 남긴다."
+          }
+        ]
+      },
+      "copy": {
+        "kicker": "개념 동선 · 실제 지도 아님",
+        "title": "한 줄 경로가 아니라|확인할 선택의 묶음",
+        "lines": [
+          "운행 중인 환승",
+          "도보 가능 구간",
+          "동행·호출 대안"
+        ]
+      },
+      "notes": "실제 지명이나 지도 데이터를 사용하지 않은 개념 동선이다. 조명·치안·운행 여부를 확인한 경로가 아니다.",
+      "assets": {
+        "images": [
+          "/media/night-transit/route-concept.svg"
+        ],
+        "imageAlt": [
+          "실제 지도 자료가 아닌 추상적인 야간 이동 개념도"
+        ],
+        "marks": [
+          [
+            22,
+            72
+          ],
+          [
+            51,
+            45
+          ],
+          [
+            78,
+            26
+          ]
+        ]
+      }
+    },
+    {
+      "id": "03-before-shift",
+      "technique": "timeline-roadmap",
+      "purpose": "출발 전 준비, 퇴근 직후 확인, 운행 변경 시 대안 실행의 순서를 정리한다.",
+      "reason": "세 시점을 타임라인으로 연결해 발표자가 각 확인 행동과 담당 시점을 한 번에 짚게 한다.",
+      "claim": "운행 확인과 대체 이동 계획을 출발 전과 퇴근 시점에 나누어 확인한다.",
+      "relation": "sequence",
+      "evidenceStatus": "concept",
+      "evidence": "현장 시행 전 공식 운행 정보와 개인 조건 확인이 필요하다.",
+      "source": "가상 야간 이동 안내 초안; 지역별 정책·시각 확인 필요",
+      "presenterAction": "청중과 함께 본인 근무지에서 확인할 교통 안내 위치를 정한다.",
+      "visualChange": "준비 시점, 퇴근 시점, 변동 상황의 세 시점이 하나의 계획으로 이어진다.",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 80,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "운행 확인과 대체 이동 계획을 출발 전과 퇴근 시점에 나누어 확인한다."
+          }
+        ]
+      },
+      "copy": {
+        "kicker": "준비 · 이동 · 대안",
+        "title": "필요한 정보는|출발 전에 확인",
+        "lines": [
+          "교대 전에: 환승 운행 확인",
+          "퇴근할 때: 선택지를 다시 확인",
+          "중단되면: 동행·호출 대안"
+        ]
+      },
+      "notes": "실행 전 공식 운행표와 개인의 이동 조건을 확인해야 한다.",
+      "assets": {}
+    }
+  ]
+}

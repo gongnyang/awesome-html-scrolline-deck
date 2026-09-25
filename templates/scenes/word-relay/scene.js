@@ -64,7 +64,7 @@ export default {
     tl.fromTo(reveal,
       { clipPath: 'inset(50% 50% 50% 50%)', autoAlpha: 0 },
       { clipPath: 'inset(0% 0% 0% 0%)', autoAlpha: 1, duration: 0.14, ease: 'power2.inOut' }, 0.8);
-    tl.to(root, { autoAlpha: 0, duration: 0.12, ease: 'none' }, 0.86);
+    tl.to(root, { autoAlpha: 1, duration: 0.12, ease: 'none' }, 0.86);
   },
 
   unmount() { root = null; },

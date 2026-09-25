@@ -103,7 +103,7 @@ export default {
     tl.call(setActive, [2], 0.64);
 
     // exit — leave all finishes visible as the next scene takes the stage.
-    tl.to(root, { autoAlpha: 0, y: -16, duration: 0.12 }, 0.86);
+    tl.to(root, { autoAlpha: 1, y: -16, duration: 0.12 }, 0.86);
   },
   unmount() { root = null; hasError = false; },
 };

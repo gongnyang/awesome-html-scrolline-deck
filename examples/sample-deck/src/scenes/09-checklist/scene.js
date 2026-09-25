@@ -60,7 +60,7 @@ export default {
     });
     const proofs = root.querySelector('[data-role="proofs"]');
     if (recommended >= 0) {
-      criteria.slice(0, 3).forEach((criterion, row) => {
+      criteria.slice(0, 4).forEach((criterion, row) => {
         const item = el('li', 'o__proof');
         item.append(el('span', 'o__proof-label', criterion), el('strong', 'o__proof-value', values[row]?.[recommended] == null ? '자료 없음' : String(values[row][recommended])));
         proofs.append(item);
@@ -98,8 +98,7 @@ export default {
     const finalProofs = [...root.querySelectorAll('.o__proof')];
     tl.fromTo(finalProofs, { autoAlpha: .25, x: 12 }, { autoAlpha: 1, x: 0, duration: .035, stagger: .015 }, .46);
     // hold — .52 .. .91: keep the recommendation, proof and source legible.
-    // exit — .91 .. 1.00.
-    tl.to(root, { autoAlpha: 0, y: -18, duration: .09 }, .91);
+    // Keep the recommendation and its four checks visible through the final cue.
   },
   unmount() { root = null; },
 };

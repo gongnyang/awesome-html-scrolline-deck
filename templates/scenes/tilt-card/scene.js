@@ -95,7 +95,7 @@ export default {
       frameCount.textContent = `${String(imageIndex + 1).padStart(2, '0')} / ${String(Math.max(1, images.length)).padStart(2, '0')}`;
     } }, .12);
     // exit — clear the copy only as the pin leaves the complete evidence frame.
-    tl.to(copy, { y: -8, autoAlpha: 0, duration: .08, ease: 'power2.in' }, .91);
+    tl.to(copy, { y: -8, autoAlpha: 1, duration: .08, ease: 'power2.in' }, .91);
   },
 
   unmount() { root = null; },

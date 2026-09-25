@@ -35,7 +35,7 @@ export default {
     tl.fromTo(zero, { y: 78, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .18, ease: 'power3.out' }, .16);
     steps.forEach((step, i) => tl.fromTo(step, { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .06 }, .28 + i * .07));
     tl.fromTo(root.querySelector('.go__rule'), { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .08 }, .45);
-    tl.to(root, { autoAlpha: 0, y: -22, duration: .12 }, .86);
+
   },
   unmount() { root = null; },
 };

@@ -46,7 +46,7 @@
   "preview": "preview.webp",
   "previewSource": "examples/spatial-proposal/04-gallery",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "3–6장의 이미지 자체가 증거이며, 연대순·관찰순·규모순으로 보아야 의미가 생길 때.",
     "unfit": "장식 사진 묶음, 주제가 서로 다른 이미지, 6장보다 많은 자료를 한 번에 검토해야 할 때.",
     "requiredInputs": "같은 주장에 기여하는 로컬 이미지 3–6장, 각 이미지 설명(시각장애인 대체 텍스트), 한 문장 캡션.",
@@ -58,6 +58,10 @@
     "reducedMotion": "한 이미지씩 차례로 쌓고 모든 캡션을 읽을 수 있게 한다. 의미를 좌우 스크롤에만 맡기지 않는다.",
     "exampleContent": "강의실의 오래된 수업 사진 4장을 시간순으로 훑으며, 교실의 상호작용 방식이 바뀐 증거를 설명한다.",
     "nextImplementation": "—",
-    "estimatedEffort": "—"
+    "estimatedEffort": "—",
+    "relation": "ordered-visual-evidence",
+    "failureFallback": "이미지 순서가 근거가 아니면 갤러리 수를 줄이고 각 이미지에 서로 다른 관찰과 캡션을 붙인다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다.",
+    "unsupportedReason": "이 장면의 의미 관계나 입력 근거가 충족되지 않으면 사용하지 않는다. 장식 사진 묶음, 주제가 서로 다른 이미지, 6장보다 많은 자료를 한 번에 검토해야 할 때."
   }
 }

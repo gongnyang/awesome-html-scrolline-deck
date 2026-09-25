@@ -7,6 +7,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -78,8 +79,8 @@ test('verify는 Playwright가 없으면 브라우저 게이트를 실패로 남�
   const report = JSON.parse(json);
   assert.equal(report.ok, false);
 
-  const browserGates = report.gates.filter((g) => ['G5', 'G6', 'G7', 'G8', 'G9', 'G10', 'G11', 'G12', 'G13'].includes(g.id));
-  assert.equal(browserGates.length, 9, '브라우저 게이트 9개가 보고서에 남아야 한다');
+  const browserGates = report.gates.filter((g) => ['G5', 'G6', 'G7', 'G8', 'G9', 'G10', 'G11', 'G12', 'G13', 'G14'].includes(g.id));
+  assert.equal(browserGates.length, 10, '브라우저 게이트 10개가 보고서에 남아야 한다');
   assert.ok(browserGates.every((g) => g.skipped === true && g.ok === false), '건너뛴 게이트가 실패로 기록되지 않았습니다');
   assert.ok(report.gates.filter((g) => !g.skipped).every((g) => g.ok));
 });
@@ -111,6 +112,21 @@ test('L1은 토큰을 통과시키고 색 리터럴을 잡는다', () => {
   assert.equal(lintCss(scoped('color: #fff;'), '01-a').l1.length, 1);
   assert.equal(lintCss(scoped('color: rgba(0,0,0,.4);'), '01-a').l1.length, 1);
   assert.equal(lintCss(scoped('color: rebeccapurple;'), '01-a').l1.length, 1);
+});
+
+test('스토리보드에 있는 장면 모듈이 사라지면 정적 검사에서 실패한다', async () => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'scrolline-scene-module-'));
+  const deckDir = path.join(temp, 'deck');
+  try {
+    fs.cpSync(fixture('good'), deckDir, { recursive: true });
+    fs.rmSync(path.join(deckDir, 'src', 'scenes', '01-hero', 'scene.js'));
+    const report = await checkDeck(deckDir, { write: false });
+    assert.equal(report.ok, false);
+    assert.ok(report.gates.find((gate) => gate.id === 'S0')?.items.some((item) =>
+      item.includes('01-hero/scene.js')));
+  } finally {
+    if (temp.startsWith(os.tmpdir() + path.sep)) fs.rmSync(temp, { recursive: true, force: true });
+  }
 });
 
 test('L4는 정의되지 않은 색 토큰을 잡는다', () => {

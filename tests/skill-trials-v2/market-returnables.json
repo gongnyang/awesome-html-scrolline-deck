@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 2,
+  "title": "시장 포장, 돌려쓰는 길 만들기",
+  "subtitle": "다회용 용기가 다시 쓰이려면 필요한 운영",
+  "lang": "ko",
+  "theme": {
+    "style": "dark",
+    "accent": "#5e6ad2"
+  },
+  "recreate": [
+    "node scripts/cli.mjs init work/skill-trials-v2/market-returnables --title \"시장 포장, 돌려쓰는 길 만들기\" --subtitle \"다회용 용기가 다시 쓰이려면 필요한 운영\" --style [object Object]",
+    "node scripts/cli.mjs add <technique> work/skill-trials-v2/market-returnables --id <scene-id> ... (scene values below)",
+    "node scripts/cli.mjs check work/skill-trials-v2/market-returnables",
+    "node scripts/cli.mjs verify work/skill-trials-v2/market-returnables --strict"
+  ],
+  "scenes": [
+    {
+      "id": "01-two-paths",
+      "technique": "before-after",
+      "purpose": "사용 후 용기가 폐기되는 흐름과 회수되어 다시 쓰이는 흐름의 차이를 비교한다.",
+      "reason": "두 콘셉트 그림의 같은 크기와 정렬선을 유지해 경로 차이만 보이게 하고, 실제 회수 성과가 아닌 운영 구상을 표시한다.",
+      "claim": "다회용 포장의 핵심은 용기 자체보다 사용 뒤 회수와 세척이 이어지는 경로다.",
+      "relation": "comparison",
+      "evidenceStatus": "concept",
+      "evidence": "폐기량이나 실제 회수 성과는 측정하지 않은 개념 제안이다.",
+      "source": "가상 시장 포장 순환 제안; 운영 자료 없음",
+      "presenterAction": "용기를 돌려주려면 구매자와 상인에게 어떤 행동이 필요한지 묻는다.",
+      "visualChange": "한 번 쓰고 끝나는 흐름과 반납·세척·재투입 흐름을 나란히 비교한다.",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 90,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "다회용 포장의 핵심은 용기 자체보다 사용 뒤 회수와 세척이 이어지는 경로다."
+          }
+        ]
+      },
+      "copy": {
+        "kicker": "가상 운영 개념 · 성과 측정자료 없음",
+        "title": "용기보다 먼저|돌아올 경로를",
+        "lines": [
+          "일회용: 제공 → 사용 → 폐기",
+          "다회용: 제공 → 반납 → 세척 → 재배치"
+        ]
+      },
+      "notes": "실제 시장의 회수율이나 폐기량을 나타내지 않는 운영 개념이다.",
+      "assets": {
+        "images": [
+          "/media/market-returnables/single-use-path.svg",
+          "/media/market-returnables/returnable-path.svg"
+        ],
+        "imageAlt": [
+          "한 번 사용하고 버리는 포장 용기와 폐기함을 그린 개념 일러스트",
+          "회수 바구니로 돌아오는 다회용 용기를 그린 개념 일러스트"
+        ]
+      }
+    },
+    {
+      "id": "02-return-cycle",
+      "technique": "step-flow",
+      "purpose": "판매부터 반납·세척·재배치까지 용기의 순환과 각 운영 책임을 구체화한다.",
+      "reason": "한 용기의 흐름을 따라 역할을 순차 공개해 빠진 회수 또는 위생 담당이 어디인지 토론할 수 있게 한다.",
+      "claim": "회수 장소와 세척 책임이 정해져야 재사용 흐름을 운영할 수 있다.",
+      "relation": "sequence",
+      "evidenceStatus": "concept",
+      "evidence": "참여 상인이나 위생 절차가 확정되지 않은 파일럿 구상이다.",
+      "source": "가상 시장 파일럿 운영 흐름; 참여 상인 미확정",
+      "presenterAction": "판매자·이용자·운영자 가운데 누가 맡을지 청중과 나눈다.",
+      "visualChange": "용기 한 개를 따라 제공, 회수, 세척, 재투입 상태를 순서대로 밝힌다.",
+      "pace": {
+        "mode": "scrub",
+        "scrollVh": 110,
+        "cueStates": [
+          {
+            "at": 0.28,
+            "message": "판매대에서 용기를 건넨다."
+          },
+          {
+            "at": 0.55,
+            "message": "정해 둔 장소에서 회수한다."
+          },
+          {
+            "at": 0.78,
+            "message": "세척 후 판매대로 돌려보낸다."
+          }
+        ]
+      },
+      "copy": {
+        "kicker": "운영 순서",
+        "title": "반납이 쉬워야|순환이 이어진다",
+        "lines": [
+          "판매대에서 용기를 건넨다",
+          "시장 입구에서 회수한다",
+          "세척 후 판매대로 돌려보낸다"
+        ]
+      },
+      "notes": "특정 지역에서 운영 중인 제도가 아니다. 현장 위생 기준과 역할 협의가 선행되어야 한다.",
+      "assets": {}
+    },
+    {
+      "id": "03-pilot-choice",
+      "technique": "option-matrix",
+      "purpose": "운영 시험 전에 회수 위치·세척 책임·고객 안내 담당을 합의하도록 요청한다.",
+      "reason": "같은 세 기준으로 선택안을 비교하고 권고 문구를 남기되 비용·수요·효과 수치를 주장하지 않는다.",
+      "claim": "파일럿 시작 전 회수 위치·세척 담당·이용자 안내 책임을 먼저 정한다.",
+      "relation": "decision",
+      "evidenceStatus": "concept",
+      "evidence": "비용·수요·효과 자료 없이 현장 협의 질문만 제시한다.",
+      "source": "가상 시장 파일럿 선택 보드; 비용·수요 조사 미실시",
+      "presenterAction": "현장 협의에서 가장 먼저 확인할 담당자와 조건을 정하도록 요청한다.",
+      "visualChange": "세 가지 운영 조건을 펼친 뒤 파일럿 전에 답해야 할 미정 항목을 강조한다.",
+      "pace": {
+        "mode": "hold",
+        "scrollVh": 80,
+        "cueStates": [
+          {
+            "at": 0.55,
+            "message": "파일럿 시작 전 회수 위치·세척 담당·이용자 안내 책임을 먼저 정한다."
+          }
+        ]
+      },
+      "copy": {
+        "kicker": "작게 시험하기",
+        "title": "파일럿은 무엇부터|정해야 할까?",
+        "lines": [
+          "회수 위치",
+          "세척 담당",
+          "이용자 안내"
+        ]
+      },
+      "notes": "운영 성과, 비용 절감, 이용자 수용성을 주장하지 않는다. 시험 전 확인할 질문만 제시한다.",
+      "assets": {
+        "matrix": {
+          "options": [
+            "판매대 반납",
+            "입구 회수",
+            "공동 거점"
+          ],
+          "criteria": [
+            "이용자 동선",
+            "세척 연결",
+            "담당 합의"
+          ],
+          "values": [
+            [
+              "구매 지점",
+              "상인·운영자",
+              "판매대 주변"
+            ],
+            [
+              "입장·퇴장부",
+              "운영 담당",
+              "거점 보관"
+            ],
+            [
+              "공통 이용처",
+              "공동 운영",
+              "참여자 협의"
+            ]
+          ],
+          "recommendedIndex": 0,
+          "reason": "판매대 반납은 안내하기 쉬운 시작안이지만, 현장 동선과 세척 책임을 협의한 뒤 결정합니다.",
+          "source": "가상 시장 파일럿 선택 보드 · 운영 조사 전"
+        }
+      }
+    }
+  ]
+}

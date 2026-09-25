@@ -13,6 +13,7 @@ export async function run(ctx) {
   for (const scene of orderedScenes(ctx.deck)) {
     const assets = scene.assets ?? {};
     for (const src of assets.images ?? []) wanted.push({ scene: scene.id, src });
+    for (const src of assets.photos ?? []) wanted.push({ scene: scene.id, src });
     if (assets.poster) wanted.push({ scene: scene.id, src: assets.poster });
     if (assets.frames && Number.isInteger(assets.count)) {
       for (let n = 1; n <= assets.count; n += 1) wanted.push({ scene: scene.id, src: framePath(assets.frames, n) });

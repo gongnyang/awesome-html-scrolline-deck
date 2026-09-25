@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">한 번 쓰고 끝나는 포장 흐름</title>
+  <desc id="desc">가상의 시장 포장 개념 그림: 음식을 담은 종이 용기와 사용 뒤 폐기되는 경로</desc>
+  <rect width="900" height="600" fill="#e8dfd2"/>
+  <path d="M60 485h780" stroke="#c2b8a9" stroke-width="3"/>
+  <g transform="translate(160 118)">
+    <path d="M24 72h310l-31 248H54z" fill="#d4c2a9" stroke="#574f45" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M14 72q8-42 165-42t165 42" fill="#f5efe5" stroke="#574f45" stroke-width="8"/>
+    <path d="M78 112h202" stroke="#8f806f" stroke-width="8" stroke-linecap="round"/>
+    <path d="M102 154h152" stroke="#8f806f" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(592 315)" fill="#8e655b">
+    <path d="M0 0h168l-17 158H17z"/>
+    <path d="M-10-28h188v34H-10z"/>
+    <path d="M54 32l26 40-24 43M114 33l-25 37 28 41" fill="none" stroke="#f4e9db" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

@@ -45,7 +45,7 @@
   "preview": "preview.webp",
   "previewSource": "work/template-qa-paper/01-proof",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "A primary document page plus up to four genuinely supporting pages, each with a concise label.",
     "unfit": "Unrelated images, more than five pages, or claims that need every page to be readable at once.",
     "requiredInputs": "Three to five source images. Provide assets.imageAlt for direct page/figure labels; copy.lines[0] states the relationship.",
@@ -58,6 +58,9 @@
     "exampleContent": "One primary research excerpt with three labelled method/measurement/result figures.",
     "unsupportedReason": "Not suitable for a stack of decorative thumbnails or dense source documents that need close reading.",
     "nextImplementation": "Keep page count to five and verify lead/support labels in desktop, mobile, and reduced-motion browser captures.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "source-collection",
+    "failureFallback": "자료 간 지지 관계가 명확하지 않으면 작은 문서 썸네일을 쌓지 말고 핵심 원문 하나를 크게 보여준다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

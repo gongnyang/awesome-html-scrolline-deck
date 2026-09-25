@@ -45,7 +45,7 @@
   "preview": "preview.webp",
   "previewSource": "work/skill-trials/food-waste/01-hook",
   "sceneContract": {
-    "status": "production",
+    "status": "experimental",
     "fit": "단어 순서가 논지의 개념 변화를 한눈에 보여주는 짧은 문구.",
     "unfit": "문장 길이가 긴 주장, 단어만으로 의미가 부족한 사실 전달.",
     "requiredInputs": "순서를 바꿀 수 없는 2–5개의 단어/짧은 구절.",
@@ -58,6 +58,9 @@
     "exampleContent": "실험 전 → 측정 중 → 검증 완료와 같이 하나의 과정에서 의미가 변하는 단어.",
     "unsupportedReason": "수치나 실증 근거를 설명하는 장면으로 쓰면 주장만 남으므로 적합하지 않다.",
     "nextImplementation": "실제 덱에서는 바로 뒤에 시각 근거 장면을 배치한다.",
-    "estimatedEffort": "M"
+    "estimatedEffort": "M",
+    "relation": "phrase-transformation",
+    "failureFallback": "단어 변형이 주장을 더 분명히 하지 않으면 모션을 제거하고 핵심 문장 하나만 남긴다.",
+    "reviewNote": "선택 후보입니다. 대표 장면의 1440×900·1920×1080·390px·모션 감소 상태와 스크롤 역방향을 독립 검수하기 전에는 완성 템플릿으로 간주하지 않습니다."
   }
 }

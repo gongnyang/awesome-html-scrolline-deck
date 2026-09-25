@@ -41,7 +41,7 @@ export default {
     tl.call(activate, [0], .12);
     tl.call(activate, [1], .38);
     tl.call(activate, [2], .63);
-    tl.to(root, { autoAlpha: 0, duration: .14 }, .86);
+    // Keep the user problem statement visible as the next scene enters.
   },
   unmount() { root = null; },
 };

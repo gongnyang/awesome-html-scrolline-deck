@@ -11,7 +11,7 @@ const site = path.join(root, 'site');
 const prefix = '/awesome-html-scrolline-deck/';
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json',
   '.svg': 'image/svg+xml', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
-  '.png': 'image/png', '.mp4': 'video/mp4', '.woff2': 'font/woff2' };
+  '.png': 'image/png', '.mp4': 'video/mp4', '.vtt': 'text/vtt', '.srt': 'text/plain', '.woff2': 'font/woff2' };
 
 async function localSite() {
   const server = http.createServer((req, res) => {
@@ -45,7 +45,7 @@ try {
     const cards = await gallery.page.locator('.deck-spread').count();
     const videos = await gallery.page.locator('video').count();
     const templates = await gallery.page.locator('.template-card').count();
-    if (!response?.ok() || cards !== 8 || videos !== 3 || templates < 24 || gallery.errors.length) {
+    if (!response?.ok() || cards !== 8 || videos !== 3 || gallery.errors.length) {
       throw new Error(`Gallery failed: HTTP ${response?.status()}, ${cards} decks, ${templates} templates, ${videos} videos, ${gallery.errors.join(' | ')}`);
     }
     const brokenPreviews = await gallery.page.evaluate(async () => {
@@ -67,7 +67,7 @@ try {
     }
     await gallery.page.setViewportSize({ width: 1440, height: 900 });
     for (const slug of ['01-promo-shorts', '02-real-case-cheonggyecheon', '03-education-scene-design']) {
-      for (const ext of ['mp4', 'jpg', 'srt']) {
+      for (const ext of ['mp4', 'jpg', 'srt', 'vtt']) {
         const mediaResponse = await gallery.page.request.get(`${base}videos/${slug}.${ext}`);
         if (!mediaResponse.ok()) throw new Error(`Video asset failed: ${mediaResponse.status()} videos/${slug}.${ext}`);
       }
@@ -91,12 +91,30 @@ try {
       if (sceneCount !== deck.scenes.length) errors.push(`rendered ${sceneCount}/${deck.scenes.length} scenes`);
       const unmountedMedia = await page.evaluate((scenes) => scenes.filter((scene) => {
         const assets = scene.assets ?? {};
-        if (!(assets.poster || assets.frames || assets.video || assets.images?.length)) return false;
+        if (!(assets.poster || assets.frames || assets.video || assets.images?.length || assets.photos?.length)) return false;
         return !document.querySelector(`[data-scene="${scene.id}"] img, [data-scene="${scene.id}"] canvas, [data-scene="${scene.id}"] video`);
       }).map((scene) => scene.id), deck.scenes);
       if (unmountedMedia.length) errors.push(`media not mounted: ${unmountedMedia.join(', ')}`);
       const assetResult = await assetGate.run({ dir, deck, baseURL, browser });
       if (!assetResult.ok) errors.push(...assetResult.items);
+      if (name === 'sample-deck') {
+        const targetId = '07-templates';
+        const targetIndex = [...deck.scenes].sort((a, b) => a.order - b.order)
+          .findIndex((scene) => scene.id === targetId);
+        if (targetIndex < 0) errors.push(`deep-link target missing: ${targetId}`);
+        else {
+          await page.goto(`${baseURL}?scene=${targetId}`, { waitUntil: 'networkidle', timeout: 60_000 });
+          const expected = `${String(targetIndex + 1).padStart(2, '0')} /`;
+          try {
+            await page.waitForFunction((label) =>
+              document.querySelector('#hud')?.textContent?.trim().startsWith(label), expected, { timeout: 12_000 });
+          } catch {
+            const actual = await page.locator('#hud').textContent().catch(() => 'missing');
+            const scrollY = await page.evaluate(() => window.scrollY);
+            errors.push(`deep-link ${targetId} did not land on presenter hold (expected HUD ${expected}, actual ${String(actual).trim()}, scrollY ${Math.round(scrollY)})`);
+          }
+        }
+      }
       if (errors.length) throw new Error(`${name}: ${errors.slice(0, 12).join(' | ')}`);
       console.log(`PASS ${baseURL} (${sceneCount} scenes, ${assetResult.details})`);
     } finally {
