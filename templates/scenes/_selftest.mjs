@@ -202,6 +202,11 @@ for (const folder of folders) {
     if (!(key in template)) problems.push(`${folder}: template.json is missing "${key}"`);
   }
   if (template.technique !== folder) problems.push(`${folder}: template.json technique is "${template.technique}"`);
+  const contract = template.sceneContract;
+  for (const key of ['status', 'fit', 'unfit', 'requiredInputs', 'scrollBeatSemantics', 'stableHold', 'projectorTypeCriteria', 'labelCriteria', 'mobile', 'reducedMotion', 'exampleContent']) {
+    if (typeof contract?.[key] !== 'string' || !contract[key].trim()) problems.push(`${folder}: sceneContract is missing a useful "${key}" declaration`);
+  }
+  if (!['production', 'experimental', 'blocked'].includes(contract?.status)) problems.push(`${folder}: sceneContract.status must be production, experimental, or blocked`);
 
   const ctx = {
     gsap: { set() {}, to() {}, timeline: () => makeTimeline([], folder) },
@@ -234,6 +239,14 @@ for (const folder of folders) {
   };
 
   const section = makeNode('section');
+  if (folder === 'annotated-chart') {
+    ctx.data.scene.assets.series = [2.1, 3.4, 2.8, 6.7];
+    ctx.data.scene.assets.xLabels = ['1월', '2월', '3월', '4월'];
+    ctx.data.scene.assets.unit = '분';
+    ctx.data.scene.assets.annotationIndex = 3;
+    ctx.data.scene.source = '예시 데이터 · 템플릿 자체 검사';
+    ctx.data.scene.evidence = '합성 테스트 데이터 · 실제 관측 자료 아님';
+  }
   const tlProblems = [];
   try {
     await mod.mount(section, ctx);

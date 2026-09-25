@@ -3,14 +3,13 @@
  * 플랜 §S2의 deck.json 계약만 본다. schema.mjs가 생기면 s00이 그쪽을 먼저 쓴다.
  */
 
-export const TECHNIQUES = [
-  'frame-scrub-hero', 'word-relay', 'kinetic-titles', 'horizontal-gallery',
-  'anatomy-rows', 'frame-scrub-video', 'parallax-video', 'paper-assembly',
-  'odometer-stats', 'wipe-transform', 'tilt-card', 'closing-qr',
-  'question-reveal', 'agenda-path', 'chapter-transition', 'chart-reveal',
-  'annotated-chart', 'before-after', 'document-proof', 'step-flow',
-  'system-map', 'timeline-roadmap', 'map-route', 'option-matrix',
-];
+import fs from 'node:fs';
+
+const TEMPLATE_ROOT = new URL('../../templates/scenes/', import.meta.url);
+export const TECHNIQUES = fs.readdirSync(TEMPLATE_ROOT, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory() && fs.existsSync(new URL(`${entry.name}/template.json`, TEMPLATE_ROOT)))
+  .map((entry) => entry.name)
+  .sort();
 
 const ID_RE = /^\d{2}-[a-z0-9-]+$/;
 
@@ -62,6 +61,14 @@ export function validateDeck(deck) {
     else seenOrder.add(scene.order);
 
     if (!TECHNIQUES.includes(scene.technique)) add(`${p}.technique`, `등록된 ${TECHNIQUES.length}기법 중 하나여야 합니다 (받은 값: ${JSON.stringify(scene.technique)})`);
+
+    if (scene.cues != null) {
+      if (!Array.isArray(scene.cues) || scene.cues.length < 1 || scene.cues.length > 8 ||
+          scene.cues.some((cue, j) => typeof cue !== 'number' || cue < 0.05 || cue > 0.9 ||
+            (j > 0 && cue <= scene.cues[j - 1]))) {
+        add(`${p}.cues`, '0.05~0.9 사이의 오름차순 비율 1~8개여야 합니다');
+      }
+    }
 
     const pinVh = Number(scene.pinVh);
     if (!Number.isFinite(pinVh) || pinVh < 100 || pinVh > 400) add(`${p}.pinVh`, `100~400 사이여야 합니다 (받은 값: ${JSON.stringify(scene.pinVh)})`);

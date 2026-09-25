@@ -20,7 +20,7 @@
     "frames": false,
     "images": {
       "min": 3,
-      "max": 8
+      "max": 5
     },
     "video": false,
     "poster": false
@@ -29,12 +29,12 @@
     0.3,
     0.75
   ],
-  "notesHint": "Wait for the fan before you speak. The count of pages is the point.",
-  "description_en": "Proof scene: three to eight pages fly in from off-stage, settle into a fan, then file away together.",
-  "description_ko": "증거 장면. 화면 밖에서 페이지 3~8장이 날아들어 부채꼴로 정리된 뒤 한 벌로 빠져나간다.",
-  "responsive": "On narrow screens, tighten the image fan; with reduced motion, put pages into a static three-column grid.",
-  "reducedMotion": "Show the page set in a static grid instead of scattering and fanning it.",
-  "purpose": "증거 장면. 화면 밖에서 페이지 3~8장이 날아들어 부채꼴로 정리된 뒤 한 벌로 빠져나간다.",
+  "notesHint": "Identify the primary source page first; explain what each supporting page adds to it.",
+  "description_en": "A large labelled lead page anchors two to four supporting sources; scrolling assembles the relationship and then holds it.",
+  "description_ko": "라벨을 붙인 핵심 자료 한 장을 중심에 두고, 뒷받침하는 세네 장 자료를 스크롤로 모아 관계를 한 프레임에 고정합니다.",
+  "responsive": "Keep the lead page dominant. On mobile, stack it above a two-column support grid so every label stays visible.",
+  "reducedMotion": "Show all pages at once: a full-width lead source followed by a labelled two-column support grid.",
+  "purpose": "핵심 출처와 보조 자료의 관계를 한 화면에서 확인한다.",
   "exampleCopy": {
     "kicker": "가상 콘셉트 · 재료와 디테일",
     "title": "오래 쓰고 쉽게 고치는 마감",
@@ -43,5 +43,21 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/spatial-proposal/05-materials"
+  "previewSource": "work/template-qa-paper/01-proof",
+  "sceneContract": {
+    "status": "production",
+    "fit": "A primary document page plus up to four genuinely supporting pages, each with a concise label.",
+    "unfit": "Unrelated images, more than five pages, or claims that need every page to be readable at once.",
+    "requiredInputs": "Three to five source images. Provide assets.imageAlt for direct page/figure labels; copy.lines[0] states the relationship.",
+    "scrollBeatSemantics": "The source page arrives first and remains dominant as supporting pages gather into a labelled evidence set.",
+    "stableHold": "At the held frame the primary page is large, all support labels remain visible, and the claim line is present.",
+    "projectorTypeCriteria": "The primary page uses at least 42vw width on desktop; readable page labels accompany every source.",
+    "labelCriteria": "Every image must have a truthful, specific asset alt label. The lead/support relation must be stated in the copy.",
+    "mobile": "The primary page spans the first row above a two-column support grid. Every image label and the claim remain visible.",
+    "reducedMotion": "Show the lead page in a full-width row and every labelled support page in a static grid.",
+    "exampleContent": "One primary research excerpt with three labelled method/measurement/result figures.",
+    "unsupportedReason": "Not suitable for a stack of decorative thumbnails or dense source documents that need close reading.",
+    "nextImplementation": "Keep page count to five and verify lead/support labels in desktop, mobile, and reduced-motion browser captures.",
+    "estimatedEffort": "M"
+  }
 }

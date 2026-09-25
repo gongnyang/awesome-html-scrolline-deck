@@ -11,7 +11,7 @@
     "kicker": true,
     "title": true,
     "lines": {
-      "min": 2,
+      "min": 1,
       "max": 4
     }
   },
@@ -21,7 +21,10 @@
       "min": 0,
       "max": 0
     },
-    "series": "Optional array of exact normalized values from 0 to 100; two to twenty points are required.",
+    "series": "Required array of 2–20 exact numeric measurements; retain the original unit and scale.",
+    "xLabels": "A required label for each exact series value. Add a unit to numeric labels where needed (for example `150 Hz`).",
+    "unit": "Required value unit, shown on the y-axis.",
+    "annotationIndex": "Required zero-based index of the supplied event/point that the annotation explains.",
     "video": false,
     "poster": false
   },
@@ -29,20 +32,35 @@
     0.3,
     0.75
   ],
-  "notesHint": "Supply an exact normalized series and explain the peak or turning point in line one.",
-  "description_en": "An explicitly supplied series draws on a labeled 0–100 grid; the callout anchors at its peak.",
-  "description_ko": "명시한 계열을 0–100 축에 그리고 가장 높은 값에 주석을 연결합니다.",
-  "responsive": "Keep the 0–100 scale readable; move the callout within the plot bounds on narrow screens.",
-  "reducedMotion": "Show the supplied curve or the no-data prompt and citation without drawing motion.",
-  "purpose": "선 그래프의 변곡점에 주석을 연결해 핵심 변화가 무엇인지 짚습니다.",
+  "notesHint": "Supply exact values, matching xLabels, the y-axis unit, a valid annotationIndex, scene.source, a visible caveat in scene.evidence, and 1–4 short interpretation/support lines.",
+  "description_en": "A large selected-value claim hooks the scene; scroll reveals the exact series to its annotated peak/point, then holds the full labelled data and caveat.",
+  "description_ko": "선택한 값과 단위를 큰 수치로 먼저 보여주고, 실제 series를 선택점까지 공개한 뒤 모든 축·출처·한계를 함께 고정합니다.",
+  "responsive": "Keep the large selected value, all exact axes, every label, source, and caveat visible at 390px; shorten neither data nor labels. Reject mobile-overflow or clipped values.",
+  "reducedMotion": "Show the complete series with the selected point, exact axes, large metric, interpretation, source, and caveat statically.",
+  "purpose": "실제 시계열/순서형 값을 읽고 특정 시점의 사건·해석을 정확한 점에 연결합니다.",
   "exampleCopy": {
-    "kicker": "가상 사례 · 반복 매출 비중 (%)",
-    "title": "구독 매출이 절반을 넘은 시점",
+    "kicker": "가상 측정 목표 · 실험 전",
+    "title": "저음 구간에서 최대 감쇠를 목표로 한다",
     "lines": [
-      "해석: 구독 비중 41%에서 54%로 상승",
-      "출처: 밀물 가상 경영 데이터 · 연말 기준"
+      "선택점은 아직 설계 목표이며 실제 측정값이 아닙니다."
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/annual-report/04-drivers"
+  "previewSource": "examples/annual-report/04-drivers",
+  "sceneContract": {
+    "status": "production",
+    "fit": "실제 기록 또는 명시적 설계 시나리오의 시계열을 근거로 선택한 한 지점을 설명할 때.",
+    "unfit": "범주 간 단순 비교(chart-reveal), 실제 축·단위/자료 출처/한계가 없거나 과장된 그래프 효과가 값을 왜곡하는 경우.",
+    "requiredInputs": "assets.series 2–20개 정확한 숫자, 동일 길이 xLabels(숫자 범주에는 단위 포함), y 단위 unit, 유효 annotationIndex, scene.source와 scene.evidence(측정/설계 목표 여부·범위), copy.lines 1–4개.",
+    "scrollBeatSemantics": "큰 값·단위·시점을 즉시 보이고, 실제 선이 입력 순서로 선택점까지 드러난 뒤 나머지 실제 추세가 이어진다. y축/점 위치는 같은 수치 변환을 쓴다.",
+    "stableHold": "전체 계열과 각 시점 라벨, 실제 y눈금과 단위, 강조된 선택점, 큰 값, 해석, source 및 data caveat가 함께 남는다.",
+    "projectorTypeCriteria": "핵심 선택 값과 단위가 가장 큰 타이포이고, 선은 그 아래 근거다. 상자형 주석 대신 수직선·점·축과 여백으로 값의 위치를 표시한다.",
+    "labelCriteria": "마커와 선은 동일 x/y 좌표를 쓴다. xLabels는 값과 순서가 맞고 필요 단위를 포함한다. 축 범위는 숫자를 정확히 읽을 수 있으며 생략/정규화로 왜곡하지 않는다.",
+    "mobile": "큰 metric/시점 뒤로 정확한 축·전체 라벨·source·caveat를 순서 있게 쌓으며 390px 실제 캡처에 모든 값을 보여야 한다.",
+    "reducedMotion": "전체 선, 모든 값의 점, 정확한 x/y 축, 큰 선택값/단위/시점, 해석과 caveat를 완성 상태로 표시한다.",
+    "exampleContent": "가상의 대역별 설계 목표 중 선택 주파수의 42 dB 값을 큰 claim으로 보여주고 실측 전 시뮬레이션 목표임을 같은 화면에 표시.",
+    "nextImplementation": "On each authored use, verify that the selected peak is actually present in supplied series and that labels preserve the measurement unit and caveat.",
+    "estimatedEffort": "",
+    "unsupportedReason": ""
+  }
 }

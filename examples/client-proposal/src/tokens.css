@@ -5,6 +5,9 @@
    ============================================================ */
 
 :root {
+  --hero-ink: #fffaf2;
+  --hero-muted: #e8e0d6;
+  --hero-shade: #16110e;
   /* Scene composition aliases resolve to the active theme ladder. */
   --accent: var(--accent-1);
   --accent-soft: color-mix(in srgb, var(--accent-1) 18%, transparent);

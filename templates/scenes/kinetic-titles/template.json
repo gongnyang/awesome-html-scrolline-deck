@@ -29,19 +29,37 @@
     0.3,
     0.75
   ],
-  "notesHint": "Name the sections once, in order. The accent walks with you.",
-  "description_en": "Agenda scene: two to four numbered titles throw themselves onto a diagonal that a traced light connects.",
-  "description_ko": "아젠다 장면. 번호가 붙은 제목 2~4개가 대각선 위로 날아들고, 빛이 그 선을 따라 그어지며 연결한다.",
+  "notesHint": "Write 2–4 stages in argumentative order. Each stage should advance the main claim and lead into the next; keep each explanation short enough to read at a glance.",
+  "description_en": "Argument path scene: two to four related stages arrange into a claim route; the active stage advances with scroll.",
+  "description_ko": "주장 경로 장면. 논리적으로 연결된 2~4개 단계가 경로를 이루고 스크롤에 따라 현재 단계가 강조된다.",
   "responsive": "On narrow screens, remove absolute placement and the SVG rail; stack the agenda blocks in reading order.",
-  "reducedMotion": "Show every agenda block, connector and bullet in its final state without flying movement.",
-  "purpose": "아젠다 장면. 번호가 붙은 제목 2~4개가 대각선 위로 날아들고, 빛이 그 선을 따라 그어지며 연결한다.",
+  "reducedMotion": "Show every agenda block and its relationship in a static reading order.",
+  "purpose": "하나의 주장을 2~4개 논리 단계로 펼치고 발표자가 스크롤로 현재 단계와 다음 근거를 짚게 한다.",
   "exampleCopy": {
-    "kicker": "가상 사례 · 규모를 줄여 → 이익을 남겼다",
-    "title": "매출 성장보다 수익의 질을 바꿨다",
+    "kicker": "핵심 주장 · 관찰에서 검증까지",
+    "title": "스크롤은 장면 사이의 논리를 보여준다",
     "lines": [
-      "매출은 8.3% 늘고 영업이익률은 11.9%로 개선됐습니다."
+      "관찰 // 독자는 답을 찾지만 탐색 경로가 끊긴다",
+      "설계 // 질문에서 근거로 이어지는 장면을 만든다",
+      "검증 // 리허설에서 체류와 이해를 확인한다"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/annual-report/02-claim"
+  "previewSource": "examples/sample-deck/03-claim",
+  "sceneContract": {
+    "status": "production",
+    "fit": "하나의 주장이 관찰→설계→검증처럼 순서와 관계를 가진 2~4개 단계로 발전할 때.",
+    "unfit": "관계 없는 아젠다 목록, 핵심 사실이나 수치를 대신하는 목록, 단계가 4개를 넘는 흐름.",
+    "requiredInputs": "발표 핵심 주장 1개, 논리상 순서를 가진 2–4개 단계, 각 단계가 다음 단계로 이어지는 이유.",
+    "scrollBeatSemantics": "전체 논리 경로가 이어지며 스크롤에 따라 현재 단계의 제목만 강조된다. 광점은 같은 순서로 다음 단계까지 이동한다.",
+    "stableHold": "전체 경로, 핵심 주장, 현재 단계의 제목과 짧은 설명을 발표자가 읽고 짚을 수 있다.",
+    "projectorTypeCriteria": "장 제목과 보조 설명의 위계를 구분하고 화면에서 떨어져 읽히는 크기로 둔다.",
+    "labelCriteria": "순번이 정보 순서일 때만 보여준다.",
+    "mobile": "대각 배치를 단순 세로 경로로 바꾼다.",
+    "reducedMotion": "모든 단계와 연결 관계를 정적으로 보여준다.",
+    "exampleContent": "웹덱 설계의 관찰→장면 구조화→리허설 검증처럼 단계 사이에 인과나 논증 관계가 있는 실제 발표 흐름.",
+    "unsupportedReason": "단계가 4개를 넘거나 순서 사이의 논리적 연결을 제시할 수 없으면 다른 장면 템플릿을 고른다.",
+    "nextImplementation": "각 제목이 발표 핵심 주장을 진전시키는지 확인하고, 단계 설명은 한눈에 읽히도록 짧게 쓴다.",
+    "estimatedEffort": "M"
+  }
 }

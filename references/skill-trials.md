@@ -63,4 +63,4 @@ At initial inspection, CLI `help` listed 12 techniques while the documentation a
 
 ## Outcome
 
-The skill and CLI generated three distinct Korean scene mixes from unseen topics, carried speaker notes and storyboard rationales, and passed static and browser gates. This is evidence against simple copying of the bundled examples for these three topics. It does not establish quality across all audiences or all 24 templates. The chart issue exposed in the first run was resolved in the refreshed trial through the updated template and theme aliases.
+The skill and CLI generated three distinct Korean scene mixes from unseen topics, carried speaker notes and storyboard rationales, and passed static and browser gates. This is evidence against simple copying of the bundled examples for these three topics. It does not establish quality across all audiences or all 25 current production templates. The chart issue exposed in the first run was resolved in the refreshed trial through the updated template and theme aliases.

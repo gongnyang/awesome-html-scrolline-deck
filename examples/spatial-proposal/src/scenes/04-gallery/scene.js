@@ -1,5 +1,6 @@
 // horizontal-gallery — assets.images pan sideways while the pin holds.
 let root = null;
+let captions = [];
 
 const pad = (n) => String(n).padStart(2, '0');
 
@@ -13,9 +14,13 @@ export default {
     const images = (scene.assets || {}).images || [];
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
-    root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    root.querySelector('[data-role="line"]').textContent = (copy.lines || [])[0] || '';
     const alt = (scene.assets || {}).imageAlt || [];
+    captions = images.map((_, index) => scene.assets?.imageCaptions?.[index] || {
+      title: alt[index] || copy.title || '', line: (copy.lines || [])[0] || '',
+    });
+    root.querySelector('[data-role="series"]').textContent = copy.title || '';
+    root.querySelector('[data-role="title"]').textContent = captions[0]?.title || '';
+    root.querySelector('[data-role="line"]').textContent = captions[0]?.line || '';
     root.querySelector('[data-role="track"]').replaceChildren(...images.map((src, index) => {
       const figure = document.createElement('figure');
       figure.className = 'gal__item';
@@ -26,6 +31,10 @@ export default {
       image.loading = index === 0 ? 'eager' : 'lazy';
       if (index === 0) image.setAttribute('fetchpriority', 'high');
       figure.append(image);
+      const label = document.createElement('figcaption');
+      label.className = 'gal__item-label';
+      label.textContent = captions[index]?.title || alt[index] || '';
+      figure.append(label);
       return figure;
     }));
     root.querySelector('[data-role="count"]').textContent = `${pad(1)} / ${pad(images.length)}`;
@@ -38,6 +47,9 @@ export default {
     const first = root.querySelector('.gal__item');
     const total = root.querySelectorAll('.gal__item').length;
     const pan = { p: 0 };
+    const title = root.querySelector('[data-role="title"]');
+    const line = root.querySelector('[data-role="line"]');
+    let shown = 0;
 
     // enter — 0 .. 0.30. The first frame opens and the caption settles.
     if (first) tl.fromTo(first, { '--clip': 18 }, { '--clip': 0, duration: 0.18, ease: 'power2.out' }, 0);
@@ -51,6 +63,11 @@ export default {
       ease: 'none',
       onUpdate: () => {
         const index = Math.min(total - 1, Math.round(pan.p * (total - 1)));
+        if (index !== shown) {
+          shown = index;
+          title.textContent = captions[index]?.title || '';
+          line.textContent = captions[index]?.line || '';
+        }
         count.textContent = `${pad(index + 1)} / ${pad(total)}`;
       },
     }, 0.16);
@@ -59,5 +76,5 @@ export default {
     tl.to(root.querySelector('.gal__dim'), { opacity: 0.28, duration: 0.07 }, 0.93);
   },
 
-  unmount() { root = null; },
+  unmount() { root = null; captions = []; },
 };

@@ -1,18 +1,26 @@
-/* paper-assembly — scattered pages gather into one fanned set. */
-[data-scene="05-materials"] .pa { position: relative; width: 100%; min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
-[data-scene="05-materials"] .pa__copy { position: absolute; z-index: 3; top: 9%; width: min(760px, calc(100% - var(--gutter, 20px) * 2)); text-align: center; pointer-events: none; }
-[data-scene="05-materials"] .pa__kicker { margin: 0 0 var(--space-sm, 12px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
-[data-scene="05-materials"] .pa__title { margin: 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; word-break: keep-all; }
-[data-scene="05-materials"] .pa__stage { position: relative; width: min(74vw, 880px); height: min(46vw, 548px); }
-[data-scene="05-materials"] .pa__sheet { position: absolute; top: 50%; left: 50%; width: min(31vw, 380px); aspect-ratio: 16 / 9; object-fit: cover; transform: translate(-50%, -50%); box-shadow: 0 24px 60px color-mix(in srgb, var(--canvas) 78%, transparent); }
-[data-scene="05-materials"] .pa__line { position: absolute; z-index: 3; bottom: 8%; width: min(760px, calc(100% - var(--gutter, 20px) * 2)); margin: 0; color: var(--ink-muted); text-align: center; font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.5; word-break: keep-all; }
-@media (max-width: 720px) {
-  [data-scene="05-materials"] .pa__stage { width: 100%; height: 58vw; }
-  [data-scene="05-materials"] .pa__sheet { width: 50vw; }
-  [data-scene="05-materials"] .pa__line { bottom: 5%; }
+[data-scene="05-materials"] .materials{box-sizing:border-box;position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;padding:clamp(40px,7vh,82px) 0 clamp(28px,4vh,48px);display:flex;flex-direction:column;justify-content:center;color:var(--ink)}
+[data-scene="05-materials"] .materials__head{margin:0 0 clamp(24px,4vh,44px);max-width:980px}
+[data-scene="05-materials"] .materials__kicker{margin:0 0 .75rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.15em;text-transform:uppercase}
+[data-scene="05-materials"] .materials__title{margin:0;font:740 clamp(34px,5vw,66px)/1.04 var(--font-display,inherit);letter-spacing:-.04em;text-wrap:balance}
+[data-scene="05-materials"] .materials__board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,28px);margin:0;padding:0;list-style:none}
+[data-scene="05-materials"] .materials__item{min-width:0}
+[data-scene="05-materials"] .materials__figure{overflow:hidden;margin:0;aspect-ratio:1.34;background:color-mix(in srgb,var(--canvas) 8%,var(--surface))}
+[data-scene="05-materials"] .materials__image{display:block;width:100%;height:100%;object-fit:cover}
+[data-scene="05-materials"] .materials__copy{padding-top:14px}
+[data-scene="05-materials"] .materials__number{display:block;margin-bottom:8px;color:var(--accent);font:600 12px var(--font-mono,monospace);letter-spacing:.11em}
+[data-scene="05-materials"] .materials__name{margin:0 0 7px;font:720 clamp(19px,1.8vw,25px)/1.15 var(--font-display,inherit);letter-spacing:-.025em}
+[data-scene="05-materials"] .materials__reason{max-width:31ch;margin:0;color:var(--ink-muted);font:450 clamp(14px,1.14vw,16px)/1.48 var(--font-body,inherit);word-break:keep-all}
+[data-scene="05-materials"] .materials__note{margin:clamp(22px,4vh,38px) 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--ink-subtle);font:450 12px/1.45 var(--font-body,inherit)}
+@media(max-width:720px){
+  [data-scene="05-materials"] .materials{min-height:100svh;padding:38px 0 30px}
+  [data-scene="05-materials"] .materials__head{margin-bottom:22px}
+  [data-scene="05-materials"] .materials__title{font-size:clamp(32px,8.8vw,42px);line-height:1.08}
+  [data-scene="05-materials"] .materials__board{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 14px}
+  [data-scene="05-materials"] .materials__figure{aspect-ratio:1.28}
+  [data-scene="05-materials"] .materials__copy{padding-top:9px}
+  [data-scene="05-materials"] .materials__number{margin-bottom:5px;font-size:10px}
+  [data-scene="05-materials"] .materials__name{margin-bottom:5px;font-size:18px;line-height:1.2}
+  [data-scene="05-materials"] .materials__reason{font-size:13px;line-height:1.43}
+  [data-scene="05-materials"] .materials__note{margin-top:19px;padding-top:9px;font-size:11px}
 }
-@media (prefers-reduced-motion: reduce) {
-  [data-scene="05-materials"] .pa { padding: var(--space-section, 88px) 0; }
-  [data-scene="05-materials"] .pa__stage { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-xs, 8px); width: 100%; height: auto; padding: 0 var(--gutter, 20px); }
-  [data-scene="05-materials"] .pa__sheet { position: static; width: 100%; transform: none; box-shadow: none; }
-}
+@media(prefers-reduced-motion:reduce){[data-scene="05-materials"] .materials__image{transform:none!important;clip-path:none!important}}

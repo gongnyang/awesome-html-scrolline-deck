@@ -12,7 +12,7 @@
 | 4 | `04-agenda` | `agenda-path` | 문제에서 설계, 설계에서 검증까지 |
 | 5 | `05-evidence` | `annotated-chart` | 한 주장에 한 시각 근거 |
 | 6 | `06-flow` | `step-flow` | 보여주고, 머물고, 넘긴다 |
-| 7 | `07-templates` | `horizontal-gallery` | 24개 장면은 서로 다른 발표 일을 한다 |
+| 7 | `07-templates` | `horizontal-gallery` | 25개 장면은 서로 다른 발표 일을 한다 |
 | 8 | `08-demo` | `frame-scrub-video` | 문장이 바뀔 때 화면도 바뀐다 |
 | 9 | `09-checklist` | `option-matrix` | 읽힘 · 근거 · 조작 · 대체 화면 |
 | 10 | `10-close` | `closing-qr` | 주장 하나를 장면 하나로 |

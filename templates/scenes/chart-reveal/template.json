@@ -45,5 +45,20 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/annual-report/03-trend"
+  "previewSource": "examples/annual-report/03-trend",
+  "sceneContract": {
+    "status": "production",
+    "fit": "소수의 실제 수치 사이에서 한 가지 추세나 차이를 설명할 때.",
+    "unfit": "불분명한 모집단·단위·원천 데이터, 한 화면에 모든 지표가 필요한 대시보드, 독립된 범주의 과도한 비교.",
+    "requiredInputs": "2–4개의 `범주:값` 행, 일관된 단위와 출처, 값의 범위·0 기준선이 분명한 제목.",
+    "scrollBeatSemantics": "스크롤이 범주 순서대로 막대를 그리고 값과 라벨을 보인다. 의미 있는 차이에 도착해 멈추면 비교 가능한 완성 차트가 된다.",
+    "stableHold": "축·값·범주·출처가 모두 최종 상태로 보이며 스크롤 정지 시 화면도 정지한다. 발표자는 개별 막대를 되짚을 수 있다.",
+    "projectorTypeCriteria": "그래프 영역은 중심 화면을 채우고 축 표식/값/범주명이 본문 크기로 읽힌다. 비율이 아닌 절대량에는 0 기준선을 지킨다.",
+    "labelCriteria": "각 막대 옆/끝에 정확한 값과 단위를 표시한다. 범주명은 줄바꿈 가능하게 하고, 작은 글씨나 색상 범례만으로 시리즈를 구분하지 않는다.",
+    "mobile": "범주가 늘어뜨린 작은 막대로 변하지 않게 수평 막대로 전환하거나 순차 목록으로 바꾼다. 모든 값과 축 의미를 보존한다.",
+    "reducedMotion": "모든 막대, 정확한 값, 축 기준선, 범주 라벨을 한 번에 표시한다.",
+    "exampleContent": "가상의 연도 4개가 아닌, 검증된 분기별 매출 데이터를 실제 단위와 출처를 달아 보여준다.",
+    "nextImplementation": "—",
+    "estimatedEffort": "—"
+  }
 }

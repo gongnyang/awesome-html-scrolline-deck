@@ -1,5 +1,5 @@
-// odometer-stats — each copy.lines entry is "<number><suffix> <label>", e.g.
-// "12 scenes" or "2450vh of pin". The digits spin up on reels.
+// odometer-stats — exact declared values, definitions and provenance stay
+// together in the speaking hold. Integer values can use the digit reels.
 let root = null;
 
 const STRIP = Array.from({ length: 30 }, (_, index) => `<i>${index % 10}</i>`).join('');
@@ -26,22 +26,27 @@ export default {
     root = section.querySelector('.od') || section;
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
-    const lines = (copy.lines || []).slice(0, 4);
+    const supplied = Array.isArray(scene.assets?.stats) ? scene.assets.stats.slice(0, 2) : [];
+    const statsData = supplied.length ? supplied : (copy.lines || []).slice(0, 2).map((line) => {
+      const parsed = parseStat(line);
+      return { value: `${parsed.digits}${parsed.suffix}`, label: parsed.label, definition: '' };
+    });
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
 
     const stats = root.querySelector('[data-role="stats"]');
-    stats.style.setProperty('--cols', String(Math.max(1, lines.length)));
-    stats.replaceChildren(...lines.map((line, index) => {
-      const stat = parseStat(line);
+    stats.style.setProperty('--cols', String(Math.max(1, statsData.length)));
+    stats.replaceChildren(...statsData.map((stat, index) => {
+      const value = String(stat.value ?? '').trim();
+      const exactInteger = /^\d{1,6}$/.test(value);
       const card = el('div', 'od__stat');
       card.setAttribute('data-accent', String((index % 3) + 1));
       const definition = el('dd', 'od__odo');
-      definition.setAttribute('aria-label', `${stat.digits}${stat.suffix}`);
-      if (stat.digits) {
+      definition.setAttribute('aria-label', `${value} ${stat.unit || ''}`.trim());
+      if (exactInteger) {
         const reels = el('span', 'od__reels');
-        for (const digit of stat.digits) {
+        for (const digit of value) {
           const reel = el('span', 'od__reel');
           reel.dataset.target = digit;
           reel.style.setProperty('--y', digit);
@@ -51,13 +56,18 @@ export default {
           reels.append(reel);
         }
         definition.append(reels);
-        if (stat.suffix) definition.append(el('span', 'od__suffix', stat.suffix));
+        if (stat.unit) definition.append(el('span', 'od__suffix', stat.unit));
+      } else if (value) {
+        definition.append(el('span', 'od__plain', value));
+        if (stat.unit) definition.append(el('span', 'od__suffix', stat.unit));
       } else {
-        definition.append(el('span', 'od__empty', '—'));
+        definition.append(el('span', 'od__empty', '값 필요'));
       }
-      card.append(definition, el('dt', 'od__unit', stat.label));
+      card.append(definition, el('dt', 'od__unit', stat.label || '지표 이름 필요'));
+      if (stat.definition || stat.period || stat.denominator) card.append(el('p', 'od__definition', [stat.definition, stat.denominator, stat.period].filter(Boolean).join(' · ')));
       return card;
     }));
+    root.querySelector('[data-role="source"]').textContent = scene.assets?.source || scene.source || '출처 또는 가상 설계 목표 표기 필요';
   },
 
   build(tl, ctx) {

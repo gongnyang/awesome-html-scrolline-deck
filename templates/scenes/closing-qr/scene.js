@@ -21,29 +21,25 @@ export default {
     const copy = scene.copy || {};
     const assets = scene.assets || {};
     const images = assets.images || [];
-    const site = (copy.lines || [])[0] || (deck.links && deck.links.site) || '';
+    const site = (deck.links && deck.links.site) || '';
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     const thanks = root.querySelector('[data-role="title"]');
     thanks.setAttribute('aria-label', copy.title || '');
     thanks.replaceChildren(...chars(copy.title || ''));
+    root.querySelector('[data-role="detail"]').textContent = (copy.lines || []).join(' · ');
     root.querySelector('[data-role="url"]').textContent = site;
+    root.querySelector('.cq__site').hidden = !site;
 
     const mascot = images[1];
     if (mascot) root.querySelector('[data-role="mascot"]').setAttribute('src', mascot);
 
     const qr = root.querySelector('[data-role="qr"]');
     const svg = images[0];
-    if (svg && /\.svg(\?|$)/.test(svg) && typeof fetch === 'function') {
-      fetch(svg)
-        .then((response) => (response.ok ? response.text() : ''))
-        .then((markup) => {
-          if (!root || !markup) return;
-          qr.insertAdjacentHTML('afterbegin', markup);
-          qr.querySelectorAll('path').forEach((path) => path.setAttribute('pathLength', '1'));
-        })
-        .catch(() => {});
-    }
+    if (site && svg && /\.svg(\?|$)/.test(svg)) {
+      qr.src = svg;
+      qr.alt = `QR code linking to ${site}`;
+    } else qr.hidden = true;
 
     const restart = root.querySelector('[data-role="restart"]');
     restart.textContent = assets.restartLabel || (deck.lang === 'ko' ? '처음부터 다시' : 'Start over');
@@ -62,18 +58,27 @@ export default {
     const url = root.querySelector('.cq__url');
     const mascot = root.querySelector('[data-role="mascot"]');
     const restart = root.querySelector('.cq__restart');
+    const detail = root.querySelector('.cq__detail');
 
-    ctx.gsap.set(qr, { '--draw': 0 });
+    if (ctx.reduced) {
+      ctx.gsap.set([bloom, lead, root.querySelector('.cq__thanks'), detail, qr, url, mascot, restart], {
+        autoAlpha: 1, y: 0, x: 0, yPercent: 0, '--draw': 1, '--type': 1,
+      });
+      return;
+    }
+
+    ctx.gsap.set(qr, { autoAlpha: 0, scale: 0.9 });
 
     // enter — 0 .. 0.30. The bloom opens and the thanks set themselves.
     tl.fromTo(bloom, { '--r': 14, autoAlpha: 0 }, { '--r': 70, autoAlpha: 0.8, duration: 0.14, ease: 'power2.out' }, 0);
     tl.fromTo(lead, { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power3.out' }, 0.1);
     if (letters.length) {
-      tl.fromTo(letters, { yPercent: 72, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.12, stagger: 0.008, ease: 'power3.out' }, 0.14);
+      tl.fromTo(letters, { yPercent: 72, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.1, stagger: 0.003, ease: 'power3.out' }, 0.14);
     }
+    tl.fromTo(detail, { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0.22);
 
-    // hold — 0.30 .. 0.75. The QR draws, the URL types, the room photographs it.
-    tl.to(qr, { '--draw': 1, duration: 0.16, ease: 'none' }, 0.3);
+    // hold — 0.30 .. 0.75. The QR resolves, the URL appears, and the room can photograph it.
+    tl.to(qr, { autoAlpha: 1, scale: 1, duration: 0.16, ease: 'power2.out' }, 0.3);
     // A clip wipe, not a width tween: "ch" is the width of a zero, so a long
     // URL in a proportional stack stays clipped at the final state.
     tl.fromTo(url, { '--type': 0 }, { '--type': 1, duration: 0.12, ease: 'none' }, 0.3);

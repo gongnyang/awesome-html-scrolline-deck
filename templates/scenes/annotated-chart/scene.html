@@ -1,1 +1,25 @@
-<div class="a"><header class="a__head"><p class="a__kicker" data-role="kicker"></p><h2 class="a__title" data-role="title"></h2></header><div class="a__plot"><div class="a__scale" aria-hidden="true"><span>100</span><span>50</span><span>0</span></div><svg class="a__line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><p class="a__empty" data-role="empty"></p><p class="a__callout"></p></div><p class="a__source" data-role="source"></p></div>
+<section class="ac" aria-labelledby="{{id}}-title">
+  <header class="ac__head">
+    <div class="ac__story">
+      <p class="ac__kicker" data-role="kicker"></p>
+      <h2 class="ac__title" id="{{id}}-title" data-role="title"></h2>
+      <div class="ac__interpretation" data-role="interpretation"></div>
+    </div>
+    <div class="ac__metric" data-role="metric" aria-label="Selected value and category">
+      <div class="ac__metric-primary"><strong data-role="metric-value"></strong><span data-role="metric-unit"></span></div>
+      <p class="ac__metric-at"><span data-role="metric-relation"></span> <strong data-role="metric-label"></strong></p>
+    </div>
+  </header>
+  <p class="ac__error" data-role="error" role="alert" hidden></p>
+  <figure class="ac__figure">
+    <div class="ac__yaxis" data-role="yaxis" aria-hidden="true"></div>
+    <div class="ac__plot" data-role="plot" role="img">
+      <svg class="ac__svg" data-role="svg" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </div>
+    <div class="ac__xaxis" data-role="xaxis" aria-hidden="true"></div>
+    <figcaption class="ac__meta">
+      <p class="ac__caveat" data-role="caveat"></p>
+      <p class="ac__source" data-role="source"></p>
+    </figcaption>
+  </figure>
+</section>

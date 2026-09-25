@@ -8,7 +8,7 @@
       "skipped": false,
       "details": "장면 11개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
       "items": [],
-      "ms": 3
+      "ms": 4
     },
     {
       "id": "G1",
@@ -17,7 +17,7 @@
       "skipped": false,
       "details": "장면 모듈 11개 계약 충족",
       "items": [],
-      "ms": 69
+      "ms": 70
     },
     {
       "id": "G2",
@@ -35,7 +35,7 @@
       "skipped": false,
       "details": "scene.js 11개에 var( ) tween 없음",
       "items": [],
-      "ms": 5
+      "ms": 4
     },
     {
       "id": "G4",
@@ -44,7 +44,7 @@
       "skipped": false,
       "details": "파일 15개 · 직접 스크롤 이동 없음",
       "items": [],
-      "ms": 4
+      "ms": 3
     },
     {
       "id": "LINT",
@@ -53,7 +53,7 @@
       "skipped": false,
       "details": "장면 11개 린트 통과 (L1·L2·L3·L4)",
       "items": [],
-      "ms": 11
+      "ms": 10
     },
     {
       "id": "G5",
@@ -62,14 +62,14 @@
       "skipped": false,
       "details": "핀 장면 9개 전부 ±2px 이내",
       "items": [],
-      "ms": 91024
+      "ms": 183231
     },
     {
       "id": "G6",
-      "title": "홀드 55%에서 가시 요소 ≥3 · 캡처 3장",
+      "title": "홀드 55%에서 가시 요소 ≥3 · 장면/cue 캡처",
       "ok": true,
       "skipped": false,
-      "details": "장면 11개 · 캡처 33장 · 최소 가시 4(03-thesis) · qa/",
+      "details": "장면 11개 · 캡처 42장 · 최소 가시 4(03-thesis) · qa/",
       "items": [],
       "ms": 0
     },
@@ -78,9 +78,9 @@
       "title": "ArrowRight 착지 오차 ≤4px · 착지 화면 구성 완료",
       "ok": true,
       "skipped": false,
-      "details": "키 착지 10회 · 최대 오차 0px",
+      "details": "키 착지 18회 · 최대 오차 0px",
       "items": [],
-      "ms": 20420
+      "ms": 21486
     },
     {
       "id": "G8",
@@ -96,9 +96,9 @@
       "title": "가로 넘침 0 (1440 · 390)",
       "ok": true,
       "skipped": false,
-      "details": "가로 넘침 없음 (1440 · 390)",
+      "details": "가로 넘침 없음 (1440 · 390) · 모바일 캡처 11장",
       "items": [],
-      "ms": 14022
+      "ms": 66533
     },
     {
       "id": "G10",
@@ -107,7 +107,7 @@
       "skipped": false,
       "details": "핀 0개 · 장면 11개 정지 프레임 완성",
       "items": [],
-      "ms": 13509
+      "ms": 25026
     },
     {
       "id": "G11",
@@ -116,7 +116,7 @@
       "skipped": false,
       "details": "24개 이미지 디코딩 검사 · 실패 0개",
       "items": [],
-      "ms": 635
+      "ms": 647
     },
     {
       "id": "G12",
@@ -137,5 +137,5 @@
       "ms": 0
     }
   ],
-  "ts": "2026-09-25T00:41:12.614Z"
+  "ts": "2026-09-25T06:07:16.955Z"
 }

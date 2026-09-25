@@ -44,5 +44,20 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/spatial-proposal/04-gallery"
+  "previewSource": "examples/spatial-proposal/04-gallery",
+  "sceneContract": {
+    "status": "production",
+    "fit": "3–6장의 이미지 자체가 증거이며, 연대순·관찰순·규모순으로 보아야 의미가 생길 때.",
+    "unfit": "장식 사진 묶음, 주제가 서로 다른 이미지, 6장보다 많은 자료를 한 번에 검토해야 할 때.",
+    "requiredInputs": "같은 주장에 기여하는 로컬 이미지 3–6장, 각 이미지 설명(시각장애인 대체 텍스트), 한 문장 캡션.",
+    "scrollBeatSemantics": "세로 휠은 수평 카메라 이동으로 변환된다. 다음 이미지를 보여줄 때마다 순서와 번호가 같이 바뀌며, 전환이 설명 단위가 된다.",
+    "stableHold": "각 이미지가 화면 주도 요소로 선명하게 머물고 제목·캡션·진행 표식이 계속 보인다. 입력을 멈추면 이미지와 대응 캡션도 정지한다.",
+    "projectorTypeCriteria": "이미지별 초점을 충분히 크게 보여준다. 캡션은 지속 노출하고 큰 제목과 경쟁하지 않는 크기로 제한한다. 진행 번호는 읽을 수 있지만 주장보다 강하지 않다.",
+    "labelCriteria": "이미지당 짧은 제목이나 시점만 표시한다. 작고 반복되는 그림 설명을 3개 이상 화면에 쌓지 않는다.",
+    "mobile": "이미지마다 한 화면의 세로 흐름으로 배치한다. 캡션이 앞에 오고, 목록/진행 순서는 명시한다.",
+    "reducedMotion": "한 이미지씩 차례로 쌓고 모든 캡션을 읽을 수 있게 한다. 의미를 좌우 스크롤에만 맡기지 않는다.",
+    "exampleContent": "강의실의 오래된 수업 사진 4장을 시간순으로 훑으며, 교실의 상호작용 방식이 바뀐 증거를 설명한다.",
+    "nextImplementation": "—",
+    "estimatedEffort": "—"
+  }
 }

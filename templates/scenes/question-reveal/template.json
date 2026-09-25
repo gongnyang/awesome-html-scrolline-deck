@@ -18,9 +18,11 @@
   "assets": {
     "frames": false,
     "images": {
-      "min": 0,
-      "max": 0
+      "min": 1,
+      "max": 1
     },
+    "imageAlt": "Required concise alt text describing the single source image.",
+    "marks": "Required 2–4 [x,y] image coordinates in percent, aligned in order with copy.lines.",
     "video": false,
     "poster": false
   },
@@ -28,19 +30,37 @@
     0.3,
     0.75
   ],
-  "notesHint": "Open with a specific question, then reveal the evidence that reframes it.",
-  "description_en": "A cinematic question card opens into a three-part answer.",
-  "description_ko": "질문을 먼저 크게 던지고, 답의 근거를 차례로 드러내는 오프닝 장면입니다.",
-  "responsive": "On narrow screens, put the answer rail below the oversized question.",
-  "reducedMotion": "Show the question and every answer clue together in the finished layout.",
-  "purpose": "질문을 먼저 크게 던지고, 답의 근거를 차례로 드러내는 오프닝 장면입니다.",
+  "notesHint": "Ask one precise question. Supply one relevant source image, 2–4 exact image marks, observations tied to those marks, a conclusion in scene.evidence, and scene.source.",
+  "description_en": "A question is answered through sequentially marked observations in one source image; the concluding claim arrives after its evidence.",
+  "description_ko": "질문을 던진 뒤 실제 이미지의 위치에 연결된 관찰을 하나씩 공개하고 근거를 모아 답합니다.",
+  "responsive": "Keep the image and all mark-to-observation relationships readable; on narrow screens stack the image, ordered evidence, answer, and source.",
+  "reducedMotion": "Show the question, the complete marked image, every observation, the conclusion, and source statically.",
+  "purpose": "하나의 실제 이미지에서 질문의 답을 설명할 관찰 위치를 찾아 짚습니다.",
   "exampleCopy": {
-    "kicker": "가상 사례 · 고객은 어디에서 포기할까요?",
-    "title": "대기 8분을 넘으면 이탈이 늘어난다",
+    "kicker": "질문 · 관찰을 답으로 바꾸기",
+    "title": "이 장면에서 먼저 확인할 증거는 무엇일까?",
     "lines": [
-      "피크 시간 문의와 결제 대기가 겹쳤습니다."
+      "위치 1: 원본 이미지에서 확인된 첫 관찰 → 질문의 첫 단서를 뒷받침",
+      "위치 2: 원본 이미지에서 확인된 둘째 관찰 → 답의 조건을 좁힘",
+      "위치 3: 원본 이미지에서 확인된 셋째 관찰 → 다른 가능성과 구별"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/client-proposal/02-challenge"
+  "previewSource": "examples/client-proposal/02-challenge",
+  "sceneContract": {
+    "status": "production",
+    "fit": "답이 실제 한 장의 이미지에서 확인되는 구체 관찰 2–4개로 뒷받침될 때.",
+    "unfit": "수치 계열/비교가 주된 증거(차트 사용), 이미지가 관찰을 뒷받침하지 않거나 질문에 대한 입증 가능한 답이 없을 때.",
+    "requiredInputs": "질문 copy.title; 관련 이미지 1장과 alt; 각 관찰과 위치를 짝지은 2–4개 `라벨: 관찰 → 답과의 관계` 줄 및 일대일 assets.marks; 결론 scene.evidence; 이미지와 근거의 scene.source.",
+    "scrollBeatSemantics": "질문이 유지된 채 관찰과 이미지 마커가 순서대로 나타나고, 증거를 충분히 보여 준 뒤 답 문장이 드러난다.",
+    "stableHold": "질문, 전체 원본 이미지, 현재 마커와 관찰, 설명 가능한 결론 및 출처가 동시에 보인다.",
+    "projectorTypeCriteria": "질문은 최상위 유형 위계, 이미지는 뷰의 핵심, 관찰명과 최종 답은 본문 위계로 읽힌다.",
+    "labelCriteria": "각 관찰 라벨은 같은 이미지의 실제 좌표를 가리키고, 명시된 관계 문장과 단위/조건은 이미지 아래 출처와 일치한다.",
+    "mobile": "이미지를 먼저 크게 보인 뒤 마커 순서대로 관찰·답·출처를 쌓아 label과 위치 관계를 유지한다.",
+    "reducedMotion": "완성된 질문·이미지·마커·관찰·답·출처를 정적으로 모두 제공한다.",
+    "exampleContent": "화면의 실제 부품 온도센서·공기 배출구·부하 라벨 위치를 표시하고, 각 관찰로 과열 원인을 설명하는 강의 도입.",
+    "unsupportedReason": "—",
+    "nextImplementation": "—",
+    "estimatedEffort": "—"
+  }
 }

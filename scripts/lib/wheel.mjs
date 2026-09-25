@@ -9,7 +9,7 @@
 
 export const TICK = 240;          // 휠 한 칸(px). fc-astra 실측에서 lenis가 따라오는 크기.
 export const TICK_WAIT = 50;      // 틱 사이 대기(ms). lenis 보간이 한 프레임 이상 돌게 한다.
-export const SETTLE = 700;        // 목표 도달 후 정착 대기(ms). ScrollTrigger scrub 0.6s가 따라붙을 시간을 준다.
+export const SETTLE = 700;        // 목표 도달 후 정착 대기(ms). Lenis 보간과 브라우저 페인트가 끝날 시간을 준다.
 export const HOLD_RATIO = 0.35;   // 키 이동 착지 지점 = 핀 거리의 35%(엔진 goTo와 같은 값).
 export const MIN_AREA = 400;      // 가시 판정 최소 면적(px²).
 export const MIN_OPACITY = 0.05;  // 가시 판정 최소 불투명도.
@@ -18,16 +18,17 @@ export const MIN_OPACITY = 0.05;  // 가시 판정 최소 불투명도.
 
 /**
  * pin-spacer 기하 → 장면 구간.
- * 핀이 걸린 장면은 spacer 높이에서 뷰포트 높이를 뺀 만큼이 핀 거리(= 스크럽 구간)다.
+ * 핀이 걸린 장면은 spacer 높이에서 실제 section 높이를 뺀 만큼이 핀 거리다.
+ * 문구가 줄바꿈되어 section이 뷰포트보다 커져도 핀 길이는 그대로여야 한다.
  * 핀이 없는 장면은 제자리를 지나가므로 핀 거리 0으로 본다.
  */
-export function computeRange({ top, height, scrollY = 0, innerHeight = 900, pinned = true }) {
+export function computeRange({ top, height, scrollY = 0, innerHeight = 900, sectionHeight = innerHeight, pinned = true }) {
   const start = Math.round(top + scrollY);
-  const pinDistance = pinned ? Math.max(0, Math.round(height - innerHeight)) : 0;
+  const pinDistance = pinned ? Math.max(0, Math.round(height - sectionHeight)) : 0;
   return { start, pinDistance, end: start + pinDistance, height: Math.round(height), pinned: Boolean(pinned) };
 }
 
-/** deck.json의 pinVh가 뜻하는 픽셀 핀 거리. 엔진은 ScrollTrigger end를 `+=pinVh%`로 준다. */
+/** deck.json의 pinVh가 뜻하는 픽셀 핀 거리. 엔진은 이 뷰포트 기준 거리를 ScrollTrigger에 전달한다. */
 export function expectedPinDistance(pinVh, innerHeight) {
   return (Number(pinVh) / 100) * Number(innerHeight);
 }
@@ -100,7 +101,7 @@ export async function wheelTo(page, targetY, { tick = TICK, wait = TICK_WAIT, ma
   while (ticks < maxTicks) {
     const remaining = targetY - current;
     if (Math.abs(remaining) <= tolerance) break;
-    const step = Math.sign(remaining) * Math.min(tick, Math.max(40, Math.abs(remaining)));
+    const step = Math.sign(remaining) * Math.min(tick, Math.max(8, Math.abs(remaining)));
     await page.mouse.wheel(0, step);
     await page.waitForTimeout(wait);
     ticks += 1;
@@ -114,9 +115,19 @@ export async function wheelTo(page, targetY, { tick = TICK, wait = TICK_WAIT, ma
     current = next;
   }
 
+  // Lenis can still travel after the last wheel tick. Let it settle, then
+  // correct that residual with small real wheel input before a QA capture.
+  for (let correction = 0; correction < 5; correction += 1) {
+    await page.waitForTimeout(SETTLE);
+    current = await y(page);
+    const remaining = targetY - current;
+    if (Math.abs(remaining) <= tolerance) break;
+    await page.mouse.wheel(0, Math.sign(remaining) * Math.min(120, Math.abs(remaining)));
+    ticks += 1;
+  }
   await page.waitForTimeout(SETTLE);
   current = await y(page);
-  return { reached: Math.abs(current - targetY) <= tick, y: current, ticks };
+  return { reached: Math.abs(current - targetY) <= tolerance, y: current, ticks };
 }
 
 /** 문서 끝까지 굴린다. 핀 스페이서가 전부 생성되어야 기하를 읽을 수 있다. */
@@ -164,6 +175,7 @@ export async function sceneRanges(page) {
         technique: section.dataset.technique ?? '',
         top: rect.top,
         height: rect.height,
+        sectionHeight: section.getBoundingClientRect().height,
         pinned: Boolean(spacer),
         scrollY: window.scrollY,
         innerHeight: window.innerHeight,

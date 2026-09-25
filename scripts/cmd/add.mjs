@@ -11,7 +11,11 @@ import { makeQrSvg } from './qr.mjs';
 const KNOWN_FLAGS = new Set(['dir', 'id', 'title', 'kicker', 'lines', 'pinVh', 'notes', 'url']);
 
 const SCHEMA = readJson(path.join(REPO_ROOT, 'references/deck.schema.json'));
-const TECHNIQUES = SCHEMA.$defs.scene.properties.technique.enum;
+const TEMPLATE_ROOT = path.join(REPO_ROOT, 'templates/scenes');
+const TECHNIQUES = fs.readdirSync(TEMPLATE_ROOT, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory() && fs.existsSync(path.join(TEMPLATE_ROOT, entry.name, 'template.json')))
+  .map((entry) => entry.name)
+  .sort();
 
 /** Expand <!-- each:line -->…<!-- /each --> blocks, then {{lines}} / {{line1..4}}. */
 function expandLines(text, lines) {

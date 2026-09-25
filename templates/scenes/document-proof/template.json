@@ -12,36 +12,54 @@
     "title": true,
     "lines": {
       "min": 2,
-      "max": 4
+      "max": 2
     }
   },
   "assets": {
     "frames": false,
     "images": {
-      "min": 1,
-      "max": 1
+      "min": 2,
+      "max": 2
     },
     "video": false,
-    "poster": false
+    "poster": false,
+    "imageAlt": "Required alt text for full page and matching passage crop.",
+    "marks": "One [x,y] source-page coordinate in percent for the quoted passage."
   },
   "hold": [
     0.3,
     0.75
   ],
-  "notesHint": "Make a source artifact the center of an evidence claim.",
-  "description_en": "A paper-like exhibit enters beside a citation rail and highlighted passage.",
-  "description_ko": "문서나 기록을 근거로 제시하고 인용할 대목에 시선을 모읍니다.",
-  "responsive": "On narrow screens, stack the source artifact and citation; crop the exhibit image within its page.",
-  "reducedMotion": "Show the source exhibit, quote and citation in their final positions.",
-  "purpose": "문서나 기록을 근거로 제시하고 인용할 대목에 시선을 모읍니다.",
+  "notesHint": "Use the full source page, an exact crop of the cited passage, one [x,y] mark, exact quote and interpretation, complete source, and a page/section locator.",
+  "description_en": "The source page, exact anchored passage, quotation, interpretation, and citation stay connected through the reveal.",
+  "description_ko": "원본 페이지의 인용 위치를 확대 발췌와 연결해 출처까지 한 화면에서 검증할 수 있게 보여줍니다.",
+  "responsive": "At narrow widths, stack the full page, matching passage crop, quote, interpretation, and citation; preserve the locator next to the page.",
+  "reducedMotion": "Show the complete page with anchor beside the matching crop, quote, interpretation, locator, and source.",
+  "purpose": "문서 원문 한 구절을 직접 근거로 주장을 검증합니다.",
   "exampleCopy": {
-    "kicker": "가상 콘셉트 · 운영까지 포함한 제안",
-    "title": "운영 준비까지 포함한 90일 계획",
+    "kicker": "원문 근거",
+    "title": "인용된 한 문장이 주장을 뒷받침하는가?",
     "lines": [
-      "가구·안내·교육까지 설계 범위에 포함합니다.",
-      "가상 일정: 실측·인허가 검토 뒤 확정"
+      "“[원문에서 그대로 옮긴 짧은 문장]”",
+      "[인용의 범위와 발표 주장 사이의 관계를 설명합니다.]"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/spatial-proposal/10-operations"
+  "previewSource": "examples/spatial-proposal/10-operations",
+  "sceneContract": {
+    "status": "production",
+    "fit": "정확한 문장이나 기록이 주장 자체의 근거이며, 원본의 해당 위치를 화면에서 확인할 수 있을 때.",
+    "unfit": "원문 또는 인용 위치가 불명확하거나 표/그래프를 수치 근거로 설명해야 할 때.",
+    "requiredInputs": "원본 전체 페이지와 동일 문서의 인용부 crop; assets.imageAlt 두 개; assets.marks[0]=원본의 [x,y]; copy.lines[0]=정확한 인용, [1]=해석; scene.source; scene.evidence에 페이지/절 위치.",
+    "scrollBeatSemantics": "전체 페이지에서 좌표를 먼저 찾고, 같은 문서의 확대 crop으로 이동한 뒤 인용·해석·출처가 함께 고정된다.",
+    "stableHold": "원본과 인용 위치, 읽을 수 있는 확대 crop, 정확한 인용, 해석, 재확인 가능한 locator와 출처가 함께 보인다.",
+    "projectorTypeCriteria": "제목 아래 좌측 원본·우측 발췌를 배치한다. 발췌문은 본문 크기 이상으로 읽히고 장식용 종이 요소는 근거를 가리지 않는다.",
+    "labelCriteria": "인용부는 원문과 글자 단위로 일치해야 한다. 문서명·기관/저자·발행일 및 페이지/절을 표시한다.",
+    "mobile": "원본, 인용 위치, 확대 crop, 인용·해석·출처 순서로 세로 배치하고 crop 텍스트를 화면 폭에 맞춘다.",
+    "reducedMotion": "완성된 원본/앵커와 crop/인용/해석/출처를 정적으로 모두 보여준다.",
+    "exampleContent": "공식 보고서 한 페이지와 그 안의 한 문장 crop, 정확한 쪽수, 발표 주장의 제한된 해석.",
+    "unsupportedReason": "",
+    "nextImplementation": "Use only with the stated source, chronology/relationship evidence, and presenter-readable hold; review the authored instance for claim accuracy.",
+    "estimatedEffort": ""
+  }
 }

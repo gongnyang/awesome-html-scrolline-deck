@@ -1,0 +1,63 @@
+{
+  "technique": "colorway-reveal",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "product",
+    "image",
+    "equal-options",
+    "scroll-focus"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 3,
+      "max": 3
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": "Required: one labelled triptych or three images in matching left-to-right order.",
+    "colorways": "Optional array of exactly three finish labels; if absent, copy.lines must contain exactly three finish labels.",
+    "imageAlt": "Three image alternatives: one labelled triptych in left-to-right order, or three corresponding images.",
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Explain that function, price, and performance are equivalent. Do not imply a recommended or superior finish.",
+  "description_en": "Three equal product finishes stay visible while scroll moves a clear focus across their image and live labels.",
+  "description_ko": "세 가지 마감을 모두 보이며 스크롤 초점과 라이브 라벨을 하나씩 이동합니다.",
+  "responsive": "A labelled triptych keeps all three finishes visible; three individual images become full-width rows with matching labels.",
+  "reducedMotion": "Show all three finishes, their labels, and the equivalence statement at equal visual weight.",
+  "purpose": "성능이나 기능 차이가 없는 동일 제품의 색상·마감 선택지를 비교합니다.",
+  "exampleCopy": {
+    "kicker": "동일한 제품 · 선택 가능한 마감",
+    "title": "세 가지 마감, 같은 기능",
+    "lines": [
+      "차콜 · 매트",
+      "클라우드 · 새틴",
+      "코랄 · 러버"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/product-launch/08-options",
+  "sceneContract": {
+    "status": "production",
+    "fit": "같은 제품/대상의 색이나 마감 차이만 청중이 고르면 되는 장면.",
+    "unfit": "기능·가격·성능·지속성 등 옵션별 실질 차이가 있거나 더 나은 안을 주장해야 하는 비교.",
+    "requiredInputs": "같은 구도·대상 크기의 triptych 한 장 또는 순서가 맞는 개별 이미지 3장; assets.colorways에 정확히 세 라벨; scene.evidence 또는 copy.lines에 사양과 가격의 동등성을 확인한 문장.",
+    "scrollBeatSemantics": "세 색상/마감은 항상 모두 보인다. 스크롤은 왼쪽부터 활성 마스크와 라벨 강조만 옮겨 발표자의 설명 순서를 만든다. 강조는 우수성이나 추천을 뜻하지 않는다.",
+    "stableHold": "활성 시안과 그 바로 아래 이름이 같은 자리에서 정지한다. 다른 두 시안과 라벨도 비교 문맥으로 계속 보인다. 세 구간 모두에서 휠 정지가 곧 발표 홀드다.",
+    "projectorTypeCriteria": "제품 영역을 화면의 주 focal로 크게 둔다. triptych는 이미지의 각 1/3에 제품 하나씩 배치해 자르기 없이 전체 제품이 보이고, 세 개별 사진도 같은 각도/크기/조명을 쓴다.",
+    "labelCriteria": "차콜/클라우드/코랄과 실제 확인한 마감 명을 사진 바로 아래 큰 본문 크기로 둔다. 색상, 값, 추천을 색으로만 전달하지 않고 기능/가격 동일 문장을 함께 표시한다.",
+    "mobile": "triptych 이미지 전체와 세 라벨 칸을 전부 보인다. 개별 이미지는 한 행씩 큰 썸네일+이름으로 쌓는다. 선택 설명은 세 이미지를 다 노출한 후 유지한다.",
+    "reducedMotion": "세 선택지의 모든 이미지와 라이브 텍스트 라벨 및 동등성 문장을 정적으로 보인다. 한 선택지만 어둡거나 사라지지 않는다.",
+    "exampleContent": "assets.images 한 장에 동일한 헤드폰의 차콜·클라우드·코랄을 왼쪽부터 배열하고 assets.colorways에 마감명을, scene.evidence에 동등한 기능·가격 문장을 둔다.",
+    "nextImplementation": "—",
+    "estimatedEffort": "—"
+  }
+}

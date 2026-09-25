@@ -30,10 +30,16 @@ export async function run(ctx) {
   const scenes = orderedScenes(ctx.deck);
   const innerHeight = await page.evaluate(() => window.innerHeight);
 
-  for (let i = 1; i < scenes.length; i += 1) {
-    const scene = scenes[i];
+  const hasCues = scenes.some((scene) => Array.isArray(scene.cues) && scene.cues.length);
+  const stops = scenes.flatMap((scene, index) => {
+    if (!hasCues && index === 0) return [];
+    const ratios = Array.isArray(scene.cues) && scene.cues.length ? scene.cues : [HOLD_RATIO];
+    return ratios.map((ratio, cueIndex) => ({ scene, ratio, cueIndex }));
+  });
+
+  for (const { scene, ratio, cueIndex } of stops) {
     await page.keyboard.press('ArrowRight');
-    await page.waitForTimeout(1800); // lenis 기본 1.2초 + 여유
+    await page.waitForTimeout(hasCues ? 1050 : 1800);
 
     const range = ranges.get(scene.id);
     if (!range) { problems.push(`${scene.id}: 구간을 읽지 못했습니다`); continue; }
@@ -41,17 +47,17 @@ export async function run(ctx) {
     const pinDistance = scene.pin !== false && Number(scene.pinVh) > 0
       ? expectedPinDistance(scene.pinVh, innerHeight)
       : 0;
-    const expected = Math.round(range.start + pinDistance * HOLD_RATIO);
+    const expected = Math.round(range.start + pinDistance * ratio);
     const actual = await page.evaluate(() => Math.round(window.scrollY));
     const delta = actual - expected;
-    landings.push({ id: scene.id, expected, actual, delta });
+    landings.push({ id: scene.id, cueIndex, expected, actual, delta });
 
     if (Math.abs(delta) > TOLERANCE) {
-      problems.push(`${scene.id}: 착지 ${actual}px, 기대 ${expected}px — 오차 ${delta}px`);
+      problems.push(`${scene.id} cue ${cueIndex + 1}: 착지 ${actual}px, 기대 ${expected}px — 오차 ${delta}px`);
     }
     const visible = countVisible(await collectEntries(page, scene.id), { width: 1440, height: 900 });
     if (visible < MIN_VISIBLE) {
-      problems.push(`${scene.id}: 착지 화면의 가시 요소가 ${visible}개입니다 (최소 ${MIN_VISIBLE})`);
+      problems.push(`${scene.id} cue ${cueIndex + 1}: 착지 화면의 가시 요소가 ${visible}개입니다 (최소 ${MIN_VISIBLE})`);
     }
   }
 

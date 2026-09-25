@@ -1,11 +1,14 @@
-/* agenda-path: a distinct presentation structure built around the scene's speaking job. */
-[data-scene="10-close"] .p{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
-[data-scene="10-close"] .p__head{margin-bottom:clamp(24px,5vh,60px)}
-[data-scene="10-close"] .p__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
-[data-scene="10-close"] .p__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
-[data-scene="10-close"] .p h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
-[data-scene="10-close"] .p p{color:var(--ink-muted);line-height:1.55}
-[data-scene="10-close"] .p img{display:block;max-width:100%}
-[data-scene="10-close"] .p__route{display:grid;grid-template-columns:repeat(var(--stops,4),minmax(0,1fr));gap:clamp(1rem,3vw,2.5rem);position:relative;margin-top:8vh}[data-scene="10-close"] .p__route:before{content:"";position:absolute;left:0;right:0;top:1rem;height:1px;background:var(--accent);transform:scaleX(var(--route,1));transform-origin:left}[data-scene="10-close"] .p__stop{position:relative;padding-top:3.2rem}[data-scene="10-close"] .p__stop:before{content:"";position:absolute;top:.55rem;width:.9rem;height:.9rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 .5rem var(--surface)}
-@media(max-width:720px){[data-scene="10-close"] .p{padding:36px 0;min-height:100svh}[data-scene="10-close"] .p__route{grid-template-columns:1fr 1fr;row-gap:2rem}}
-@media(prefers-reduced-motion:reduce){[data-scene="10-close"] .p *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+[data-scene="10-close"] .commit{position:relative;isolation:isolate;min-height:100svh;width:min(1380px,calc(100% - var(--gutter,24px)*2));margin:auto;padding:clamp(44px,6vh,70px) 0 28px;display:flex;flex-direction:column;justify-content:center;color:var(--ink);overflow:hidden}
+[data-scene="10-close"] .commit__head{position:relative;z-index:2;width:min(100%,1060px)}
+[data-scene="10-close"] .commit__kicker{margin:0 0 14px;color:var(--ink-muted);font:600 13px var(--font-mono,monospace);letter-spacing:.15em}
+[data-scene="10-close"] .commit__title{margin:0;max-width:18ch;font:750 clamp(52px,6.2vw,90px)/1.03 var(--font-display,inherit);letter-spacing:-.045em;word-break:keep-all;text-wrap:balance}
+[data-scene="10-close"] .commit__stage{position:relative;min-height:410px;margin-top:clamp(22px,4vh,42px);display:flex;align-items:center}
+[data-scene="10-close"] .commit__giant{position:absolute;left:-.08em;top:-.17em;color:color-mix(in srgb,var(--accent) 18%,transparent);font:800 clamp(250px,31vw,440px)/1 var(--font-display,inherit);letter-spacing:-.15em;white-space:nowrap;pointer-events:none}
+[data-scene="10-close"] .commit__asks{position:relative;z-index:1;width:min(800px,72%);margin-left:auto}
+[data-scene="10-close"] .commit__ask{display:grid;grid-template-columns:100px minmax(0,1fr);gap:24px;align-items:baseline;border-top:1px solid var(--line);padding:18px 0 20px}
+[data-scene="10-close"] .commit__ask strong{font:700 clamp(30px,3vw,45px)/1.1 var(--font-display,inherit);letter-spacing:-.03em}
+[data-scene="10-close"] .commit__ask p{margin:0;color:var(--ink-muted);font:500 clamp(18px,1.55vw,23px)/1.35 var(--font-body,inherit);word-break:keep-all}
+[data-scene="10-close"] .commit__sign{position:relative;z-index:1;align-self:flex-end;width:min(800px,72%);margin:0;padding-top:17px;border-top:4px solid var(--accent);font:650 clamp(22px,2.4vw,34px)/1.3 var(--font-display,inherit);letter-spacing:-.02em;word-break:keep-all}
+[data-scene="10-close"] .commit__source{position:relative;z-index:1;align-self:flex-end;width:min(800px,72%);margin:14px 0 0;color:var(--ink-muted);font:12px/1.4 var(--font-mono,monospace)}
+@media(max-width:800px){[data-scene="10-close"] .commit{padding:7svh 0 32px;justify-content:flex-start}[data-scene="10-close"] .commit__title{font-size:clamp(39px,9vw,57px)}[data-scene="10-close"] .commit__stage{min-height:0;margin-top:36px;display:block}[data-scene="10-close"] .commit__giant{position:relative;left:0;top:0;display:block;font-size:clamp(148px,39vw,220px);line-height:.75;margin-bottom:18px}[data-scene="10-close"] .commit__asks{width:100%}[data-scene="10-close"] .commit__ask{grid-template-columns:65px 1fr;gap:12px;padding:12px 0}[data-scene="10-close"] .commit__ask strong{font-size:26px}[data-scene="10-close"] .commit__ask p{font-size:15px}[data-scene="10-close"] .commit__sign,[data-scene="10-close"] .commit__source{align-self:stretch;width:100%}[data-scene="10-close"] .commit__sign{margin-top:24px;font-size:22px}}
+@media(prefers-reduced-motion:reduce){[data-scene="10-close"] .commit__head,[data-scene="10-close"] .commit__giant,[data-scene="10-close"] .commit__ask,[data-scene="10-close"] .commit__sign{opacity:1;transform:none}}

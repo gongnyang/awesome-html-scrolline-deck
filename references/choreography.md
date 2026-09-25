@@ -2,7 +2,7 @@
 
 Every scene is one GSAP timeline whose total length is **1**. The engine builds
 `gsap.timeline({ paused: true })`, hands it to `build(tl, ctx)`, and a
-ScrollTrigger scrubs it with `scrub: 0.6` across `pinVh` of scroll. Nothing in a
+ScrollTrigger binds it directly with `scrub: true` across `pinVh` of scroll. Nothing in a
 scene calls `play()`, and nothing measures time in seconds.
 
 Because the length is fixed at 1, changing `pinVh` changes how long the scene
@@ -20,8 +20,8 @@ Three consequences follow, and they are what the gates check.
 
 **Nothing may end after 1.0.** The static gate replays the timeline with a fake
 recorder and computes `position + duration × (1 + stagger × n)` for every tween.
-The largest value must be ≤ 1.001. Every shipped template ends at 0.980, which
-leaves room for an author to lengthen an exit.
+The largest value must be ≤ 1.001. The engine fills an unused tail up to 1 so
+cue positions continue to match scroll progress; authored motion still ends by 1.
 
 **Frame 0 must already be composed in CSS, and every entrance must be a
 `fromTo`.** A bare `from()` renders its start values immediately, which on a

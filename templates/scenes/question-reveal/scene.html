@@ -1,1 +1,19 @@
-<div class="q"><div class="q__stage"><div><p class="q__kicker" data-role="kicker"></p><h2 class="q__title" data-role="title"></h2></div><div class="q__answer" data-role="answers"></div></div></div>
+<section class="qr" aria-labelledby="{{id}}-question">
+  <header class="qr__head">
+    <p class="qr__kicker" data-role="kicker"></p>
+    <h2 class="qr__question" id="{{id}}-question" data-role="title"></h2>
+  </header>
+  <p class="qr__error" data-role="error" role="alert" hidden></p>
+  <div class="qr__body">
+    <figure class="qr__figure" data-role="figure">
+      <img data-role="image" alt="" />
+      <div class="qr__marks" data-role="marks" aria-hidden="true"></div>
+      <figcaption data-role="alt-caption"></figcaption>
+    </figure>
+    <div class="qr__proof">
+      <ol class="qr__evidence" data-role="evidence"></ol>
+      <p class="qr__answer" data-role="answer"><span>답</span><strong></strong></p>
+      <p class="qr__source" data-role="source"></p>
+    </div>
+  </div>
+</section>

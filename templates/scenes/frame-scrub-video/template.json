@@ -1,6 +1,6 @@
 {
   "technique": "frame-scrub-video",
-  "pinVh": 280,
+  "pinVh": 320,
   "pin": true,
   "tags": [
     "media",
@@ -25,23 +25,38 @@
     },
     "video": false
   },
-  "hold": [
-    0.3,
-    0.75
-  ],
-  "notesHint": "Stop on the frame that proves the point, then read the next line.",
-  "description_en": "Process scene: a clip exported as frames scrubs under the wheel while numbered lines land one per beat.",
-  "description_ko": "과정 장면. 프레임으로 뽑은 영상이 휠에 맞춰 스크럽되고, 번호 붙은 문장이 박자마다 하나씩 앉는다.",
-  "responsive": "Keep the full-bleed clip behind copy at every width; text rows remain ordered and wrap on narrow screens.",
-  "reducedMotion": "Hold the poster image with every numbered copy row visible.",
-  "purpose": "과정 장면. 프레임으로 뽑은 영상이 휠에 맞춰 스크럽되고, 번호 붙은 문장이 박자마다 하나씩 앉는다.",
+  "hold": [0.3, 0.82],
+  "notesHint": "Mark each cue at the frame where a real, visible step becomes clear. Pause there so the audience can inspect the evidence. Cite the recording and name any reenactment.",
+  "description_en": "Evidence scene: the scroll position scrubs an attributable process recording while its numbered observations appear at the matching frames.",
+  "description_ko": "근거 장면. 출처가 확인된 작업 영상을 스크롤로 되감고, 실제 화면에서 확인되는 순서와 일치하도록 관찰 문장을 공개한다.",
+  "responsive": "Keep the actual process visible across widths. Use a mobile frame sequence or the labeled poster; keep the text and the active cue in a high-contrast lower band.",
+  "reducedMotion": "Use the labeled poster and show the complete ordered observation list and source in a still layout.",
+  "purpose": "실제 과정의 원인과 단계를 프레임 단위로 검토하고, 각 주장 옆에서 관찰 근거를 바로 확인한다.",
   "exampleCopy": {
-    "kicker": "같은 원고, 다른 리듬",
-    "title": "문장이 바뀔 때 화면도 바뀐다",
+    "kicker": "조립 기록 · 순서대로 확인",
+    "title": "세 단계가 하나의 잠금 장치가 된다",
     "lines": [
-      "스크롤 위치가 장면 진행률이 된다."
+      "탭을 홈에 맞춘다.",
+      "힌지를 축에 끼운다.",
+      "잠금 표시가 맞물리는 프레임에서 멈춘다."
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/sample-deck/08-demo"
+  "previewSource": "examples/sample-deck/08-demo",
+  "sceneContract": {
+    "status": "production",
+    "fit": "촬영 가능한 조립·수리·실험·현장 작업처럼 진행 순서가 핵심 근거인 설명.",
+    "unfit": "실시간 반응, 소리만으로 구별되는 행동, 출처·촬영 동의가 없는 클립.",
+    "requiredInputs": "출처·촬영 허가가 확인된 프레임, 핵심 포스터, 데스크톱 및 모바일 시퀀스, 실제 프레임에 대응하는 1–4개 관찰 문장.",
+    "scrollBeatSemantics": "휠과 키보드 위치가 같은 재생 헤드다. 뒤로 진행하면 영상과 현재 관찰 표시가 함께 되감긴다.",
+    "stableHold": "핵심 프레임, 일치하는 관찰 문장, 진행 위치가 함께 멈춰 발표자가 근거를 가리킬 수 있다.",
+    "projectorTypeCriteria": "프레임의 작업 동작을 복사하지 않는 짧은 제목과 번호가 붙은 관찰 문장; 하단 어두운 띠에서 대비와 자막 크기를 확인한다.",
+    "labelCriteria": "촬영자·출처·촬영 시점, 실제 기록인지 재연인지 표시하고 영상에 없는 주장을 보태지 않는다.",
+    "mobile": "모바일 프레임 시퀀스를 사용하고, 영상은 상단에서 유지하며 관찰 문장과 진행률을 안전 영역 안에서 읽게 한다.",
+    "reducedMotion": "움직이는 시퀀스 대신 포스터를 보이고 전체 순서·출처·마지막 근거 문장을 정지 상태로 읽힌다.",
+    "exampleContent": "가상 조립 순서를 설명하기 위한 예시 문안. 실제 발표에서는 동작을 직접 촬영하고 관찰 문장을 화면에 확인되는 프레임에 맞춘다.",
+    "unsupportedReason": "이전 버전은 타이밍이 고정되어 덱의 근거 지점과 어긋날 수 있었고, 인용·출처 표기와 반응형 프레임 적합성이 약했다.",
+    "nextImplementation": "장면별 cues로 관찰 문장과 프레임 시퀀스를 맞추고, 현재 단계·진행률을 보조기술과 화면 모두에 제공한다.",
+    "estimatedEffort": "M"
+  }
 }

@@ -8,7 +8,7 @@
       "skipped": false,
       "details": "장면 10개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
       "items": [],
-      "ms": 4
+      "ms": 6
     },
     {
       "id": "G1",
@@ -17,7 +17,7 @@
       "skipped": false,
       "details": "장면 모듈 10개 계약 충족",
       "items": [],
-      "ms": 97
+      "ms": 77
     },
     {
       "id": "G2",
@@ -26,7 +26,7 @@
       "skipped": false,
       "details": "장면 10개 · 최장 타임라인 0.990",
       "items": [],
-      "ms": 17
+      "ms": 12
     },
     {
       "id": "G3",
@@ -35,7 +35,7 @@
       "skipped": false,
       "details": "scene.js 10개에 var( ) tween 없음",
       "items": [],
-      "ms": 7
+      "ms": 5
     },
     {
       "id": "G4",
@@ -44,7 +44,7 @@
       "skipped": false,
       "details": "파일 14개 · 직접 스크롤 이동 없음",
       "items": [],
-      "ms": 6
+      "ms": 4
     },
     {
       "id": "LINT",
@@ -53,7 +53,7 @@
       "skipped": false,
       "details": "장면 10개 린트 통과 (L1·L2·L3·L4)",
       "items": [],
-      "ms": 27
+      "ms": 15
     },
     {
       "id": "G5",
@@ -62,14 +62,14 @@
       "skipped": false,
       "details": "핀 장면 10개 전부 ±2px 이내",
       "items": [],
-      "ms": 86812
+      "ms": 213413
     },
     {
       "id": "G6",
-      "title": "홀드 55%에서 가시 요소 ≥3 · 캡처 3장",
+      "title": "홀드 55%에서 가시 요소 ≥3 · 장면/cue 캡처",
       "ok": true,
       "skipped": false,
-      "details": "장면 10개 · 캡처 30장 · 최소 가시 4(02-problem) · qa/",
+      "details": "장면 10개 · 캡처 63장 · 최소 가시 7(04-product) · qa/",
       "items": [],
       "ms": 1
     },
@@ -78,9 +78,9 @@
       "title": "ArrowRight 착지 오차 ≤4px · 착지 화면 구성 완료",
       "ok": true,
       "skipped": false,
-      "details": "키 착지 9회 · 최대 오차 0px",
+      "details": "키 착지 33회 · 최대 오차 0px",
       "items": [],
-      "ms": 18679
+      "ms": 37549
     },
     {
       "id": "G8",
@@ -96,9 +96,9 @@
       "title": "가로 넘침 0 (1440 · 390)",
       "ok": true,
       "skipped": false,
-      "details": "가로 넘침 없음 (1440 · 390)",
+      "details": "가로 넘침 없음 (1440 · 390) · 모바일 캡처 10장",
       "items": [],
-      "ms": 12201
+      "ms": 53837
     },
     {
       "id": "G10",
@@ -107,7 +107,7 @@
       "skipped": false,
       "details": "핀 0개 · 장면 10개 정지 프레임 완성",
       "items": [],
-      "ms": 12126
+      "ms": 22773
     },
     {
       "id": "G11",
@@ -116,7 +116,7 @@
       "skipped": false,
       "details": "2개 이미지 디코딩 검사 · 실패 0개",
       "items": [],
-      "ms": 385
+      "ms": 302
     },
     {
       "id": "G12",
@@ -134,8 +134,8 @@
       "skipped": false,
       "details": "2개 이미지 장면 중 화면 미표시 0개",
       "items": [],
-      "ms": 1
+      "ms": 0
     }
   ],
-  "ts": "2026-09-25T00:33:45.461Z"
+  "ts": "2026-09-25T05:57:42.308Z"
 }

@@ -2,7 +2,7 @@
 
 완성 덱을 바탕으로 홍보 쇼츠, 출처를 밝힌 청계천 실제 사례 스토리, 장면 설계 교육 영상도 제작했습니다. 배포 갤러리의 **발표 장면을 영상으로** 영역에서 재생하고 한국어 자막을 내려받을 수 있습니다. 실제 사례 영상의 역사 장면은 AI 재구성으로 명시했습니다.
 
-실제 피칭과 강의에 사용할 수 있는 스크롤 HTML 발표자료 제작 스킬이다. 발표자가 휠이나 키로 장면의 진입·완성·퇴장을 제어한다. 스킬은 발표 흐름을 설계하고, 24개 작동하는 장면 템플릿에서 목적에 맞는 구성을 골라 이미지 제작·검증·배포까지 돕는다.
+실제 피칭과 강의에 사용할 수 있는 스크롤 HTML 발표자료 제작 스킬이다. 발표자가 휠이나 키로 장면의 진입·완성·퇴장을 제어한다. 스킬은 발표 흐름을 설계하고, 25개 작동하는 장면 템플릿에서 목적에 맞는 구성을 골라 이미지 제작·검증·배포까지 돕는다.
 
 [English](README.md) · [8개 덱 갤러리](https://gongnyang.github.io/awesome-html-scrolline-deck/) · [스킬 지침](SKILL.md) · [장면 카탈로그](references/techniques.md)
 
@@ -48,6 +48,6 @@ node scripts/cli.mjs storyboard my-deck
 
 ## 선택 근거
 
-각 장면을 열기·설명·비교·증명·요청 같은 발표 역할로 고른다. 기술 발표의 [주장–시각 근거 구조 연구](https://pure.psu.edu/en/publications/assertion-evidence-slides-appear-to-lead-to-better-comprehension--2/)를 참고하되, 모든 장면을 같은 형식으로 만들지는 않는다. 24종은 사용 맥락을 포괄하기 위한 기준이며 연구가 제시한 최적 개수가 아니다. [W3C 모션 지침](https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions)과 [반응형 이미지 지침](https://web.dev/learn/design/responsive-images)을 정지 화면과 로딩 전략에 반영한다.
+각 장면을 열기·설명·비교·증명·요청 같은 발표 역할로 고른다. 기술 발표의 [주장–시각 근거 구조 연구](https://pure.psu.edu/en/publications/assertion-evidence-slides-appear-to-lead-to-better-comprehension--2/)를 참고하되, 모든 장면을 같은 형식으로 만들지는 않는다. 25종은 사용 맥락을 포괄하기 위한 기준이며 연구가 제시한 최적 개수가 아니다. [W3C 모션 지침](https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions)과 [반응형 이미지 지침](https://web.dev/learn/design/responsive-images)을 정지 화면과 로딩 전략에 반영한다.
 
 MIT 라이선스.

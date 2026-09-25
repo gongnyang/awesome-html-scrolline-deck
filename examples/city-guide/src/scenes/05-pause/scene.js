@@ -15,6 +15,7 @@ export default {
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
     root.querySelector('[data-role="line"]').textContent = (copy.lines || [])[0] || '';
+    root.querySelector('[data-role="credit"]').textContent = scene.source || '';
 
     const host = root.querySelector('[data-role="media"]');
     const poster = assets.poster || (assets.images || [])[0] || '';

@@ -2,10 +2,8 @@
 /**
  * scrolline verify <덱 폴더> — 정적 게이트 + 실제 브라우저 주행.
  *
- * 순서: (필요하면) vite build → vite preview 띄움 → 200 확인 → 게이트 전체 → 서버 종료.
- * Playwright가 없으면 브라우저 게이트를 skipped로 남긴다.
- * 공개 전 검증에는 --strict를 사용해 이 경우 실패로 처리한다.
- * 브라우저 설치를 강요하지 않되, 통과했다고 거짓말하지도 않는다(report.json에 skipped:true).
+ * 순서: vite build → vite preview 띄움 → 200 확인 → 게이트 전체 → 서버 종료.
+ * Playwright가 없으면 브라우저 게이트를 실패로 남긴다. 정적 검사만 필요하면 check를 쓴다.
  *
  * 주행은 마우스 휠 입력만 쓴다. 스크롤 위치를 코드로 옮기면 lenis·ScrollTrigger의 실제 경로를
  * 건너뛰어 핀·스크럽 결함이 드러나지 않는다(G4가 이 파일도 함께 검사한다).
@@ -20,7 +18,7 @@ import { loadGates, runGates, formatTable, writeReport, STATIC_GATES, BROWSER_GA
 import { readDeck, isDir, exists } from '../gates/_util.mjs';
 import { loadPlaywright, launchChromium, INSTALL_HINT } from '../lib/browser.mjs';
 
-export const USAGE = 'scrolline verify <덱 폴더> [--build] [--strict] [--port N] [--base URL] [--json]';
+export const USAGE = 'scrolline verify <덱 폴더> [--strict] [--port N] [--base URL] [--json]';
 
 const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
 
@@ -90,8 +88,6 @@ export async function run(argv = []) {
     if (!argv[i].startsWith('--')) positional.push(argv[i]);
   }
   const json = flags.includes('--json');
-  const forceBuild = flags.includes('--build');
-  const strict = flags.includes('--strict');
   const portFlag = argv[argv.indexOf('--port') + 1];
   const baseFlag = argv.includes('--base') ? argv[argv.indexOf('--base') + 1] : null;
   const dir = path.resolve(positional[0] ?? '.');
@@ -124,8 +120,9 @@ export async function run(argv = []) {
       skippedNote.push('Playwright 없음');
     } else {
       if (!baseURL) {
-        const distDir = path.join(dir, 'dist');
-        if (forceBuild || !exists(path.join(distDir, 'index.html'))) {
+        // A verify run must examine the current source. Reusing a stale dist/
+        // can report green gates for code and images that were already changed.
+        {
           console.log('  vite build …');
           const localVite = path.join(dir, 'node_modules', 'vite', 'bin', 'vite.js');
           const hasScript = (() => {
@@ -171,14 +168,14 @@ export async function run(argv = []) {
         report.gates.push({
           id: gate.id,
           title: gate.title,
-          ok: true,
+          ok: false,
           skipped: true,
           details: `건너뜀 — ${skippedNote.join(', ')}`,
           items: [],
           ms: 0,
         });
       }
-      if (strict) report.ok = false;
+      report.ok = false;
     }
 
     for (const cleanup of cleanups.splice(0)) await cleanup();
@@ -189,7 +186,6 @@ export async function run(argv = []) {
       console.log(formatTable(report));
       console.log(`  보고서: ${path.relative(process.cwd(), path.join(dir, 'qa', 'report.json'))}`);
       if (report.ok && found) console.log('\n  전부 통과. qa/*.jpg 캡처 3장씩을 눈으로 확인하세요.\n');
-      else if (report.ok) console.log('\n  정적 게이트만 통과했습니다. 브라우저 게이트는 돌지 않았습니다.\n');
       else console.log('\n  실패한 게이트를 고친 뒤 다시 돌리세요.\n');
     }
     writeReport(dir, report);

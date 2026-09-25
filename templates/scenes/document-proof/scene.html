@@ -1,1 +1,21 @@
-<div class="d"><header class="d__head"><p class="d__kicker" data-role="kicker"></p><h2 class="d__title" data-role="title"></h2></header><div class="d__layout"><figure class="d__paper"><img class="d__image" alt=""><blockquote class="d__quote"></blockquote></figure><p class="d__source"></p></div></div>
+<section class="dp" aria-labelledby="{{id}}-title">
+  <header class="dp__head">
+    <p class="dp__kicker" data-role="kicker"></p>
+    <h2 class="dp__title" id="{{id}}-title" data-role="title"></h2>
+  </header>
+  <p class="dp__error" data-role="error" role="alert" hidden></p>
+  <div class="dp__proof" data-role="proof">
+    <figure class="dp__page">
+      <img data-role="page" alt="" />
+      <i class="dp__anchor" data-role="anchor" aria-hidden="true"></i>
+      <figcaption><span data-role="locator"></span></figcaption>
+    </figure>
+    <div class="dp__excerpt">
+      <p class="dp__label">원문 발췌</p>
+      <figure class="dp__crop"><img data-role="crop" alt="" /><figcaption data-role="crop-alt"></figcaption></figure>
+      <blockquote class="dp__quote" data-role="quote"></blockquote>
+      <p class="dp__context" data-role="context"></p>
+      <p class="dp__source" data-role="source"></p>
+    </div>
+  </div>
+</section>

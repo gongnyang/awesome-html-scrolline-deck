@@ -63,7 +63,7 @@ test('checkDeck은 report.json 모양을 지킨다', async () => {
   }
 });
 
-test('verify는 Playwright가 없으면 브라우저 게이트를 건너뛰고 exit 0 한다', (t) => {
+test('verify는 Playwright가 없으면 브라우저 게이트를 실패로 남기고 exit 1 한다', (t) => {
   // 이 테스트만 진짜 CLI를 띄운다. CLI는 qa/report.json을 남기므로 픽스처를 원상복구한다.
   t.after(() => { try { fs.rmSync(path.join(fixture('good'), 'qa'), { recursive: true, force: true }); } catch { /* 무시 */ } });
   const cli = path.join(HERE, '..', 'scripts', 'cmd', 'verify.mjs');
@@ -72,16 +72,15 @@ test('verify는 Playwright가 없으면 브라우저 게이트를 건너뛰고 e
     env: { ...process.env, SCROLLINE_SKIP_BROWSER: '1' },
     timeout: 120_000,
   });
-  assert.equal(result.status, 0, `exit ${result.status}\n${result.stderr}`);
+  assert.equal(result.status, 1, `exit ${result.status}\n${result.stderr}`);
 
   const json = result.stdout.slice(result.stdout.indexOf('{'));
   const report = JSON.parse(json);
-  assert.equal(report.ok, true);
+  assert.equal(report.ok, false);
 
-  const browserGates = report.gates.filter((g) => ['G5', 'G6', 'G7', 'G8', 'G9', 'G10'].includes(g.id));
-  assert.equal(browserGates.length, 6, '브라우저 게이트 6개가 보고서에 남아야 한다');
-  // 건너뛴 것은 통과로 위장하지 않는다
-  assert.ok(browserGates.every((g) => g.skipped === true), '건너뛴 게이트에 skipped:true 가 없습니다');
+  const browserGates = report.gates.filter((g) => ['G5', 'G6', 'G7', 'G8', 'G9', 'G10', 'G11', 'G12', 'G13'].includes(g.id));
+  assert.equal(browserGates.length, 9, '브라우저 게이트 9개가 보고서에 남아야 한다');
+  assert.ok(browserGates.every((g) => g.skipped === true && g.ok === false), '건너뛴 게이트가 실패로 기록되지 않았습니다');
   assert.ok(report.gates.filter((g) => !g.skipped).every((g) => g.ok));
 });
 

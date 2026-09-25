@@ -1,33 +1,47 @@
 let root = null;
-const node = (tag, className, text = '') => { const el = document.createElement(tag); el.className = className; el.textContent = text; return el; };
+const STATES = [
+  ['진입 · 시선을 모으다', '제목과 시각 단서가 들어옵니다.'],
+  ['홀드 · 설명할 시간을 만들다', '움직임을 멈추고 완성 화면에서 말합니다.'],
+  ['퇴장 · 질문을 넘기다', '다음 장면을 볼 준비를 시킵니다.'],
+];
+
 export default {
   id: '06-flow',
   mount(section, ctx) {
-    root = section.querySelector('.s') || section;
-    const scene = ctx.data.scene || {};
-    const copy = scene.copy || {};
-    const lines = (copy.lines || []).slice(0, 4);
+    root = section.querySelector('.rhythm') || section;
+    const copy = ctx.data.scene?.copy || {};
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    const stepsHost = root.querySelector('[data-role="steps"]');
-    stepsHost.replaceChildren(...lines.map((line, index) => {
-      const parts = String(line).split(':');
-      const step = node('article', 's__step');
-      step.append(node('span', 's__num', String(index + 1).padStart(2, '0')));
-      step.append(node('h3', '', parts[0] || line));
-      step.append(node('p', '', parts.slice(1).join(':').trim()));
-      return step;
+    root.querySelector('[data-role="phases"]').replaceChildren(...(copy.lines || []).map((line, index) => {
+      const at = String(line).indexOf(':');
+      const item = document.createElement('li');
+      item.className = 'rhythm__phase';
+      const number = document.createElement('span');
+      number.className = 'rhythm__num';
+      number.textContent = String(index + 1).padStart(2, '0');
+      const title = document.createElement('h3');
+      title.textContent = at >= 0 ? line.slice(0, at) : line;
+      const detail = document.createElement('p');
+      detail.textContent = at >= 0 ? line.slice(at + 1).trim() : '';
+      item.append(number, title, detail);
+      return item;
     }));
   },
-  build(tl, ctx) {
-        // enter — 0 .. 0.30
-        const cards = [...root.querySelectorAll('.s__step')];
-    tl.fromTo(cards, { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.14, stagger: 0.055 }, 0.04);
-    tl.fromTo(root.querySelector('.s__steps'), { '--flow': 0 }, { '--flow': 1, duration: 0.24 }, 0);
-    tl.to(root, { autoAlpha: 0, x: 24, duration: 0.16 }, 0.82);
-    // hold — 0.30 .. 0.75
-    // Keep the composed state readable while the presenter speaks.
-    // exit — 0.75 .. 1.00
+  build(tl) {
+    const phases = [...root.querySelectorAll('.rhythm__phase')];
+    const state = root.querySelector('[data-role="state"]');
+    const explain = root.querySelector('[data-role="explain"]');
+    const setPhase = (index) => {
+      phases.forEach((phase, i) => phase.classList.toggle('is-active', i === index));
+      state.textContent = STATES[index][0];
+      explain.textContent = STATES[index][1];
+    };
+    tl.fromTo(root.querySelector('.rhythm__visual'), { y: 45, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .18 }, 0);
+    tl.fromTo(root.querySelector('.rhythm__fill'), { width: '0%' }, { width: '100%', duration: .74, ease: 'none' }, .03);
+    tl.call(setPhase, [0], .12);
+    tl.call(setPhase, [1], .39);
+    tl.call(setPhase, [2], .64);
+    tl.to(root, { autoAlpha: 0, duration: .14 }, .86);
   },
   unmount() { root = null; },
 };

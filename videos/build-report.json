@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-09-25T06:07:59.328Z",
+  "results": [
+    {
+      "slug": "01-promo-shorts",
+      "seconds": 19.541667,
+      "dimensions": "1080x1920",
+      "beats": 8
+    },
+    {
+      "slug": "02-real-case-cheonggyecheon",
+      "seconds": 59.708333,
+      "dimensions": "1920x1080",
+      "beats": 7
+    },
+    {
+      "slug": "03-education-scene-design",
+      "seconds": 68.625,
+      "dimensions": "1920x1080",
+      "beats": 16
+    }
+  ]
+}

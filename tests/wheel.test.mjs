@@ -14,12 +14,18 @@ const rect = (top, left, width, height) => ({
 });
 const view = { width: 1440, height: 900 };
 
-test('핀 구간은 spacer 높이에서 뷰포트를 뺀 값이다', () => {
+test('핀 구간은 spacer 높이에서 실제 section 높이를 뺀 값이다', () => {
   const range = computeRange({ top: -500, height: 2700, scrollY: 1000, innerHeight: 900 });
   assert.equal(range.start, 500);
   assert.equal(range.pinDistance, 1800);
   assert.equal(range.end, 2300);
   assert.equal(range.pinned, true);
+});
+
+test('줄바꿈으로 section이 커져도 핀 거리에는 더하지 않는다', () => {
+  const range = computeRange({ top: 0, height: 2236, sectionHeight: 976, innerHeight: 900 });
+  assert.equal(range.pinDistance, 1260);
+  assert.equal(range.pinDistance, expectedPinDistance(140, 900));
 });
 
 test('핀이 없는 장면의 핀 거리는 0이다', () => {

@@ -29,20 +29,36 @@
     0.75
   ],
   "notesHint": "Explain a process as a small number of ordered, connected actions.",
-  "description_en": "Numbered cards travel along a continuous connector, one step per beat.",
-  "description_ko": "순서가 중요한 과정을 연결된 단계로 풀어 설명합니다.",
-  "responsive": "Use three connected columns on desktop and a vertical numbered sequence on narrow screens.",
-  "reducedMotion": "Show the complete numbered process and connector in place.",
-  "purpose": "순서가 중요한 과정을 연결된 단계로 풀어 설명합니다.",
+  "description_en": "The audience follows each causal step as its input turns into an action and a visible result.",
+  "description_ko": "각 단계의 입력이 행동을 거쳐 어떤 결과로 바뀌는지 스크롤로 짚습니다.",
+  "responsive": "Keep two to four input/action/result sequences and their connecting path readable; on narrow screens stack complete steps in causal order.",
+  "reducedMotion": "Show all complete input/action/result sequences and their order as a static composition.",
+  "purpose": "순서와 원인·결과를 함께 알아야 이해할 수 있는 짧은 절차를 보여줍니다.",
   "exampleCopy": {
-    "kicker": "출발 전 세 가지만",
-    "title": "편한 신발 · 물 · 귀가 경로",
+    "kicker": "출발 전에 준비",
+    "title": "예보를 읽고, 경로에 맞게 챙긴다",
     "lines": [
-      "날씨: 해진 뒤 기온과 비 예보 확인",
-      "이동: 귀가 교통과 막차 시간 확인",
-      "준비: 편한 신발과 마실 물 챙기기"
+      "날씨 확인: 저녁 기온과 강수 예보 → 바람·비가 있는 시간대를 확인 → 옷차림과 출발 시각을 결정",
+      "이동 준비: 산책 경로와 예상 체류 시간 → 도보 구간에 맞춰 신발과 물을 챙김 → 걷는 동안 필요한 준비가 끝남",
+      "귀가 계획: 출발 위치·막차 시각·환승 시간 → 돌아오는 이동 시간을 비교 → 늦기 전에 떠날 시각을 정함"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/city-guide/09-packing"
+  "previewSource": "examples/city-guide/09-packing",
+  "sceneContract": {
+    "status": "production",
+    "fit": "짧은 절차의 앞 상태가 어떤 행동을 거쳐 어떤 새 상태로 바뀌는지 청중이 따라가야 할 때.",
+    "unfit": "단순 체크리스트, 인과관계가 없는 항목, 다섯 단계 이상이 필요한 복잡한 절차.",
+    "requiredInputs": "copy.lines 2–4개. 각 줄 형식 `단계명: 입력 → 행동 → 결과`; 각 항목은 실제 수행·검증된 변화여야 한다.",
+    "scrollBeatSemantics": "스크롤은 입력에서 행동으로 결과가 이어지는 경로를 따라가며 현재 원인-결과 묶음을 강조한다.",
+    "stableHold": "현재 강조 단계의 입력·행동·결과와 전체 과정의 순서가 한 화면에 머문다.",
+    "projectorTypeCriteria": "제목은 주도 요소, 단계명은 두 번째 위계, 입력과 결과는 인접한 짧은 설명이다. 최대 네 열에서도 줄 길이와 본문 크기를 유지한다.",
+    "labelCriteria": "입력·행동·결과 이름은 명시하고 번호는 순서를 말할 때만 쓴다. 실제 산출이 불명확한 화살표는 만들지 않는다.",
+    "mobile": "완전한 단계 묶음들을 위에서 아래로 쌓고 연결 축과 이름/입력/결과를 같은 순서로 읽게 한다.",
+    "reducedMotion": "정지 화면에 두 단계 이상을 포함해 전체 인과 순서와 모든 결과를 읽을 수 있다.",
+    "exampleContent": "저녁 산책을 위해 예보 확인→준비물 결정→귀가 시각 선택으로 각 단계 입력과 결과를 보인다.",
+    "unsupportedReason": "—",
+    "nextImplementation": "—",
+    "estimatedEffort": "—"
+  }
 }

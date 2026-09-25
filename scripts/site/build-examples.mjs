@@ -8,15 +8,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { renderGallery } from './render-gallery.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const EX = path.join(ROOT, 'examples');
 const SITE = path.join(ROOT, 'site');
 const TEMPLATE_ROOT = path.join(ROOT, 'templates', 'scenes');
 const VIDEOS = [
-  ['01-promo-shorts', '홍보 쇼츠', '여덟 개 덱을 45초 세로 영상으로 압축했습니다.'],
-  ['02-real-case-cheonggyecheon', '실제 사례 스토리', '청계천 복원의 연혁과 도시 열섬 연구를 55초에 담았습니다.'],
-  ['03-education-scene-design', '장면 설계 교육', '질문·주장·시각 근거의 순서를 84초에 설명합니다.'],
+  ['01-promo-shorts', '홍보 쇼츠', '8개 덱의 서로 다른 장면을 19.5초 세로 영상으로 소개합니다.'],
+  ['02-real-case-cheonggyecheon', '실제 사례 스토리', '청계천 복원 연혁과 제한된 현장 측정 결과를 59.7초로 다룹니다. 일부 역사 장면은 AI 재구성입니다.'],
+  ['03-education-scene-design', '장면 설계 교육', '질문·주장·시각 근거의 순서를 68.6초에 설명합니다.'],
 ];
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const useInstalledDependencies = process.env.SCROLLINE_USE_INSTALLED_DEPS === '1';
@@ -25,7 +26,7 @@ fs.rmSync(SITE, { recursive: true, force: true });
 fs.mkdirSync(SITE, { recursive: true });
 fs.mkdirSync(path.join(SITE, 'videos'), { recursive: true });
 for (const [slug] of VIDEOS) {
-  for (const ext of ['mp4', 'jpg', 'srt']) {
+  for (const ext of ['mp4', 'jpg', 'srt', 'vtt']) {
     const src = path.join(ROOT, 'videos', `${slug}.${ext}`);
     if (!fs.existsSync(src)) throw new Error(`Missing published video ${src}`);
     fs.copyFileSync(src, path.join(SITE, 'videos', `${slug}.${ext}`));
@@ -37,6 +38,9 @@ const cards = [];
 for (const name of decks) {
   const dir = path.join(EX, name);
   const deck = JSON.parse(fs.readFileSync(path.join(dir, 'data/deck.json'), 'utf8'));
+  if (!Array.isArray(deck.scenes) || deck.scenes.length < 8 || deck.scenes.length > 12) {
+    throw new Error(`${name}: expected 8–12 distinct scenes, found ${deck.scenes?.length ?? 0}`);
+  }
   const reportPath = path.join(dir, 'qa', 'report.json');
   if (!fs.existsSync(reportPath)) throw new Error(`${name}: qa/report.json is missing; run strict verify first`);
   const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
@@ -58,97 +62,87 @@ for (const name of decks) {
   for (const f of shots.slice(0, 4)) fs.copyFileSync(path.join(qa, f), path.join(SITE, '_qa', name, f));
   const scenes = (deck.scenes || []).sort((a, b) => a.order - b.order);
   const pin = scenes.reduce((s, x) => s + (x.pin === false ? 0 : x.pinVh || 0), 0);
-  cards.push({ name, title: deck.title, subtitle: deck.subtitle || '', style: deck.theme?.style || 'dark', accent: deck.theme?.accent || '#a8ff60', scenes, pin, shots });
+  const heroScene = scenes.find((scene) => scene.id === '01-hero');
+  const heroAsset = Object.values(heroScene?.assets || {}).flatMap((value) =>
+    typeof value === 'string' ? [value] : Array.isArray(value) ? value : []).find((value) =>
+    typeof value === 'string' && value.startsWith('/media/'));
+  cards.push({ name, title: deck.title, subtitle: deck.subtitle || '', style: deck.theme?.style || 'dark', accent: deck.theme?.accent || '#a8ff60', scenes, pin, shots, heroAsset });
   console.log(`built ${name}: ${scenes.length} scenes, ${pin}vh`);
 }
-const techniques = fs.readdirSync(TEMPLATE_ROOT).filter((name) =>
+// A template is publishable when its runnable files, teaching metadata, and
+// representative preview are all present. The registry grows without a fixed count.
+const REQUIRED_FILES = ['scene.html', 'scene.css', 'scene.js', 'preview.webp'];
+const REQUIRED_TEXT = ['description_ko', 'purpose', 'notesHint', 'responsive', 'reducedMotion'];
+const TAG_FAMILIES = [
+  ['start-flow', new Set(['opening', 'agenda', 'sequence', 'transition', 'chapter', 'closing', 'promise'])],
+  ['evidence', new Set(['chart', 'evidence', 'comparison', 'numbers', 'document', 'proof', 'annotation'])],
+  ['explanation', new Set(['explain', 'breakdown', 'process', 'system', 'relationships', 'map', 'route', 'timeline', 'roadmap', 'structure', 'workflow', 'gallery', 'showcase', 'gather', 'breath'])],
+  ['product-people', new Set(['decision', 'person', 'portrait', 'media', 'video', 'typography', 'images', 'full-bleed'])],
+];
+const FAMILY_LABELS = {
+  'start-flow': '시작과 흐름', evidence: '근거와 비교', explanation: '설명과 교육', 'product-people': '제품과 결정',
+};
+const classify = (tags = []) => {
+  for (const [family, keywords] of TAG_FAMILIES) if (tags.some((tag) => keywords.has(tag))) return family;
+  return 'explanation';
+};
+const templateNames = fs.readdirSync(TEMPLATE_ROOT).filter((name) =>
   fs.existsSync(path.join(TEMPLATE_ROOT, name, 'template.json'))).sort();
-if (techniques.length !== 24) throw new Error(`Expected 24 scene templates, found ${techniques.length}`);
+const templateCards = [];
 fs.mkdirSync(path.join(SITE, '_templates'), { recursive: true });
-const templateCards = techniques.map((name) => {
+for (const name of templateNames) {
   const dir = path.join(TEMPLATE_ROOT, name);
-  const preview = path.join(dir, 'preview.webp');
-  if (!fs.existsSync(preview)) throw new Error(`${name}: representative preview.webp is missing`);
-  fs.copyFileSync(preview, path.join(SITE, '_templates', `${name}.webp`));
-  return { name, ...JSON.parse(fs.readFileSync(path.join(dir, 'template.json'), 'utf8')) };
-});
+  const template = JSON.parse(fs.readFileSync(path.join(dir, 'template.json'), 'utf8'));
+  if (template.sceneContract?.status !== 'production') {
+    console.warn(`excluded unreviewed template ${name}`);
+    continue;
+  }
+  const missingFiles = REQUIRED_FILES.filter((file) => !fs.existsSync(path.join(dir, file)));
+  const missingFields = REQUIRED_TEXT.filter((field) => !String(template[field] || '').trim());
+  if (missingFiles.length || missingFields.length || !template.exampleCopy?.title || !Array.isArray(template.tags) || !template.tags.length) {
+    console.warn(`excluded incomplete production template ${name}: ${[...missingFiles, ...missingFields].join(', ') || 'exampleCopy.title or tags missing'}`);
+    continue;
+  }
+  const previewName = `${name}.webp`;
+  fs.copyFileSync(path.join(dir, 'preview.webp'), path.join(SITE, '_templates', previewName));
+  const source = String(template.previewSource || '');
+  const match = source.match(/^examples\/([^/]+)\//);
+  const deckName = match?.[1] && cards.some((card) => card.name === match[1]) ? match[1] : cards[0]?.name;
+  const deckCard = cards.find((card) => card.name === deckName);
+  const title = template.exampleCopy.title;
+  templateCards.push({
+    ...template, name, family: classify(template.tags), familyLabel: FAMILY_LABELS[classify(template.tags)],
+    searchText: [name, title, template.purpose, template.description_ko, ...template.tags].join(' '),
+    previewHref: deckName ? `./${deckName}/` : '#decks',
+    alt: `${title} 장면 템플릿 미리보기`,
+  });
+}
+if (templateCards.length < 24) throw new Error(`At least 24 reviewed scene templates are required; found ${templateCards.length}.`);
+const familyCounts = Object.fromEntries(Object.keys(FAMILY_LABELS).map((family) =>
+  [family, templateCards.filter((template) => template.family === family).length]));
 
-const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const html = `<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scrolline Deck — examples</title>
-<meta name="description" content="Scroll-driven cinematic HTML presentations. Open a deck and scroll." />
-<style>
-  :root { --canvas:#080b0e; --ink:#f4f5f6; --muted:#aeb6bb; --subtle:#829098; --hair:#273139; --accent:#a8ff60; }
-  * { box-sizing:border-box } html,body { margin:0; background:var(--canvas); color:var(--ink); font-family:"Inter Tight","Noto Sans KR",system-ui,sans-serif; }
-  body { background:radial-gradient(circle at 78% 4%,#17392d 0,transparent 26%),var(--canvas); }
-  main { width:min(1380px, calc(100vw - 48px)); margin:0 auto; padding:6vh 0 12vh; }
-  header { min-height:58vh; display:flex; flex-direction:column; justify-content:center; position:relative; }
-  header:after { content:""; position:absolute; right:3%; top:15%; width:min(28vw,360px); aspect-ratio:1; border:1px solid #406650; border-radius:50%; box-shadow:0 0 0 34px #a8ff6010,0 0 0 68px #a8ff6008; pointer-events:none; }
-  .eyebrow { font:500 12px/1 ui-monospace,Menlo,monospace; letter-spacing:.18em; text-transform:uppercase; color:var(--subtle); margin:0 0 20px; }
-  h1 { font-size:clamp(50px,9vw,144px); line-height:.88; letter-spacing:-.06em; font-weight:800; margin:0 0 34px; position:relative; z-index:1; }
-  .lead { color:var(--muted); font-size:clamp(17px,1.6vw,22px); line-height:1.55; max-width:58ch; margin:0 0 6vh; position:relative; z-index:1; }
-  .lead a { color:var(--ink) }
-  .deck { display:grid; grid-template-columns: 1fr; gap:30px; padding:8vh 0; border-top:1px solid var(--hair); --deck-accent:var(--accent); }
-  @media (min-width:900px){ .deck { grid-template-columns: 4fr 8fr; gap:5vw; align-items:start } }
-  .deck h2 { font-size:clamp(28px,3.4vw,48px); letter-spacing:-.02em; line-height:1.05; margin:0 0 10px; }
-  .deck h2 a { color:inherit; text-decoration:none; } .deck h2 a:hover { color:var(--deck-accent) }
-  .deck p { color:var(--muted); margin:0 0 18px; line-height:1.55 }
-  .meta { font:500 12px/1.6 ui-monospace,Menlo,monospace; letter-spacing:.06em; color:var(--subtle); margin:0 0 20px }
-  .open { display:inline-block; font-weight:700; color:var(--ink); border-bottom:2px solid var(--deck-accent); text-decoration:none; padding-bottom:4px }
-  .strip { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-  .strip a { display:block; aspect-ratio:16/10; overflow:hidden; background:#111; position:relative } .strip a:first-child { grid-column:1/-1; aspect-ratio:16/8; }
-  .strip img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05); transition:transform .5s ease; } .strip a:hover img { transform:scale(1.04); }
-  .videos { padding:8vh 0; border-top:1px solid var(--hair) } .videos h2 { font-size:clamp(36px,5vw,68px); margin:0 0 12px; line-height:1.05 }
-  .video-grid { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); margin-top:38px }
-  .video-card { padding:16px; border:1px solid var(--hair); background:#10171a }
-  .video-card video { display:block; width:100%; max-height:420px; background:#080b0e; aspect-ratio:16/10; object-fit:contain }
-  .video-card:first-child video { aspect-ratio:9/12 } .video-card h3 { font-size:22px; margin:16px 0 8px }
-  .video-card p { color:var(--muted); line-height:1.5; margin:0 0 10px } .video-card a { color:var(--accent) }
-  .templates { padding:8vh 0; border-top:1px solid var(--hair) } .templates h2 { font-size:clamp(36px,5vw,68px); margin:0 0 12px; line-height:1.05 }
-  .template-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:18px; margin-top:36px }
-  .template-card { border:1px solid var(--hair); background:#10171a; overflow:hidden }
-  .template-card img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; background:#151b1e }
-  .template-card div { padding:16px } .template-card h3 { font-size:19px; margin:0 0 8px; line-height:1.2 }
-  .template-card code { color:var(--accent); font-size:12px } .template-card p { color:var(--muted); font-size:14px; line-height:1.45; margin:0 }
-  ol { margin:0; padding-left:1.2em; color:var(--muted); font-size:14px; line-height:1.7 } ol code { color:var(--ink); font-size:12px }
-  footer { color:var(--subtle); font-size:13px; margin-top:8vh; line-height:1.7 }
-</style>
-</head>
-<body>
-<main>
-  <header><p class="eyebrow">Scrolline Deck · 8 complete presentations</p>
-  <h1>발표가<br/>장면이 되다.</h1>
-  <p class="lead">피치와 강의를 위해 만든 여덟 개의 스크롤 웹덱. 덱을 열고 휠을 굴리거나 <b>→</b> 키로 장면을 진행하세요. 각 덱은 고유한 시각 방향과 발표자 노트를 갖추고 있습니다.</p></header>
-${cards.map((c) => `
-  <section class="deck" style="--deck-accent:${esc(c.accent)}">
-    <div>
-      <h2><a href="./${c.name}/">${esc(c.title)}</a></h2>
-      ${c.subtitle ? `<p>${esc(c.subtitle)}</p>` : ''}
-      <p class="meta">${c.scenes.length} scenes · ${c.style} · 가상 사례는 덱 안에 표시</p>
-      <ol>${c.scenes.map((s) => `<li>${esc(s.copy?.title || s.id)} <code>${s.technique}</code></li>`).join('')}</ol>
-      <p style="margin-top:20px"><a class="open" href="./${c.name}/">Open the deck →</a></p>
-    </div>
-    <div class="strip">${c.shots.slice(0,4).map((f) => `<a href="./${c.name}/"><img loading="lazy" src="./_qa/${c.name}/${f}" alt="${esc(c.title)} — ${f.replace('-55.jpg','')} 완성 화면" /></a>`).join('')}</div>
-  </section>`).join('')}
-  <section class="templates" id="templates"><p class="eyebrow">Scene library · 24 executable compositions</p><h2>장면을 역할로 고르세요.</h2>
-    <p class="lead">각 장면은 완성 화면, 예시 문구, 모바일·모션 감소 구성을 갖춥니다. 같은 효과를 이름만 바꾼 변형은 제외했습니다.</p>
-    <div class="template-grid">${templateCards.map((t) => `<article class="template-card"><img loading="lazy" src="./_templates/${t.name}.webp" alt="${esc(t.name)} 장면 완성 화면" /><div><code>${esc(t.name)}</code><h3>${esc(t.exampleCopy?.title || t.description_ko || t.name)}</h3><p>${esc(t.purpose || t.description_ko || '')}</p></div></article>`).join('')}</div>
-  </section>
-  <section class="videos" id="videos"><p class="eyebrow">Deck to video · three storytelling methods</p><h2>발표 장면을 영상으로</h2>
-    <p class="lead">홍보용 몽타주, 출처를 밝힌 실제 사례, 장면 설계 강의. 세 영상 모두 한국어 음성과 화면 자막을 포함합니다.</p>
-    <div class="video-grid">
-    ${VIDEOS.map(([slug, title, description]) => `<article class="video-card"><video controls preload="none" poster="./videos/${slug}.jpg" src="./videos/${slug}.mp4" aria-label="${esc(title)}"></video><h3>${esc(title)}</h3><p>${esc(description)}</p><a href="./videos/${slug}.srt" download>자막 다운로드</a></article>`).join('')}
-    </div><p style="color:var(--muted);margin-top:22px">실제 사례 영상의 역사 장면은 AI 재구성입니다. 기간·구간은 <a href="https://english.seoul.go.kr/service/amusement/stream/1-cheonggyecheon/" style="color:var(--accent)">서울시</a>, 냉각에 관한 설명은 <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002009246" style="color:var(--accent)">김경태·송재민(2015)</a>을 따릅니다.</p>
-  </section>
-  <footer>Keys: → / Space next · ← previous · 1–9 jump · P autoplay · F fullscreen · N notes.<br/>MIT · gongnyang · <a href="https://github.com/gongnyang/awesome-html-scrolline-deck" style="color:var(--muted)">github.com/gongnyang/awesome-html-scrolline-deck</a></footer>
-</main>
-</body>
-</html>
-`;
+// Use each deck's own hero art for a strong editorial cover; QA captures provide the strip.
+for (const card of cards) {
+  const hero = card.heroAsset ? path.join(EX, card.name, 'public', card.heroAsset.replace(/^\/+/, '')) : null;
+  const heroExt = hero ? path.extname(hero) || '.webp' : '.webp';
+  const copiedHero = path.join(SITE, '_qa', card.name, `cover${heroExt}`);
+  if (hero && fs.existsSync(hero)) fs.copyFileSync(hero, copiedHero);
+  card.cover = hero && fs.existsSync(hero) ? `./_qa/${card.name}/cover${heroExt}` : `./_qa/${card.name}/${card.shots[0]}`;
+  card.coverAlt = `${card.title}의 시네마틱 오프닝 이미지`;
+  card.coverCaption = card.subtitle || '한국어 스크롤 프레젠테이션';
+}
+const mediaDir = path.join(SITE, 'media');
+fs.mkdirSync(mediaDir, { recursive: true });
+fs.copyFileSync(path.join(ROOT, 'scripts', 'site', 'media', 'gallery-hero.webp'), path.join(mediaDir, 'gallery-hero.webp'));
+fs.mkdirSync(path.join(SITE, 'assets'), { recursive: true });
+fs.copyFileSync(path.join(ROOT, 'scripts', 'site', 'gallery.css'), path.join(SITE, 'assets', 'gallery.css'));
+for (const [slug] of VIDEOS) {
+  const srtPath = path.join(SITE, 'videos', `${slug}.srt`);
+  const vtt = fs.readFileSync(srtPath, 'utf8').replace(/^\uFEFF/, '').replace(/^\d+\s*\r?\n/gm, '')
+    .replace(/(\d{2}:\d{2}:\d{2}),(\d{3})\s+-->\s+(\d{2}:\d{2}:\d{2}),(\d{3})/g, '$1.$2 --> $3.$4');
+  fs.writeFileSync(path.join(SITE, 'videos', `${slug}.vtt`), `WEBVTT\n\n${vtt.trim()}\n`);
+}
+const families = Object.entries(FAMILY_LABELS).map(([id, label]) => ({ id, label, count: familyCounts[id] }));
+const html = renderGallery({ decks: cards, templates: templateCards, videos: VIDEOS, families, sceneTypeCount: templateCards.length });
 fs.writeFileSync(path.join(SITE, 'index.html'), html);
-fs.writeFileSync(path.join(SITE, '.nojekyll'), '');
-console.log(`site/ ready: ${decks.length} deck(s)`);
+console.log(`gallery: ${cards.length} decks, ${templateCards.length} production scene types`);

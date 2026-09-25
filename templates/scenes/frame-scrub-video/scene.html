@@ -1,9 +1,11 @@
 <div class="fsv">
-  <div class="fsv__frame" data-role="scrub-host"></div>
+  <div class="fsv__frame" data-role="scrub-host" aria-hidden="true"></div>
+  <div class="fsv__topline" aria-hidden="true"><span>SCROLL TO TRACE</span><span data-role="frame-status">01 / 01</span></div>
   <div class="fsv__scrim" aria-hidden="true"></div>
   <div class="fsv__copy">
     <p class="fsv__kicker" data-role="kicker"></p>
     <h2 class="fsv__title" data-role="title"></h2>
-    <ol class="fsv__lines" data-role="lines"></ol>
+    <ol class="fsv__lines" data-role="lines" aria-label="영상에서 확인할 근거"></ol>
+    <div class="fsv__progress" role="progressbar" aria-label="영상 프레임 진행" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-role="progress"><i></i></div>
   </div>
 </div>

@@ -54,32 +54,16 @@
         "source": { "type": "string", "description": "Source, or an explicit fictional/illustrative label." },
         "technique": {
           "type": "string",
-          "enum": [
-            "frame-scrub-hero",
-            "word-relay",
-            "kinetic-titles",
-            "horizontal-gallery",
-            "anatomy-rows",
-            "frame-scrub-video",
-            "parallax-video",
-            "paper-assembly",
-            "odometer-stats",
-            "wipe-transform",
-            "tilt-card",
-            "closing-qr",
-            "question-reveal",
-            "agenda-path",
-            "chapter-transition",
-            "chart-reveal",
-            "annotated-chart",
-            "before-after",
-            "document-proof",
-            "step-flow",
-            "system-map",
-            "timeline-roadmap",
-            "map-route",
-            "option-matrix"
-          ]
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Scene technique. The CLI resolves this against templates/scenes at authoring time; the catalog has no fixed upper limit."
+        },
+        "cues": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "type": "number", "minimum": 0.05, "maximum": 0.9 },
+          "description": "Presenter keyboard landing ratios inside a pinned scene, in increasing order. Each cue must show a stable, meaningful state."
         },
         "pinVh": {
           "type": "integer",
@@ -102,14 +86,17 @@
             "poster": { "type": ["string", "null"] },
             "images": { "type": "array", "items": { "type": "string" } },
             "imageAlt": { "type": "array", "maxItems": 10, "items": { "type": "string" }, "description": "horizontal-gallery: alt text aligned with images" },
-            "series": { "type": "array", "minItems": 2, "maxItems": 20, "items": { "type": "number", "minimum": 0, "maximum": 100 }, "description": "annotated-chart: explicit normalized values, never inferred from copy" },
+            "series": { "type": "array", "minItems": 2, "maxItems": 20, "items": { "type": "number" }, "description": "annotated-chart: actual values with a declared unit, never silently normalized" },
+            "xLabels": { "type": "array", "minItems": 2, "maxItems": 20, "items": { "type": "string" } },
+            "unit": { "type": "string" },
+            "annotationIndex": { "type": "integer", "minimum": 0, "maximum": 19 },
             "matrix": {
               "type": "object",
               "description": "option-matrix: explicit comparison values; only supplied recommendations are highlighted",
               "properties": {
                 "options": { "type": "array", "maxItems": 3, "items": { "type": "string" } },
-                "criteria": { "type": "array", "maxItems": 3, "items": { "type": "string" } },
-                "values": { "type": "array", "maxItems": 3, "items": { "type": "array", "maxItems": 3, "items": { "type": ["string", "number", "null"] } } },
+                "criteria": { "type": "array", "maxItems": 4, "items": { "type": "string" } },
+                "values": { "type": "array", "maxItems": 4, "items": { "type": "array", "maxItems": 3, "items": { "type": ["string", "number", "null"] } } },
                 "recommendedIndex": { "type": "integer", "minimum": 0, "maximum": 2 }
               }
             },
