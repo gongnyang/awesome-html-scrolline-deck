@@ -13,6 +13,9 @@ import gsap from 'gsap';
 import { createScroll, scrollToPx } from './scroll.js';
 import { reduced, isMobile, gpuTier } from './motion.js';
 import { createFrameScrub } from './frame-scrub.js';
+import { resolveAssets } from './asset-url.js';
+
+const mediaFallback = new URL('./media-fallback.svg', import.meta.url).href;
 
 /** '../scenes/04-image-gen/scene.js' -> '04-image-gen' */
 const idFromPath = (p) => String(p).split('/').filter(Boolean).at(-2);
@@ -50,11 +53,16 @@ function fallbackHTML(scene) {
 const framePath = (pattern, n) =>
   pattern ? String(pattern).replace(/%0(\d)d/, (_, w) => String(n).padStart(Number(w), '0')) : null;
 
+
 function imageReady(src) {
   return new Promise((resolve) => {
     if (!src) return resolve();
     const image = new Image();
-    image.onload = image.onerror = () => resolve();
+    image.onload = () => resolve();
+    image.onerror = () => {
+      console.error(`[scrolline] image failed to load: ${src}`);
+      resolve();
+    };
     image.src = src;
   });
 }
@@ -66,7 +74,9 @@ async function preloadDeck(sceneList, mobile) {
   if (!overlay || reduced()) return;
   overlay.hidden = false;
   const items = [document.fonts?.ready ?? Promise.resolve()];
-  sceneList.forEach((scene) => {
+  // Only the opening scene blocks the presenter. Later media is loaded as its
+  // scene mounts or on demand; an image-rich deck must still start promptly.
+  sceneList.slice(0, 1).forEach((scene) => {
     const assets = scene.assets ?? {};
     if (assets.poster) items.push(imageReady(assets.poster));
     if (Array.isArray(assets.images)) {
@@ -118,7 +128,9 @@ export async function createDeck({
   const mobile = isMobile();
   const mounted = [];
 
-  const ordered = [...(deck.scenes ?? [])].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  const ordered = [...(deck.scenes ?? [])]
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .map((scene) => ({ ...scene, assets: resolveAssets(scene.assets, document.baseURI) }));
   if (deck.theme?.style) document.documentElement.dataset.theme = deck.theme.style;
   await preloadDeck(ordered, mobile);
 
@@ -155,6 +167,19 @@ export async function createDeck({
 
     try {
       mod?.mount?.(section, ctx);
+      section.querySelectorAll('img').forEach((image) => {
+        image.addEventListener('error', () => {
+          console.error(`[scrolline] image failed to render: ${image.currentSrc || image.src}`);
+          const fallback = scene.assets?.poster && image.src !== scene.assets.poster && image.src !== mediaFallback
+            ? scene.assets.poster : mediaFallback;
+          if (image.src !== fallback) {
+            image.src = fallback;
+          } else {
+            image.hidden = true;
+            section.dataset.mediaFailed = 'true';
+          }
+        });
+      });
       // Under reduced motion no choreography is built; the scene stays in its final frame.
       if (!isReduced) {
         mod?.build?.(tl, ctx);

@@ -1,222 +1,53 @@
-<div align="center">
-
 # Scrolline Deck
 
-**스크롤로 굴리는 시네마 HTML 발표자료 — 스크롤텔링 덱.**
+완성 덱을 바탕으로 홍보 쇼츠, 출처를 밝힌 청계천 실제 사례 스토리, 장면 설계 교육 영상도 제작했습니다. 배포 갤러리의 **발표 장면을 영상으로** 영역에서 재생하고 한국어 자막을 내려받을 수 있습니다. 실제 사례 영상의 역사 장면은 AI 재구성으로 명시했습니다.
 
-휠 한 칸은 다음 슬라이드가 아니다. 지금 서 있는 장면의 다음 프레임이다.
+실제 피칭과 강의에 사용할 수 있는 스크롤 HTML 발표자료 제작 스킬이다. 발표자가 휠이나 키로 장면의 진입·완성·퇴장을 제어한다. 스킬은 발표 흐름을 설계하고, 24개 작동하는 장면 템플릿에서 목적에 맞는 구성을 골라 이미지 제작·검증·배포까지 돕는다.
 
-[![CI](https://github.com/gongnyang/awesome-html-scrolline-deck/actions/workflows/ci.yml/badge.svg)](https://github.com/gongnyang/awesome-html-scrolline-deck/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-5e6ad2.svg)](LICENSE)
-![Node](https://img.shields.io/badge/node-%E2%89%A520-5e6ad2.svg)
+[English](README.md) · [8개 덱 갤러리](https://gongnyang.github.io/awesome-html-scrolline-deck/) · [스킬 지침](SKILL.md) · [장면 카탈로그](references/techniques.md)
 
-[English README](README.md) · [스킬 라우터](SKILL.md) · [실제 예제](https://gongnyang.github.io/awesome-html-scrolline-deck/)
+## 완성 덱 8개
 
-</div>
+각 덱은 발표자 노트를 갖춘 독립 정적 웹사이트다. 가상 브랜드와 수치는 덱에 표시한다.
 
-<table>
-<tr>
-<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/city-guide/"><img src="examples/city-guide/qa/02-route-55.jpg" alt="도시 가이드 덱 — 그려 넣은 노선도를 시간별 행으로 해부(anatomy-rows)" /></a></td>
-<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/product-launch/"><img src="examples/product-launch/qa/03-hero-55.jpg" alt="제품 런칭 덱, 라이트 테마 — 헤드폰 분해도(tilt-card)" /></a></td>
-</tr>
-<tr>
-<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/annual-report/"><img src="examples/annual-report/qa/02-anatomy-55.jpg" alt="연간 보고 덱 — 매출 차트를 행 단위로 해부(anatomy-rows)" /></a></td>
-<td width="50%"><a href="https://gongnyang.github.io/awesome-html-scrolline-deck/sample-deck/"><img src="examples/sample-deck/qa/03-arc-55.jpg" alt="샘플 덱 — 진입·홀드·퇴장을 번호 붙은 키네틱 타이틀로" /></a></td>
-</tr>
-</table>
+| 덱 | 발표 목적 | 열기 |
+|---|---|---|
+| 스크롤텔링 강의 | 장면 문법과 제작 방법 설명 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/sample-deck/) |
+| 제품 출시 | 제품 키노트와 기능 근거 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/product-launch/) |
+| 연간 성과 | 이사회·투자자 성과 보고 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/annual-report/) |
+| 도시 가이드 | 동선 중심 브리핑 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/city-guide/) |
+| 투자 피치 | 문제·해결·시장·요청 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/investor-pitch/) |
+| 연구 강의 | 질문·근거·해석 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/research-lecture/) |
+| 고객 제안 | 사례·접근법·성과·다음 단계 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/client-proposal/) |
+| 공간 제안 | 풍부한 이미지로 구성한 미래 공공도서관 제안 | [열기](https://gongnyang.github.io/awesome-html-scrolline-deck/spatial-proposal/) |
 
-<sub>위 이미지는 전부 실제 마우스 휠로 덱을 굴려 찍은 `verify` 캡처다. 덱 안의 그림은 전부 스크립트가 그린 벡터 인포그래픽이고, 목업은 하나도 없다. <b>캡처를 누르면 실제 덱이 열린다.</b></sub>
+## 시작하기
 
----
-
-## 1분 데모
-
-<a href="docs/demo.mp4"><img src="docs/demo-teaser.gif" width="100%" alt="12초 티저: 스크롤 덱 넷을 이어 붙인 컷" /></a>
-
-<sub>59초 트레일러 전체: <a href="docs/demo.mp4">docs/demo.mp4</a> (1080p). 모든 샷은 실제 휠 이벤트로 굴린 실제 덱이고, 음악은 ffmpeg로 합성했다. <code>tools/demo/</code>로 재생성.</sub>
-
-## 실제 예제
-
-서로 다른 콘셉트의 덱 넷. 전부 스킬이 생성하고 게이트로 검증했다. 열어서 휠을 굴리거나 <b>→</b>를 누르면 된다.
-
-| 덱 | 콘셉트 | 테마 | 장면 | 열기 |
-|---|---|---|---|---|
-| [`examples/sample-deck`](examples/sample-deck/) | 도구가 자기를 설명하는 덱 | 다크, 퍼플 | 6 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/sample-deck/) |
-| [`examples/product-launch`](examples/product-launch/) | 「Nimbus」 헤드폰 런칭: 회전 프레임 90장, 분해도, 기능 차트, 스펙 오도미터 | **라이트**, 크림 + 코랄 | 7 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/product-launch/) |
-| [`examples/annual-report`](examples/annual-report/) | 가상 연간 성과: 차트 해부, 부속 보고서 6장 펼침, KPI 오도미터, 구조 와이프 | 다크, 포레스트 + 앰버 | 6 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/annual-report/) |
-| [`examples/city-guide`](examples/city-guide/) | 해질녘 서울: 스카이라인 프레임 100장, 노선도 해부, 엽서, 비용·시간 비교 | 다크, 트와일라잇 | 7 | [▶ 열기](https://gongnyang.github.io/awesome-html-scrolline-deck/city-guide/) |
-
-넷을 한 화면에: **https://gongnyang.github.io/awesome-html-scrolline-deck/** — 푸시마다 GitHub Pages가 다시 짓는다(`scripts/site/build-examples.mjs`). 덱 폴더마다 스토리보드와 에셋을 그리는 스크립트가 README에 있고, 수치는 전부 샘플 데이터다.
-
-## 무엇인가
-
-슬라이드 덱은 컷으로 넘어간다. **스크롤텔링 덱**은 넘어가지 않는다. 장면이 화면에 고정된 채로 휠이 그 장면의 진행률을 0에서 1까지 밀기 때문에, 움직임이 끊기지 않고 속도는 발표자의 손에 남는다. Scrolline Deck은 이것을 세 가지로 제공한다.
-
-- **Claude Code 스킬**(`SKILL.md`) — 주제와 개요를 주면 덱을 대신 집필한다.
-- **CLI**(`scripts/cli.mjs`) — Vite 프로젝트를 만들고, 12종 템플릿에서 장면을 얹고, 영상을 프레임으로 자르고, 게이트를 돌린다.
-- **엔진**(`engine/`) — GSAP ScrollTrigger + Lenis. 생성된 프로젝트 안으로 복사되므로 이 도구를 더 안 써도 덱은 계속 돈다.
-
-여기에 **게이트 10종**(G1–G10, 여기에 스키마 검사 S0)이 붙는다. 전부 exit-code로 막고, 그중 여섯은 실제 브라우저에서 실제 휠 이벤트로 굴려 확인한다.
-
-산출물은 로컬에서 그대로 도는 정적 HTML 번들이다. 배포는 의도적으로 범위 밖이다.
-
-## 설치
+Node.js 20 이상이 필요하다. 브라우저 검증에는 Playwright와 Chromium도 필요하다.
 
 ```bash
 git clone https://github.com/gongnyang/awesome-html-scrolline-deck.git
 cd awesome-html-scrolline-deck
-npm install
+npm ci
+node scripts/cli.mjs init my-deck --title "발표 제목" --lang ko
+node scripts/cli.mjs add frame-scrub-hero --dir my-deck --id 01-open --title "핵심 주장"
+cd my-deck && npm ci && npm run dev
 ```
 
-Claude Code 스킬로 쓰려면 스킬 폴더에 심링크를 건다.
+기법을 고르기 전에 청중·목표·한 문장 주장·장면별 근거·시각 방향을 적는다. 이미지는 덱의 `public/media/`에 저장하고 문구, 출처, 발표자 노트는 `data/deck.json`에 넣는다. [저작 순서](references/workflow.md)와 [이미지 제작 지침](references/asset-direction.md)을 따른다. 예시 덱의 배열을 그대로 복사하지 않는다.
 
 ```bash
-ln -s "$(pwd)" ~/.claude/skills/scrolline-deck
+node scripts/cli.mjs check my-deck
+node scripts/cli.mjs verify my-deck --strict --build
+node scripts/cli.mjs storyboard my-deck
 ```
 
-이후 "○○ 주제로 스크롤텔링 덱 만들어"라고 하면 Claude가 `SKILL.md`를 따라 진행한다.
+엄격 검증은 실제 브라우저에서 휠·키를 사용하고 모든 패키지 이미지를 디코딩하며 장면 진행률 30%·55%·85%를 캡처한다. Playwright가 없으면 실패한다. 캡처를 직접 읽는 기준은 [품질 지침](references/quality.md)에 있다. 덱 안의 에셋 경로는 배포 하위 경로에서도 작동하도록 해석된다.
 
-**요구 사항.** Node ≥ 20. 하드 의존은 `qrcode` 하나다. Playwright는 선택이고, 없으면 브라우저 게이트가 `skipped`로 빠지며 exit 0으로 끝난다. `ffmpeg`은 `scrolline frames`에서만 필요하다.
+`→`/Space 다음 장면, `←` 이전 장면, 숫자 키 장면 이동, `F` 전체 화면, `N` 발표자 노트, `P` 자동 진행이다. 여덟 덱의 엄격 검증 후 GitHub Pages 갤러리를 배포한다.
 
-## 퀵스타트
+## 선택 근거
 
-```bash
-# 1. 스캐폴드
-node scripts/cli.mjs init my-deck --title "우리는 이렇게 출시한다" --style dark
+각 장면을 열기·설명·비교·증명·요청 같은 발표 역할로 고른다. 기술 발표의 [주장–시각 근거 구조 연구](https://pure.psu.edu/en/publications/assertion-evidence-slides-appear-to-lead-to-better-comprehension--2/)를 참고하되, 모든 장면을 같은 형식으로 만들지는 않는다. 24종은 사용 맥락을 포괄하기 위한 기준이며 연구가 제시한 최적 개수가 아니다. [W3C 모션 지침](https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions)과 [반응형 이미지 지침](https://web.dev/learn/design/responsive-images)을 정지 화면과 로딩 전략에 반영한다.
 
-# 2. 장면 추가 (스토리보드 한 행에 한 번, 같은 기법 연속 배치 금지)
-node scripts/cli.mjs add frame-scrub-hero    --id 01-hero    --kicker "2026"  --title "우리는 이렇게 출시한다"
-node scripts/cli.mjs add horizontal-gallery  --id 02-work    --kicker "작업"  --title "올해 내보낸 여섯 가지"
-node scripts/cli.mjs add closing-qr          --id 03-closing --kicker "다음"  --title "같이 만들어요" --url https://example.com
-
-# 3. 띄우기
-cd my-deck && npm install && npm run dev
-
-# 4. 게이트
-node ../scripts/cli.mjs check .
-node ../scripts/cli.mjs verify .     # qa/<id>-{30,55,85}.jpg 생성
-```
-
-장면마다 캡처 세 장을 직접 읽는다. 30%는 진입 중, 55%는 말을 얹을 완성 프레임, 85%는 퇴장 중이어야 한다. 55% 화면 앞에 서 있기 싫다면 잘못된 건 캡처가 아니라 안무다.
-
-## 12기법
-
-| technique | 무엇을 하나 | 언제 쓰나 | 에셋 | 기본 `pinVh` |
-|---|---|---|---|---|
-| `frame-scrub-hero` | 제목이 선 채로 뒤에서 프레임 시퀀스가 스크럽된다 | 이미지로 말문을 열 때 | frames + poster | 260 |
-| `word-relay` | 화살표로 나눈 제목이 단어마다 바통을 넘긴다 | 한 문장으로 말문을 열 때 | 없음 | 220 |
-| `kinetic-titles` | 번호 붙은 제목이 대각선 위로 조립된다 | 세션의 얼개를 보일 때 | 없음 | 240 |
-| `horizontal-gallery` | 세로 스크롤이 가로 레일을 민다 | 이미지를 여러 장 보일 때 | 이미지 3–10 | 320 |
-| `anatomy-rows` | 한 덩어리가 주석 달린 행으로 갈라진다 | 하나를 뜯어 보일 때 | 이미지 1 | 300 |
-| `frame-scrub-video` | 본문용 프레임 스크럽 | 움직이는 과정을 보일 때 | frames + poster | 280 |
-| `parallax-video` | 핀 없이 지나가는 영상 패럴랙스 | 객석에 숨을 줄 때 (`pin: false`) | video + poster | 130 |
-| `paper-assembly` | 낱장이 모여 한 덩어리가 된다 | 쌓인 작업량을 보일 때 | 이미지 3–8 | 260 |
-| `odometer-stats` | 숫자가 릴 위에서 굴러 도착한다 | 수치를 못 박을 때 | 없음 | 220 |
-| `wipe-transform` | 한 면이 다음 면으로 와이프된다 | A가 B로 바뀌는 걸 보일 때 | 이미지 2–5, video 선택 | 300 |
-| `tilt-card` | 인물 한 장을 느린 기울기로 세운다 | 사람을 소개할 때 | 이미지 1 | 200 |
-| `closing-qr` | QR·주소·첫 장면으로 돌아가는 길 | 링크를 손에 쥐여 줄 때 | qr.svg | 200 |
-
-정본은 `references/techniques.md`이고, 위 표는 그 값을 따라간다.
-
-## `deck.json`
-
-덱 전체가 데이터 파일 하나다. 움직임은 장면 폴더가, 의미는 이 파일이 갖는다.
-
-```jsonc
-{
-  "title": "Scrolline Deck",
-  "lang": "ko",
-  "presenter": { "name": "공냥이", "autoDurationSec": 180 },
-  "theme": { "style": "dark", "accent": "#5e6ad2" },
-  "scenes": [
-    {
-      "id": "01-hero",                    // src/scenes/<id>/ 폴더명과 반드시 같다
-      "order": 1,
-      "technique": "frame-scrub-hero",
-      "pinVh": 260,                       // 핀 거리 = 뷰포트 높이의 %
-      "pin": true,
-      "assets": {
-        "frames": "/frames/hero/f_%03d.jpg",
-        "count": 120,
-        "critical": [1, 30, 60, 90, 120], // 장면 시작 전에 먼저 디코드
-        "poster": "/frames/hero/poster.jpg"
-      },
-      "copy": { "kicker": "2026", "title": "우리는 이렇게 출시한다", "lines": ["한 줄, 많아야 두 줄."] },
-      "notes": "필수. 발표 중 N 패널에 뜬다.",
-      "fallback": "모션 축소 시 포스터 정지 + 제목 페이드인."
-    }
-  ]
-}
-```
-
-전체 스키마는 [`references/deck.schema.json`](references/deck.schema.json)에 있다.
-
-## 게이트
-
-`check`는 정적이라 브라우저가 필요 없다. `verify`는 Chromium을 실제 휠 이벤트로 굴린다. `scrollTo`는 쓰지 않는다 — 좌표로 순간이동해야만 도는 덱은 진짜 휠 앞에서 깨지기 때문이다.
-
-| | 게이트 | 무엇을 막나 |
-|---|---|---|
-| **check** | G1 | 장면 모듈이 `{ id, mount, build, unmount }`를 내보내고 `id`가 폴더명과 같은가 |
-| | G2 | 타임라인 합이 1.001 이하인가, `order`·`pinVh`가 정상인가 |
-| | G3 | tween 문자열 안에 `var(`가 없는가 + 린트 L1(색상 하드코딩 0)·L2(선택자 전부 `[data-scene="<id>"]` 스코프)·L3(애니 path `pathLength="1"`) |
-| | G4 | 장면과 검증 경로에 `window.scrollTo`·`scrollIntoView`가 없는가 |
-| | S0 | `deck.json`이 스키마를 통과하고 에셋 경로가 디스크에 실재하는가 |
-| **verify** | G5 | 실측 핀 거리 = 뷰포트 높이의 `pinVh%`, 오차 ±2px |
-| | G6 | 장면 55% 지점 가시 요소 ≥ 3, 그리고 캡처 3장 기록 |
-| | G7 | `→` 착지점이 다음 핀의 35% 지점에서 4px 이내, 그 화면 가시 요소 ≥ 3 |
-| | G8 | 주행 전체에서 `console.error` 0, 페이지 에러 0 |
-| | G9 | 1440px·390px에서 가로 넘침 0 |
-| | G10 | 모션 축소 설정에서 핀 거리 0, 각 장면 가시 요소 ≥ 3 |
-
-Playwright가 없으면 `verify`는 설치 방법을 알려주고 `skipped: true`로 보고한 뒤 exit 0으로 끝난다. CI가 우연히 초록이 되는 것보다 솔직한 쪽이다.
-
-## 발표
-
-| 키 | 동작 |
-|---|---|
-| `→` `Space` / `←` | 다음 / 이전 장면, 핀 35% 지점 착지 |
-| `1`–`9`, `0` | 장면 1–9로 점프, `0`은 10번째 장면 |
-| `P` | 자동 진행 토글(`presenter.autoDurationSec`), 아무 입력이나 들어오면 정지 |
-| `F` | 전체화면 |
-| `H` | 커서 숨김 |
-| `N` | 발표자 노트 패널 |
-
-`npm run build && npm run preview`로 빌드하고, **무대에 올라갈 그 PC에서 `verify`를 한 번** 돌린다.
-
-## 폴더 구조
-
-```
-awesome-html-scrolline-deck/
-├─ SKILL.md              Claude Code 라우터: 원칙·워크플로·기법 고르기
-├─ engine/               생성된 덱마다 복사되는 런타임(Vite API 없음)
-├─ templates/project/    Vite 스캐폴드: index.html, tokens.css, data/deck.json
-├─ templates/scenes/     기법 템플릿 12종(scene.html/css/js + template.json)
-├─ references/           계약·스키마·기법·안무·디자인·함정
-├─ scripts/              cli.mjs + cmd/ + gates/ + lib/
-├─ examples/              샘플 덱 넷(sample-deck·product-launch·annual-report·city-guide)
-├─ tests/                node --test: 게이트 단위·bad-* 픽스처·빌드 스모크
-└─ book/                 동반 실용서(국문, PDF는 docs/)
-```
-
-## 실용서
-
-<a href="docs/스크롤로-발표하라.pdf"><img src="docs/handbook-cover.jpg" width="160" align="left" alt="실용서 「스크롤로 발표하라」 표지" /></a>
-
-**「스크롤로 발표하라」** (46쪽, PDF는 [`docs/`](docs/스크롤로-발표하라.pdf)) — 개발자가 아니라 발표자를 위한 실용서. 스크롤텔링 덱이 무엇인지, 진입·홀드·퇴장 문법, 표 한 장짜리 스토리보드, Claude Code에 덱을 요청하는 법, 발표 키와 리허설, 실제 12장면 세미나 덱 해부.
-
-<br clear="all" />
-
-## 기여
-
-이슈와 PR 환영한다. 새 기법 하나를 추가하려면 `templates/scenes/<technique>/` 아래 네 파일(`scene.html`·`scene.css`·`scene.js`·`template.json`)과 `references/techniques.md` 한 행, 그리고 통과하는 `node --test`가 필요하다. 색은 토큰으로, 타임라인 합은 1 이하로, 박스는 넣지 않는다.
-
-## 라이선스
-
-MIT. [LICENSE](LICENSE) 참조.
-
-## 만들어진 배경
-
-패스트캠퍼스 **「ChatGPT Astra」** 세미나용으로 만든 12장면 시네마 덱에서 뽑아냈다 — <https://fc-astra-site.vercel.app/deck/>. 핀 단위 버그, 스무스 스크롤 `prevent` 예외, CSS 변수 보간 실패는 전부 그 덱에서 몸으로 배운 것이다. 이 레포의 게이트는 같은 걸 다시 배우지 않으려고 있다.
-
-엔진은 [GSAP ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/) · [Lenis](https://lenis.darkroom.engineering/) · [Vite](https://vite.dev/) 위에 올라간다.
+MIT 라이선스.

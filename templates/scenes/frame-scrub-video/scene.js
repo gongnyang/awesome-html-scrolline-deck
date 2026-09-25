@@ -13,13 +13,19 @@ export default {
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    root.querySelector('[data-role="lines"]').innerHTML = (copy.lines || [])
-      .map((line, index) => `<li><b>${String(index + 1).padStart(2, '0')}</b><span>${line}</span></li>`)
-      .join('');
+    root.querySelector('[data-role="lines"]').replaceChildren(...(copy.lines || []).map((line, index) => {
+      const item = document.createElement('li');
+      const number = document.createElement('b');
+      number.textContent = String(index + 1).padStart(2, '0');
+      const text = document.createElement('span');
+      text.textContent = line;
+      item.append(number, text);
+      return item;
+    }));
 
     const host = root.querySelector('[data-role="scrub-host"]');
     if (assets.poster) host.style.backgroundImage = `url("${assets.poster}")`;
-    if (assets.frames && typeof ctx.frameScrub === 'function') {
+    if ((assets.frames || assets.poster) && typeof ctx.frameScrub === 'function') {
       scrub = ctx.frameScrub(host, {
         pattern: assets.frames,
         mobilePattern: assets.mobileFrames,

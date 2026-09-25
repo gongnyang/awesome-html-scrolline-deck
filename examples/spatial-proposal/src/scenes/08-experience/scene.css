@@ -1,0 +1,19 @@
+/* parallax-video — unpinned. The clip sits still while the copy drifts past it. */
+[data-scene="08-experience"] .pv { position: relative; isolation: isolate; width: 100%; min-height: 130svh; display: grid; place-items: center; overflow: clip; }
+[data-scene="08-experience"] .pv__media { position: fixed; z-index: -2; inset: 0; width: 100%; height: 100svh; pointer-events: none; }
+[data-scene="08-experience"] .pv__media video,
+[data-scene="08-experience"] .pv__media img { display: block; width: 100%; height: 100%; object-fit: cover; filter: brightness(.62); }
+[data-scene="08-experience"] .pv__veil { position: fixed; z-index: -1; inset: 0; background: color-mix(in srgb, var(--canvas) 46%, transparent); pointer-events: none; } /* translucency lives in the colour: build() tweens autoAlpha to 1, so an opacity here would be overwritten and hide the clip */
+[data-scene="08-experience"] .pv__copy { position: relative; top: -16svh; width: min(900px, calc(100% - var(--gutter, 20px) * 2)); padding: var(--space-section, 88px) 0; text-align: center; margin-top: -34svh; }
+[data-scene="08-experience"] .pv__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="08-experience"] .pv__title { margin: 0 0 var(--space-lg, 24px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(34px, 5.2vw, 68px); font-weight: 700; line-height: 1.02; letter-spacing: -.03em; text-wrap: balance; word-break: keep-all; }
+[data-scene="08-experience"] .pv__line { margin: 0; color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.55; word-break: keep-all; }
+@media (max-width: 720px) {
+  [data-scene="08-experience"] .pv { min-height: 120svh; }
+  [data-scene="08-experience"] .pv__copy { top: -10svh; padding: var(--space-xl, 32px) var(--gutter, 20px); margin-top: -24svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="08-experience"] .pv { min-height: 100svh; background: var(--surface-1); }
+  [data-scene="08-experience"] .pv__media { position: absolute; }
+  [data-scene="08-experience"] .pv__veil { position: absolute; }
+}

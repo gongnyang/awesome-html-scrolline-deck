@@ -1,0 +1,47 @@
+{
+  "technique": "document-proof",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "evidence",
+    "document",
+    "image"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 1,
+      "max": 1
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Make a source artifact the center of an evidence claim.",
+  "description_en": "A paper-like exhibit enters beside a citation rail and highlighted passage.",
+  "description_ko": "문서나 기록을 근거로 제시하고 인용할 대목에 시선을 모읍니다.",
+  "responsive": "On narrow screens, stack the source artifact and citation; crop the exhibit image within its page.",
+  "reducedMotion": "Show the source exhibit, quote and citation in their final positions.",
+  "purpose": "문서나 기록을 근거로 제시하고 인용할 대목에 시선을 모읍니다.",
+  "exampleCopy": {
+    "kicker": "가상 콘셉트 · 운영까지 포함한 제안",
+    "title": "운영 준비까지 포함한 90일 계획",
+    "lines": [
+      "가구·안내·교육까지 설계 범위에 포함합니다.",
+      "가상 일정: 실측·인허가 검토 뒤 확정"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/spatial-proposal/10-operations"
+}

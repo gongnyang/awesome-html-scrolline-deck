@@ -1,0 +1,28 @@
+/* odometer-stats — numbers spin up on reels instead of fading in. */
+[data-scene="05-metrics"] .od { position: relative; width: min(1320px, calc(100% - var(--gutter, 20px) * 2)); min-height: 100svh; display: grid; align-content: center; overflow: hidden; }
+[data-scene="05-metrics"] .od__grain { position: absolute; inset: 0; opacity: .24; pointer-events: none; background-image: radial-gradient(var(--ink-subtle) .6px, transparent .7px); background-size: 5px 5px; mask-image: linear-gradient(90deg, transparent, var(--ink) 25% 75%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, var(--ink) 25% 75%, transparent); }
+[data-scene="05-metrics"] .od__horizon { position: absolute; z-index: 0; top: 62%; left: -8%; width: 116%; height: 1px; background: var(--accent-2); opacity: calc(.56 + var(--flash, 0) * .44); transform: scaleX(var(--draw, 1)); transform-origin: left; }
+[data-scene="05-metrics"] .od__copy { position: relative; z-index: 1; margin-bottom: clamp(var(--space-xl, 32px), 8vh, var(--space-section, 88px)); }
+[data-scene="05-metrics"] .od__kicker { margin: 0; color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="05-metrics"] .od__title { margin: var(--space-xs, 8px) 0 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; word-break: keep-all; }
+[data-scene="05-metrics"] .od__stats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: clamp(var(--space-md, 16px), 3vw, var(--space-section, 88px)); margin: 0; }
+[data-scene="05-metrics"] .od__stat { min-width: 0; }
+[data-scene="05-metrics"] .od__odo { position: relative; display: flex; align-items: flex-end; gap: .04em; width: max-content; max-width: 100%; margin: 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(60px, 8.6vw, 132px); font-weight: 700; line-height: 1; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+/* Only the reel strip gets the tight box and the mask. A suffix outside it can
+   be Hangul, whose descenders do not fit a 1.04em slot. */
+[data-scene="05-metrics"] .od__reels { display: inline-flex; flex: 0 1 auto; flex-wrap: nowrap; min-width: 0; height: 1.04em; overflow: hidden; white-space: nowrap; mask-image: linear-gradient(transparent, var(--ink) 16%, var(--ink) 84%, transparent); -webkit-mask-image: linear-gradient(transparent, var(--ink) 16%, var(--ink) 84%, transparent); }
+[data-scene="05-metrics"] .od__reel { display: inline-block; flex: 0 0 auto; filter: blur(calc(var(--vel, 0) * 6px)); transform: translateY(calc(var(--y, 0) * -1em)); will-change: transform, filter; }
+[data-scene="05-metrics"] .od__strip { display: block; width: 1ch; line-height: 1; }
+[data-scene="05-metrics"] .od__strip i { line-height: 1.14; display: block; height: 1em; font: inherit; font-style: normal; }
+[data-scene="05-metrics"] .od__suffix { display: inline-block; flex: 0 0 auto; padding-bottom: .06em; color: var(--ink-muted); font-size: .4em; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; word-break: keep-all; }
+[data-scene="05-metrics"] .od__empty { display:inline-block;color:var(--ink-subtle);font-variant-numeric:tabular-nums; }
+[data-scene="05-metrics"] .od__unit { margin: var(--space-xs, 8px) 0 0; color: var(--ink-muted); opacity: var(--unit, 1); transform: translateY(calc((1 - var(--unit, 1)) * 12px)); font-family: var(--font-display, inherit); font-size: clamp(15px, 1.3vw, var(--body-lg-size, 18px)); font-weight: 600; line-height: 1.4; word-break: keep-all; }
+@media (max-width: 720px) {
+  [data-scene="05-metrics"] .od__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--space-xl, 32px); }
+  [data-scene="05-metrics"] .od__odo { font-size: clamp(56px, 18vw, 104px); }
+  [data-scene="05-metrics"] .od__horizon { top: 58%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="05-metrics"] .od__horizon { --draw: 1; }
+  [data-scene="05-metrics"] .od__reel { filter: none; }
+}

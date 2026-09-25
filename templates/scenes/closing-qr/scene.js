@@ -3,9 +3,13 @@
 let root = null;
 let onRestart = null;
 
-const chars = (text) => [...String(text)]
-  .map((ch) => `<span class="cq__char" aria-hidden="true">${ch === ' ' ? '&nbsp;' : ch}</span>`)
-  .join('');
+const chars = (text) => [...String(text)].map((ch) => {
+  const span = document.createElement('span');
+  span.className = 'cq__char';
+  span.setAttribute('aria-hidden', 'true');
+  span.textContent = ch === ' ' ? '\u00a0' : ch;
+  return span;
+});
 
 export default {
   id: '{{id}}',
@@ -22,7 +26,7 @@ export default {
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     const thanks = root.querySelector('[data-role="title"]');
     thanks.setAttribute('aria-label', copy.title || '');
-    thanks.innerHTML = chars(copy.title || '');
+    thanks.replaceChildren(...chars(copy.title || ''));
     root.querySelector('[data-role="url"]').textContent = site;
 
     const mascot = images[1];

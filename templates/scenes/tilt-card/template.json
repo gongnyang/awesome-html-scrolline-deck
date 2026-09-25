@@ -31,5 +31,17 @@
   ],
   "notesHint": "This is the scene where you say who is talking and why they get to.",
   "description_en": "Quiet scene: a masked portrait holds one side while two to five hairline-ruled lines read on the other, under a slow tilt.",
-  "description_ko": "조용한 장면. 마스크 처리된 인물 사진이 한쪽을 잡고, 반대쪽에 머리카락선으로 구분된 2~5줄이 느린 기울기 아래 놓인다."
+  "description_ko": "조용한 장면. 마스크 처리된 인물 사진이 한쪽을 잡고, 반대쪽에 머리카락선으로 구분된 2~5줄이 느린 기울기 아래 놓인다.",
+  "responsive": "On narrow screens, put copy above the dimmed portrait so labels and biography stay readable.",
+  "reducedMotion": "Hold the portrait still with the complete biography copy visible.",
+  "purpose": "조용한 장면. 마스크 처리된 인물 사진이 한쪽을 잡고, 반대쪽에 머리카락선으로 구분된 2~5줄이 느린 기울기 아래 놓인다.",
+  "exampleCopy": {
+    "kicker": "가상 제품 콘셉트 · Nimbus Air",
+    "title": "출근길의 소음을 접어 넣다",
+    "lines": [
+      "얇은 금속 이어컵과 접히는 힌지의 형태를 먼저 봅니다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/product-launch/01-hero"
 }

@@ -3,7 +3,8 @@
  * scrolline verify <덱 폴더> — 정적 게이트 + 실제 브라우저 주행.
  *
  * 순서: (필요하면) vite build → vite preview 띄움 → 200 확인 → 게이트 전체 → 서버 종료.
- * Playwright가 없으면 브라우저 게이트 G5~G10을 skipped로 남기고 안내만 찍은 뒤 exit 0 한다.
+ * Playwright가 없으면 브라우저 게이트를 skipped로 남긴다.
+ * 공개 전 검증에는 --strict를 사용해 이 경우 실패로 처리한다.
  * 브라우저 설치를 강요하지 않되, 통과했다고 거짓말하지도 않는다(report.json에 skipped:true).
  *
  * 주행은 마우스 휠 입력만 쓴다. 스크롤 위치를 코드로 옮기면 lenis·ScrollTrigger의 실제 경로를
@@ -19,7 +20,7 @@ import { loadGates, runGates, formatTable, writeReport, STATIC_GATES, BROWSER_GA
 import { readDeck, isDir, exists } from '../gates/_util.mjs';
 import { loadPlaywright, launchChromium, INSTALL_HINT } from '../lib/browser.mjs';
 
-export const USAGE = 'scrolline verify <덱 폴더> [--build] [--port N] [--base URL] [--json]';
+export const USAGE = 'scrolline verify <덱 폴더> [--build] [--strict] [--port N] [--base URL] [--json]';
 
 const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
 
@@ -57,7 +58,12 @@ async function waitForServer(url, { timeoutMs = 60_000 } = {}) {
 
 /** vite preview를 자식 프로세스 그룹으로 띄우고, 끄는 함수를 함께 돌려준다. */
 async function startPreview(dir, port) {
-  const child = spawn(npx, ['vite', 'preview', '--port', String(port), '--strictPort'], {
+  const localVite = path.join(dir, 'node_modules', 'vite', 'bin', 'vite.js');
+  const command = exists(localVite) ? process.execPath : npx;
+  const args = exists(localVite)
+    ? [localVite, 'preview', '--port', String(port), '--strictPort']
+    : ['vite', 'preview', '--port', String(port), '--strictPort'];
+  const child = spawn(command, args, {
     cwd: dir,
     stdio: ['ignore', 'pipe', 'pipe'],
     detached: process.platform !== 'win32',
@@ -85,6 +91,7 @@ export async function run(argv = []) {
   }
   const json = flags.includes('--json');
   const forceBuild = flags.includes('--build');
+  const strict = flags.includes('--strict');
   const portFlag = argv[argv.indexOf('--port') + 1];
   const baseFlag = argv.includes('--base') ? argv[argv.indexOf('--base') + 1] : null;
   const dir = path.resolve(positional[0] ?? '.');
@@ -120,11 +127,14 @@ export async function run(argv = []) {
         const distDir = path.join(dir, 'dist');
         if (forceBuild || !exists(path.join(distDir, 'index.html'))) {
           console.log('  vite build …');
+          const localVite = path.join(dir, 'node_modules', 'vite', 'bin', 'vite.js');
           const hasScript = (() => {
             try { return Boolean(JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8')).scripts?.build); }
             catch { return false; }
           })();
-          const built = hasScript
+          const built = exists(localVite)
+            ? await sh(process.execPath, [localVite, 'build'], { cwd: dir })
+            : hasScript
             ? await sh(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', 'build'], { cwd: dir })
             : await sh(npx, ['vite', 'build'], { cwd: dir });
           if (built.code !== 0) {
@@ -168,6 +178,7 @@ export async function run(argv = []) {
           ms: 0,
         });
       }
+      if (strict) report.ok = false;
     }
 
     for (const cleanup of cleanups.splice(0)) await cleanup();

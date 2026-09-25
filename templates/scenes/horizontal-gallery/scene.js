@@ -15,9 +15,19 @@ export default {
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
     root.querySelector('[data-role="line"]').textContent = (copy.lines || [])[0] || '';
-    root.querySelector('[data-role="track"]').innerHTML = images
-      .map((src, index) => `<figure class="gal__item"><img src="${src}" alt="${copy.title || ''} ${index + 1}" decoding="async" loading="${index < 2 ? 'eager' : 'lazy'}" /></figure>`)
-      .join('');
+    const alt = (scene.assets || {}).imageAlt || [];
+    root.querySelector('[data-role="track"]').replaceChildren(...images.map((src, index) => {
+      const figure = document.createElement('figure');
+      figure.className = 'gal__item';
+      const image = document.createElement('img');
+      image.src = src;
+      image.alt = alt[index] || `${copy.title || '장면'} ${index + 1}`;
+      image.decoding = 'async';
+      image.loading = index === 0 ? 'eager' : 'lazy';
+      if (index === 0) image.setAttribute('fetchpriority', 'high');
+      figure.append(image);
+      return figure;
+    }));
     root.querySelector('[data-role="count"]').textContent = `${pad(1)} / ${pad(images.length)}`;
   },
 

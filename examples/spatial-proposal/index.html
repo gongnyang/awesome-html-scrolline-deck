@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>온기 도서관 리모델링·증축 제안</title>
+    <meta name="description" content="기존 동네 공공건물 1층에 도서관 기능과 2층 증축을 더하는 가상 클라이언트 피치" />
+  </head>
+  <body class="deck-body">
+    <a class="skip-link" href="#deck">Skip to the deck</a>
+
+    <div id="preloader" hidden>
+      <p class="t-mono" id="preloader-label">0%</p>
+    </div>
+
+    <div id="progress" role="progressbar" aria-label="Deck progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <span id="progress-bar"></span>
+    </div>
+
+    <main id="deck"></main>
+
+    <p id="hud" aria-hidden="true"></p>
+
+    <aside id="notes" hidden aria-label="Speaker notes">
+      <p id="notes-title"></p>
+      <p id="notes-body"></p>
+    </aside>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

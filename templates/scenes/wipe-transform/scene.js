@@ -19,21 +19,28 @@ export default {
     root.querySelector('[data-role="step"]').textContent = lines[0] || '';
 
     const one = root.querySelector('[data-role="one"]');
-    if (images[0]) one.innerHTML = `<img src="${images[0]}" alt="" decoding="async" />`;
+    if (images[0]) {
+      const image = document.createElement('img'); image.src = images[0]; image.alt = ''; image.decoding = 'async'; one.replaceChildren(image);
+    }
 
     const two = root.querySelector('[data-role="two"]');
     if (assets.video && !ctx.reduced) {
-      two.innerHTML = `<video muted playsinline loop preload="metadata" poster="${assets.poster || ''}" aria-hidden="true"><source src="${assets.video}" type="video/mp4" /></video>`;
+      const video = document.createElement('video');
+      const source = document.createElement('source');
+      video.muted = true; video.playsInline = true; video.loop = true; video.preload = 'metadata';
+      video.poster = assets.poster || ''; video.setAttribute('aria-hidden', 'true');
+      source.src = assets.video; source.type = 'video/mp4'; video.append(source); two.replaceChildren(video);
       media = two.querySelector('video');
       const play = media && media.play();
       if (play && typeof play.catch === 'function') play.catch(() => {});
     } else if (assets.poster || images[1]) {
-      two.innerHTML = `<img src="${assets.poster || images[1]}" alt="" decoding="async" />`;
+      const image = document.createElement('img'); image.src = assets.poster || images[1]; image.alt = ''; image.decoding = 'async'; two.replaceChildren(image);
     }
 
     const rest = images.slice(assets.video ? 1 : 2);
-    root.querySelector('[data-role="three"]').innerHTML = rest.slice(0, 3)
-      .map((src) => `<img src="${src}" alt="" decoding="async" />`).join('');
+    root.querySelector('[data-role="three"]').replaceChildren(...rest.slice(0, 3).map((src) => {
+      const image = document.createElement('img'); image.src = src; image.alt = ''; image.decoding = 'async'; return image;
+    }));
   },
 
   build(tl, ctx) {

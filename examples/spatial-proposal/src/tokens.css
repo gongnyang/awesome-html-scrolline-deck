@@ -1,0 +1,127 @@
+/* ============================================================
+   tokens.css — the only place colours, type and spacing are defined.
+   Rule: scene CSS uses var() and never a literal colour (gate L1 enforces it).
+   Dark is the default ladder; [data-theme="light"] flips it.
+   ============================================================ */
+
+:root {
+  /* Scene composition aliases resolve to the active theme ladder. */
+  --accent: var(--accent-1);
+  --accent-soft: color-mix(in srgb, var(--accent-1) 18%, transparent);
+  --surface: var(--surface-1);
+  --surface-raised: var(--surface-2);
+  --line: var(--hairline);
+  --shadow: rgba(0, 0, 0, .3);
+
+  /* ---------- accents ---------- */
+  --accent-1: #c26d45;   /* primary accent: progress bar, key marks, focus */
+  --accent-2: #4f8c82;   /* secondary accent: numbers, highlights */
+  --accent-3: #d4a75f;   /* tertiary accent: warnings, contrast beats */
+  --on-accent: #ffffff;
+
+  /* ---------- surface ladder ---------- */
+  --canvas:    #08090a;  /* page background. never pure #000 */
+  --surface-1: #101113;
+  --surface-2: #17181a;
+  --surface-3: #1e1f22;
+
+  /* ---------- hairlines ---------- */
+  --hairline:        #26282c;
+  --hairline-strong: #34363b;
+
+  /* ---------- ink ---------- */
+  --ink:        #f4f5f6;
+  --ink-muted:  #c9ced6;
+  --ink-subtle: #868b94;
+
+  /* ---------- fonts ---------- */
+  --font-display: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                  'SF Pro Display', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue',
+                  'Noto Sans KR', sans-serif;
+  --font-body: var(--font-display);
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* ---------- type scale (size / line-height / tracking / weight) ---------- */
+  --display-xl-size: 80px;  --display-xl-lh: 1.05; --display-xl-ls: -3.0px;  --display-xl-weight: 600;
+  --display-lg-size: 56px;  --display-lg-lh: 1.10; --display-lg-ls: -1.8px;  --display-lg-weight: 600;
+  --display-md-size: 40px;  --display-md-lh: 1.15; --display-md-ls: -1.0px;  --display-md-weight: 600;
+  --headline-size:   28px;  --headline-lh:   1.20; --headline-ls:   -0.6px;  --headline-weight:   600;
+  --card-title-size: 22px;  --card-title-lh: 1.25; --card-title-ls: -0.4px;  --card-title-weight: 500;
+  --subhead-size:    20px;  --subhead-lh:    1.40; --subhead-ls:    -0.2px;  --subhead-weight:    400;
+  --body-lg-size:    18px;  --body-lg-lh:    1.50; --body-lg-ls:    -0.1px;  --body-lg-weight:    400;
+  --body-size:       16px;  --body-lh:       1.50; --body-ls:       -0.05px; --body-weight:       400;
+  --body-sm-size:    14px;  --body-sm-lh:    1.50; --body-sm-ls:    0;       --body-sm-weight:    400;
+  --caption-size:    12px;  --caption-lh:    1.40; --caption-ls:    0;       --caption-weight:    400;
+  --eyebrow-size:    13px;  --eyebrow-lh:    1.30; --eyebrow-ls:    0.4px;   --eyebrow-weight:    500;
+  --mono-size:       13px;  --mono-lh:       1.50; --mono-ls:       0;       --mono-weight:       400;
+
+  /* ---------- radius ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+
+  /* ---------- spacing ---------- */
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-xxl: 48px;
+  --space-section: 96px;
+
+  /* ---------- layout ---------- */
+  --gutter: 20px;
+  --container: 1200px;
+  --stage-max: 1440px;
+
+  /* ---------- motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+
+  /* ---------- depth ---------- */
+  --focus-ring: 0 0 0 2px color-mix(in srgb, var(--accent-1) 60%, transparent);
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+}
+
+/* ---------- light variant ---------- */
+:root[data-theme='light'] {
+  --canvas:    #ffffff;
+  --surface-1: #f6f7f8;
+  --surface-2: #eef0f2;
+  --surface-3: #e5e8ec;
+
+  --hairline:        #dfe2e6;
+  --hairline-strong: #c5cad1;
+
+  --ink:        #0d0e10;
+  --ink-muted:  #3c4148;
+  --ink-subtle: #6a7078;
+
+  --accent-1: #8f4f2f;
+  --accent-2: #9a6400;
+  --accent-3: #c02a2f;
+}
+
+/* Projected decks are read from far away: keep the display sizes usable on laptops. */
+@media (max-width: 900px) {
+  :root {
+    --display-xl-size: 44px; --display-xl-ls: -1.6px;
+    --display-lg-size: 34px; --display-lg-ls: -1.0px;
+    --display-md-size: 28px; --display-md-ls: -0.6px;
+    --headline-size:   22px; --headline-ls:   -0.4px;
+    --card-title-size: 19px;
+    --subhead-size:    17px;
+    --body-lg-size:    16px;
+    --space-section:   64px;
+    --gutter:          16px;
+  }
+}

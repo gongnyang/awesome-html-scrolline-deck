@@ -2,11 +2,46 @@
   "technique": "frame-scrub-video",
   "pinVh": 280,
   "pin": true,
-  "tags": ["media", "frames", "process", "full-bleed"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 1, "max": 4 } },
-  "assets": { "frames": true, "poster": true, "images": { "min": 0, "max": 0 }, "video": false },
-  "hold": [0.3, 0.75],
+  "tags": [
+    "media",
+    "frames",
+    "process",
+    "full-bleed"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 1,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": true,
+    "poster": true,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
   "notesHint": "Stop on the frame that proves the point, then read the next line.",
   "description_en": "Process scene: a clip exported as frames scrubs under the wheel while numbered lines land one per beat.",
-  "description_ko": "과정 장면. 프레임으로 뽑은 영상이 휠에 맞춰 스크럽되고, 번호 붙은 문장이 박자마다 하나씩 앉는다."
+  "description_ko": "과정 장면. 프레임으로 뽑은 영상이 휠에 맞춰 스크럽되고, 번호 붙은 문장이 박자마다 하나씩 앉는다.",
+  "responsive": "Keep the full-bleed clip behind copy at every width; text rows remain ordered and wrap on narrow screens.",
+  "reducedMotion": "Hold the poster image with every numbered copy row visible.",
+  "purpose": "과정 장면. 프레임으로 뽑은 영상이 휠에 맞춰 스크럽되고, 번호 붙은 문장이 박자마다 하나씩 앉는다.",
+  "exampleCopy": {
+    "kicker": "같은 원고, 다른 리듬",
+    "title": "문장이 바뀔 때 화면도 바뀐다",
+    "lines": [
+      "스크롤 위치가 장면 진행률이 된다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/sample-deck/08-demo"
 }

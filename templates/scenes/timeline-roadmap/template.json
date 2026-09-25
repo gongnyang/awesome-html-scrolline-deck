@@ -1,0 +1,49 @@
+{
+  "technique": "timeline-roadmap",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "timeline",
+    "roadmap",
+    "no-assets"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Show milestones across time and distinguish completed, current, and upcoming work.",
+  "description_en": "A horizontal timeline builds milestone by milestone with date and outcome.",
+  "description_ko": "완료·현재·예정 상태를 구분해 시간에 따른 주요 이정표를 보여줍니다.",
+  "responsive": "Use one chronological rail on desktop and a two-column event grid on narrow screens.",
+  "reducedMotion": "Show every dated event and the full timeline rail without drawing motion.",
+  "purpose": "완료·현재·예정 상태를 구분해 시간에 따른 주요 이정표를 보여줍니다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 분기별 실행 순서",
+    "title": "1분기 구독 개편 · 2분기 물류 통합 · 3분기 재구매 개선 · 4분기 효율 검증",
+    "lines": [
+      "1분기: 구독 개편: 새 요금제 적용",
+      "2분기: 물류 통합: 거점 17곳으로 조정",
+      "3분기: 유지 개선: 재구매 정책 시험",
+      "4분기: 효과 검토: 비용·반품 지표 확인"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/annual-report/07-quarters"
+}

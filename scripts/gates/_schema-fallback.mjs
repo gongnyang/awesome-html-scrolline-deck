@@ -7,6 +7,9 @@ export const TECHNIQUES = [
   'frame-scrub-hero', 'word-relay', 'kinetic-titles', 'horizontal-gallery',
   'anatomy-rows', 'frame-scrub-video', 'parallax-video', 'paper-assembly',
   'odometer-stats', 'wipe-transform', 'tilt-card', 'closing-qr',
+  'question-reveal', 'agenda-path', 'chapter-transition', 'chart-reveal',
+  'annotated-chart', 'before-after', 'document-proof', 'step-flow',
+  'system-map', 'timeline-roadmap', 'map-route', 'option-matrix',
 ];
 
 const ID_RE = /^\d{2}-[a-z0-9-]+$/;
@@ -58,7 +61,7 @@ export function validateDeck(deck) {
     else if (seenOrder.has(scene.order)) add(`${p}.order`, `order 중복: ${scene.order}`);
     else seenOrder.add(scene.order);
 
-    if (!TECHNIQUES.includes(scene.technique)) add(`${p}.technique`, `12기법 중 하나여야 합니다 (받은 값: ${JSON.stringify(scene.technique)})`);
+    if (!TECHNIQUES.includes(scene.technique)) add(`${p}.technique`, `등록된 ${TECHNIQUES.length}기법 중 하나여야 합니다 (받은 값: ${JSON.stringify(scene.technique)})`);
 
     const pinVh = Number(scene.pinVh);
     if (!Number.isFinite(pinVh) || pinVh < 100 || pinVh > 400) add(`${p}.pinVh`, `100~400 사이여야 합니다 (받은 값: ${JSON.stringify(scene.pinVh)})`);

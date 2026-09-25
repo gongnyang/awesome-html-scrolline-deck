@@ -1,0 +1,49 @@
+{
+  "technique": "map-route",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "map",
+    "route",
+    "image"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 1,
+      "max": 1
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Show a journey through places and explain why each stop matters.",
+  "description_en": "A route draws across a stylized map with numbered stops and place notes.",
+  "description_ko": "지도 위 이동 경로와 각 장소의 의미를 함께 보여줍니다.",
+  "responsive": "Retain the abstract SVG route and compact stop labels; shorten the map area on narrow screens.",
+  "reducedMotion": "Show the full route and every stop in place.",
+  "purpose": "지도 위 이동 경로와 각 장소의 의미를 함께 보여줍니다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 한강에서 골목까지",
+    "title": "강변에서 골목까지 다섯 정거장",
+    "lines": [
+      "17:30: 여의나루 출발 · 강변 길로 걷기",
+      "18:20: 서촌 골목 · 간판에 불이 들어오는 시간",
+      "19:10: 인왕산 자락 · 천천히 전망 보기",
+      "20:00: 광장시장 → 청계천 · 20:50 도착"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/city-guide/02-route"
+}

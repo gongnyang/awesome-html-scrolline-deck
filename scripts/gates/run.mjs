@@ -7,7 +7,7 @@ import path from 'node:path';
 import { deckPaths } from './_util.mjs';
 
 export const STATIC_GATES = ['s00.mjs', 'g01.mjs', 'g02.mjs', 'g03.mjs', 'g04.mjs', 'lint.mjs'];
-export const BROWSER_GATES = ['g05.mjs', 'g06.mjs', 'g07.mjs', 'g08.mjs', 'g09.mjs', 'g10.mjs'];
+export const BROWSER_GATES = ['g05.mjs', 'g06.mjs', 'g07.mjs', 'g08.mjs', 'g09.mjs', 'g10.mjs', 'g11.mjs', 'g12.mjs', 'g13.mjs'];
 
 export async function loadGates(files) {
   const gates = [];

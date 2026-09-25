@@ -23,12 +23,14 @@ const hasSample = Boolean(deckFile) && fs.existsSync(path.join(SAMPLE, 'package.
 
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+const bundledPnpm = path.resolve(path.dirname(process.execPath), '../node_modules/pnpm/bin/pnpm.mjs');
 
 const OFFLINE = /ENOTFOUND|ETIMEDOUT|ECONNREFUSED|EAI_AGAIN|network|registry\.npmjs\.org/i;
 
 function run(command, args, cwd) {
-  const result = spawnSync(command, args, { cwd, encoding: 'utf8', timeout: 10 * 60_000 });
-  return { code: result.status ?? 1, out: `${result.stdout ?? ''}${result.stderr ?? ''}` };
+  const env = { ...process.env, PATH: `${path.dirname(process.execPath)}${path.delimiter}${process.env.PATH ?? ''}` };
+  const result = spawnSync(command, args, { cwd, env, encoding: 'utf8', timeout: 10 * 60_000 });
+  return { code: result.status ?? 1, out: `${result.stdout ?? ''}${result.stderr ?? ''}${result.error ?? ''}` };
 }
 
 test(
@@ -46,13 +48,23 @@ test(
     assert.ok(fs.existsSync(path.join(work, 'package.json')));
 
     const hasLock = fs.existsSync(path.join(work, 'package-lock.json'));
-    const install = run(npm, [hasLock ? 'ci' : 'install', '--no-audit', '--no-fund'], work);
+    const useBundledPnpm = process.platform === 'win32' && run(npm, ['--version'], work).code !== 0 && fs.existsSync(bundledPnpm);
+    if (useBundledPnpm) {
+      // This isolated smoke fixture must allow Vite's esbuild install hook.
+      fs.writeFileSync(path.join(work, 'pnpm-workspace.yaml'), 'packages:\n  - .\ndangerouslyAllowAllBuilds: true\n');
+    }
+    const install = useBundledPnpm
+      ? run(process.execPath, [bundledPnpm, 'install', '--lockfile=false'], work)
+      : run(npm, [hasLock ? 'ci' : 'install', '--no-audit', '--no-fund'], work);
     if (install.code !== 0) {
       if (OFFLINE.test(install.out)) return t.skip(`npm 레지스트리에 접근할 수 없습니다: ${install.out.slice(-200)}`);
       assert.fail(`npm ${hasLock ? 'ci' : 'install'} 실패\n${install.out.slice(-1500)}`);
     }
 
-    const build = run(npx, ['vite', 'build'], work);
+    const localVite = path.join(work, 'node_modules', 'vite', 'bin', 'vite.js');
+    const build = fs.existsSync(localVite)
+      ? run(process.execPath, [localVite, 'build'], work)
+      : run(npx, ['vite', 'build'], work);
     assert.equal(build.code, 0, `vite build 실패\n${build.out.slice(-1500)}`);
     assert.ok(fs.existsSync(path.join(work, 'dist', 'index.html')), 'dist/index.html 이 나오지 않았습니다');
 
@@ -66,10 +78,10 @@ test(
   },
 );
 
-test('샘플 덱 deck.json은 장면을 6개 담는다', { skip: hasSample ? false : '샘플 덱 없음' }, () => {
+test('샘플 덱 deck.json은 발표 장면 8개 이상을 담는다', { skip: hasSample ? false : '샘플 덱 없음' }, () => {
   const deck = JSON.parse(fs.readFileSync(deckFile, 'utf8'));
   assert.ok(Array.isArray(deck.scenes));
-  assert.ok(deck.scenes.length >= 5, `장면이 ${deck.scenes.length}개입니다 (플랜은 6개)`);
+  assert.ok(deck.scenes.length >= 8, `장면이 ${deck.scenes.length}개입니다 (최소 8개)`);
   const ids = deck.scenes.map((s) => s.id);
   assert.equal(new Set(ids).size, ids.length, 'id가 중복입니다');
 });

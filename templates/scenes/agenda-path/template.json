@@ -1,0 +1,49 @@
+{
+  "technique": "agenda-path",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "agenda",
+    "sequence",
+    "no-assets"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Show the talk as a route with a clear start, current stop, and destination.",
+  "description_en": "A route line connects agenda stops and reveals each stop in sequence.",
+  "description_ko": "발표의 흐름을 경로로 보여주고 각 정거장의 목적을 분명히 합니다.",
+  "responsive": "Use a four-stop horizontal route on desktop and a two-column stop grid on narrow screens.",
+  "reducedMotion": "Show all route stops and the complete connector in place.",
+  "purpose": "발표의 흐름을 경로로 보여주고 각 정거장의 목적을 분명히 합니다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 2027년은 효율을 확장합니다",
+    "title": "물류 자동화 · 고객 유지 · 재고 정확도",
+    "lines": [
+      "1분기: 기준 합의: 유지율과 물류비 목표",
+      "2분기: 자동화 시험: 3개 권역 우선 적용",
+      "3분기: 고객 유지: 이탈 사유 점검",
+      "4분기: 연말 검토: 가상 계획 시나리오"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/annual-report/09-next"
+}

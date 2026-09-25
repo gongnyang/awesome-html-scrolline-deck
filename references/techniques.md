@@ -1,7 +1,9 @@
 # Scene techniques
 
-Twelve scene templates live in `templates/scenes/<technique>/`. Each one is four
-files — `scene.html`, `scene.css`, `scene.js`, `template.json` — and each reads
+Twenty-four scene templates live in `templates/scenes/<technique>/`. Each one has four
+source files — `scene.html`, `scene.css`, `scene.js`, `template.json` — plus a
+`preview.webp` capture of a completed presentation frame. The metadata includes
+`exampleCopy` so an author can inspect a real filled-in version before choosing it. Each reads
 everything it shows from `ctx.data.scene`. Nothing is fetched, imported or
 hard-coded inside a template, so the same folder works in any deck.
 
@@ -15,10 +17,19 @@ name, and appends a scene entry to `data/deck.json`.
 |---|---|
 | Open the talk on an image | `frame-scrub-hero` |
 | Open the talk on a sentence | `word-relay` |
-| Show the shape of the session | `kinetic-titles` |
+| Open with a question | `question-reveal` |
+| Show the shape of the session | `agenda-path` or `kinetic-titles` |
+| Mark a chapter boundary | `chapter-transition` |
 | Show many images | `horizontal-gallery` |
 | Take one thing apart | `anatomy-rows` |
 | Show a process that moves | `frame-scrub-video` |
+| Explain ordered actions | `step-flow` |
+| Explain component relationships | `system-map` |
+| Lay out milestones over time | `timeline-roadmap` |
+| Show a route and its stops | `map-route` |
+| Reveal a quantitative chart | `chart-reveal` or `annotated-chart` |
+| Compare states | `before-after` or `option-matrix` |
+| Show a source document | `document-proof` |
 | Let the room breathe | `parallax-video` |
 | Prove there is a body of work | `paper-assembly` |
 | Land a number | `odometer-stats` |
@@ -33,7 +44,8 @@ Two rules for sequencing. Never place the same technique twice in a row. Put
 
 ### frame-scrub-hero — pinVh 260, pin true
 An exported image sequence scrubs behind a standing title, then pushes past the
-audience. **Assets:** `frames` (a `%03d` pattern), `count`, `critical`, `poster`.
+audience. A single `poster` also works as a cinematic still when no sequence is available.
+**Assets:** `poster`; optionally `frames` (a `%03d` pattern), `count`, `critical`.
 **Copy:** kicker, title, one or two lines. **Hold frame:** the film mid-sequence
 with kicker, title, line and an optional date line all legible.
 *EN — the opening image moves, the words do not.*
@@ -148,6 +160,108 @@ optional mascot or portrait. Without an SVG the URL is simply printed.
 **Hold frame:** thanks set, QR drawn, URL typed out, the restart link showing.
 *EN — the frame the room photographs.*
 *KO — 사람들이 사진 찍는 마지막 화면.*
+
+### question-reveal — pinVh 240, pin true
+An opening question takes the left side of the stage; up to four short answer
+clues arrive in a separate evidence rail. Write each line as `Label: clue`.
+**Assets:** none. **Copy:** kicker, a focused question as title, two to four
+answer clues. **Hold frame:** question and all clues visible together.
+**Responsive:** answer rail stacks below the question. **Reduced motion:** all
+copy stays visible without entrance effects.
+
+### agenda-path — pinVh 240, pin true
+Two to four stops sit on a connected route so the audience sees where the talk
+starts and where it leads. Write lines as `Stop: what happens here`.
+**Assets:** none. **Copy:** kicker, title, two to four stops.
+**Hold frame:** every stop is readable along the route.
+**Responsive:** route becomes a two-column stop grid. **Reduced motion:** all
+stops remain visible at once.
+
+### chapter-transition — pinVh 240, pin true
+A large chapter number and new section title create a clear visual threshold.
+Use the kicker for a chapter label such as `02` or `2부`.
+**Assets:** none. **Copy:** kicker, title. **Hold frame:** number and title share
+the stage with generous negative space. **Responsive:** number moves above title.
+**Reduced motion:** both remain composed as a static title card.
+
+### chart-reveal — pinVh 240, pin true
+Bars share a baseline and reveal in sequence. Write each line as
+`Category: value`; labels retain the supplied value, and height scales against
+the largest supplied value. Negative or missing values display as missing; no
+value is invented or clamped.
+**Assets:** none; chart marks are HTML. **Copy:** kicker, title, two to four
+category-value lines. **Hold frame:** values and category labels are all visible.
+**Responsive:** the chart keeps its labels and compresses bar spacing.
+**Reduced motion:** bars show their final heights immediately.
+
+### annotated-chart — pinVh 240, pin true
+A line chart draws an explicitly supplied series and anchors one callout at
+its peak. Put the interpretation in line one and the source in line two.
+`assets.series` accepts 2–20 normalized values from 0 to 100; without valid
+data, the scene displays an empty-state prompt instead of inventing a curve.
+**Copy:** kicker, title, annotation, source. **Hold frame:** full curve and
+callout are visible.
+**Responsive:** callout moves toward the top of the plot.
+**Reduced motion:** full curve and callout appear in place.
+
+### before-after — pinVh 240, pin true
+Two images of the same subject share equal space and use a wipe to reveal the
+after state. Lines one and two label the two sides. **Assets:** two distinct
+images of the same subject. A missing second image stays visibly empty rather
+than repeating the first. **Copy:** kicker, title, two state labels.
+**Hold frame:** both states are aligned and labeled.
+**Responsive:** image panels stay side by side at compact proportions.
+**Reduced motion:** both states are immediately visible.
+
+### document-proof — pinVh 240, pin true
+A paper-like exhibit presents a quoted passage beside its source credit.
+**Assets:** one image of the source artifact; the quote and source are taken
+from the first two lines. **Copy:** kicker, title, quote, source/citation.
+Never fabricate a quotation: paraphrase explicitly when the original is not
+available. **Hold frame:** the source image and quote are legible together.
+**Responsive:** exhibit stacks above the source credit.
+**Reduced motion:** complete static exhibit remains visible.
+
+### step-flow — pinVh 240, pin true
+Two to four connected cards explain actions in sequence. Write each line as
+`Step: explanation`. **Assets:** none. **Copy:** kicker, title, two to four
+steps. **Hold frame:** every numbered action is readable.
+**Responsive:** cards stack along a vertical connector.
+**Reduced motion:** all steps remain in the final layout.
+
+### system-map — pinVh 240, pin true
+A central subject is surrounded by two to four actors or components. The title
+names the hub; lines name the surrounding nodes. **Assets:** none; diagram is
+HTML/CSS. **Hold frame:** hub and nodes are visible as one system.
+**Responsive:** nodes use a compact two-column arrangement.
+**Reduced motion:** every node is visible immediately.
+
+### timeline-roadmap — pinVh 240, pin true
+Two to four dated events sit on a chronological rail. Write lines as
+`Date: milestone: outcome`; use consistent date formats across the deck.
+**Assets:** none. **Copy:** kicker, title, two to four events.
+**Hold frame:** dates, milestones, and outcomes can be scanned together.
+**Responsive:** events form a two-column grid.
+**Reduced motion:** the complete timeline appears without drawing effects.
+
+### map-route — pinVh 240, pin true
+A stylized diagram map carries a route through up to three stops. Lines supply
+stop names. The abstract grid is a visual aid, not geographic evidence; use
+notes or a sourced map when locations must be accurate.
+**Assets:** none; route is SVG. **Copy:** kicker, title, two or three stops.
+**Hold frame:** route and all stops are visible.
+**Responsive:** the route area shortens and stop labels compact.
+**Reduced motion:** route and labels show in their final state.
+
+### option-matrix — pinVh 240, pin true
+A criteria-by-options matrix helps compare up to three choices. Lines one to
+three name options; line four can supply criteria after `기준:`. Optional
+`assets.matrix` can provide `options`, `criteria`, row-major `values`, and a
+zero-based `recommendedIndex`. Empty values stay as em dashes, and no column is
+recommended by default. **Assets:** none; matrix is HTML.
+**Hold frame:** criteria and the highlighted recommended column are visible.
+**Responsive:** cells tighten while preserving the row and column labels.
+**Reduced motion:** all cells show at once.
 
 ## Asset rules
 

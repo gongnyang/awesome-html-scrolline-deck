@@ -3,7 +3,11 @@
 let root = null;
 let scrub = null;
 
-const words = (text) => String(text).split(/(\s+)/).filter(Boolean);
+const titleNodes = (text) => String(text).split(/(\s+)/).filter(Boolean).map((word) => {
+  const span = document.createElement('span');
+  span.textContent = /^\s+$/.test(word) ? '\u00a0' : word;
+  return span;
+});
 
 export default {
   id: '{{id}}',
@@ -16,13 +20,15 @@ export default {
     const lines = copy.lines || [];
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
-    root.querySelector('[data-role="title"]').innerHTML = words(copy.title || '')
-      .map((word) => `<span>${/^\s+$/.test(word) ? '&nbsp;' : word}</span>`)
-      .join('');
+    const title = root.querySelector('[data-role="title"]');
+    title.setAttribute('aria-label', copy.title || '');
+    title.replaceChildren(...titleNodes(copy.title || ''));
     root.querySelector('[data-role="line"]').textContent = lines[0] || '';
     root.querySelector('[data-role="meta"]').textContent = lines[1] || '';
 
-    if (assets.frames && typeof ctx.frameScrub === 'function') {
+    // A poster is a complete still frame and must go through the same canvas
+    // path as a sequence so poster-only decks never expose an empty black host.
+    if ((assets.frames || assets.poster) && typeof ctx.frameScrub === 'function') {
       scrub = ctx.frameScrub(root.querySelector('[data-role="scrub-host"]'), {
         pattern: assets.frames,
         mobilePattern: assets.mobileFrames,

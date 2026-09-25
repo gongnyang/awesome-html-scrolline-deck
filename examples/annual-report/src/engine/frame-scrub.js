@@ -4,6 +4,8 @@
  */
 import { isMobile, reduced } from './motion.js';
 
+const mediaFallback = new URL('./media-fallback.svg', import.meta.url).href;
+
 const framePath = (pattern, n) =>
   String(pattern).replace(/%0(\d)d/, (_, w) => String(n).padStart(Number(w), '0'));
 
@@ -34,8 +36,17 @@ export function createFrameScrub(host, opts = {}) {
     if (frames[i]) return frames[i];
     const img = new Image();
     img.decoding = 'async';
-    img.src = lite ? poster : framePath(activePattern, i + 1);
     img.onload = () => { if (i === current) draw(img); };
+    img.onerror = () => {
+      console.error(`[scrolline] frame failed to load: ${img.src}`);
+      if (i === current) {
+        const still = new Image();
+        still.onload = () => draw(still);
+        still.onerror = () => { if (still.src !== mediaFallback) still.src = mediaFallback; };
+        still.src = !lite && poster ? poster : mediaFallback;
+      }
+    };
+    img.src = lite ? poster : framePath(activePattern, i + 1);
     frames[i] = img;
     return img;
   };

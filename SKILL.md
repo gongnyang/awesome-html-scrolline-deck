@@ -1,92 +1,43 @@
 ---
 name: scrolline-deck
-description: 발표 주제·개요를 스크롤 구동 시네마 HTML 덱(스크롤텔링 덱)으로 만든다. 슬라이드 컷이 아니라 휠 한 칸 = 장면 진행률 — 장면 12기법·진입/홀드/퇴장 3박자·게이트 10종·발표자 키 바인딩까지 포함. Vite+GSAP ScrollTrigger+Lenis 프로젝트를 생성하고 휠 기반으로 실측 검증한다. 트리거 — "스크롤텔링 덱", "스크롤 발표", "스크롤 덱 만들어", "시네마 덱", "스크롤로 넘어가는 발표자료", "scrolline", "scrolline deck", "scrollytelling deck", "scroll-driven presentation", "scroll deck", "cinematic html presentation". 후속 — "이 장면만 기법 바꿔", "홀드 더 길게", "카피만 다시", "검증만 다시", "발표용으로 빌드" 도 이 스킬. ※ 이산 슬라이드·발표자 노트 중심이면 slideshow 스킬, 영상 렌더(MP4)면 hyperframes 소관.
+description: 청중과 발표 목표에 맞는 스크롤 구동 HTML 피치·강의 덱을 기획, 제작, 검증한다. 스크롤 발표자료, 시네마틱 웹덱, scrollytelling deck 요청과 기존 덱의 장면·이미지·발표 흐름 수정에 사용한다.
 ---
 
-# scrolline-deck — 스크롤텔링 덱
+# Scrolline Deck
 
-개요 한 장 → **스크롤 구동 시네마 HTML 덱**. 슬라이드를 넘기는 게 아니라 **휠 한 칸이 장면의 진행률**이고, 장면마다 진입·홀드·퇴장이 완결된다. 엔진 = Vite + GSAP ScrollTrigger(pin/scrub) + Lenis, 산출물 = 로컬에서 도는 정적 HTML(배포는 범위 밖).
+발표자가 실제로 서서 설명할 수 있는 웹덱을 만든다. 휠은 장면을 넘기는 대신 장면의 진입·완성·퇴장을 제어한다. 첫 1–2장면은 주제에 맞는 강한 시각적 훅으로 시작하고, 핵심 주장과 근거가 보이는 완성 화면에서는 말할 시간을 확보한다.
 
-## 원칙 (코드가 강제 — 어기면 게이트에서 막힌다)
+## 먼저 결정할 것
 
-1. **3박자 완결** — 모든 장면은 진입 0–.30 / 홀드 .30–.75 / 퇴장 .75–1. 홀드 구간에 완성 프레임이 서 있어야 발표자가 말할 시간이 생긴다.
-2. **타임라인 합 ≤ 1** — `build(tl, ctx)` 안 모든 tween의 `position + duration`이 1을 넘지 않는다(G2). `pinVh`를 나중에 바꿔도 비율이 유지된다.
-3. **토큰만** — `scene.css`에 hex·rgb()·색이름 0건, 선택자는 전부 `[data-scene="<id>"]` 접두(L1·L2). 색은 `src/tokens.css` 변수로만.
-4. **tween 문자열 안 `var()` 금지** — `clip-path: inset(var(--x))` 류는 GSAP이 보간하지 못하고 스냅한다(G3). 숫자로 풀어 쓴다.
-5. **박스 금지** — 카드·테두리·그림자 패널로 정보를 가두지 않는다. 화면 전체가 한 장면이다.
-6. **휠로 검증** — 검증 경로와 장면 코드에 `window.scrollTo`·`scrollIntoView` 금지(G4). 실제 휠 이벤트로 굴려서 재본다.
-7. **키 착지 35%** — `→` 키는 다음 장면의 핀 구간 35% 지점에 내린다. 착지 화면이 곧 그 장면의 대표 컷이다.
+청중, 발표 목적, 길이, 한 문장 핵심 주장, 사용 가능한 근거·브랜드·이미지, 마지막에 청중이 취할 행동을 확인한다. 빠진 정보가 결과를 바꾸지 않으면 합리적인 기본값으로 진행한다. 실재 사실이나 성과 수치를 지어내지 않는다. 시연용 가상 사례는 화면에서 명확히 표시한다.
 
-## 저작 워크플로 (이 순서대로)
+`references/workflow.md`에 따라 **스토리보드와 시각 방향을 먼저 작성**한다. 각 행에는 장면의 주장, 보여줄 근거, 선택한 기법과 그 이유, 이미지 계획, 발표자 노트가 들어간다. 사용자가 특정 구조를 요구하지 않았다면 기존 예시 덱의 배열을 복제하지 않는다.
 
-**1 인테이크** — 주제·청중·발표 길이(분)·다크/라이트·보유 에셋을 묻는다. 장면 수 = 분 ÷ 1.5를 5–12장으로 자른다(장면당 말하는 시간 ≈1.5분, 18분 이상은 상한 12장에 붙고 장면당 시간이 늘어난다 — 60분 세미나 = 12장면). 총 `pinVh`는 기법 기본값의 합(장면당 130–320)이고, 발표 길이가 모자라면 여기부터 줄인다.
+## 장면 선택
 
-**2 스토리보드** — 표로 먼저 짜서 **사용자에게 보여주고 합의한 뒤** 생성한다.
+`references/techniques.md`의 24개 기법에서 발표 목적에 맞는 것을 고른다. 장면 수나 기법 다양성을 기계적으로 맞추지 않는다. 같은 화면 구도·동작이 연속되어 지루해지면 바꾸되, 근거를 가장 잘 전달하는 유형을 우선한다. 오프닝과 클로징을 정해진 기법에 묶지 않는다. 유효한 링크가 없으면 QR을 만들지 않는다.
 
-| id | technique | kicker | title | lines | asset | pinVh |
-|---|---|---|---|---|---|---|
+기법마다 완성 화면, 필수 에셋, 모바일·모션 감소 구성이 있다. 빈 에셋을 채우는 범용 대체 템플릿은 사용하지 않는다. 장면 모듈은 `mount`, `build`, `unmount`를 구현하며 정지 CSS 상태에서도 핵심 정보가 읽혀야 한다. 타임라인은 진입 0–.30, 홀드 .30–.75, 퇴장 .75–1 안에서 끝난다. 발표 중 홀드는 빈 프레임이 아니어야 한다.
 
-오프너는 `frame-scrub-hero` 또는 `kinetic-titles`, 클로저는 `closing-qr`. **같은 기법 연속 배치 금지.**
+## 이미지와 정보
 
-**3 생성** — 아래 `scripts/cli.mjs`는 **스킬 루트**(이 SKILL.md가 있는 폴더, 설치 시 `~/.claude/skills/scrolline-deck`) 기준이다. 다른 작업 폴더에서 부를 때는 `node ~/.claude/skills/scrolline-deck/scripts/cli.mjs …`로 절대경로를 쓴다.
-```bash
-node scripts/cli.mjs init <dir> --title "<제목>" --style dark
-node scripts/cli.mjs add <technique> --id 01-hero --kicker "..." --title "..." --lines "1줄|2줄"
-```
-`add`는 표의 행마다 한 번. `--id`는 `^\d{2}-[a-z0-9-]+$`이고 폴더명 = deck.json의 id.
+이미지 주도 장면에는 필요한 만큼 독창적인 이미지를 만든다. 이미지에 글자·수치·가짜 차트를 굽지 말고 정밀한 정보는 HTML/SVG로 만든다. 에셋은 덱의 `public/`에 로컬로 저장하고 `deck.json`에서 참조한다. 외부 임시 URL은 사용하지 않는다. 생성 이미지가 실제 현장 사진이나 검증된 근거처럼 보이지 않게 설명한다. 제작·크롭·대체 텍스트·모바일 크기 결정은 `references/asset-direction.md`를 따른다.
 
-**4 에셋**
-```bash
-node scripts/cli.mjs frames in.mp4 --name hero --fps 12 --width 1280 --scene 01-hero   # ffmpeg, ≤120장·≤10MB
-node scripts/cli.mjs media photo.png --scene 04-gallery                                # webp 변환 + deck.json 등록
-node scripts/cli.mjs qr --url https://example.com --scene 06-closing                             # QR svg + deck.json images[0]·links.site
-```
-`--scene`를 주면 deck.json의 `frames`·`count`·`critical`·`images`가 자동으로 채워진다(`add closing-qr --url <site>`도 같은 결과). 덱 폴더 밖에서 부르면 `--dir <덱>`. 이미지는 webp ≤1600px `public/media/<id>/`, 영상은 muted·playsinline·포스터 필수.
+## 제작과 검증
 
-**5 카피·노트** — deck.json의 `copy`(제목 1줄, `lines` 최대 4줄 — 기법별 허용 범위는 `template.json`의 `slots`)와 `notes`(필수, N키 노트 패널에 뜬다)를 채운다. `scene.js`는 템플릿이 표시한 **enter / hold / exit 블록 안에서만** 고친다. CSS 정지 상태 = 홀드에서 보일 완성 프레임.
+스킬 루트의 CLI로 덱을 만들고 장면을 추가한다. `node scripts/cli.mjs init <dir> --title <title>` → `node scripts/cli.mjs add <technique> --dir <dir> --id <NN-name> ...`. 각 장면의 `data/deck.json`에서 카피, 노트, 에셋을 완성한다. 엔진은 덱 폴더로 복사되므로 생성 뒤 독립 실행된다.
 
-**6 검증 루프**
-```bash
-node scripts/cli.mjs check <dir>     # 정적, 브라우저 없이
-node scripts/cli.mjs verify <dir>    # 휠 주행 + qa/<id>-{30,55,85}.jpg
-node scripts/cli.mjs storyboard <dir>
-```
-`verify` 캡처 3장을 **직접 읽어서** 30%=진입 중, 55%=완성 프레임, 85%=퇴장 중인지 확인한다. 아니면 고치고 다시.
+`node scripts/cli.mjs check <dir>`와 `node scripts/cli.mjs verify <dir> --strict --build`를 통과시킨다. 엄격 검증은 실제 휠·키보드, 에셋 디코딩, 반응형 화면, 모션 감소를 브라우저에서 확인한다. Playwright가 없어 검증이 건너뛰어지면 완료로 보고하지 않는다. 장면마다 생성된 `qa/<scene>-30.jpg`, `-55.jpg`, `-85.jpg`를 직접 보고 이미지 크롭, 글자 가독성, 주장·근거의 일치, 장면 전환을 수정한다. 기준은 `references/quality.md`를 따른다.
 
-**7 인계** — `npm run build && npm run preview`. 발표자에게 키를 알려주고, **발표할 PC에서 `verify` 한 번** 돌린다.
+공개 배포가 요청되면 실제 배포 하위 경로에서 예시 덱 전체 또는 해당 덱의 URL·이미지를 다시 확인한다. 개발 서버에서 보이는 것만으로 완료라고 하지 않는다. 발표 PC에서 전체 화면·노트·키보드·휠을 리허설한다.
 
-## 기법 고르기 (12종 — 정본은 `references/techniques.md`)
-
-| technique | 무엇을 하나 | 언제 쓰나 | 에셋 | pinVh |
-|---|---|---|---|---|
-| `frame-scrub-hero` | 제목이 선 채로 뒤에서 프레임 시퀀스가 스크럽된다 | 이미지로 말문을 열 때 | frames + poster | 260 |
-| `word-relay` | 화살표로 나눈 제목이 단어마다 바통을 넘긴다 | 한 문장으로 말문을 열 때 | 없음 | 220 |
-| `kinetic-titles` | 번호 붙은 제목이 대각선 위로 조립된다 | 세션의 얼개를 보일 때 | 없음 | 240 |
-| `horizontal-gallery` | 세로 스크롤이 가로 레일을 민다 | 이미지를 여러 장 보일 때 | 이미지 3–10 | 320 |
-| `anatomy-rows` | 한 덩어리가 주석 달린 행으로 갈라진다 | 하나를 뜯어 보일 때 | 이미지 1 | 300 |
-| `frame-scrub-video` | 본문용 프레임 스크럽 | 움직이는 과정을 보일 때 | frames + poster | 280 |
-| `parallax-video` | 핀 없이 지나가는 영상 패럴랙스 | 객석에 숨을 줄 때 (`pin: false`) | video + poster | 130 |
-| `paper-assembly` | 낱장이 모여 한 덩어리가 된다 | 쌓인 작업량을 보일 때 | 이미지 3–8 | 260 |
-| `odometer-stats` | 숫자가 릴 위에서 굴러 도착한다 | 수치를 못 박을 때 | 없음 | 220 |
-| `wipe-transform` | 한 면이 다음 면으로 와이프된다 | A가 B로 바뀌는 걸 보일 때 | 이미지 2–5, video 선택 | 300 |
-| `tilt-card` | 인물 한 장을 느린 기울기로 세운다 | 사람을 소개할 때 | 이미지 1 | 200 |
-| `closing-qr` | QR·주소·첫 장면으로 돌아가는 길 | 링크를 손에 쥐여 줄 때 | qr.svg | 200 |
-
-## 게이트 (G1–G10 + 스키마 S0, 전부 exit-code)
-
-정적 — `check`: **G1** 장면 모듈 4멤버·id=폴더명 / **G2** 타임라인 합 ≤1 + order·pinVh / **G3** tween 안 `var(` 금지 + 린트 L1 색상·L2 스코프·L3 `pathLength="1"` / **G4** `scrollTo`·`scrollIntoView` 금지 / **S0** deck.json 스키마 + 에셋 경로 존재.
-
-브라우저 — `verify`(Playwright 없으면 안내 후 skip): **G5** 핀 거리 = `pinVh%` ±2px / **G6** 55% 지점 가시 요소 ≥3 + 캡처 / **G7** `→` 착지 오차 ≤4px·가시 ≥3 / **G8** console.error·pageerror 0 / **G9** 가로 넘침 0(1440·390) / **G10** reduced-motion에서 핀 0·각 장면 가시 ≥3.
-
-## 발표 (인계용 키)
-
-| 키 | 동작 |
-|---|---|
-| `→` `Space` / `←` | 다음 / 이전 장면 (홀드 35% 착지) |
-| `1`–`9`, `0` | 장면 1–9 점프, `0`은 10번째 |
-| `P` | 자동 진행 토글 (`presenter.autoDurationSec`, 입력하면 멈춤) |
-| `F` / `H` / `N` | 전체화면 / 커서 숨김 / 발표자 노트 |
+완성 덱을 홍보·실제 사례·교육 영상으로도 전개할 때는 `references/video-adaptation.md`의 콘티·출처·세로 크롭·자막 검사를 따른다.
 
 ## 참조
 
-`references/`: `techniques.md`(12기법 정본) · `choreography.md`(진입·홀드·퇴장 타이밍) · `contract.md`(장면 모듈·ctx) · `deck.schema.json` · `design.md`(탈박스·타이포·라이트/다크) · `pitfalls.md`(`vh`→`%`, lenis prevent, `from()` immediateRender 등) · `presenting.md`. 6장면 완성본 = `examples/sample-deck/`.
+- `references/workflow.md`: 인테이크, 스토리보드, 발표 흐름과 기법 선택의 이유
+- `references/techniques.md`: 24개 장면의 목적·데이터·에셋·완성 화면
+- `references/asset-direction.md`: 생성 이미지, 아트 디렉션, 로컬 에셋
+- `references/quality.md`: 자동 게이트, 시각 검토, 배포 후 점검
+- `references/contract.md`: 장면 모듈과 엔진 계약
+- `references/video-adaptation.md`: 완성 덱을 영상으로 재구성하는 세 가지 방법

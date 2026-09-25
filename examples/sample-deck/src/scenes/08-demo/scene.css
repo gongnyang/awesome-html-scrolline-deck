@@ -1,0 +1,17 @@
+/* frame-scrub-video — a clip turned into frames, so the wheel is the play head. */
+[data-scene="08-demo"] .fsv { position: relative; width: 100%; min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
+[data-scene="08-demo"] .fsv__frame { position: absolute; inset: 0; overflow: hidden; background-color: var(--surface-1); background-position: center; background-size: cover; background-repeat: no-repeat; }
+[data-scene="08-demo"] .fsv__scrim { position: absolute; z-index: 0; inset: 0; pointer-events: none; background: linear-gradient(to top, var(--canvas) 0%, var(--canvas) 14%, transparent 68%); }
+[data-scene="08-demo"] .fsv__copy { position: absolute; z-index: 1; left: clamp(var(--gutter, 20px), 6vw, var(--space-section, 88px)); bottom: clamp(var(--space-xl, 32px), 8vh, var(--space-section, 88px)); width: min(660px, calc(100% - var(--gutter, 20px) * 2)); pointer-events: none; }
+[data-scene="08-demo"] .fsv__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+[data-scene="08-demo"] .fsv__title { margin: 0 0 var(--space-xl, 32px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; word-break: keep-all; }
+[data-scene="08-demo"] .fsv__lines { display: grid; gap: var(--space-sm, 12px); margin: 0; padding: 0; list-style: none; color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.5; word-break: keep-all; }
+[data-scene="08-demo"] .fsv__lines li { display: grid; grid-template-columns: 2.6em minmax(0, 1fr); gap: var(--space-sm, 12px); }
+[data-scene="08-demo"] .fsv__lines b { color: var(--accent-1); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); font-weight: 500; letter-spacing: .12em; line-height: 2; }
+@media (max-width: 720px) {
+  [data-scene="08-demo"] .fsv__copy { left: var(--gutter, 20px); right: var(--gutter, 20px); width: auto; bottom: var(--space-xl, 32px); }
+  [data-scene="08-demo"] .fsv__title { margin-bottom: var(--space-lg, 24px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="08-demo"] .fsv__scrim { background: linear-gradient(to top, var(--canvas) 0%, var(--canvas) 26%, transparent 78%); }
+}

@@ -1,174 +1,334 @@
 {
-  "title": "Scrolline Deck",
-  "subtitle": "스크롤로 굴리는 시네마 HTML 발표자료",
+  "title": "한 장씩 넘기지 않는 발표",
+  "subtitle": "스크롤이 장면을 움직이는 발표 설계 강의",
   "lang": "ko",
   "presenter": {
-    "name": "gongnyang",
+    "name": "Scrolline Studio",
     "roles": [],
     "avatar": "",
-    "autoDurationSec": 180
+    "autoDurationSec": 240
   },
   "theme": {
     "style": "dark",
-    "accent": "#5e6ad2"
+    "accent": "#a8ff60"
   },
   "scenes": [
     {
       "id": "01-hero",
       "order": 1,
       "technique": "frame-scrub-hero",
-      "pinVh": 260,
+      "pinVh": 280,
       "pin": true,
       "assets": {
-        "frames": "/frames/hero/f_%03d.jpg",
-        "count": 120,
-        "critical": [
-          1,
-          30,
-          60,
-          90,
-          120
-        ],
-        "poster": "/frames/hero/poster.jpg"
+        "frames": null,
+        "count": 0,
+        "critical": [],
+        "poster": "/media/sample-deck/01-hero/hero.webp"
       },
       "copy": {
-        "kicker": "SCROLLINE DECK",
-        "title": "스크롤이 장면을 민다",
+        "kicker": "스크롤은 발표의 카메라다",
+        "title": "한 장씩 넘기지 않는 발표",
         "lines": [
-          "슬라이드는 컷으로 넘어간다. 이 덱은 넘어가지 않는다.",
-          "Scroll-driven cinematic HTML presentation"
+          "멈춘 화면을 넘기는 대신, 생각이 바뀌는 순간을 보여준다."
         ]
       },
       "transition": {
         "in": "fade",
         "out": "fade"
       },
-      "notes": "첫 문장 하나만 말한다. 프레임이 끝까지 지나갈 때까지 기다렸다가 다음 장면으로 넘어간다.",
-      "fallback": "포스터 정지 화면 위에 제목만 페이드인. 모바일은 프레임 시퀀스를 내려받지 않는다."
+      "notes": "시네마틱 오프닝: 도시의 불빛이 켜지며 오늘의 주장을 먼저 각인한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 한 장씩 넘기지 않는 발표을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "첫 1–2개 장면에서 “한 장씩 넘기지 않는 발표”을 큰 이미지와 깊이감으로 먼저 보여 주어 “멈춘 화면을 넘기는 대신, 생각이 바뀌는 순간을 보여준다” 상황에 관심을 모으고, 발표의 문제와 제안 범위를 직관적으로 파악하게 한다."
     },
     {
-      "id": "02-relay",
+      "id": "02-question",
       "order": 2,
-      "technique": "word-relay",
-      "pinVh": 220,
+      "technique": "question-reveal",
+      "pinVh": 210,
       "pin": true,
       "assets": {},
       "copy": {
-        "kicker": "무엇인가",
-        "title": "휠 한 칸 → 장면 진행률 한 칸",
+        "kicker": "발표자는 왜 화면을 넘길까",
+        "title": "다음 장면이 궁금한가요?",
         "lines": [
-          "장면은 화면에 고정된 채 0에서 1까지 밀린다",
-          "속도는 발표자 손에 남는다"
+          "청중은 정보를 받는가, 변화의 이유를 따라가는가?"
         ]
       },
       "transition": {
         "in": "fade",
         "out": "fade"
       },
-      "notes": "단어가 하나씩 도착할 때마다 소리 내어 읽는다. 마지막 단어에서 멈추고 다음 장면을 예고한다.",
-      "fallback": "두 문장을 가로로 나란히 세운 정지 화면."
+      "notes": "질문을 충분히 홀드해 청중이 자기 경험을 대입하게 한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 관객의 호기심을 다음 장면으로 연결하는 오프닝을 설계한다.",
+      "reason": "“다음 장면이 궁금한가요?”이라는 질문·주장을 짧게 먼저 드러내 청중이 “청중은 정보를 받는가, 변화의 이유를 따라가는가?” 상황을 자기 경험과 연결하고, 뒤이어 제시될 설명의 판단 기준을 세우게 한다."
     },
     {
-      "id": "03-arc",
+      "id": "03-claim",
       "order": 3,
       "technique": "kinetic-titles",
-      "pinVh": 240,
+      "pinVh": 210,
       "pin": true,
       "assets": {},
       "copy": {
-        "kicker": "장면 문법",
+        "kicker": "핵심 주장",
+        "title": "스크롤은 내용의 순서를 공간으로 바꾼다",
+        "lines": [
+          "장면이 고정되면 발표자는 설명할 시간을 얻는다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "주장을 세 문장으로 분해해 수업의 기준점을 만든다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 스크롤은 내용의 순서를 공간으로 바꾼다을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "“스크롤은 내용의 순서를 공간으로 바꾼다”의 핵심 문장을 순차적으로 완성해 시선을 한 주장에 모으고, “장면이 고정되면 발표자는 설명할 시간을 얻는다”을 기억할 만한 발표의 요지로 남긴다."
+    },
+    {
+      "id": "04-agenda",
+      "order": 4,
+      "technique": "agenda-path",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "오늘의 경로",
+        "title": "문제에서 설계, 설계에서 검증까지",
+        "lines": [
+          "문제: 청중이 이탈하는 지점을 찾는다",
+          "설계: 주장마다 다른 장면을 고른다",
+          "검증: 휠·키보드·모바일에서 확인한다"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "경로를 따라 오늘 배울 순서를 미리 보여 준다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 문제 발견에서 발표 리허설까지 세 단계의 작업 순서를 기억한다.",
+      "reason": "“문제: 청중이 이탈하는 지점을 찾는다”의 단계를 경로 위에 순서대로 놓아 청중이 “문제에서 설계, 설계에서 검증까지”의 흐름을 미리 파악하고 각 단계가 필요한 이유를 따라가게 한다."
+    },
+    {
+      "id": "05-evidence",
+      "order": 5,
+      "technique": "annotated-chart",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {
+        "series": [
+          0,
+          30,
+          30,
+          45,
+          75,
+          75,
+          100
+        ]
+      },
+      "copy": {
+        "kicker": "도식 · 장면 진행률(%)",
+        "title": "설명할 시간은 홀드 구간에 둔다",
+        "lines": [
+          "해석: 홀드 구간은 30–75%에 걸쳐 있다",
+          "출처: 발표 설계 도식 · 측정 자료가 아님"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "실제 데이터가 아닌 수업용 도식임을 말하고 주석부터 읽는다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 한 주장에 한 시각 근거을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "“해석: 홀드 구간은 30–75%에 걸쳐 있다”의 해석을 실제 데이터 계열과 같은 화면에 표시해, 청중이 “설명할 시간은 홀드 구간에 둔다”에 해당하는 추세와 근거의 범위를 함께 읽도록 한다."
+    },
+    {
+      "id": "06-flow",
+      "order": 6,
+      "technique": "step-flow",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {},
+      "copy": {
+        "kicker": "진입 · 홀드 · 퇴장",
         "title": "진입 · 홀드 · 퇴장",
         "lines": [
-          "진입 0–30% // 장면이 들어온다 · 제목이 선다",
-          "홀드 30–75% // 완성 프레임이 서 있다 · 말은 여기서 한다",
-          "퇴장 75–100% // 다음 장면에 자리를 넘긴다"
+          "진입: 제목과 시각 단서로 시선을 모은다",
+          "홀드: 완성 화면을 두고 발표자가 설명한다",
+          "퇴장: 다음 장면의 질문으로 이동한다"
         ]
       },
       "transition": {
         "in": "fade",
         "out": "fade"
       },
-      "notes": "세 박자를 한 번씩 짚는다. 홀드 구간이 발표자의 시간이라는 점만 남기면 된다.",
-      "fallback": "세 박자를 세로 목록으로 세운 정지 화면."
+      "notes": "모션의 세 구간을 짚고 홀드 구간에서 말한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 보여주고, 머물고, 넘긴다을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "“진입: 제목과 시각 단서로 시선을 모은다”의 각 단계를 한 번에 하나씩 이어 보여 주어 청중이 “진입 · 홀드 · 퇴장”에 담긴 선후 관계와 다음 행동을 정확히 따라가게 한다."
     },
     {
-      "id": "04-gallery",
-      "order": 4,
+      "id": "07-templates",
+      "order": 7,
       "technique": "horizontal-gallery",
-      "pinVh": 320,
+      "pinVh": 300,
       "pin": true,
       "assets": {
         "images": [
-          "/media/gallery/plate-01.webp",
-          "/media/gallery/plate-02.webp",
-          "/media/gallery/plate-03.webp",
-          "/media/gallery/plate-04.webp",
-          "/media/gallery/plate-05.webp",
-          "/media/gallery/plate-06.webp"
+          "/media/sample-deck/07-templates/image-01.webp",
+          "/media/sample-deck/07-templates/image-02.webp",
+          "/media/sample-deck/07-templates/image-03.webp",
+          "/media/sample-deck/07-templates/image-04.webp",
+          "/media/sample-deck/07-templates/image-05.webp",
+          "/media/sample-deck/07-templates/image-06.webp"
+        ],
+        "critical": [
+          1,
+          2
+        ],
+        "imageAlt": [
+          "질문을 열어 두는 장면",
+          "수치를 함께 읽는 근거 장면",
+          "두 상태를 나란히 비교하는 장면",
+          "순서가 보이는 설명 장면",
+          "자료 문서로 범위를 확인하는 장면",
+          "결정을 돕는 선택지 비교 장면"
         ]
       },
       "copy": {
-        "kicker": "기법",
-        "title": "열둘 중 여섯",
+        "kicker": "장면의 문법",
+        "title": "24개 장면은 서로 다른 발표 일을 한다",
         "lines": [
-          "세로로 굴리면 가로로 흐른다"
+          "질문, 근거, 비교, 설명, 결정"
         ]
       },
       "transition": {
         "in": "fade",
         "out": "fade"
       },
-      "notes": "판을 하나씩 짚지 않는다. 레일이 지나가는 동안 기법이 열두 개이고 고르는 기준이 있다는 것만 말한다.",
-      "fallback": "판 여섯 장을 3열 그리드로 정지 배치한다."
+      "notes": "효과 이름이 아닌 발표 목적을 기준으로 고르는 법을 안내한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 24개 장면은 서로 다른 발표 일을 한다을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "“24개 장면은 서로 다른 발표 일을 한다”을 서로 다른 이미지 장면으로 나눠 보여 주어, “질문, 근거, 비교, 설명, 결정”에서 제시한 사례·장소 사이의 차이를 한 장씩 비교하게 한다."
     },
     {
-      "id": "05-numbers",
-      "order": 5,
-      "technique": "odometer-stats",
-      "pinVh": 220,
+      "id": "08-demo",
+      "order": 8,
+      "technique": "frame-scrub-video",
+      "pinVh": 250,
+      "pin": true,
+      "assets": {
+        "poster": "/media/sample-deck/08-demo/poster.webp",
+        "video": null,
+        "images": []
+      },
+      "copy": {
+        "kicker": "같은 원고, 다른 리듬",
+        "title": "문장이 바뀔 때 화면도 바뀐다",
+        "lines": [
+          "스크롤 위치가 장면 진행률이 된다."
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "실제 프레임은 샘플 이미지로 대체될 수 있다고 알린다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 문장이 바뀔 때 화면도 바뀐다을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "“문장이 바뀔 때 화면도 바뀐다”의 핵심 순간을 스크롤에 따라 직접 조절하게 해, “스크롤 위치가 장면 진행률이 된다”에서 말한 변화의 순서와 원인을 발표자의 속도에 맞춰 관찰하게 한다."
+    },
+    {
+      "id": "09-checklist",
+      "order": 9,
+      "technique": "option-matrix",
+      "pinVh": 210,
+      "pin": true,
+      "assets": {
+        "matrix": {
+          "options": [
+            "화면 리허설",
+            "입력 리허설",
+            "실패 리허설"
+          ],
+          "criteria": [
+            "핵심 문장",
+            "장면 이동",
+            "이미지 실패",
+            "모션 감소"
+          ],
+          "values": [
+            [
+              "큰 화면 대비",
+              "—",
+              "—"
+            ],
+            [
+              "—",
+              "휠·키보드",
+              "—"
+            ],
+            [
+              "—",
+              "—",
+              "대체 이미지"
+            ],
+            [
+              "정지 프레임",
+              "정지 프레임",
+              "정지 프레임"
+            ]
+          ]
+        }
+      },
+      "copy": {
+        "kicker": "배포 전 네 가지 확인",
+        "title": "발표 전 네 가지를 확인한다",
+        "lines": [
+          "화면 리허설",
+          "입력 리허설",
+          "실패 리허설",
+          "기준: 핵심 문장 · 휠·키보드 · 이미지 대체 · 모션 감소"
+        ]
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "notes": "각 항목을 발표 팀의 실제 체크리스트로 연결한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 읽힘 · 근거 · 조작 · 대체 화면을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "“발표 전 네 가지를 확인한다”의 선택지를 같은 기준의 표에 놓아, “화면 리허설” 조건에서 어떤 안이 적합한지 청중이 근거를 보고 판단하게 한다."
+    },
+    {
+      "id": "10-close",
+      "order": 10,
+      "technique": "kinetic-titles",
+      "pinVh": 180,
       "pin": true,
       "assets": {},
       "copy": {
-        "kicker": "숫자",
-        "title": "네 숫자로 요약된다",
+        "kicker": "다음 발표에서 한 장면만 바꿔 보세요",
+        "title": "주장 하나를 장면 하나로",
         "lines": [
-          "12 장면 기법",
-          "10 하드 게이트",
-          "1 타임라인",
-          "0 박스"
+          "완성보다 리허설이 먼저입니다."
         ]
       },
       "transition": {
         "in": "fade",
         "out": "fade"
       },
-      "notes": "네 숫자가 다 서면 한 문장으로 묶는다. 게이트가 exit-code라서 통과 못 하면 다음 단계로 못 간다는 점.",
-      "fallback": "네 숫자를 최종값 상태로 세운다."
-    },
-    {
-      "id": "06-closing",
-      "order": 6,
-      "technique": "closing-qr",
-      "pinVh": 200,
-      "pin": true,
-      "assets": {
-        "images": [
-          "/media/qr.svg"
-        ]
-      },
-      "copy": {
-        "kicker": "가져가기",
-        "title": "레포에서 바로 시작",
-        "lines": [
-          "github.com/gongnyang/awesome-html-scrolline-deck"
-        ]
-      },
-      "transition": {
-        "in": "fade",
-        "out": "fade"
-      },
-      "notes": "QR을 띄워 둔 채로 질문을 받는다. 화면을 넘기지 않는다.",
-      "fallback": "QR과 주소를 정지 상태로 함께 띄운다."
+      "notes": "질문을 받으며 스킬 저장 위치와 예제 링크를 안내한다. 발표 수치와 브랜드는 가상 예시임을 필요한 지점에서 다시 밝혀 주세요.",
+      "fallback": "모션을 줄여도 같은 핵심 주장과 근거가 정지 화면에서 읽히도록 구성한다.",
+      "purpose": "수강생이 주장 하나를 장면 하나로을 발표의 흐름에서 어디에 쓰는지 이해한다.",
+      "reason": "“주장 하나를 장면 하나로”의 핵심 문장을 순차적으로 완성해 시선을 한 주장에 모으고, “완성보다 리허설이 먼저입니다”을 기억할 만한 발표의 요지로 남긴다."
     }
-  ]
+  ],
+  "links": {
+    "site": "https://github.com/gongnyang/awesome-html-scrolline-deck"
+  }
 }

@@ -1,0 +1,141 @@
+{
+  "ok": true,
+  "gates": [
+    {
+      "id": "S0",
+      "title": "deck.json 스키마 · 에셋 경로",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 10개 · 스키마(scripts/lib/schema.mjs) 통과 · 에셋 경로 이상 없음",
+      "items": [],
+      "ms": 3
+    },
+    {
+      "id": "G1",
+      "title": "장면 모듈 4멤버 · id = 폴더명",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 모듈 10개 계약 충족",
+      "items": [],
+      "ms": 112
+    },
+    {
+      "id": "G2",
+      "title": "타임라인 총 길이 ≤ 1.001 · order 정합",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 10개 · 최장 타임라인 0.990",
+      "items": [],
+      "ms": 13
+    },
+    {
+      "id": "G3",
+      "title": "tween 문자열 안 var( ) 금지",
+      "ok": true,
+      "skipped": false,
+      "details": "scene.js 10개에 var( ) tween 없음",
+      "items": [],
+      "ms": 8
+    },
+    {
+      "id": "G4",
+      "title": "장면 · 검수 경로에 직접 스크롤 이동 금지",
+      "ok": true,
+      "skipped": false,
+      "details": "파일 14개 · 직접 스크롤 이동 없음",
+      "items": [],
+      "ms": 9
+    },
+    {
+      "id": "LINT",
+      "title": "scene.css 토큰·정의 · 선택자 스코프 · pathLength",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 10개 린트 통과 (L1·L2·L3·L4)",
+      "items": [],
+      "ms": 19
+    },
+    {
+      "id": "G5",
+      "title": "핀 거리 = pinVh% × 뷰포트 (±2px)",
+      "ok": true,
+      "skipped": false,
+      "details": "핀 장면 10개 전부 ±2px 이내",
+      "items": [],
+      "ms": 86584
+    },
+    {
+      "id": "G6",
+      "title": "홀드 55%에서 가시 요소 ≥3 · 캡처 3장",
+      "ok": true,
+      "skipped": false,
+      "details": "장면 10개 · 캡처 30장 · 최소 가시 4(02-question) · qa/",
+      "items": [],
+      "ms": 0
+    },
+    {
+      "id": "G7",
+      "title": "ArrowRight 착지 오차 ≤4px · 착지 화면 구성 완료",
+      "ok": true,
+      "skipped": false,
+      "details": "키 착지 9회 · 최대 오차 0px",
+      "items": [],
+      "ms": 18654
+    },
+    {
+      "id": "G8",
+      "title": "콘솔 오류 · 페이지 예외 0건",
+      "ok": true,
+      "skipped": false,
+      "details": "주행 중 오류 없음",
+      "items": [],
+      "ms": 0
+    },
+    {
+      "id": "G9",
+      "title": "가로 넘침 0 (1440 · 390)",
+      "ok": true,
+      "skipped": false,
+      "details": "가로 넘침 없음 (1440 · 390)",
+      "items": [],
+      "ms": 12486
+    },
+    {
+      "id": "G10",
+      "title": "모션 축소: 핀 0 · 장면마다 정지 프레임 완성",
+      "ok": true,
+      "skipped": false,
+      "details": "핀 0개 · 장면 10개 정지 프레임 완성",
+      "items": [],
+      "ms": 12074
+    },
+    {
+      "id": "G11",
+      "title": "배포 경로의 모든 이미지 로드·디코딩",
+      "ok": true,
+      "skipped": false,
+      "details": "4개 이미지 디코딩 검사 · 실패 0개",
+      "items": [],
+      "ms": 331
+    },
+    {
+      "id": "G12",
+      "title": "홀드 화면의 단색 배경 텍스트 대비",
+      "ok": true,
+      "skipped": false,
+      "details": "측정 가능한 텍스트 대비 통과 (이미지 위 텍스트는 캡처 육안 검토)",
+      "items": [],
+      "ms": 0
+    },
+    {
+      "id": "G13",
+      "title": "이미지 장면의 실제 렌더링",
+      "ok": true,
+      "skipped": false,
+      "details": "3개 이미지 장면 중 화면 미표시 0개",
+      "items": [],
+      "ms": 1
+    }
+  ],
+  "ts": "2026-09-25T00:33:45.311Z"
+}

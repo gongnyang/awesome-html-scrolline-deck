@@ -26,9 +26,14 @@ export default {
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
     root.querySelector('[data-role="line"]').textContent = (copy.lines || [])[0] || '';
-    root.querySelector('[data-role="stage"]').innerHTML = images
-      .map((src, index) => `<img class="pa__sheet" src="${src}" alt="${copy.title || ''} ${index + 1}" decoding="async" />`)
-      .join('');
+    root.querySelector('[data-role="stage"]').replaceChildren(...images.map((src, index) => {
+      const image = document.createElement('img');
+      image.className = 'pa__sheet';
+      image.src = src;
+      image.alt = `${copy.title || '자료'} ${index + 1}`;
+      image.decoding = 'async';
+      return image;
+    }));
   },
 
   build(tl) {

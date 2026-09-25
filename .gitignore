@@ -14,3 +14,5 @@ book/typeset
 book/qc
 book/refit-params.json
 /site/
+/work/
+examples/*/qa/*.jpg

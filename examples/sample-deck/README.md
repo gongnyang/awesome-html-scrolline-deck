@@ -1,46 +1,34 @@
-# Sample deck — "Scrolline Deck"
+# 한 장씩 넘기지 않는 발표
 
-A six-scene deck that explains the tool it was built with. It is also the repository's test fixture: the smoke test under `tests/` copies it, installs it, builds it and runs `check` against it, and the README hero images are `verify` captures taken from it.
+스크롤이 장면을 움직이는 발표 설계 강의
 
-| # | id | technique | what it says |
-|---|---|---|---|
-| 1 | `01-hero` | `frame-scrub-hero` | a scrollytelling deck does not cut, it advances |
-| 2 | `02-relay` | `word-relay` | one notch of the wheel is one notch of progress |
-| 3 | `03-arc` | `kinetic-titles` | every scene is enter, hold, exit |
-| 4 | `04-gallery` | `horizontal-gallery` | six of the twelve techniques, as plates |
-| 5 | `05-numbers` | `odometer-stats` | 12 techniques, 10 gates, 1 timeline, 0 boxes |
-| 6 | `06-closing` | `closing-qr` | the QR points at this repository |
+## 장면 흐름
 
-Total pin distance: 1460vh across six scenes, about nine minutes spoken. Every `pinVh` is the default its technique template ships with.
+| # | scene id | 장면 템플릿 | 발표에서 하는 일 |
+|---:|---|---|---|
+| 1 | `01-hero` | `frame-scrub-hero` | 한 장씩 넘기지 않는 발표 |
+| 2 | `02-question` | `question-reveal` | 좋은 발표는 다음 화면이 궁금해진다 |
+| 3 | `03-claim` | `kinetic-titles` | 스크롤은 내용의 순서를 공간으로 바꾼다 |
+| 4 | `04-agenda` | `agenda-path` | 문제에서 설계, 설계에서 검증까지 |
+| 5 | `05-evidence` | `annotated-chart` | 한 주장에 한 시각 근거 |
+| 6 | `06-flow` | `step-flow` | 보여주고, 머물고, 넘긴다 |
+| 7 | `07-templates` | `horizontal-gallery` | 24개 장면은 서로 다른 발표 일을 한다 |
+| 8 | `08-demo` | `frame-scrub-video` | 문장이 바뀔 때 화면도 바뀐다 |
+| 9 | `09-checklist` | `option-matrix` | 읽힘 · 근거 · 조작 · 대체 화면 |
+| 10 | `10-close` | `closing-qr` | 주장 하나를 장면 하나로 |
 
-## Run it
+각 장면에는 발표자 노트가 포함되어 있습니다. 실행 중 `N` 키를 누르면 현재 장면의 노트를 열 수 있습니다. 화살표 키나 스페이스로 장면을 이동하고, `F`로 전체 화면을 전환합니다.
 
-```bash
-npm install
-npm run dev          # http://localhost:5173
-npm run build && npm run preview
+## 실행
+
+저장소 루트에서 의존성을 설치한 뒤 다음 명령을 실행합니다.
+
+```sh
+cd examples/sample-deck
+pnpm install
+pnpm run dev
 ```
 
-## Gate it
+## 발표 자료 안내
 
-```bash
-node ../../scripts/cli.mjs check .
-node ../../scripts/cli.mjs verify .    # needs Playwright; writes qa/<id>-{30,55,85}.jpg
-```
-
-## Assets
-
-This deck ships no photography and no video. Everything under `public/` is generated from the deck tokens by two small scripts, so the example stays small and reproducible:
-
-```bash
-# 120 hero frames + poster  →  public/frames/hero/
-NODE_PATH=<dir containing sharp> node tools/make-frames.mjs
-
-# six typographic plates    →  public/media/gallery/
-NODE_PATH=<dir containing sharp> node tools/make-posters.mjs
-
-# closing QR                →  public/media/qr.svg
-node ../../scripts/cli.mjs qr --url https://github.com/gongnyang/awesome-html-scrolline-deck --out public/media/qr.svg
-```
-
-In a real deck you would cut the frames from footage instead: `scrolline frames talk.mp4 --name hero --fps 12 --width 1280 --scene 01-hero`.
+모션 감소 환경에서도 각 장면의 주장과 안내 문구가 정지 화면에서 읽히도록 구성했습니다.

@@ -13,14 +13,13 @@ jobs:
       - run: node scripts/cli.mjs check examples/sample-deck
       - run: cd examples/sample-deck && npm ci && npm run build
   verify:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: npm ci && npm i -D playwright && npx playwright install --with-deps chromium
-      - run: cd examples/sample-deck && npm ci && npm run build
-      - run: node scripts/cli.mjs verify examples/sample-deck
+      - run: npm ci && npm install --no-save --package-lock=false playwright@1.63.0 && npx playwright install --with-deps chromium
+      - run: node scripts/ci/verify-all.mjs
       - uses: actions/upload-artifact@v4
-        with: { name: qa, path: examples/sample-deck/qa }
+        if: always()
+        with: { name: qa, path: examples/*/qa }

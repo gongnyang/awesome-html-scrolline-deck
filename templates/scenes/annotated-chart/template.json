@@ -1,0 +1,48 @@
+{
+  "technique": "annotated-chart",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "chart",
+    "annotation",
+    "evidence"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "series": "Optional array of exact normalized values from 0 to 100; two to twenty points are required.",
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Supply an exact normalized series and explain the peak or turning point in line one.",
+  "description_en": "An explicitly supplied series draws on a labeled 0–100 grid; the callout anchors at its peak.",
+  "description_ko": "명시한 계열을 0–100 축에 그리고 가장 높은 값에 주석을 연결합니다.",
+  "responsive": "Keep the 0–100 scale readable; move the callout within the plot bounds on narrow screens.",
+  "reducedMotion": "Show the supplied curve or the no-data prompt and citation without drawing motion.",
+  "purpose": "선 그래프의 변곡점에 주석을 연결해 핵심 변화가 무엇인지 짚습니다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 반복 매출 비중 (%)",
+    "title": "구독 매출이 절반을 넘은 시점",
+    "lines": [
+      "해석: 구독 비중 41%에서 54%로 상승",
+      "출처: 밀물 가상 경영 데이터 · 연말 기준"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/annual-report/04-drivers"
+}

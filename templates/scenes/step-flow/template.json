@@ -1,0 +1,48 @@
+{
+  "technique": "step-flow",
+  "pinVh": 240,
+  "pin": true,
+  "tags": [
+    "process",
+    "sequence",
+    "no-assets"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
+  "notesHint": "Explain a process as a small number of ordered, connected actions.",
+  "description_en": "Numbered cards travel along a continuous connector, one step per beat.",
+  "description_ko": "순서가 중요한 과정을 연결된 단계로 풀어 설명합니다.",
+  "responsive": "Use three connected columns on desktop and a vertical numbered sequence on narrow screens.",
+  "reducedMotion": "Show the complete numbered process and connector in place.",
+  "purpose": "순서가 중요한 과정을 연결된 단계로 풀어 설명합니다.",
+  "exampleCopy": {
+    "kicker": "출발 전 세 가지만",
+    "title": "편한 신발 · 물 · 귀가 경로",
+    "lines": [
+      "날씨: 해진 뒤 기온과 비 예보 확인",
+      "이동: 귀가 교통과 막차 시간 확인",
+      "준비: 편한 신발과 마실 물 챙기기"
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/city-guide/09-packing"
+}

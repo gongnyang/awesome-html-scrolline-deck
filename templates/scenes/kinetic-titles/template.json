@@ -2,11 +2,46 @@
   "technique": "kinetic-titles",
   "pinVh": 240,
   "pin": true,
-  "tags": ["agenda", "typography", "no-assets", "structure"],
-  "slots": { "kicker": true, "title": true, "lines": { "min": 2, "max": 4 } },
-  "assets": { "frames": false, "images": { "min": 0, "max": 0 }, "video": false, "poster": false },
-  "hold": [0.3, 0.75],
+  "tags": [
+    "agenda",
+    "typography",
+    "no-assets",
+    "structure"
+  ],
+  "slots": {
+    "kicker": true,
+    "title": true,
+    "lines": {
+      "min": 2,
+      "max": 4
+    }
+  },
+  "assets": {
+    "frames": false,
+    "images": {
+      "min": 0,
+      "max": 0
+    },
+    "video": false,
+    "poster": false
+  },
+  "hold": [
+    0.3,
+    0.75
+  ],
   "notesHint": "Name the sections once, in order. The accent walks with you.",
   "description_en": "Agenda scene: two to four numbered titles throw themselves onto a diagonal that a traced light connects.",
-  "description_ko": "아젠다 장면. 번호가 붙은 제목 2~4개가 대각선 위로 날아들고, 빛이 그 선을 따라 그어지며 연결한다."
+  "description_ko": "아젠다 장면. 번호가 붙은 제목 2~4개가 대각선 위로 날아들고, 빛이 그 선을 따라 그어지며 연결한다.",
+  "responsive": "On narrow screens, remove absolute placement and the SVG rail; stack the agenda blocks in reading order.",
+  "reducedMotion": "Show every agenda block, connector and bullet in its final state without flying movement.",
+  "purpose": "아젠다 장면. 번호가 붙은 제목 2~4개가 대각선 위로 날아들고, 빛이 그 선을 따라 그어지며 연결한다.",
+  "exampleCopy": {
+    "kicker": "가상 사례 · 규모를 줄여 → 이익을 남겼다",
+    "title": "매출 성장보다 수익의 질을 바꿨다",
+    "lines": [
+      "매출은 8.3% 늘고 영업이익률은 11.9%로 개선됐습니다."
+    ]
+  },
+  "preview": "preview.webp",
+  "previewSource": "examples/annual-report/02-claim"
 }

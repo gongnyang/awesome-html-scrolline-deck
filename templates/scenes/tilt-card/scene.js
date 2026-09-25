@@ -14,14 +14,21 @@ export default {
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    root.querySelector('[data-role="lines"]').innerHTML = (copy.lines || [])
-      .map((line) => `<li>${line}</li>`).join('');
+    root.querySelector('[data-role="lines"]').replaceChildren(...(copy.lines || []).map((line) => {
+      const item = document.createElement('li');
+      item.textContent = line;
+      return item;
+    }));
 
     // Optional credit under the portrait, e.g. "assets": { "caption": "Photo: ..." }.
     root.querySelector('[data-role="caption"]').textContent = assets.caption || '';
     if (image) {
-      root.querySelector('[data-role="portrait"]')
-        .insertAdjacentHTML('afterbegin', `<img src="${image}" alt="${copy.title || ''}" decoding="async" />`);
+      const portrait = root.querySelector('[data-role="portrait"]');
+      const img = document.createElement('img');
+      img.src = image;
+      img.alt = copy.title || '';
+      img.decoding = 'async';
+      portrait.append(img);
     }
   },
 

@@ -114,6 +114,12 @@ test('L1은 토큰을 통과시키고 색 리터럴을 잡는다', () => {
   assert.equal(lintCss(scoped('color: rebeccapurple;'), '01-a').l1.length, 1);
 });
 
+test('L4는 정의되지 않은 색 토큰을 잡는다', () => {
+  const scoped = (body) => `[data-scene="01-a"] .x { ${body} }`;
+  assert.equal(lintCss(scoped('background: var(--accent);'), '01-a', new Set()).l4.length, 1);
+  assert.equal(lintCss(scoped('background: var(--accent);'), '01-a', new Set(['--accent'])).l4.length, 0);
+});
+
 test('L2는 스코프 없는 선택자를 잡고 @keyframes 안은 눈감는다', () => {
   assert.equal(lintCss('[data-scene="01-a"] .x { opacity: 1 }', '01-a').l2.length, 0);
   assert.equal(lintCss('@media (min-width: 900px) { [data-scene="01-a"] .x { opacity: 1 } }', '01-a').l2.length, 0);

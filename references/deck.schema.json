@@ -48,6 +48,10 @@
           "description": "Must equal the src/scenes/<id>/ folder name."
         },
         "order": { "type": "integer", "minimum": 1 },
+        "purpose": { "type": "string", "description": "What this scene does for the talk." },
+        "reason": { "type": "string", "description": "Why this composition and motion support the claim." },
+        "evidence": { "type": "string", "description": "Visual or factual support for the claim." },
+        "source": { "type": "string", "description": "Source, or an explicit fictional/illustrative label." },
         "technique": {
           "type": "string",
           "enum": [
@@ -62,7 +66,19 @@
             "odometer-stats",
             "wipe-transform",
             "tilt-card",
-            "closing-qr"
+            "closing-qr",
+            "question-reveal",
+            "agenda-path",
+            "chapter-transition",
+            "chart-reveal",
+            "annotated-chart",
+            "before-after",
+            "document-proof",
+            "step-flow",
+            "system-map",
+            "timeline-roadmap",
+            "map-route",
+            "option-matrix"
           ]
         },
         "pinVh": {
@@ -85,6 +101,18 @@
             "critical": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
             "poster": { "type": ["string", "null"] },
             "images": { "type": "array", "items": { "type": "string" } },
+            "imageAlt": { "type": "array", "maxItems": 10, "items": { "type": "string" }, "description": "horizontal-gallery: alt text aligned with images" },
+            "series": { "type": "array", "minItems": 2, "maxItems": 20, "items": { "type": "number", "minimum": 0, "maximum": 100 }, "description": "annotated-chart: explicit normalized values, never inferred from copy" },
+            "matrix": {
+              "type": "object",
+              "description": "option-matrix: explicit comparison values; only supplied recommendations are highlighted",
+              "properties": {
+                "options": { "type": "array", "maxItems": 3, "items": { "type": "string" } },
+                "criteria": { "type": "array", "maxItems": 3, "items": { "type": "string" } },
+                "values": { "type": "array", "maxItems": 3, "items": { "type": "array", "maxItems": 3, "items": { "type": ["string", "number", "null"] } } },
+                "recommendedIndex": { "type": "integer", "minimum": 0, "maximum": 2 }
+              }
+            },
             "video": { "type": ["string", "null"] },
             "rows": {
               "type": "array",

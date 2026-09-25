@@ -1,0 +1,11 @@
+/* agenda-path: a distinct presentation structure built around the scene's speaking job. */
+[data-scene="09-next"] .p{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
+[data-scene="09-next"] .p__head{margin-bottom:clamp(24px,5vh,60px)}
+[data-scene="09-next"] .p__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
+[data-scene="09-next"] .p__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
+[data-scene="09-next"] .p h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
+[data-scene="09-next"] .p p{color:var(--ink-muted);line-height:1.55}
+[data-scene="09-next"] .p img{display:block;max-width:100%}
+[data-scene="09-next"] .p__route{display:grid;grid-template-columns:repeat(var(--stops,4),minmax(0,1fr));gap:clamp(1rem,3vw,2.5rem);position:relative;margin-top:8vh}[data-scene="09-next"] .p__route:before{content:"";position:absolute;left:0;right:0;top:1rem;height:1px;background:var(--accent);transform:scaleX(var(--route,1));transform-origin:left}[data-scene="09-next"] .p__stop{position:relative;padding-top:3.2rem}[data-scene="09-next"] .p__stop:before{content:"";position:absolute;top:.55rem;width:.9rem;height:.9rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 .5rem var(--surface)}
+@media(max-width:720px){[data-scene="09-next"] .p{padding:36px 0;min-height:100svh}[data-scene="09-next"] .p__route{grid-template-columns:1fr 1fr;row-gap:2rem}}
+@media(prefers-reduced-motion:reduce){[data-scene="09-next"] .p *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
