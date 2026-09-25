@@ -1,18 +1,19 @@
 # Design rules
 
-A scrollytelling deck is a film strip, not a slide deck. The rules below are
-what keep twelve independently written scenes looking like one piece of work.
-Two of them are enforced by the gates; the rest are the difference between a
-deck that looks made and a deck that looks generated.
+A scrollytelling deck is a presenter-controlled sequence, not a stack of
+slides. These rules let independently authored scenes share an art direction
+while keeping a distinct visual job for each scene. Automated gates enforce
+only part of this; inspect every actual hold frame.
 
 ## No boxes
 
-The single most common way a generated deck gives itself away is the card: a
-rounded rectangle with a border, a tint and a shadow, holding text that would
-have read perfectly well on its own. None of the twelve templates uses one.
+The most common weak default is a rounded card holding text that would read
+better at projector scale without a container. Choose a container only when
+it depicts a real object or makes a data relationship clearer.
 
-Forbidden as composition: bordered panels, tinted cards, rounded containers
-around copy, a shadowed "slide" holding a bullet list, a bubble around a quote.
+Avoid bordered panels, tinted cards, shadowed slide replicas, and bubbles
+around quotes as the main composition. A document page, comparison cell, or
+physical product may still need a visible edge; explain its information job.
 
 Use instead:
 
@@ -26,8 +27,9 @@ Use instead:
 - **Light** — a bloom, a scan line, a flash. Light groups things without
   drawing a frame around them.
 
-The one place a rectangle is allowed is when the rectangle is the subject:
-`paper-assembly` shows document pages, and pages have edges.
+For charts and tables, use an explicit scale, aligned values, readable units,
+and a dominant conclusion. A styled grid alone does not make evidence legible;
+the scroll transition should disclose a change, comparison, or decision.
 
 ## Tokens only
 
@@ -66,7 +68,7 @@ Every selector in `scene.css` starts with `[data-scene="<id>"]`, including the
 ones inside `@media` blocks. In the templates the id is the `{{id}}` placeholder
 that `scrolline add` replaces with the folder name. There are no global
 selectors, no element selectors at the top level, and no `:root` blocks in a
-scene. Twelve scenes share one document; scoping is what keeps scene 09 from
+scene. Many scenes share one document; scoping is what keeps scene 09 from
 restyling scene 03.
 
 ## Typography
@@ -104,14 +106,13 @@ hard way:
 
 ## Contrast and legibility
 
-Text sits over media in six of the twelve templates. In all of them the
-legibility comes from a gradient scrim anchored to `--canvas`, running from
-fully opaque at the bottom edge to transparent around 68–78% up. Check the
-result at the hold frame, not at rest: the scrub moves the image under the text,
-so the worst contrast is usually somewhere in the middle of the pin.
+Text over media needs a subject-aware crop and a local contrast treatment,
+often a gradient scrim anchored to `--canvas`. Check every cue and the hold
+frame: the image may move behind the text during the pin, and the middle can
+be the least readable state. Keep numeric data and source labels in HTML/SVG.
 
-Interactive elements — only `closing-qr` has one — keep a visible
-`:focus-visible` outline drawn in `--accent-1`.
+Interactive elements keep a visible `:focus-visible` outline drawn in
+`--accent-1`.
 
 ## Mobile and reduced motion
 
@@ -123,14 +124,13 @@ At 720px and below: absolute positioning becomes flow, side-by-side becomes
 stacked, fixed backgrounds become inline media, and decorative connectors are
 hidden rather than shrunk.
 
-Under reduced motion, **copy has to come first in the flow**. The browser gate
-samples the top screen of each section and needs three visible elements there.
-A scene that stacks ten plates above its caption passes at rest and fails the
-gate, because the caption is now six screens down. `horizontal-gallery` pulls
-its caption up with `order: -1` and lays the plates out two across for exactly
-this reason.
+Under reduced motion, **the complete claim and its essential evidence must
+be visible without choreography**. Copy should come first in the reading flow.
+If a gallery or choice scene hides all its `[data-step]` content at rest, a
+title and source can still look populated while the actual lesson is missing.
+The browser gate rejects that case, and a person still checks the screenshot.
 
-Under reduced motion the engine skips pinning and the timelines entirely, so
-every scene must already look finished with no JavaScript having run. That is
-the same requirement as "frame 0 is composed", which is why the resting state in
-`scene.css` is always the hold frame and never the start of an entrance.
+Under reduced motion the engine skips pinning and timelines entirely, so CSS
+must produce a finished static state. The default scene CSS may be the hold
+state, or the reduced-motion override may deliberately show the final image,
+caption, and all required options. Verify both desktop and narrow screens.

@@ -20,14 +20,20 @@ export default {
     }));
   },
   build(tl, ctx) {
-        // enter — 0 .. 0.30
-        const events = [...root.querySelectorAll('.t__event')];
-    tl.fromTo(events, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.13, stagger: 0.06 }, 0.06);
-    tl.fromTo(root.querySelector('.t__rail'), { '--progress': 0 }, { '--progress': 1, duration: 0.25 }, 0);
+    const events = [...root.querySelectorAll('.t__event')];
+    const cues = (ctx.data.scene && ctx.data.scene.cues) || [];
+    // Each cue completes one quarter. The fourth settles by .45, leaving the
+    // center of the pin as a full, still chart for the speaker.
+    events.forEach((event, index) => {
+      const cue = Number(cues[index]);
+      const finish = Number.isFinite(cue) ? Math.min(0.45, Math.max(0.18, cue)) : 0.18 + index * 0.09;
+      const start = Math.max(0.04, finish - 0.10);
+      tl.fromTo(event, { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: finish - start, ease: 'power2.out' }, start);
+    });
+    const lastCue = Number(cues[events.length - 1]);
+    const railEnd = Number.isFinite(lastCue) ? Math.min(0.45, Math.max(0.18, lastCue)) : 0.45;
+    tl.fromTo(root.querySelector('.t__rail'), { '--progress': 0 }, { '--progress': 1, duration: railEnd, ease: 'none' }, 0);
     tl.to(root, { autoAlpha: 0, y: -24, duration: 0.16 }, 0.82);
-    // hold — 0.30 .. 0.75
-    // Keep the composed state readable while the presenter speaks.
-    // exit — 0.75 .. 1.00
   },
   unmount() { root = null; },
 };

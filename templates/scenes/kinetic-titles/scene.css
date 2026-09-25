@@ -1,31 +1,38 @@
 /* kinetic-titles — numbered titles fly onto a diagonal that a light traces. */
 [data-scene="{{id}}"] .kt { position: relative; isolation: isolate; width: min(1320px, calc(100% - var(--gutter, 20px) * 2)); min-height: 100svh; overflow: hidden; }
-[data-scene="{{id}}"] .kt__grid { position: absolute; inset: 0; opacity: var(--grid, 1); background-image: repeating-linear-gradient(145deg, transparent 0 76px, var(--hairline) 77px, transparent 78px), repeating-linear-gradient(35deg, transparent 0 144px, var(--hairline) 145px, transparent 146px); mask-image: linear-gradient(90deg, transparent, var(--ink) 14% 86%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, var(--ink) 14% 86%, transparent); }
+[data-scene="{{id}}"] .kt__grid { position: absolute; inset: 0; opacity: calc(var(--grid, 1) * .34); background-image: repeating-linear-gradient(145deg, transparent 0 76px, var(--hairline) 77px, transparent 78px), repeating-linear-gradient(35deg, transparent 0 144px, var(--hairline) 145px, transparent 146px); mask-image: linear-gradient(90deg, transparent, var(--ink) 14% 86%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, var(--ink) 14% 86%, transparent); }
 [data-scene="{{id}}"] .kt__light { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; overflow: visible; }
 [data-scene="{{id}}"] .kt__line { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--draw, 1)); }
 [data-scene="{{id}}"] .kt__head { fill: var(--accent-1); opacity: var(--head-on, 1); offset-distance: calc(var(--head, 1) * 100%); }
 [data-scene="{{id}}"] .kt__head-copy { position: absolute; z-index: 1; top: clamp(var(--space-xl, 32px), 7vh, var(--space-section, 88px)); left: 0; }
 [data-scene="{{id}}"] .kt__kicker { margin: 0; color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
-[data-scene="{{id}}"] .kt__heading { margin: var(--space-xs, 8px) 0 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; word-break: keep-all; }
+[data-scene="{{id}}"] .kt__heading { margin: var(--space-xs, 8px) 0 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(38px, 4.4vw, 60px); font-weight: 700; line-height: 1.06; letter-spacing: -.035em; max-width:22ch; word-break: keep-all; }
 [data-scene="{{id}}"] .kt__blocks { position: relative; z-index: 1; height: 100svh; }
 [data-scene="{{id}}"] .kt__block { position: absolute; width: min(34vw, 460px); top: calc(var(--by, 40) * 1%); left: calc(var(--bx, 20) * 1%); color: var(--ink); }
 [data-scene="{{id}}"] .kt__num { margin: 0 0 var(--space-sm, 12px); color: var(--accent-1); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .16em; }
 [data-scene="{{id}}"] .kt__block[data-accent="2"] .kt__num { color: var(--accent-2); }
 [data-scene="{{id}}"] .kt__block[data-accent="3"] .kt__num { color: var(--accent-3); }
-[data-scene="{{id}}"] .kt__title { margin: 0; max-width: 100%; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(30px, 3.6vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; word-break: keep-all; }
+[data-scene="{{id}}"] .kt__title { margin: 0; max-width: 100%; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(25px, 2.55vw, 38px); font-weight: 700; line-height: 1.12; letter-spacing: -.025em; word-break: keep-all; }
 [data-scene="{{id}}"] .kt__word { display: inline-block; white-space: pre; }
 [data-scene="{{id}}"] .kt__bullets { display: grid; gap: var(--space-xs, 8px); max-width: 46ch; margin: var(--space-md, 16px) 0 0; padding: 0; list-style: none; color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(15px, 1.3vw, var(--body-lg-size, 18px)); line-height: 1.6; word-break: keep-all; }
 [data-scene="{{id}}"] .kt__bullets li { padding-left: var(--space-sm, 12px); border-left: 1px solid var(--accent-1); clip-path: inset(0 calc((1 - var(--reveal, 1)) * 100%) 0 0); }
 [data-scene="{{id}}"] .kt__block[data-accent="2"] .kt__bullets li { border-left-color: var(--accent-2); }
 [data-scene="{{id}}"] .kt__block[data-accent="3"] .kt__bullets li { border-left-color: var(--accent-3); }
-[data-scene="{{id}}"] .kt__block.is-active .kt__title { color: var(--accent-1); }
+[data-scene="{{id}}"] .kt__block.is-active .kt__title { color: var(--accent-1); text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:.16em; }
 [data-scene="{{id}}"] .kt__block.is-active[data-accent="2"] .kt__title { color: var(--accent-2); }
 [data-scene="{{id}}"] .kt__block.is-active[data-accent="3"] .kt__title { color: var(--accent-3); }
 @media (max-width: 720px) {
-  [data-scene="{{id}}"] .kt { overflow: visible; }
-  [data-scene="{{id}}"] .kt__head-copy { position: relative; padding-top: var(--space-xl, 32px); }
-  [data-scene="{{id}}"] .kt__blocks { height: auto; display: grid; gap: var(--space-section, 88px); padding: var(--space-section, 88px) 0; }
-  [data-scene="{{id}}"] .kt__block { position: relative; inset: auto; top: auto; left: auto; width: auto; }
+  [data-scene="{{id}}"] .kt { overflow: hidden; }
+  [data-scene="{{id}}"] .kt__head-copy { position: relative; padding-top: var(--space-lg, 24px); }
+  [data-scene="{{id}}"] .kt__heading { font-size: clamp(28px, 8vw, 40px); max-width: 23ch; }
+  [data-scene="{{id}}"] .kt__blocks { height: auto; display: grid; gap: clamp(12px, 2vh, 22px); margin-top:44px; padding: clamp(42px, 5vh, 52px) 0 24px; }
+  [data-scene="{{id}}"] .kt__block { position: relative; inset: auto; top: auto; left: auto; width: auto; padding-left: 16px; border-left: 2px solid var(--accent-1); }
+  [data-scene="{{id}}"] .kt__block[data-accent="2"] { border-left-color: var(--accent-2); }
+  [data-scene="{{id}}"] .kt__block[data-accent="3"] { border-left-color: var(--accent-3); }
+  [data-scene="{{id}}"] .kt__num { margin-bottom: 3px; }
+  [data-scene="{{id}}"] .kt__title { font-size: clamp(22px, 6vw, 29px); }
+  [data-scene="{{id}}"] .kt__bullets { gap: 2px; margin-top: 5px; font-size: clamp(12px, 3.4vw, 15px); line-height: 1.35; }
+  [data-scene="{{id}}"] .kt__bullets li { padding-left: 0; border-left: 0; }
   [data-scene="{{id}}"] .kt__light { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {

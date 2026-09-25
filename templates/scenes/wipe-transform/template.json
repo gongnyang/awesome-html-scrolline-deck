@@ -3,9 +3,8 @@
   "pinVh": 300,
   "pin": true,
   "tags": [
-    "workflow",
+    "image-sequence",
     "transform",
-    "video",
     "images"
   ],
   "slots": {
@@ -19,31 +18,46 @@
   "assets": {
     "frames": false,
     "images": {
-      "min": 2,
-      "max": 5
+      "min": 3,
+      "max": 3
     },
-    "video": true,
-    "poster": true
+    "video": false,
+    "poster": false
   },
   "hold": [
     0.3,
     0.75
   ],
-  "notesHint": "Three steps, one breath each. The wipe does the connecting, not your words.",
-  "description_en": "Workflow scene: one surface becomes the next under a diagonal wipe, with a numbered caption swapping at each step.",
-  "description_ko": "작업 흐름 장면. 대각선 와이프를 따라 한 화면이 다음 화면으로 바뀌고, 단계마다 번호 붙은 캡션이 교체된다.",
-  "responsive": "Keep three surfaces layered on desktop; on narrow screens, stack caption controls above the surface area.",
-  "reducedMotion": "Show the available surfaces and current caption without wipe or scanning effects.",
-  "purpose": "작업 흐름 장면. 대각선 와이프를 따라 한 화면이 다음 화면으로 바뀌고, 단계마다 번호 붙은 캡션이 교체된다.",
+  "notesHint": "Describe the evidence shown at each state, and why the same subject changes from A through B to C.",
+  "description_en": "One subject evolves through three documented image states; scrolling links each state and its spoken caption.",
+  "description_ko": "같은 대상의 근거 이미지를 세 상태로 보여주고 스크롤로 상태 사이를 연결한다.",
+  "responsive": "Keep the subject large with the title and current state name attached. Avoid a thumbnail collage on narrow screens.",
+  "reducedMotion": "At projector width, show all three states side by side with the complete title and three labels in one static view. At phone width, stack full images and matching labels in document order.",
+  "purpose": "한 대상이 1단계에서 2단계, 3단계로 변한 시각 근거를 발표 흐름으로 설명한다.",
   "exampleCopy": {
     "kicker": "",
-    "title": "한 장면에서 세 단계로",
+    "title": "한 대상이 세 단계를 거쳐 달라졌다",
     "lines": [
-      "문제를 본다",
-      "가능성을 그린다",
-      "변화를 확인한다"
+      "01 · 설계 전: 좁은 보행로",
+      "02 · 작업 중: 통행을 유지하며 공사",
+      "03 · 개장 후: 보행로 폭을 넓힘"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "work/preview-deck/02-process"
+  "previewSource": "work/preview-deck/02-process",
+  "sceneContract": {
+    "status": "production",
+    "fit": "같은 장소·물체·설계가 3단계로 바뀌고, A→B→C의 차이가 핵심 메시지일 때.",
+    "unfit": "서로 관계없는 스톡 이미지 3장, 비교 근거 없는 전/후 이미지, 변화 설명 대신 효과에만 의존하는 이야기.",
+    "requiredInputs": "동일 대상의 순서가 검증된 이미지 3장과 각 상태의 짧은 설명 3개. 영상 자동재생을 사용하지 않는다.",
+    "scrollBeatSemantics": "스크롤은 첫 상태의 시각 근거에서 다음 상태를 닦아 열고, 각 상태에서 멈춰 설명한 뒤 마지막 결과를 남긴다.",
+    "stableHold": "각 상태가 화면을 채우고 해당 캡션에 고정된 다음에 발표자가 설명한다. 35% 키보드 착지점은 두 번째 상태와 그 캡션이 완성된 홀드다.",
+    "projectorTypeCriteria": "이미지는 전면의 70% 이상을 차지한다. 단계는 장식 번호가 아니라 구분되는 상태명으로 표시하며 주장 제목/설명은 최소화한다.",
+    "labelCriteria": "상태별 짧은 설명과 출처/촬영 시점. 숫자는 단계 식별에만 쓰고 검증되지 않은 성과 지표는 합성하지 않는다.",
+    "mobile": "이미지와 제목을 읽기 쉬운 방향으로 유지한다. 복잡한 wipe는 줄이되 현재 상태 이름을 붙여 놓는다.",
+    "reducedMotion": "프로젝터 폭에서는 세 상태와 제목·라벨을 한 화면에 정적으로 나란히 보이고, 모바일은 이미지와 라벨을 같은 순서로 쌓는다.",
+    "exampleContent": "공사 전, 공정 도중, 완공 후 같은 교차로 사진을 연결해 보행 동선이 바뀐 이유를 설명한다.",
+    "nextImplementation": "—",
+    "estimatedEffort": "—"
+  }
 }

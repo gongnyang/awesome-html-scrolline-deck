@@ -20,7 +20,7 @@
 | `city-guide` | Indigo dusk, coral sunset and lantern amber; observational Seoul travel photography | River paths, neighborhood streets, food and rest stops. Build six postcard images as separate photographs with distinct locations and subjects. |
 | `investor-pitch` | Cobalt dusk, warm brass and neighborhood cafe photography | A fictional local reservation service that helps independent cafes fill quiet hours. Show real cafe contexts, owners and nearby guests; render market and pilot figures in HTML/SVG and label them as fictional. |
 | `research-lecture` | Mist teal and pale gold; restrained urban field documentation | Seoul sidewalks, heat exposure and tree shade. Treat all example numbers as synthesized lecture data; render charts and routes from explicit values in HTML/SVG. |
-| `client-proposal` | Warm walnut, cream and leaf green; candid community architecture | A fictional neighborhood library: present condition, listening with staff and a proposed welcoming space. Label concept imagery and separate it from real project evidence. |
+| `client-proposal` | Warm walnut, cream and leaf green; candid independent-bookshop photography | A fictional neighborhood bookshop's peak-hour queue, browsing, consultation and checkout. Label generated scenes as illustrative and keep pilot figures in HTML/SVG as fictional scenarios. |
 
 ## Review checklist
 
@@ -68,9 +68,14 @@ Every image below is an original `source=generated` image. Prompts described the
 | `examples/research-lecture/public/media/research-lecture/09-implications/image-01.webp` | generated | Salt-marsh plants cluster along a tidal pool at morning. | 1600 × 900 | Young marsh plants grow beside teal tidal water. |
 | `examples/research-lecture/public/media/research-lecture/09-implications/image-02.webp` | generated | Researcher and community member observe the wetland together. | 1600 × 900 | Two people view a wetland from a low boardwalk. |
 | `examples/client-proposal/public/media/client-proposal/01-hero/hero.webp` | generated | Architect and librarian discuss a fictional neighborhood library. | 1920 × 1080 | Architect and librarian look toward a sunlit window. |
+| `examples/client-proposal/public/media/client-proposal/01-hero/hero-v2.webp` | generated | Customer proposal opens on a contemporary neighborhood store and its peak-hour queue. | 1672 × 941 | Warm retail interior, customers waiting and staff greeting them. |
+| `examples/client-proposal/public/media/client-proposal/02-challenge/peak-queue.webp` | generated | Fictional premium bookshop at after-work peak; customers wait to ask and pay, with clear text space at left. | 1672 × 941 | Customers queue at a warm-lit shop counter; AI-generated illustration for the fictional case. |
+| `examples/client-proposal/public/media/client-proposal/04-journey/discovery.webp` | generated | Customer compares books in the same fictional neighborhood shop. | 1448 × 1086 | Customer browses two books; AI-generated illustration for the fictional case. |
+| `examples/client-proposal/public/media/client-proposal/04-journey/consultation.webp` | generated | Bookseller listens to a question and points toward the right shelf. | 1448 × 1086 | Bookseller helps a customer find a shelf; AI-generated illustration for the fictional case. |
+| `examples/client-proposal/public/media/client-proposal/04-journey/checkout.webp` | generated | Customer completes a purchase as another visitor waits behind. | 1448 × 1086 | Bookseller hands a bag to a customer at the till; AI-generated illustration for the fictional case. |
 | `examples/client-proposal/public/media/client-proposal/07-impact/image-01.webp` | generated | Fictional renewed library welcomes neighbors and children. | 1600 × 900 | Visitors use a warm, open neighborhood reading room. |
 | `examples/client-proposal/public/media/client-proposal/07-impact/image-02.webp` | generated | Shared table beneath a new courtyard tree. | 1600 × 900 | Neighbors share a table in a planted courtyard. |
-| `examples/client-proposal/public/media/client-proposal/09-governance/image.webp` | generated | Librarian and architect review unmarked service routes together. | 1600 × 900 | Collaborators point to a paper plan on an oak table. |
+| `examples/client-proposal/public/media/client-proposal/09-governance/operations-v2.webp` | generated | Store manager reviews a point-of-sale terminal and handwritten operating notes, with anonymous customers in the background. | 1672 × 941 | Context image for a proposed anonymous aggregation workflow, not evidence of actual data handling. |
 
 ### Fictional spatial proposal
 
@@ -111,7 +116,6 @@ The following original images were made for scene IDs that were removed while th
 |---|---|---|---|---|
 | `examples/annual-report/public/media/annual-report/02-claim/image.webp` | generated | Dawn warehouse aisle as a metaphor for a more organized fictional operation. | 1600 × 900 | Worker walks through a quiet warehouse aisle. |
 | `examples/city-guide/public/media/city-guide/02-route/image.webp` | generated | Dusk riverside path curves toward a lantern-lit Seoul neighborhood. | 1600 × 900 | Walkers follow a riverside path toward city lights. |
-| `examples/client-proposal/public/media/client-proposal/02-challenge/image.webp` | generated | Fictional library before renewal: worn tables, shelves and a dim reading corner. | 1600 × 900 | Empty chair sits in a worn neighborhood reading room. |
 | `examples/investor-pitch/public/media/investor-pitch/02-problem/image.webp` | generated | Volunteer collects a river sample to establish a fictional water-quality problem. | 1600 × 900 | Gloved hand holds a sample bottle beside a river. |
 | `examples/product-launch/public/media/product-launch/02-problem/image.webp` | generated | Evening apartment during a brief power outage. | 1600 × 900 | Family gathers near a window during an outage. |
 | `examples/research-lecture/public/media/research-lecture/03-method/image.webp` | generated | Researcher's hands collect a water sample in a coastal wetland. | 1600 × 900 | Gloved hands hold a vial above wetland water. |

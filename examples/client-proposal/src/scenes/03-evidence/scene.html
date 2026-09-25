@@ -1,1 +1,31 @@
-<div class="a"><header class="a__head"><p class="a__kicker" data-role="kicker"></p><h2 class="a__title" data-role="title"></h2></header><div class="a__plot"><div class="a__scale" aria-hidden="true"><span>100</span><span>50</span><span>0</span></div><svg class="a__line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><p class="a__empty" data-role="empty"></p><p class="a__callout"></p></div><p class="a__source" data-role="source"></p></div>
+<div class="queue-chart">
+  <header class="queue-chart__head">
+    <div>
+      <p class="queue-chart__kicker" data-role="kicker"></p>
+      <h2 class="queue-chart__title" data-role="title"></h2>
+    </div>
+    <div class="queue-chart__metric" aria-label="피크 대기 중앙값">
+      <span class="queue-chart__metric-label">피크 대기 중앙값</span>
+      <strong data-role="wait"></strong><em>분</em>
+      <span class="queue-chart__metric-foot">13–14시 · 가상 관찰</span>
+    </div>
+  </header>
+  <div class="queue-chart__plot">
+    <div class="queue-chart__band" aria-hidden="true"><span>13시 · 최고 혼잡</span></div>
+    <div class="queue-chart__grid" aria-hidden="true"><span>100</span><span>50</span><span>0</span></div>
+    <svg class="queue-chart__svg" viewBox="0 0 1000 320" preserveAspectRatio="none" role="img" aria-label="10시부터 15시까지의 상대 혼잡 지수. 13시에 최고점에 도달한 뒤 낮아집니다.">
+      <defs>
+        <linearGradient id="queue-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".28"></stop><stop offset="1" stop-color="var(--accent)" stop-opacity=".02"></stop></linearGradient>
+        <clipPath id="queue-reveal"><rect data-role="reveal" x="0" y="0" width="1000" height="320"></rect></clipPath>
+      </defs>
+      <g clip-path="url(#queue-reveal)">
+        <path class="queue-chart__area" data-role="area"></path>
+        <path class="queue-chart__line" data-role="line"></path>
+      </g>
+      <circle class="queue-chart__pulse" data-role="pulse" r="32" aria-hidden="true"></circle>
+      <circle class="queue-chart__peak" data-role="peak" r="9"></circle>
+    </svg>
+    <div class="queue-chart__hours" data-role="hours"></div>
+  </div>
+  <footer class="queue-chart__source"><span>관찰 시뮬레이션</span><p data-role="source"></p></footer>
+</div>

@@ -1,69 +1,68 @@
-// paper-assembly — assets.images fly in from off-stage and settle into a fan.
 let root = null;
-
-// Both layouts are derived from the sheet count, so 3 or 8 images both work.
-const scatterFor = (index) => ({
-  x: `${index % 2 ? 42 : -42}vw`,
-  y: `${((index % 3) - 1) * 14}vh`,
-  r: (index % 2 ? 13 : -15) + (index % 3) * 2,
-});
-
-const fanFor = (index, total) => {
-  const t = total > 1 ? index / (total - 1) : 0.5;
-  const x = -47 + t * 94;
-  return { x, y: -7 + (Math.abs(x) / 47) * 9, r: x * 0.32 };
+const node = (tag, className, text = '') => {
+  const el = document.createElement(tag);
+  el.className = className;
+  el.textContent = text;
+  return el;
 };
 
 export default {
   id: '05-materials',
 
   mount(section, ctx) {
-    root = section.querySelector('.pa') || section;
+    root = section.querySelector('.materials') || section;
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
-    const images = (scene.assets || {}).images || [];
+    const assets = scene.assets || {};
+    const materials = copy.materials || [];
+    const images = assets.images || [];
+    const alts = assets.imageAlt || [];
 
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    root.querySelector('[data-role="line"]').textContent = (copy.lines || [])[0] || '';
-    root.querySelector('[data-role="stage"]').replaceChildren(...images.map((src, index) => {
-      const image = document.createElement('img');
-      image.className = 'pa__sheet';
-      image.src = src;
-      image.alt = `${copy.title || '자료'} ${index + 1}`;
+    root.querySelector('[data-role="note"]').textContent = copy.note || '';
+    const board = root.querySelector('[data-role="materials"]');
+    board.replaceChildren(...materials.slice(0, 4).map((material, index) => {
+      const item = node('li', 'materials__item');
+      const figure = node('figure', 'materials__figure');
+      const image = node('img', 'materials__image');
+      image.src = images[index] || '';
+      image.alt = alts[index] || `${material.name || '마감재'} 표면 이미지`;
+      image.loading = index === 0 ? 'eager' : 'lazy';
       image.decoding = 'async';
-      return image;
+      figure.append(image);
+
+      const copyBlock = node('div', 'materials__copy');
+      copyBlock.append(node('span', 'materials__number', String(material.number || String(index + 1).padStart(2, '0'))));
+      copyBlock.append(node('h3', 'materials__name', material.name || ''));
+      copyBlock.append(node('p', 'materials__reason', material.reason || ''));
+      item.append(figure, copyBlock);
+      return item;
     }));
   },
 
   build(tl) {
-    const stage = root.querySelector('[data-role="stage"]');
-    const sheets = [...root.querySelectorAll('.pa__sheet')];
-    const copy = root.querySelector('.pa__copy');
-    const line = root.querySelector('.pa__line');
-    const total = sheets.length;
+    const items = [...root.querySelectorAll('.materials__item')];
+    const images = [...root.querySelectorAll('.materials__image')];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // enter — 0 .. 0.30. Pages arrive from off-stage, one after another.
-    tl.fromTo(copy, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.08, ease: 'power2.out' }, 0);
-    sheets.forEach((sheet, index) => {
-      const from = scatterFor(index);
-      tl.fromTo(sheet,
-        { x: from.x, y: from.y, rotation: from.r, autoAlpha: 0 },
-        { x: 0, y: 0, rotation: 0, autoAlpha: 1, duration: 0.18, ease: 'power2.out' }, index * 0.015);
+    if (reduced) {
+      tl.set(items, { autoAlpha: 1, y: 0 });
+      tl.set(images, { scale: 1 });
+      return;
+    }
+
+    items.forEach((item, index) => {
+      const start = 0.035 + index * 0.075;
+      const image = item.querySelector('.materials__image');
+      tl.fromTo(item,
+        { y: 28, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.13, ease: 'power2.out' }, start);
+      tl.fromTo(image,
+        { scale: 1.08 },
+        { scale: 1, duration: 0.2, ease: 'power2.out' }, start);
     });
-
-    // hold — 0.30 .. 0.75. The stack opens into a fan you can count.
-    sheets.forEach((sheet, index) => {
-      const to = fanFor(index, total);
-      // The sheet is centred by CSS translate(-50%,-50%), which GSAP reads as
-      // xPercent/yPercent -50. Writing the fan offset alone would drop it.
-      tl.to(sheet, { xPercent: to.x - 50, yPercent: to.y - 50, rotation: to.r, duration: 0.22, ease: 'power2.inOut' }, 0.34);
-    });
-    tl.fromTo(line, { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0.5);
-
-    // exit — 0.75 .. 1.00. The whole set files away into the corner.
-    tl.to(stage, { xPercent: 42, yPercent: 44, scale: 0.2, autoAlpha: 0, duration: 0.18, ease: 'power2.in' }, 0.8);
-    tl.to([copy, line], { autoAlpha: 0, duration: 0.12, ease: 'none' }, 0.84);
+    tl.to(root, { autoAlpha: 0, y: -18, duration: 0.14, ease: 'none' }, 0.86);
   },
 
   unmount() { root = null; },

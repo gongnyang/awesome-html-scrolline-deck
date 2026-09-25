@@ -1,16 +1,21 @@
-/* document-proof: a distinct presentation structure built around the scene's speaking job. */
-[data-scene="{{id}}"] .d{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
-[data-scene="{{id}}"] .d__head{margin-bottom:clamp(24px,5vh,60px)}
-[data-scene="{{id}}"] .d__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
-[data-scene="{{id}}"] .d__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
-[data-scene="{{id}}"] .d h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
-[data-scene="{{id}}"] .d p{color:var(--ink-muted);line-height:1.55}
-[data-scene="{{id}}"] .d img{display:block;max-width:100%}
-[data-scene="{{id}}"] .d__layout{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,7vw,96px);align-items:center}
-[data-scene="{{id}}"] .d__paper{position:relative;display:grid;grid-template-columns:minmax(120px,.55fr) 1fr;align-items:center;gap:clamp(16px,3vw,40px);min-height:42vh;padding:clamp(20px,3vw,48px);background:var(--surface-raised);box-shadow:0 24px 80px var(--shadow);border:1px solid var(--line);transform:rotate(-1deg)}
-[data-scene="{{id}}"] .d__image{width:100%;max-height:28vh;object-fit:contain;filter:saturate(.72)}
-[data-scene="{{id}}"] .d__quote{margin:0;font-family:var(--font-display,inherit);font-size:clamp(22px,3.4vw,46px);line-height:1.25}
-[data-scene="{{id}}"] .d__source{margin:0;border-left:2px solid var(--accent);padding:1rem clamp(14px,2vw,28px);font:500 clamp(14px,1.3vw,18px)/1.55 var(--font-mono,monospace);overflow-wrap:anywhere}
-[data-scene="{{id}}"] .d__mark{background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
-@media(max-width:720px){[data-scene="{{id}}"] .d{padding:36px 0;min-height:100svh}[data-scene="{{id}}"] .d__layout{grid-template-columns:1fr;gap:1rem}[data-scene="{{id}}"] .d__paper{grid-template-columns:1fr;min-height:28vh}[data-scene="{{id}}"] .d__image{max-height:18vh;object-position:left center}}
-@media(prefers-reduced-motion:reduce){[data-scene="{{id}}"] .d *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+[data-scene="{{id}}"] .dp{box-sizing:border-box;width:min(1440px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;padding:clamp(44px,7vh,84px) 0;display:flex;flex-direction:column;justify-content:center;color:var(--ink)}
+[data-scene="{{id}}"] .dp__head{max-width:1180px;margin-bottom:clamp(24px,4vh,44px)}
+[data-scene="{{id}}"] .dp__kicker{margin:0 0 14px;color:var(--ink-subtle);font:600 clamp(12px,.95vw,14px)/1.2 var(--font-mono,monospace);letter-spacing:.12em;text-transform:uppercase}
+[data-scene="{{id}}"] .dp__title{max-width:20ch;margin:0;font:700 clamp(36px,5.2vw,68px)/1.04 var(--font-display,inherit);letter-spacing:-.04em;text-wrap:balance}
+[data-scene="{{id}}"] .dp__proof{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:stretch;gap:clamp(26px,5vw,72px);min-height:42svh}
+[data-scene="{{id}}"] .dp__page{position:relative;align-self:center;justify-self:center;width:min(100%,440px);max-height:52svh;margin:0;padding:12px;background:var(--surface-1);border:1px solid var(--hairline);box-shadow:0 18px 50px var(--shadow)}
+[data-scene="{{id}}"] .dp__page img{display:block;width:100%;max-height:48svh;object-fit:contain;object-position:center top}
+[data-scene="{{id}}"] .dp__page figcaption{position:absolute;right:0;bottom:0;left:0;padding:9px 12px;background:var(--canvas);color:var(--ink);font:600 14px/1.3 var(--font-mono,monospace);overflow-wrap:anywhere}
+[data-scene="{{id}}"] .dp__anchor{position:absolute;left:calc(var(--anchor-x,50)*1%);top:calc(var(--anchor-y,50)*1%);width:20px;height:20px;border:3px solid var(--canvas);border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 38%,transparent);transform:translate(-50%,-50%)}
+[data-scene="{{id}}"] .dp__excerpt{display:flex;flex-direction:column;justify-content:center;min-width:0}
+[data-scene="{{id}}"] .dp__label{margin:0 0 10px;color:var(--ink);font:650 13px/1.3 var(--font-mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+[data-scene="{{id}}"] .dp__crop{position:relative;margin:0 0 clamp(16px,3vh,28px);border-left:4px solid var(--accent);background:var(--surface-1)}
+[data-scene="{{id}}"] .dp__crop img{display:block;width:100%;max-height:18svh;object-fit:contain;object-position:left center}
+[data-scene="{{id}}"] .dp__crop figcaption{padding:5px 12px;color:var(--ink-subtle);font:500 13px/1.3 var(--font-body,inherit)}
+[data-scene="{{id}}"] .dp__quote{margin:0;color:var(--ink);font:700 clamp(24px,3vw,40px)/1.24 var(--font-display,inherit);text-wrap:pretty}
+[data-scene="{{id}}"] .dp__context{margin:clamp(12px,2vh,20px) 0 0;color:var(--ink-muted);font:500 clamp(17px,1.45vw,21px)/1.45 var(--font-body,inherit)}
+[data-scene="{{id}}"] .dp__source{margin:clamp(16px,3vh,28px) 0 0;padding-top:12px;border-top:1px solid var(--hairline);color:var(--ink-subtle);font:500 clamp(14px,1.05vw,16px)/1.45 var(--font-body,inherit);overflow-wrap:anywhere}
+[data-scene="{{id}}"] .dp__error{margin:24px 0;padding:16px 20px;border-left:4px solid var(--accent-2);background:var(--surface-1);color:var(--ink);font:650 clamp(17px,2vw,24px)/1.4 var(--font-body,inherit)}
+[data-scene="{{id}}"] .dp__error[hidden],[data-scene="{{id}}"] .dp__proof[hidden]{display:none}
+@media(max-width:720px){[data-scene="{{id}}"] .dp{justify-content:flex-start;min-height:100svh;padding:4svh 0 4svh}[data-scene="{{id}}"] .dp__title{font-size:clamp(34px,9vw,54px)}[data-scene="{{id}}"] .dp__head{margin-bottom:2svh}[data-scene="{{id}}"] .dp__proof{grid-template-columns:minmax(0,1fr);gap:18px}[data-scene="{{id}}"] .dp__page{width:min(64%,280px);max-height:23svh}[data-scene="{{id}}"] .dp__page img{max-height:21svh}[data-scene="{{id}}"] .dp__crop img{max-height:12svh}[data-scene="{{id}}"] .dp__quote{font-size:clamp(21px,6vw,30px)}[data-scene="{{id}}"] .dp__context{font-size:16px}}
+@media(prefers-reduced-motion:reduce){[data-scene="{{id}}"] .dp__proof,[data-scene="{{id}}"] .dp__page,[data-scene="{{id}}"] .dp__quote{transform:none!important;transition:none!important}}

@@ -16,6 +16,21 @@
   --surface-raised: var(--surface-2);
   --line: var(--hairline);
   --shadow: rgba(0, 0, 0, .3);
+  --image-ink: #fff;
+  --image-ink-warm: #f7f1e8;
+  --image-accent: #8ef2df;
+  --image-shadow: rgba(0, 0, 0, .72);
+  --image-dark-95: rgba(8, 12, 18, .95);
+  --image-dark-87: rgba(8, 12, 18, .87);
+  --image-dark-54: rgba(8, 12, 18, .54);
+  --image-dark-12: rgba(8, 12, 18, .12);
+  --image-dark-45: rgba(8, 12, 18, .45);
+  --image-dark-72: rgba(8, 12, 18, .72);
+  --image-dark-96: rgba(8, 12, 18, .96);
+  --image-dark-98: rgba(8, 12, 18, .98);
+  --image-line-60: rgba(255, 255, 255, .6);
+  --image-line-42: rgba(255, 255, 255, .42);
+  --image-body: #f1f7f4;
 
   /* ---------- accents: a teal stream, a tangerine sun ---------- */
   --accent-1: #43d6bd;   /* progress bar, focus ring, the water */

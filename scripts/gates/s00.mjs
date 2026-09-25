@@ -8,12 +8,15 @@ export const id = 'S0';
 export const title = 'deck.json 스키마 · 에셋 경로';
 export const needsBrowser = false;
 
-/** E의 scripts/lib/schema.mjs가 있으면 그쪽을 쓴다. 반환 모양이 제각각일 수 있어 정규화한다. */
+/** Prefer the full JSON Schema validator; the lightweight fallback is for old installs. */
 async function pickValidator() {
   try {
     const mod = await import('../lib/schema.mjs');
-    const fn = mod.validateDeck ?? mod.validate ?? mod.validateDeckJson ?? mod.default;
-    if (typeof fn === 'function') return { fn, source: 'scripts/lib/schema.mjs' };
+    if (typeof mod.validateDeck === 'function') return { fn: mod.validateDeck, source: 'scripts/lib/schema.mjs' };
+    if (typeof mod.validate === 'function') {
+      const schema = JSON.parse(fs.readFileSync(new URL('../../references/deck.schema.json', import.meta.url), 'utf8'));
+      return { fn: (deck) => mod.validate(schema, deck), source: 'scripts/lib/schema.mjs' };
+    }
   } catch { /* 아직 없다 */ }
   return { fn: fallbackValidate, source: 'gates/_schema-fallback.mjs' };
 }
@@ -56,8 +59,13 @@ export async function run(ctx) {
 
   const items = normalized.errors.slice(0, 20);
   const missing = [];
+  let cueErrors = 0;
 
   for (const scene of orderedScenes(deck)) {
+    if (Array.isArray(scene?.cues) && scene.cues.some((cue, index) => index > 0 && cue <= scene.cues[index - 1])) {
+      items.push(`${scene.id}: cues는 중복 없이 오름차순이어야 합니다`);
+      cueErrors += 1;
+    }
     const assets = scene?.assets;
     if (!assets || typeof assets !== 'object') continue;
     const wanted = [];
@@ -82,11 +90,11 @@ export async function run(ctx) {
   }
 
   items.push(...missing.slice(0, 20));
-  const ok = normalized.ok && missing.length === 0;
+  const ok = normalized.ok && missing.length === 0 && items.length === 0;
   const sceneCount = Array.isArray(deck?.scenes) ? deck.scenes.length : 0;
   const details = ok
     ? `장면 ${sceneCount}개 · 스키마(${source}) 통과 · 에셋 경로 이상 없음`
-    : `스키마 오류 ${normalized.errors.length}건, 없는 에셋 ${missing.length}건 (검증기: ${source})`;
+    : `스키마 오류 ${normalized.errors.length + cueErrors}건, 없는 에셋 ${missing.length}건 (검증기: ${source})`;
   return { ok, details, items };
 }
 

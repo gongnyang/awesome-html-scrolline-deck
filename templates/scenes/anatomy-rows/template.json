@@ -44,5 +44,20 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/product-launch/05-features"
+  "previewSource": "examples/product-launch/05-features",
+  "sceneContract": {
+    "status": "production",
+    "fit": "사진 속 2–4개 구체 부품, 장소의 특징, 물체의 구성처럼 실제 이미지에서 지목할 수 있는 정보.",
+    "unfit": "추상적 개념의 나열, 표시할 사진에 대상이 안 보임, 4개를 넘는 세부 정보.",
+    "requiredInputs": "해상도 높은 대상 사진 1장, 라벨과 한 문장 설명 2–4개, 가능하면 각 라벨에 맞춘 정규화 마커 좌표.",
+    "scrollBeatSemantics": "각 휠 구간이 하나의 이미지 표식과 그에 연결된 설명을 드러낸다. 세부를 말한 뒤 표식 간 관계가 보이도록 전체 장면을 안정시킨다.",
+    "stableHold": "대상 사진 전체와 설명이 함께 보이고, 현재 설명 대상만 색/선으로 강조된다. 멈추면 타깃과 설명이 하나의 연결선으로 대응된다.",
+    "projectorTypeCriteria": "대상 사진은 최소 장면 절반의 면적을 가진다. 설명 문장은 발표자가 말하지 않아도 핵심이 되는 짧은 문장으로 쓰고 본문 크기 이상을 유지한다.",
+    "labelCriteria": "표식은 사진의 실제 특징을 정확히 지목한다. 라벨은 두 줄 안의 짧은 이름, 설명은 한 문장. 포인트가 겹치거나 선이 글자를 관통하지 않는다.",
+    "mobile": "사진을 위에, 제목과 설명 목록을 아래에 쌓는다. 복잡한 선은 제거하되 번호/목록 순서와 라벨이 유지된다.",
+    "reducedMotion": "사진과 설명 전체를 정적으로 표시하고 모든 표식을/설명을 목록 순서로 읽게 한다.",
+    "exampleContent": "이어폰 사진에서 마이크, 버튼, 충전 단자를 하나씩 지목해 각 기능이 실제 조작에 미치는 영향을 설명한다.",
+    "nextImplementation": "—",
+    "estimatedEffort": "—"
+  }
 }

@@ -29,12 +29,12 @@
     0.3,
     0.75
   ],
-  "notesHint": "Say one sentence and keep scrolling. This scene is a breath, not a stop.",
-  "description_en": "The one unpinned technique: the section scrolls past a fixed muted clip while the copy drifts at its own rate.",
-  "description_ko": "유일한 비고정 기법. 고정된 무음 영상 위로 섹션이 지나가고, 카피가 다른 속도로 흘러간다.",
-  "responsive": "Keep the unpinned media full-bleed and center copy; narrow text width and retain the poster when motion is reduced.",
-  "reducedMotion": "Use the poster image and show the copy without drift.",
-  "purpose": "유일한 비고정 기법. 고정된 무음 영상 위로 섹션이 지나가고, 카피가 다른 속도로 흘러간다.",
+  "notesHint": "Use a muted, seekable MP4 and a matching poster. Scroll the clip as you make one contextual point, then pause on a complete frame.",
+  "description_en": "An unpinned full-bleed scene scrubs the supplied clip only when the audience scrolls; the copy settles early and the held frame stays still.",
+  "description_ko": "비고정 장면에서 휠이 무음 영상을 직접 스크럽하고, 문장은 초반에 제자리에 정착해 발표자가 멈추면 영상도 멈춥니다.",
+  "responsive": "Keep the media full-bleed and the text in a readable center column; mobile captions settle before the .55 hold.",
+  "reducedMotion": "Do not create or play video. Show the supplied poster and the complete copy as a still.",
+  "purpose": "실제 영상 프레임을 스크롤로 살펴보며 맥락 한 문장을 설명한다.",
   "exampleCopy": {
     "kicker": "가상 콘셉트 · 저녁의 도서관",
     "title": "낮엔 공부, 저녁엔 동네 거실",
@@ -43,5 +43,21 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/spatial-proposal/08-experience"
+  "previewSource": "work/template-qa-parallax/01-breath",
+  "sceneContract": {
+    "status": "production",
+    "fit": "A supplied real clip whose visual change adds context to one concise spoken sentence.",
+    "unfit": "Autoplay backgrounds, unrelated stock loops, unseekable media, or a claim that needs changing text during the hold.",
+    "requiredInputs": "A seekable muted MP4 plus a representative poster. Keep the scene to one short contextual sentence.",
+    "scrollBeatSemantics": "Scroll changes the actual video frame; when scroll stops, the clip pauses on that frame. Copy settles before the hold.",
+    "stableHold": "At .55, title and support line are completely visible and video currentTime changes only when the user scrolls.",
+    "projectorTypeCriteria": "Keep a translucent veil between every video frame and the centered copy; inspect bright and dark footage.",
+    "labelCriteria": "Copy describes a visible, relevant visual detail; do not claim the clip proves an outcome.",
+    "mobile": "Maintain full-bleed media with a bounded copy width; no negative title positioning or offscreen text.",
+    "reducedMotion": "Load the poster only and present all copy with no timed playback or drift.",
+    "exampleContent": "A short field clip illustrating how light changes along a walk; the poster is its matching held frame.",
+    "unsupportedReason": "The visual must change with scroll input and remain still without it; timed playback breaks the presenter hold.",
+    "nextImplementation": "Check that currentTime is tied to scroll and remains paused, then inspect the held frame, mobile layout, and poster fallback.",
+    "estimatedEffort": "M"
+  }
 }

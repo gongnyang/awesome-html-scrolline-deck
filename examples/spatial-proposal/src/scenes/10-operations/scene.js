@@ -2,28 +2,35 @@ let root = null;
 export default {
   id: '10-operations',
   mount(section, ctx) {
-    root = section.querySelector('.d') || section;
+    root = section.querySelector('.plan') || section;
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
-    const lines = (copy.lines || []).slice(0, 4);
+    const assets = scene.assets || {};
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    const images = (scene.assets && scene.assets.images) || [];
-    root.querySelector('.d__image').src = images[0] || (scene.assets && scene.assets.poster) || '';
-    root.querySelector('.d__image').alt = copy.title || '근거 자료';
-    root.querySelector('.d__quote').textContent = lines[0] || copy.title || '';
-    const source = root.querySelector('.d__source');
-    source.textContent = lines[1] || scene.source || '';
-    source.hidden = !source.textContent;
+    root.querySelector('[data-role="steps"]').replaceChildren(...(assets.milestones || []).slice(0, 3).map((step) => {
+      const li = document.createElement('li');
+      li.className = 'plan__step';
+      const days = document.createElement('span'); days.className = 'plan__days'; days.textContent = step.days || '';
+      const title = document.createElement('strong'); title.className = 'plan__step-title'; title.textContent = step.title || '';
+      const detail = document.createElement('span'); detail.className = 'plan__detail'; detail.textContent = step.detail || '';
+      li.append(days, title, detail);
+      return li;
+    }));
+    const image = root.querySelector('[data-role="image"]');
+    image.src = (assets.images || [])[0] || '';
+    image.alt = (assets.imageAlt || [])[0] || copy.title || '';
+    root.querySelector('[data-role="caption"]').textContent = assets.caption || (copy.lines || [])[0] || '';
+    root.querySelector('[data-role="source"]').textContent = scene.source || '';
   },
-  build(tl, ctx) {
-        // enter — 0 .. 0.30
-        tl.fromTo(root.querySelector('.d__paper'), { y: 44, rotation: -5, autoAlpha: 0 }, { y: 0, rotation: -1, autoAlpha: 1, duration: 0.2 }, 0.02);
-    tl.fromTo(root.querySelector('.d__source'), { x: 24, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.14 }, 0.22);
-
-    // hold — 0.30 .. 0.75
-    // Keep the composed state readable while the presenter speaks.
-    // exit — 0.75 .. 1.00
+  build(tl) {
+    // enter — route and architectural image assemble into a complete 90-day decision frame.
+    tl.fromTo(root.querySelector('.plan__title'), { y: 58, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .1 }, 0);
+    tl.fromTo(root.querySelector('.plan__media'), { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: .13 }, .01);
+    tl.fromTo(root.querySelector('.plan__rail-fill'), { scaleY: 0 }, { scaleY: 1, duration: .09 }, .01);
+    tl.fromTo(root.querySelector('.plan__steps'), { y: 28 }, { y: 0, duration: .06 }, .02);
+    // hold — every milestone and source is available by the speaker's central stop.
+    // exit — the final state remains legible until the next scene takes over.
   },
   unmount() { root = null; },
 };

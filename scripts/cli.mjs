@@ -67,6 +67,7 @@ Techniques
   question-reveal    agenda-path       chapter-transition chart-reveal
   annotated-chart   before-after      document-proof     step-flow
   system-map        timeline-roadmap  map-route          option-matrix
+  colorway-reveal
 
 Presenting keys: -> / Space next · <- previous · 1-9,0 jump · P auto-advance · F fullscreen · H hide cursor · N notes
 `;

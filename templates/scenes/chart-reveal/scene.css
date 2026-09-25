@@ -1,11 +1,31 @@
-/* chart-reveal: a distinct presentation structure built around the scene's speaking job. */
-[data-scene="{{id}}"] .ch{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
-[data-scene="{{id}}"] .ch__head{margin-bottom:clamp(24px,5vh,60px)}
-[data-scene="{{id}}"] .ch__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
-[data-scene="{{id}}"] .ch__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
-[data-scene="{{id}}"] .ch h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
-[data-scene="{{id}}"] .ch p{color:var(--ink-muted);line-height:1.55}
-[data-scene="{{id}}"] .ch img{display:block;max-width:100%}
-[data-scene="{{id}}"] .ch__chart{display:flex;align-items:end;gap:clamp(12px,3vw,36px);height:42vh;border-bottom:1px solid var(--ink-muted);padding:0 1rem}[data-scene="{{id}}"] .ch__bar{flex:1;min-width:12px;background:linear-gradient(180deg,var(--accent),var(--accent-2));transform-origin:bottom}[data-scene="{{id}}"] .ch__bar span{display:block;transform:translateY(-1.8em);text-align:center;font-variant-numeric:tabular-nums}[data-scene="{{id}}"] .ch__labels{display:flex;gap:clamp(12px,3vw,36px);padding:1rem}[data-scene="{{id}}"] .ch__labels span{flex:1;text-align:center;font-size:.85rem}
-@media(max-width:720px){[data-scene="{{id}}"] .ch{padding:36px 0;min-height:100svh}[data-scene="{{id}}"] .ch__chart{height:34vh}}
-@media(prefers-reduced-motion:reduce){[data-scene="{{id}}"] .ch *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* Exact values and their axis remain visible while individual marks reveal. */
+[data-scene="{{id}}"] .ch { position: relative; box-sizing: border-box; min-height: 100svh; width: min(1320px, calc(100% - var(--gutter, 20px) * 2)); margin: 0 auto; padding: clamp(48px, 8vh, 96px) 0 clamp(38px, 6vh, 72px); display: flex; flex-direction: column; justify-content: space-between; color: var(--ink); }
+[data-scene="{{id}}"] .ch__head { max-width: 1000px; }
+[data-scene="{{id}}"] .ch__kicker { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font: 600 clamp(12px, .95vw, var(--eyebrow-size, 13px)) var(--font-mono, monospace); letter-spacing: .12em; }
+[data-scene="{{id}}"] .ch__title { max-width: 18ch; margin: 0; color: var(--ink); font: 700 clamp(38px, 6vw, 76px)/1.03 var(--font-display, inherit); letter-spacing: -.035em; word-break: keep-all; text-wrap: balance; }
+[data-scene="{{id}}"] .ch__figure { position: relative; display: grid; grid-template-columns: minmax(42px, 6vw) minmax(0, 1fr); grid-template-rows: minmax(260px, 43svh) auto; margin: clamp(36px, 7vh, 76px) 0 0; }
+[data-scene="{{id}}"] .ch__scale { position: relative; grid-row: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 0 12px 14px 0; color: var(--ink-muted); font: 500 clamp(14px, 1.15vw, 16px)/1 var(--font-mono, monospace); font-variant-numeric: tabular-nums; text-align: right; }
+[data-scene="{{id}}"] .ch__plot { position: relative; display: flex; align-items: stretch; gap: clamp(18px, 4vw, 64px); isolation: isolate; border-bottom: 2px solid var(--ink-muted); border-left: 1px solid var(--hairline); }
+[data-scene="{{id}}"] .ch__plot::before,
+[data-scene="{{id}}"] .ch__plot::after { content: ''; position: absolute; z-index: -1; left: 0; right: 0; height: 1px; background: var(--hairline); }
+[data-scene="{{id}}"] .ch__plot::before { top: 33.333%; }
+[data-scene="{{id}}"] .ch__plot::after { top: 66.666%; }
+[data-scene="{{id}}"] .ch__item { position: relative; display: flex; flex: 1 1 0; align-items: flex-end; min-width: 0; height: 100%; }
+[data-scene="{{id}}"] .ch__bar { --bar-height: 0; position: relative; flex: 0 0 100%; align-self: end; min-width: 0; height: calc(var(--bar-height) * 1%); transform-origin: center bottom; background: var(--accent); border-top: 3px solid var(--accent-2); }
+[data-scene="{{id}}"] .ch__value { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%); color: var(--ink); font: 700 clamp(18px, 2vw, 26px)/1.1 var(--font-mono, monospace); font-variant-numeric: tabular-nums; white-space: nowrap; }
+[data-scene="{{id}}"] .ch__category { position: absolute; top: calc(100% + 16px); left: 50%; width: max-content; max-width: min(20vw, 220px); transform: translateX(-50%); color: var(--ink-muted); font: 600 clamp(15px, 1.4vw, 19px)/1.25 var(--font-body, inherit); text-align: center; word-break: keep-all; }
+[data-scene="{{id}}"] .ch__source { grid-column: 1 / -1; padding-top: 52px; color: var(--ink-subtle); font: 500 clamp(13px, 1vw, 15px)/1.4 var(--font-body, inherit); word-break: keep-all; }
+[data-scene="{{id}}"] .ch__source:empty { display: none; }
+@media (max-width: 720px) {
+  [data-scene="{{id}}"] .ch { min-height: 100svh; padding: 8svh 0 6svh; }
+  [data-scene="{{id}}"] .ch__title { max-width: 15ch; font-size: clamp(32px, 9vw, 56px); }
+  [data-scene="{{id}}"] .ch__figure { grid-template-columns: 40px minmax(0, 1fr); grid-template-rows: minmax(220px, 36svh) auto; margin-top: 5svh; }
+  [data-scene="{{id}}"] .ch__plot { gap: clamp(8px, 2.3vw, 18px); }
+  [data-scene="{{id}}"] .ch__scale { padding-right: 8px; font-size: 13px; }
+  [data-scene="{{id}}"] .ch__value { font-size: clamp(14px, 3.8vw, 18px); }
+  [data-scene="{{id}}"] .ch__category { top: calc(100% + 12px); max-width: 22vw; font-size: clamp(13px, 3.6vw, 16px); }
+  [data-scene="{{id}}"] .ch__source { padding-top: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scene="{{id}}"] .ch__bar { transform: none !important; }
+}

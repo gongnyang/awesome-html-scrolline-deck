@@ -1,43 +1,56 @@
 let root = null;
+
+const pointsFor = (values) => values.map((value, index) => {
+  const x = 65 + index * 174;
+  // The visible 0..100 scale occupies y=280..30 in the SVG viewBox.
+  const y = 280 - value * 2.5;
+  return [x, y];
+});
+
 export default {
   id: '03-evidence',
   mount(section, ctx) {
-    root = section.querySelector('.a') || section;
+    root = section.querySelector('.queue-chart') || section;
     const scene = ctx.data.scene || {};
-    const copy = scene.copy || {};
-    const lines = (copy.lines || []).slice(0, 4);
-    root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
-    root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    const svg = root.querySelector('.a__line');
     const values = Array.isArray(scene.assets?.series) ? scene.assets.series.map(Number) : [];
-    const valid = values.length >= 2 && values.length <= 20 && values.every((value) => Number.isFinite(value) && value >= 0 && value <= 100);
-    if (valid) {
-      const points = values.map((value, index) => [index / (values.length - 1) * 100, 100 - value]);
-      const d = points.map(([x, y], index) => `${index ? 'L' : 'M'}${x.toFixed(2)} ${y.toFixed(2)}`).join(' ');
-      svg.innerHTML = `<path d="${d}" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/><circle cx="${points.at(-1)[0].toFixed(2)}" cy="${points.at(-1)[1].toFixed(2)}" r="2" fill="currentColor"/>`;
-    } else {
-      root.querySelector('[data-role="empty"]').textContent = '데이터 계열을 assets.series에 입력하면 곡선이 나타납니다.';
-    }
-    root.querySelector('.a__callout').textContent = valid ? (lines[0] || copy.title || '') : '';
-    root.querySelector('[data-role="source"]').textContent = valid ? (lines[1] || '') : '';
-    if (valid) {
-      const peak = values.indexOf(Math.max(...values));
-      root.querySelector('.a__callout').style.setProperty('--callout-x', String(peak / (values.length - 1) * 100));
-      root.querySelector('.a__callout').style.setProperty('--callout-y', String(100 - values[peak]));
-    }
+    const safe = values.length === 6 && values.every((value) => Number.isFinite(value) && value >= 0 && value <= 100)
+      ? values : [35, 58, 82, 100, 74, 40];
+    const points = pointsFor(safe);
+    const route = points.map(([x, y], index) => `${index ? 'L' : 'M'} ${x} ${y}`).join(' ');
+    root.querySelector('[data-role="kicker"]').textContent = scene.copy?.kicker || '';
+    root.querySelector('[data-role="title"]').textContent = scene.copy?.title || '';
+    root.querySelector('[data-role="source"]').textContent = scene.copy?.lines?.[1] || '가상 현장 기록 · 관측 자료 아님';
+    root.querySelector('[data-role="wait"]').textContent = String(scene.assets?.peakWaitMinutes ?? '8.4');
+    root.querySelector('[data-role="area"]').setAttribute('d', `${route} L 935 280 L 65 280 Z`);
+    root.querySelector('[data-role="line"]').setAttribute('d', route);
+    root.querySelector('[data-role="peak"]').setAttribute('cx', String(points[3][0]));
+    root.querySelector('[data-role="peak"]').setAttribute('cy', String(points[3][1]));
+    root.querySelector('[data-role="pulse"]').setAttribute('cx', String(points[3][0]));
+    root.querySelector('[data-role="pulse"]').setAttribute('cy', String(points[3][1]));
+    root.querySelector('[data-role="hours"]').replaceChildren(...['10시','11시','12시','13시','14시','15시'].map((label) => {
+      const el = document.createElement('span');
+      el.textContent = label;
+      return el;
+    }));
   },
-  build(tl, ctx) {
-    // enter — 0 .. 0.30
-    const line = root.querySelector('.a__line');
-    if (line.querySelector('path')) tl.fromTo(line, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 0.25, ease: 'power2.out' }, 0.02);
-    tl.fromTo(root.querySelector('.a__empty'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12 }, 0.12);
-    tl.fromTo(root.querySelector('.a__callout'), { x: 24, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.14 }, 0.25);
-    tl.fromTo(root.querySelector('.a__source'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0.26);
-    tl.fromTo(root.querySelector('.a__title'), { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.12 }, 0);
-    tl.to(root, { autoAlpha: 0, duration: 0.15 }, 0.84);
-    // hold — 0.30 .. 0.75
-    // Keep the composed state readable while the presenter speaks.
-    // exit — 0.75 .. 1.00
+  build(tl) {
+    const area = root.querySelector('.queue-chart__area');
+    const reveal = root.querySelector('[data-role="reveal"]');
+    const band = root.querySelector('.queue-chart__band');
+    const peak = root.querySelector('.queue-chart__peak');
+    const pulse = root.querySelector('.queue-chart__pulse');
+    const metric = root.querySelector('.queue-chart__metric');
+    tl.fromTo(root.querySelector('.queue-chart__title'), { y: 64, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .15, ease:'power3.out' }, 0);
+    // A clipping window follows the actual six-point series. Every point and
+    // the terminal segment share one path, so the graph cannot stop early.
+    tl.fromTo(reveal, { attr: { width: 0 } }, { attr: { width: 1000 }, duration: .25, ease: 'power2.inOut' }, .03);
+    tl.fromTo(area, { autoAlpha: 0 }, { autoAlpha: 1, duration: .16 }, .09);
+    tl.fromTo(band, { scaleY: 0, autoAlpha: 0, transformOrigin: '50% 100%' }, { scaleY: 1, autoAlpha: 1, duration: .13 }, .24);
+    tl.fromTo(peak, { scale: 0, autoAlpha: 0, transformOrigin: 'center center' }, { scale: 1.1, autoAlpha: 1, duration: .08, ease:'back.out(2)' }, .27);
+    tl.to(peak, { scale: 1, duration: .05 }, .35);
+    tl.fromTo(pulse, { scale: .3, autoAlpha: .8, transformOrigin: 'center center' }, { scale: 2, autoAlpha: 0, duration: .19 }, .27);
+    tl.fromTo(metric, { y: 70, scale: .8, autoAlpha: 0, transformOrigin: 'left bottom' }, { y: 0, scale: 1, autoAlpha: 1, duration: .17, ease:'back.out(1.5)' }, .29);
+    tl.to(root, { autoAlpha: 0, duration: .14 }, .86);
   },
   unmount() { root = null; },
 };

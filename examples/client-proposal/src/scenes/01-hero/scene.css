@@ -24,3 +24,18 @@
 @media (prefers-reduced-motion: reduce) {
   [data-scene="01-hero"] .hero__veil { display: none; }
 }
+
+/* Retail reportage: the queue remains visible while the claim stays readable. */
+[data-scene="01-hero"] .hero,[data-scene="01-hero"] .hero__media { background:var(--hero-shade); }
+[data-scene="01-hero"] .hero__scrim { background: linear-gradient(180deg, transparent 18%, color-mix(in srgb, var(--hero-shade) 20%, transparent) 48%, color-mix(in srgb, var(--hero-shade) 90%, transparent) 100%); }
+[data-scene="01-hero"] .hero__copy { width: min(100% - var(--gutter) * 2, 1320px); padding-left: 0; padding-bottom: clamp(64px, 12vh, 120px); }
+[data-scene="01-hero"] .hero__title { max-width: 15ch; color: var(--hero-ink); font-size: clamp(54px, 8.3vw, 120px); letter-spacing: -.07em; }
+[data-scene="01-hero"] .hero__kicker { color: var(--hero-muted); }
+[data-scene="01-hero"] .hero__line { color: var(--hero-muted); font-size: clamp(18px, 1.65vw, 24px); max-width: 42ch; }
+@media (max-width: 720px) {
+  [data-scene="01-hero"] .hero { min-height: 100svh; }
+  [data-scene="01-hero"] .hero__media { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; }
+  [data-scene="01-hero"] .hero__scrim { inset: 0; height: auto; }
+  [data-scene="01-hero"] .hero__copy { position: absolute; bottom: 0; padding: 0 var(--gutter) 12svh; }
+  [data-scene="01-hero"] .hero__title { font-size: clamp(48px, 11vw, 72px); }
+}

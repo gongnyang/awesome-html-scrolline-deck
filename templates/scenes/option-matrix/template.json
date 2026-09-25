@@ -24,32 +24,48 @@
     "video": false,
     "poster": false,
     "matrix": {
-      "options": "Optional array of up to three column labels.",
-      "criteria": "Optional array of up to three row labels.",
-      "values": "Optional row-major array of display values; omitted cells stay blank.",
-      "recommendedIndex": "Optional zero-based option index to emphasize."
+      "options": "Required array of two or three short option labels.",
+      "criteria": "Required array of two to four comparable criteria; all supplied criteria are retained.",
+      "values": "Required row-major display values with one value or an explicit missing-data mark per cell.",
+      "recommendedIndex": "Zero-based option index to emphasize after supplying reason and source."
     }
   },
   "hold": [
     0.3,
     0.75
   ],
-  "notesHint": "Compare choices against a small set of decision criteria.",
-  "description_en": "A decision matrix reveals criteria rows and emphasizes the recommended column.",
-  "description_ko": "선택지를 같은 기준으로 비교하고 추천안의 이유를 보여줍니다.",
-  "responsive": "Preserve row and column labels while tightening table cell padding on narrow screens.",
-  "reducedMotion": "Show all supplied option values or empty placeholders in the finished matrix.",
-  "purpose": "선택지를 같은 기준으로 비교하고 추천안의 이유를 보여줍니다.",
+  "notesHint": "Read the shared criteria, compare the cells, then explain the sourced recommendation.",
+  "description_en": "A decision stage introduces each option, compares aligned criteria in sequence, then holds on the complete recommendation.",
+  "description_ko": "선택지를 차례로 소개하고 기준별 차이를 비교한 뒤 전체 근거와 추천안을 보여줍니다.",
+  "responsive": "Show the recommendation and up to three proof points; keep the full option-by-criterion table available to assistive technology.",
+  "reducedMotion": "Keep the completed recommendation, proof points, alternatives and source visible without staged motion.",
+  "purpose": "선택지를 차례로 소개하고 기준별 차이를 비교해 근거 있는 결정을 전달합니다.",
   "exampleCopy": {
-    "kicker": "2027 가상 계획 · 이사회 결정",
-    "title": "투자 순서를 함께 정합니다",
+    "kicker": "발표 검수 절차",
+    "title": "발표 전, 실전 조건을 확인한다",
     "lines": [
-      "구독 유지",
-      "물류 자동화",
-      "신규 권역",
-      "기준: 현금 투입 · 회수 기간 · 현재 근거"
+      "빌드만 확인",
+      "브라우저 자동 검증",
+      "전체 발표 리허설",
+      "기준: 화면 가독성 · 휠/키보드 진행 · 이미지/대체 화면 · 발표 흐름"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/annual-report/10-close"
+  "previewSource": "examples/sample-deck/09-checklist",
+  "sceneContract": {
+    "status": "production",
+    "fit": "최대 3개 선택지와 비교 기준 2–4개를 같은 근거로 대조할 때.",
+    "unfit": "기준이 다수이거나 근거가 일관되지 않아 행렬로 판단할 수 없을 때.",
+    "requiredInputs": "선택지 2–3개, 최대 4개 기준, 각 칸의 명시 값 또는 빈칸 표시, 출처와 추천 이유.",
+    "scrollBeatSemantics": "선택지가 차례로 올라오고 기준별 차이를 순서대로 짚은 뒤 전체 비교와 추천 이유를 안정적으로 홀드한다.",
+    "stableHold": "추천 이유와 최대 세 근거가 큰 글자로 정지 화면에 읽히고, 전체 값은 보조 기술용 표에 남는다.",
+    "projectorTypeCriteria": "행/열 머리글은 본문 수준. 모든 셀을 투사 거리에서 읽을 수 있도록 값 수와 행 수를 제한한다.",
+    "labelCriteria": "빈 값은 자료 없음으로 표시. 추천은 `recommendedIndex`만 근거로 강조하며 표식/출처를 명시.",
+    "mobile": "추천과 최대 세 근거를 먼저 보여주고 전체 값은 보조 기술용 표로 제공한다.",
+    "reducedMotion": "추천 근거와 대안 비교를 정지 상태로 보여주고 전체 선택지×기준 값을 보조 기술용 표에 제공한다.",
+    "exampleContent": "브라우저 검수 방식 세 가지를 화면 가독성·진행·이미지·발표 흐름 기준으로 비교한다.",
+    "unsupportedReason": "네 가지 기준을 넘기거나 칸마다 다른 정의를 쓰는 비교에는 적합하지 않다.",
+    "nextImplementation": "실제 발표에서는 표의 값과 추천 이유를 독립 출처로 재확인한다.",
+    "estimatedEffort": "M"
+  }
 }

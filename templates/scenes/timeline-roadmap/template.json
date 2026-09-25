@@ -29,21 +29,37 @@
     0.75
   ],
   "notesHint": "Show milestones across time and distinguish completed, current, and upcoming work.",
-  "description_en": "A horizontal timeline builds milestone by milestone with date and outcome.",
-  "description_ko": "완료·현재·예정 상태를 구분해 시간에 따른 주요 이정표를 보여줍니다.",
-  "responsive": "Use one chronological rail on desktop and a two-column event grid on narrow screens.",
-  "reducedMotion": "Show every dated event and the full timeline rail without drawing motion.",
+  "description_en": "A dated sequence of milestones reveals the change or decision at each point and stays ordered as a single chronology.",
+  "description_ko": "실제 날짜와 이정표, 각 시점에서 달라지는 내용을 하나의 시간 순서로 보여줍니다.",
+  "responsive": "Use one vertical chronology with date labels, milestone names, and consequences; preserve their association on narrow screens.",
+  "reducedMotion": "Show all dated milestones and their meanings on the complete static chronology.",
   "purpose": "완료·현재·예정 상태를 구분해 시간에 따른 주요 이정표를 보여줍니다.",
   "exampleCopy": {
-    "kicker": "가상 사례 · 분기별 실행 순서",
-    "title": "1분기 구독 개편 · 2분기 물류 통합 · 3분기 재구매 개선 · 4분기 효율 검증",
+    "kicker": "계획 로드맵 · 목표 일정은 가정",
+    "title": "검증 후 세 권역으로 확장",
     "lines": [
-      "1분기: 구독 개편: 새 요금제 적용",
-      "2분기: 물류 통합: 거점 17곳으로 조정",
-      "3분기: 유지 개선: 재구매 정책 시험",
-      "4분기: 효과 검토: 비용·반품 지표 확인"
+      "2027 Q1: 기준선 합의: 유지율과 물류비 측정 방식을 정함",
+      "2027 Q2: 자동화 시험: 세 권역에서 운영 가정을 검증",
+      "2027 Q3: 고객 유지 실험: 이탈 사유별 대응을 비교",
+      "2027 Q4: 결과 검토: 근거에 따라 다음 연도 범위를 결정"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/annual-report/07-quarters"
+  "previewSource": "examples/annual-report/07-quarters",
+  "sceneContract": {
+    "status": "production",
+    "fit": "두 날짜 이상에 걸친 실제 사건·계획·변화가 시점 순서와 결정 관계로 설명되어야 할 때.",
+    "unfit": "발표의 구간 예고(agenda-path), 인과 절차(step-flow), 날짜 없는 장소 경로(map-route)일 때.",
+    "requiredInputs": "copy.lines 2–4개, 각 `날짜/기간: 이정표: 의미 또는 결과` 형식. 계획 날짜와 확정 사건을 명확히 구별.",
+    "scrollBeatSemantics": "전체 연표의 날짜 순서를 유지하면서 하나의 이정표와 그 결과를 차례로 강조한다.",
+    "stableHold": "날짜, 이정표, 의미/결과가 모두 한 화면에 남고 앞뒤 연표의 위치도 보인다.",
+    "projectorTypeCriteria": "가장 큰 위계는 장면 주장, 날짜는 간결한 고정 라벨, 이정표는 헤드라인, 영향은 큰 본문으로 둔다.",
+    "labelCriteria": "순서는 입력에서 제공한 시간순서이며 자동 정렬이나 날짜 보정은 하지 않는다. 가정 일정은 계획으로 표기한다.",
+    "mobile": "연표를 세로로 유지해 날짜·이정표·결과를 순서대로 쌓는다.",
+    "reducedMotion": "모든 날짜와 결과를 완성된 정적 상태로 동시에 표시한다.",
+    "exampleContent": "가상의 2027년 분기 계획처럼 Q1 기준 정의부터 Q4 의사결정까지 각 시점의 구체 산출물을 제시.",
+    "unsupportedReason": "",
+    "nextImplementation": "Use only with the stated source, chronology/relationship evidence, and presenter-readable hold; review the authored instance for claim accuracy.",
+    "estimatedEffort": ""
+  }
 }

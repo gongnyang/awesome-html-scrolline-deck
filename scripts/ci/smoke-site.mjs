@@ -42,10 +42,10 @@ try {
   const gallery = await openPage(browser);
   try {
     const response = await gallery.page.goto(base, { waitUntil: 'networkidle', timeout: 60_000 });
-    const cards = await gallery.page.locator('section.deck').count();
+    const cards = await gallery.page.locator('.deck-spread').count();
     const videos = await gallery.page.locator('video').count();
     const templates = await gallery.page.locator('.template-card').count();
-    if (!response?.ok() || cards !== 8 || videos !== 3 || templates !== 24 || gallery.errors.length) {
+    if (!response?.ok() || cards !== 8 || videos !== 3 || templates < 24 || gallery.errors.length) {
       throw new Error(`Gallery failed: HTTP ${response?.status()}, ${cards} decks, ${templates} templates, ${videos} videos, ${gallery.errors.join(' | ')}`);
     }
     const brokenPreviews = await gallery.page.evaluate(async () => {
@@ -56,13 +56,23 @@ try {
       }))).filter(Boolean);
     });
     if (brokenPreviews.length) throw new Error(`Template previews failed to decode: ${brokenPreviews.join(', ')}`);
+    await gallery.page.setViewportSize({ width: 390, height: 844 });
+    const mobileLayout = await gallery.page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+    }));
+    if (mobileLayout.document > mobileLayout.viewport || mobileLayout.body > mobileLayout.viewport) {
+      throw new Error(`Gallery overflows at 390px: ${JSON.stringify(mobileLayout)}`);
+    }
+    await gallery.page.setViewportSize({ width: 1440, height: 900 });
     for (const slug of ['01-promo-shorts', '02-real-case-cheonggyecheon', '03-education-scene-design']) {
       for (const ext of ['mp4', 'jpg', 'srt']) {
         const mediaResponse = await gallery.page.request.get(`${base}videos/${slug}.${ext}`);
         if (!mediaResponse.ok()) throw new Error(`Video asset failed: ${mediaResponse.status()} videos/${slug}.${ext}`);
       }
     }
-    console.log(`PASS ${base} (8 decks, 24 template previews, 3 playable video sources)`);
+    console.log(`PASS ${base} (8 decks, ${templates} template previews, 3 playable video sources, mobile ${mobileLayout.viewport}px)`);
   } finally {
     await gallery.context.close();
   }

@@ -6,6 +6,7 @@
 import './tokens.css';
 import './base.css';
 import './engine/deck.css';
+import './story-scenes.css';
 import deck from '../data/deck.json';
 import { createDeck } from './engine/deck.js';
 

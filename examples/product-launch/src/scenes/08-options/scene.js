@@ -1,46 +1,110 @@
 let root = null;
-const node = (tag, className, text = '') => { const el = document.createElement(tag); el.className = className; el.textContent = text; return el; };
+let hasError = false;
+
+const make = (tag, className, text = '') => {
+  const element = document.createElement(tag);
+  element.className = className;
+  element.textContent = text;
+  return element;
+};
+
 export default {
   id: '08-options',
   mount(section, ctx) {
-    root = section.querySelector('.o') || section;
+    root = section.querySelector('.cw') || section;
+    hasError = false;
     const scene = ctx.data.scene || {};
     const copy = scene.copy || {};
-    const lines = (copy.lines || []).slice(0, 4);
+    const assets = scene.assets || {};
+    const images = assets.images || [];
+    const copyLines = copy.lines || [];
+    const labels = Array.isArray(assets.colorways) && assets.colorways.length === 3 ? assets.colorways : copyLines;
+    const alts = assets.imageAlt || [];
+    const visuals = root.querySelector('[data-role="visuals"]');
+    const labelHost = root.querySelector('[data-role="labels"]');
+
     root.querySelector('[data-role="kicker"]').textContent = copy.kicker || '';
     root.querySelector('[data-role="title"]').textContent = copy.title || '';
-    const matrix = scene.assets?.matrix || {};
-    const options = (matrix.options || lines.slice(0, 3).map(line => String(line).split(':')[0])).slice(0, 3);
-    const criteriaLine = lines[3] || '';
-    const criteria = (matrix.criteria || criteriaLine.split(':')[1]?.split(/[·,|]/).map(s => s.trim()).filter(Boolean) || ['기준 1', '기준 2']).slice(0, 3);
-    const values = Array.isArray(matrix.values) ? matrix.values : [];
-    const recommended = Number.isInteger(matrix.recommendedIndex) ? matrix.recommendedIndex : -1;
-    const table = root.querySelector('.o__table');
-    table.style.setProperty('--matrix-columns', String(options.length + 1));
-    const cells = [node('div', 'o__cell o__head', '기준')];
-    options.forEach((option, col) => {
-      const head = node('div', `o__cell o__head${col === recommended ? ' o__cell--recommended' : ''}`, option);
-      if (col === recommended) head.setAttribute('aria-label', `${option}, 추천안`);
-      cells.push(head);
-    });
-    criteria.forEach((criterion, row) => {
-      cells.push(node('div', 'o__cell o__criterion', criterion));
-      options.forEach((_, col) => {
-        const value = values[row]?.[col];
-        cells.push(node('div', `o__cell${col === recommended ? ' o__cell--recommended' : ''}`, value == null ? '—' : String(value)));
+    const equivalence = scene.evidence || (Array.isArray(assets.colorways) && assets.colorways.length === 3 && copyLines.length < 3 ? copyLines[0] : '세 색상과 마감은 기능과 가격이 같습니다.');
+    root.querySelector('[data-role="equivalence"]').textContent = equivalence;
+
+    const errors = [];
+    if (![1, 3].includes(images.length)) errors.push('assets.images에는 전체 triptych 한 장 또는 개별 시안 세 장이 필요합니다.');
+    if (labels.length !== 3 || labels.some((label) => typeof label !== 'string' || !label.trim())) errors.push('색상·마감 라벨을 정확히 세 개 제공해야 합니다.');
+    if (errors.length) {
+      hasError = true;
+      const alert = root.querySelector('[data-role="error"]');
+      alert.hidden = false;
+      alert.textContent = `컬러웨이 장면을 만들 수 없습니다. ${errors.join(' ')}`;
+      visuals.hidden = true;
+      labelHost.hidden = true;
+      root.querySelector('[data-role="equivalence"]').hidden = true;
+      return;
+    }
+    visuals.hidden = false;
+    labelHost.hidden = false;
+    root.querySelector('[data-role="equivalence"]').hidden = false;
+
+    if (images.length === 1) {
+      visuals.classList.add('is-triptych');
+      labelHost.classList.add('is-triptych');
+      const image = document.createElement('img');
+      image.className = 'cw__triptych';
+      image.src = images[0];
+      image.alt = alts[0] || `같은 제품의 세 가지 마감. 왼쪽 ${labels[0] || '첫 번째'}, 가운데 ${labels[1] || '두 번째'}, 오른쪽 ${labels[2] || '세 번째'}.`;
+      image.decoding = 'async';
+      image.fetchPriority = 'high';
+      const zones = labels.map((label, index) => {
+        const zone = make('div', `cw__zone${index === 0 ? ' is-active' : ''}`);
+        zone.setAttribute('aria-hidden', 'true');
+        zone.dataset.index = String(index);
+        return zone;
       });
-    });
-    table.replaceChildren(...cells);
+      visuals.replaceChildren(image, ...zones);
+    } else {
+      visuals.classList.add('is-individual');
+      labelHost.classList.add('is-individual');
+      visuals.replaceChildren(...labels.map((label, index) => {
+        const panel = make('figure', `cw__visual${index === 0 ? ' is-active' : ''}`);
+        const image = document.createElement('img');
+        image.src = images[index] || '';
+        image.alt = alts[index] || `${label} 색상과 마감`;
+        image.decoding = 'async';
+        panel.append(image, make('figcaption', 'cw__visual-label', label));
+        return panel;
+      }));
+    }
+
+    labelHost.replaceChildren(...labels.map((label, index) => {
+      const item = make('p', `cw__label${index === 0 ? ' is-active' : ''}`);
+      item.append(make('span', 'cw__label-full', label));
+      item.append(make('span', 'cw__label-short', String(label).split('·')[0].trim()));
+      const number = make('small', '', `0${index + 1}`);
+      item.append(number);
+      item.dataset.index = String(index);
+      return item;
+    }));
   },
-  build(tl, ctx) {
-        // enter — 0 .. 0.30
-        const cells = [...root.querySelectorAll('.o__cell')];
-    tl.fromTo(cells, { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.1, stagger: 0.012 }, 0.04);
-    tl.fromTo(root.querySelector('.o__title'), { x: -20, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.13 }, 0);
-    tl.to(root, { autoAlpha: 0, y: -20, duration: 0.16 }, 0.82);
-    // hold — 0.30 .. 0.75
-    // Keep the composed state readable while the presenter speaks.
-    // exit — 0.75 .. 1.00
+  build(tl) {
+    if (hasError) {
+      tl.fromTo(root.querySelector('[data-role="error"]'), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 }, 0);
+      return;
+    }
+    const labels = [...root.querySelectorAll('.cw__label')];
+    const panels = [...root.querySelectorAll('.cw__visual, .cw__zone')];
+    const all = [...labels, ...panels];
+    const setActive = (index) => all.forEach((node) => node.classList.toggle('is-active', node.dataset.index === String(index)));
+
+    // enter — the whole triptych is present; focus begins at the first finish.
+    tl.fromTo(root.querySelector('.cw__head'), { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.12 }, 0.02);
+
+    // hold — scroll shifts the clear focus across equal options; every label stays visible.
+    tl.call(setActive, [0], 0.06);
+    tl.call(setActive, [1], 0.40);
+    tl.call(setActive, [2], 0.64);
+
+    // exit — leave all finishes visible as the next scene takes the stage.
+    tl.to(root, { autoAlpha: 0, y: -16, duration: 0.12 }, 0.86);
   },
-  unmount() { root = null; },
+  unmount() { root = null; hasError = false; },
 };

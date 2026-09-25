@@ -81,7 +81,7 @@ export async function mainDrive(ctx) {
   const { qaDir } = deckPaths(ctx.dir);
   fs.mkdirSync(qaDir, { recursive: true });
   for (const file of fs.readdirSync(qaDir)) {
-    if (/-(?:30|55|85)\.jpg$/.test(file)) fs.rmSync(path.join(qaDir, file));
+    if (/-(?:30|55|85|cue-\d{2})\.jpg$/.test(file)) fs.rmSync(path.join(qaDir, file));
   }
 
   const innerHeight = await page.evaluate(() => window.innerHeight);
@@ -103,10 +103,15 @@ export async function mainDrive(ctx) {
   for (const scene of ordered) {
     const range = byId.get(scene.id);
     if (!range) continue;
-    for (const probe of PROBES) {
-      await wheelTo(page, probeY(range, probe / 100, innerHeight));
+    const cueProbes = Array.isArray(scene.cues) ? scene.cues.map((ratio, index) => ({ ratio, file: `${scene.id}-cue-${String(index + 1).padStart(2, '0')}.jpg` })) : [];
+    const probes = [
+      ...PROBES.map((probe) => ({ ratio: probe / 100, file: `${scene.id}-${probe}.jpg`, isHold: probe === 55 })),
+      ...cueProbes,
+    ].sort((a, b) => a.ratio - b.ratio);
+    for (const probe of probes) {
+      await wheelTo(page, probeY(range, probe.ratio, innerHeight));
       overflow = Math.max(overflow, await horizontalOverflow(page));
-      if (probe === 55) {
+      if (probe.isHold) {
         const entries = await collectEntries(page, scene.id);
         visible.set(scene.id, countVisible(entries, { width: 1440, height: 900 }));
         contrast.set(scene.id, await solidTextContrast(page, scene.id));
@@ -125,12 +130,12 @@ export async function mainDrive(ctx) {
           }).length;
         }, scene.id));
       }
-      const file = path.join(qaDir, `${scene.id}-${probe}.jpg`);
+      const file = path.join(qaDir, probe.file);
       try {
         await page.screenshot({ path: file, type: 'jpeg', quality: 82 });
         captures.push(file);
       } catch (err) {
-        errors.push(`capture: ${scene.id}-${probe} ${String(err?.message ?? err).split('\n')[0]}`);
+        errors.push(`capture: ${probe.file} ${String(err?.message ?? err).split('\n')[0]}`);
       }
     }
   }

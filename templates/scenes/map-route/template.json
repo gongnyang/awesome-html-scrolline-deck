@@ -22,28 +22,45 @@
       "max": 1
     },
     "video": false,
-    "poster": false
+    "poster": false,
+    "imageAlt": "Required concise alt text for the map.",
+    "marks": "One geographic [x,y] map-image coordinate per stop, in the same order as copy.lines."
   },
   "hold": [
     0.3,
     0.75
   ],
-  "notesHint": "Show a journey through places and explain why each stop matters.",
-  "description_en": "A route draws across a stylized map with numbered stops and place notes.",
-  "description_ko": "지도 위 이동 경로와 각 장소의 의미를 함께 보여줍니다.",
-  "responsive": "Retain the abstract SVG route and compact stop labels; shorten the map area on narrow screens.",
-  "reducedMotion": "Show the full route and every stop in place.",
-  "purpose": "지도 위 이동 경로와 각 장소의 의미를 함께 보여줍니다.",
+  "notesHint": "Use a properly sourced map image, map alt text, 2–4 ordered lines in `Place: reason for stop` form, and one matching [x,y] map coordinate per place.",
+  "description_en": "A credited real map holds all route stops while the supplied geographic path and one active stop are revealed.",
+  "description_ko": "출처가 명시된 실제 지도를 바탕으로 검증된 좌표의 경로와 정거장 정보를 짚습니다.",
+  "responsive": "Preserve the map and all ordered labels at narrow widths; use concise labels and avoid overlaps at the exact 390px QA viewport.",
+  "reducedMotion": "Show the complete credited map, route, numbered stops, place labels, and explanations without drawing motion.",
+  "purpose": "실제 위치와 이동 순서가 발표의 핵심일 때 지도 위에 정거장을 연결합니다.",
   "exampleCopy": {
-    "kicker": "가상 사례 · 한강에서 골목까지",
-    "title": "강변에서 골목까지 다섯 정거장",
+    "kicker": "예시 경로 · 좌표는 실제 지도에 직접 대조할 것",
+    "title": "강변에서 골목까지 세 곳",
     "lines": [
-      "17:30: 여의나루 출발 · 강변 길로 걷기",
-      "18:20: 서촌 골목 · 간판에 불이 들어오는 시간",
-      "19:10: 인왕산 자락 · 천천히 전망 보기",
-      "20:00: 광장시장 → 청계천 · 20:50 도착"
+      "여의나루: 강변 길로 걷기를 시작",
+      "서촌 골목: 간판과 골목 풍경을 관찰",
+      "인왕산 자락: 전망 지점에서 경로를 마무리"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/city-guide/02-route"
+  "previewSource": "examples/city-guide/02-route",
+  "sceneContract": {
+    "status": "production",
+    "fit": "검증 가능한 실제 지도를 바탕으로 2–4개 장소의 순서와 이동을 설명할 때.",
+    "unfit": "좌표/베이스맵이 없거나 이동 경로가 주장과 무관하거나 정밀 거리·시간이 필요한데 자료가 없을 때.",
+    "requiredInputs": "assets.images 1장, imageAlt 1개, marks에 이미지 기준 [x,y] 2–4개, copy.lines 각각 `장소: 정거장 설명`, scene.source에 지도 출처.",
+    "scrollBeatSemantics": "베이스맵은 유지되고 순서가 정해진 선을 따라가며 각 좌표의 정거장 라벨을 차례로 강조한다.",
+    "stableHold": "전체 경로, 활성 정거장, 주변 지도 문맥, 모든 장소 라벨·설명과 지도 출처가 같이 보인다.",
+    "projectorTypeCriteria": "장소는 지도 좌표에 가깝게 배치되며 labels는 베이스맵 대비가 충분하고 서로 읽을 수 있어야 한다.",
+    "labelCriteria": "좌표 기준 이미지와 라벨 순서가 일치해야 한다. 거리/시간은 검증 출처가 있을 때만 표시한다.",
+    "mobile": "축소된 지도에서도 모든 label이 겹치지 않는지 390px 브라우저 캡처로 확인; 안 되면 간결화하거나 scene 차단.",
+    "reducedMotion": "좌표 선을 완성 상태로 표시하고 장소 번호 및 설명을 정적으로 제공한다.",
+    "exampleContent": "공식 지도 타일의 출처를 밝히고 검증된 장소 좌표와 각 장소 설명을 연결하는 지역 답사.",
+    "unsupportedReason": "",
+    "nextImplementation": "For every authored scene, align supplied coordinates to the credited map projection, then check overlap and scale claims at 390px.",
+    "estimatedEffort": ""
+  }
 }

@@ -5,19 +5,40 @@
 [data-scene="{{id}}"] .wt__stage video { display: block; width: 100%; height: 100%; object-fit: cover; }
 [data-scene="{{id}}"] .wt__stage--one { z-index: 1; filter: blur(calc(var(--blur, 0) * 1px)); transform: scale(var(--scale, 1)); }
 [data-scene="{{id}}"] .wt__stage--two { z-index: 2; clip-path: polygon(0 0, calc(var(--wipe, 120) * 1%) 0, calc((var(--wipe, 120) - 16) * 1%) 100%, 0 100%); filter: brightness(var(--dim, 1)); }
-[data-scene="{{id}}"] .wt__stage--three { z-index: 3; left: auto; width: 66.666%; display: flex; align-items: flex-end; justify-content: flex-end; gap: clamp(var(--space-sm, 12px), 2vw, var(--space-xl, 32px)); padding: 0 6vw 8vh 2vw; pointer-events: none; }
-[data-scene="{{id}}"] .wt__stage--three img { width: 31%; height: auto; max-height: 74vh; object-fit: contain; transform: translateY(calc(var(--rise, 0) * 1%)) rotateX(calc(var(--tilt, 0) * 1deg)); transform-origin: bottom; }
-[data-scene="{{id}}"] .wt__scan { position: absolute; z-index: 4; inset: 0 auto 0 calc(var(--x, 108) * 1%); width: 2px; background: var(--ink); opacity: var(--scan, 0); pointer-events: none; }
-[data-scene="{{id}}"] .wt__caption { position: absolute; z-index: 5; left: clamp(var(--gutter, 20px), 6vw, var(--space-section, 88px)); bottom: clamp(150px, 21vh, 240px); width: min(30vw, 400px); }
+[data-scene="{{id}}"] .wt__stage--three { z-index: 3; pointer-events: none; }
+[data-scene="{{id}}"] .wt__stage--three img { display: block; width: 100%; height: 100%; object-fit: cover; transform: translateY(calc(var(--rise, 0) * 1%)); }
+[data-scene="{{id}}"] .wt__scrim { position: absolute; z-index: 4; inset: 0; pointer-events: none; background: linear-gradient(180deg, color-mix(in srgb, var(--canvas) 75%, transparent), transparent 42%, transparent 60%, color-mix(in srgb, var(--canvas) 78%, transparent)); }
+[data-scene="{{id}}"] .wt__scan { position: absolute; z-index: 5; inset: 0 auto 0 calc(var(--x, 108) * 1%); width: 2px; background: var(--ink); opacity: var(--scan, 0); pointer-events: none; }
+[data-scene="{{id}}"] .wt__caption { position: absolute; z-index: 6; left: clamp(var(--gutter, 20px), 6vw, var(--space-section, 88px)); bottom: clamp(72px, 14vh, 150px); width: min(38vw, 560px); }
 [data-scene="{{id}}"] .wt__num { display: block; margin-bottom: var(--space-sm, 12px); color: var(--accent-3); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(12px, 1vw, var(--mono-size, 13px)); letter-spacing: .16em; }
 [data-scene="{{id}}"] .wt__step { margin: 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 3.6vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; word-break: keep-all; }
-[data-scene="{{id}}"] .wt__title { position: absolute; z-index: 5; left: clamp(var(--gutter, 20px), 6vw, var(--space-section, 88px)); bottom: clamp(var(--space-xl, 32px), 7vh, var(--space-section, 88px)); margin: 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; word-break: keep-all; }
+[data-scene="{{id}}"] .wt__title { position: absolute; z-index: 6; top: clamp(36px, 7vh, 84px); left: clamp(var(--gutter, 20px), 6vw, var(--space-section, 88px)); max-width: 16ch; margin: 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(42px, 6vw, 80px); font-weight: 700; line-height: 1.02; letter-spacing: -.035em; word-break: keep-all; text-wrap: balance; }
+[data-scene="{{id}}"] .wt__steps { display: none; }
 @media (max-width: 720px) {
-  [data-scene="{{id}}"] .wt__stage--three { width: 100%; padding: 0 var(--gutter, 20px) 20vh 20vw; }
-  [data-scene="{{id}}"] .wt__caption { bottom: 22vh; width: 68vw; }
+  [data-scene="{{id}}"] .wt__caption { left: var(--gutter, 20px); bottom: 8vh; width: min(78vw, 480px); }
+  [data-scene="{{id}}"] .wt__title { top: 6vh; max-width: 14ch; font-size: clamp(36px, 9vw, 58px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-scene="{{id}}"] .wt__stage--two { clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%); }
-  [data-scene="{{id}}"] .wt__stage--three img { --rise: 0; --tilt: 0; }
-  [data-scene="{{id}}"] .wt__scan { display: none; }
+  [data-scene="{{id}}"] .wt { box-sizing: border-box; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto minmax(0, 1fr) auto; align-content: center; gap: clamp(14px, 2.5vw, 36px); height: auto; min-height: 100svh; overflow: visible; padding: clamp(36px, 7vh, 72px) var(--gutter, 24px); }
+  [data-scene="{{id}}"] .wt__stage,
+  [data-scene="{{id}}"] .wt__stage--three { position: relative; inset: auto; left: auto; width: 100%; height: auto; aspect-ratio: 16 / 9; clip-path: none; transform: none; filter: none; }
+  [data-scene="{{id}}"] .wt__stage--three img { position: absolute; inset: 0; width: 100%; height: 100%; transform: none; }
+  [data-scene="{{id}}"] .wt__stage--one { grid-column: 1; grid-row: 2; }
+  [data-scene="{{id}}"] .wt__stage--two { grid-column: 2; grid-row: 2; }
+  [data-scene="{{id}}"] .wt__stage--three { grid-column: 3; grid-row: 2; }
+  [data-scene="{{id}}"] .wt__title { position: relative; z-index: 6; grid-column: 1 / -1; grid-row: 1; top: auto; left: auto; max-width: 18ch; font-size: clamp(34px, 5vw, 62px); }
+  [data-scene="{{id}}"] .wt__scrim,
+  [data-scene="{{id}}"] .wt__scan,
+  [data-scene="{{id}}"] .wt__caption { display: none; }
+  [data-scene="{{id}}"] .wt__steps { grid-column: 1 / -1; grid-row: 3; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2.5vw, 36px); margin: 0; padding: 0; list-style: none; color: var(--ink-muted); font: 600 clamp(16px, 1.5vw, 20px)/1.35 var(--font-body, inherit); }
+  [data-scene="{{id}}"] .wt__steps li { display: grid; grid-template-columns: 3ch minmax(0, 1fr); gap: 12px; }
+  [data-scene="{{id}}"] .wt__step-number { color: var(--accent-2); font: 600 .9em/1.4 var(--font-mono, monospace); }
+}
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+  [data-scene="{{id}}"] .wt { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto repeat(3, auto) auto; gap: 16px; padding: 32px var(--gutter, 20px); }
+  [data-scene="{{id}}"] .wt__title { grid-column: 1; grid-row: 1; font-size: clamp(32px, 9vw, 52px); }
+  [data-scene="{{id}}"] .wt__stage--one { grid-column: 1; grid-row: 2; }
+  [data-scene="{{id}}"] .wt__stage--two { grid-column: 1; grid-row: 3; }
+  [data-scene="{{id}}"] .wt__stage--three { grid-column: 1; grid-row: 4; }
+  [data-scene="{{id}}"] .wt__steps { grid-column: 1; grid-row: 5; grid-template-columns: 1fr; }
 }

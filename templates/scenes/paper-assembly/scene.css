@@ -1,18 +1,32 @@
-/* paper-assembly — scattered pages gather into one fanned set. */
-[data-scene="{{id}}"] .pa { position: relative; width: 100%; min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
-[data-scene="{{id}}"] .pa__copy { position: absolute; z-index: 3; top: 9%; width: min(760px, calc(100% - var(--gutter, 20px) * 2)); text-align: center; pointer-events: none; }
-[data-scene="{{id}}"] .pa__kicker { margin: 0 0 var(--space-sm, 12px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
-[data-scene="{{id}}"] .pa__title { margin: 0; color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(28px, 4.2vw, var(--display-lg-size, 56px)); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; text-wrap: balance; word-break: keep-all; }
-[data-scene="{{id}}"] .pa__stage { position: relative; width: min(74vw, 880px); height: min(46vw, 548px); }
-[data-scene="{{id}}"] .pa__sheet { position: absolute; top: 50%; left: 50%; width: min(31vw, 380px); aspect-ratio: 16 / 9; object-fit: cover; transform: translate(-50%, -50%); box-shadow: 0 24px 60px color-mix(in srgb, var(--canvas) 78%, transparent); }
-[data-scene="{{id}}"] .pa__line { position: absolute; z-index: 3; bottom: 8%; width: min(760px, calc(100% - var(--gutter, 20px) * 2)); margin: 0; color: var(--ink-muted); text-align: center; font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.5; word-break: keep-all; }
-@media (max-width: 720px) {
-  [data-scene="{{id}}"] .pa__stage { width: 100%; height: 58vw; }
-  [data-scene="{{id}}"] .pa__sheet { width: 50vw; }
-  [data-scene="{{id}}"] .pa__line { bottom: 5%; }
+/* The lead page stays readable; supporting pages orbit it as traceable context. */
+[data-scene="{{id}}"] .pa{position:relative;width:100%;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;align-items:center;justify-items:center;padding:clamp(34px,6vh,72px) clamp(22px,4vw,60px);overflow:hidden;color:var(--ink)}
+[data-scene="{{id}}"] .pa__copy{position:relative;z-index:20;width:min(100%,920px);text-align:center;pointer-events:none}
+[data-scene="{{id}}"] .pa__kicker{margin:0 0 var(--space-sm,12px);color:var(--ink-subtle);font:600 clamp(11px,.95vw,13px)/1.3 var(--font-mono,ui-monospace,monospace);letter-spacing:.16em;text-transform:uppercase}
+[data-scene="{{id}}"] .pa__title{margin:0;color:var(--ink);font:700 clamp(34px,5.3vw,72px)/1.03 var(--font-display,inherit);letter-spacing:-.035em;max-width:15ch;margin-inline:auto;text-wrap:balance;word-break:keep-all}
+[data-scene="{{id}}"] .pa__stage{position:relative;width:min(90vw,1280px);height:54vh;min-height:390px;isolation:isolate}
+[data-scene="{{id}}"] .pa__sheet{position:absolute;top:50%;left:50%;margin:0;transform:translate(-50%,-50%);overflow:hidden;background:var(--surface);box-shadow:0 22px 60px color-mix(in srgb,var(--canvas) 35%,transparent);}
+[data-scene="{{id}}"] .pa__sheet--lead{z-index:10;width:min(42vw,620px);height:min(52vh,460px);border:2px solid var(--accent-1)}
+[data-scene="{{id}}"] .pa__sheet--support{z-index:1;width:min(24vw,340px);height:min(38vh,320px);border:1px solid var(--hairline)}
+[data-scene="{{id}}"] .pa__sheet img{display:block;width:100%;height:100%;object-fit:cover}
+[data-scene="{{id}}"] .pa__sheet figcaption{position:absolute;left:0;right:0;bottom:0;padding:.55rem .75rem;background:linear-gradient(transparent,color-mix(in srgb,var(--canvas) 88%,transparent));color:var(--ink);font:600 clamp(11px,.9vw,13px)/1.25 var(--font-body,inherit);text-shadow:0 1px 8px var(--canvas);}
+[data-scene="{{id}}"] .pa__sheet--lead figcaption{padding:1.1rem 1rem .8rem;font-size:clamp(14px,1.2vw,18px)}
+[data-scene="{{id}}"] .pa__line{position:relative;z-index:20;max-width:min(760px,90%);margin:0;color:var(--ink-muted);text-align:center;font:500 clamp(17px,1.6vw,21px)/1.45 var(--font-body,inherit);word-break:keep-all}
+@media(max-width:720px){
+ [data-scene="{{id}}"] .pa{min-height:100svh;padding:5svh 5vw 4svh;grid-template-rows:auto auto auto;align-content:center;gap:3svh}
+ [data-scene="{{id}}"] .pa__copy{align-self:auto}
+ [data-scene="{{id}}"] .pa__title{font-size:clamp(32px,8.5vw,50px)}
+ [data-scene="{{id}}"] .pa__stage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:10px;width:100%;height:auto;min-height:0;margin:0;overflow:visible}
+ [data-scene="{{id}}"] .pa__sheet,[data-scene="{{id}}"] .pa__sheet--lead,[data-scene="{{id}}"] .pa__sheet--support{position:relative;inset:auto;left:auto;top:auto;width:100%;height:auto;aspect-ratio:4/3;margin:0;transform:none;box-shadow:none}
+ [data-scene="{{id}}"] .pa__sheet--lead{grid-column:1/-1;aspect-ratio:16/7}
+ [data-scene="{{id}}"] .pa__sheet figcaption{padding:.4rem .5rem;font-size:clamp(10px,2.8vw,12px)}
+ [data-scene="{{id}}"] .pa__sheet--lead figcaption{font-size:clamp(12px,3.3vw,14px)}
+ [data-scene="{{id}}"] .pa__line{max-width:90%;font-size:16px}
 }
-@media (prefers-reduced-motion: reduce) {
-  [data-scene="{{id}}"] .pa { padding: var(--space-section, 88px) 0; }
-  [data-scene="{{id}}"] .pa__stage { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-xs, 8px); width: 100%; height: auto; padding: 0 var(--gutter, 20px); }
-  [data-scene="{{id}}"] .pa__sheet { position: static; width: 100%; transform: none; box-shadow: none; }
+@media(prefers-reduced-motion:reduce){
+ [data-scene="{{id}}"] .pa{display:block;min-height:100svh;padding:8svh 5vw}
+ [data-scene="{{id}}"] .pa__stage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;height:auto;min-height:0;margin:28px 0}
+ [data-scene="{{id}}"] .pa__sheet,[data-scene="{{id}}"] .pa__sheet--lead,[data-scene="{{id}}"] .pa__sheet--support{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:4/3;transform:none;box-shadow:none}
+ [data-scene="{{id}}"] .pa__sheet--lead{grid-column:1/-1;aspect-ratio:16/9}
+ [data-scene="{{id}}"] .pa__sheet figcaption{font-size:12px}
+ [data-scene="{{id}}"] .pa__line{margin:0 auto}
 }

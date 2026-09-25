@@ -188,6 +188,12 @@ export async function createDeck({
         const dur = tl.duration();
         if (dur > 1.001) {
           console.warn(`[scrolline] scene ${scene.id}: timeline duration ${dur.toFixed(3)} exceeds 1`);
+        } else if (dur < 0.999) {
+          // ScrollTrigger maps the entire timeline onto 0..1 scroll progress. A short
+          // timeline makes authored cue positions fire too late (cue / duration).
+          // Extend only the empty tail, leaving every authored tween at its position.
+          const tail = { progress: 0 };
+          tl.to(tail, { progress: 1, duration: 1 - dur, ease: 'none' }, dur);
         }
       }
     } catch (err) {
@@ -206,14 +212,14 @@ export async function createDeck({
             // silently collapses the pin distance.
             end: `+=${scene.pinVh}%`,
             pin: true,
-            scrub: 0.6,
+            scrub: true,
             animation: tl,
           })
         : ScrollTrigger.create({
             trigger: section,
             start: 'top bottom',
             end: 'bottom top',
-            scrub: 0.6,
+            scrub: true,
             animation: tl,
           });
     }
@@ -267,11 +273,39 @@ export async function createDeck({
   function goTo(index) {
     const target = mounted[Math.min(mounted.length - 1, Math.max(0, index))];
     if (!target) return;
-    const pinDistance = target.scene.pin !== false && Number(target.scene.pinVh) > 0
+    const pinDistance = !isReduced && target.scene.pin !== false && Number(target.scene.pinVh) > 0
       ? (Number(target.scene.pinVh) / 100) * window.innerHeight
       : 0;
     // Land inside the first hold frame, never mid-entrance.
     scrollToPx(lenis, startPx(target) + pinDistance * 0.35);
+  }
+
+  // Presenters need repeatable stops *inside* a scene. A scene may declare
+  // meaningful, settled scroll states; old decks retain one 35% stop per scene.
+  const cueRatios = (scene) => Array.isArray(scene.cues) && scene.cues.length
+    ? scene.cues : [0.35];
+  const hasExplicitCues = !isReduced && mounted.some((entry) => Array.isArray(entry.scene.cues) && entry.scene.cues.length);
+  const cueStops = () => mounted.flatMap((entry, sceneIndex) => {
+    const distance = !isReduced && entry.scene.pin !== false && Number(entry.scene.pinVh) > 0
+      ? (Number(entry.scene.pinVh) / 100) * window.innerHeight : 0;
+    return cueRatios(entry.scene).map((ratio, cueIndex) => ({
+      sceneIndex, cueIndex, y: startPx(entry) + distance * ratio,
+    }));
+  });
+  let keyTarget = null;
+  function stepCue(direction) {
+    const stops = cueStops();
+    if (!stops.length) return;
+    const now = performance.now();
+    // Lenis can still be animating when a presenter presses the remote again.
+    // Advance from the previous destination instead of the intermediate scrollY.
+    const from = keyTarget && now - keyTarget.at < 1500 ? keyTarget.y : window.scrollY;
+    const stop = direction > 0
+      ? stops.find((entry) => entry.y > from + 6)
+      : stops.findLast((entry) => entry.y < from - 6);
+    if (!stop) return;
+    keyTarget = { y: stop.y, at: now };
+    scrollToPx(lenis, stop.y, { duration: 0.55 });
   }
 
   /* ---------------- presenter auto-advance ---------------- */
@@ -310,10 +344,12 @@ export async function createDeck({
     if (presenterTimer && key.toLowerCase() !== 'p') stopPresenter();
     if (key === 'ArrowRight' || key === ' ' || key === 'Spacebar') {
       e.preventDefault();
-      goTo(currentIndex() + 1);
+      if (hasExplicitCues) stepCue(1);
+      else goTo(currentIndex() + 1);
     } else if (key === 'ArrowLeft') {
       e.preventDefault();
-      goTo(currentIndex() - 1);
+      if (hasExplicitCues) stepCue(-1);
+      else goTo(currentIndex() - 1);
     } else if (/^[1-9]$/.test(key)) {
       e.preventDefault();
       goTo(Number(key) - 1);
@@ -332,7 +368,7 @@ export async function createDeck({
     }
   }
 
-  const stopOnInput = () => stopPresenter();
+  const stopOnInput = () => { keyTarget = null; stopPresenter(); };
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('keydown', onKey);

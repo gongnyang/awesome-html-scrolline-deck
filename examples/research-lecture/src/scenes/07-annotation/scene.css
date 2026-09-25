@@ -8,9 +8,16 @@
 [data-scene="07-annotation"] .a img{display:block;max-width:100%}
 [data-scene="07-annotation"] .a__plot{height:44vh;position:relative;margin-left:2.5rem;border-left:1px solid var(--line);border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0 24%,var(--line) 24.2% 24.5%)}
 [data-scene="07-annotation"] .a__scale{position:absolute;inset:0 auto 0 -2.5rem;display:flex;flex-direction:column;justify-content:space-between;width:2rem;color:var(--ink-subtle);font:500 .68rem var(--font-mono,monospace);text-align:right}
+[data-scene="07-annotation"] .a__unit{position:absolute;z-index:2;left:0;top:-1.7rem;color:var(--ink-subtle);font:500 .72rem var(--font-mono,monospace)}
 [data-scene="07-annotation"] .a__line{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-[data-scene="07-annotation"] .a__callout{position:absolute;left:clamp(4%,calc(var(--callout-x,60)*1%),88%);top:clamp(12%,calc(var(--callout-y,30)*1%),85%);max-width:min(15rem,45%);transform:translate(-50%,-100%);border-left:2px solid var(--accent);padding:.5rem 1rem;background:var(--surface);color:var(--ink);box-shadow:0 8px 28px var(--shadow)}
+[data-scene="07-annotation"] .a__dots{position:absolute;inset:0;pointer-events:none}
+[data-scene="07-annotation"] .a__dots i{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--canvas);border:3px solid var(--accent);transform:translate(-50%,-50%);box-shadow:0 0 0 3px var(--canvas)}
+[data-scene="07-annotation"] .a__dots i.is-selected{width:17px;height:17px;background:var(--accent);box-shadow:0 0 0 5px var(--canvas),0 0 0 7px var(--accent)}
+[data-scene="07-annotation"] .a__times{position:absolute;left:0;right:0;top:calc(100% + .45rem);display:flex;justify-content:space-between;color:var(--ink-subtle);font:500 .72rem var(--font-mono,monospace);font-variant-numeric:tabular-nums}
+[data-scene="07-annotation"] .a__times span{white-space:nowrap}
+[data-scene="07-annotation"] .a__callout{position:absolute;left:0;top:clamp(12%,calc(var(--callout-y,30)*1%),85%);max-width:min(15rem,45%);transform:translate(0,-100%);border-left:2px solid var(--accent);padding:.5rem 1rem;background:var(--surface);color:var(--ink);box-shadow:0 8px 28px var(--shadow)}
 [data-scene="07-annotation"] .a__empty{position:absolute;left:50%;top:50%;max-width:28rem;margin:0;padding:1rem 1.2rem;transform:translate(-50%,-50%);border:1px dashed var(--line);background:var(--surface);color:var(--ink-muted);text-align:center}
-[data-scene="07-annotation"] .a__source{margin:var(--space-sm,12px) 0 0 2.5rem;color:var(--ink-subtle);font:500 .75rem var(--font-mono,monospace)}
-@media(max-width:720px){[data-scene="07-annotation"] .a{padding:36px 0;min-height:100svh}[data-scene="07-annotation"] .a__plot{height:35vh}[data-scene="07-annotation"] .a__callout{max-width:60%;font-size:.8rem}[data-scene="07-annotation"] .a__source{overflow-wrap:anywhere}}
+[data-scene="07-annotation"] .a__empty[hidden]{display:none}
+[data-scene="07-annotation"] .a__source{margin:2rem 0 0 2.5rem;color:var(--ink-subtle);font:500 .75rem var(--font-mono,monospace)}
+@media(max-width:720px){[data-scene="07-annotation"] .a{padding:36px 0;min-height:100svh}[data-scene="07-annotation"] .a__plot{height:35vh}[data-scene="07-annotation"] .a__callout{max-width:60%;font-size:.8rem}[data-scene="07-annotation"] .a__source{overflow-wrap:anywhere}[data-scene="07-annotation"] .a__times{font-size:.62rem}}
 @media(prefers-reduced-motion:reduce){[data-scene="07-annotation"] .a *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}[data-scene="07-annotation"] .a__line path{stroke-dashoffset:0}}

@@ -1,28 +1,58 @@
-# Authoring workflow
+# Scrollytelling workflow
 
-## Intake and thesis
+## Frame the talk
 
-Record audience, purpose (pitch, teach, report, guide, propose), duration, one-sentence thesis, available evidence, visual constraints, venue/screen, and desired audience action. When evidence is missing, use a clearly labeled illustrative example instead of inventing a factual claim. A presenter should be able to say the thesis aloud in one breath.
+Capture the audience, purpose, duration, one-sentence thesis, available evidence, visual constraints, venue/screen, and intended audience action or question. If a missing detail would not change the story, make a sensible default. Never invent a factual claim or number. Mark illustrative material clearly.
 
-## Storyboard before implementation
+Plan spoken beats, not a slide count. A beat is one idea that the presenter can explain while the audience studies a composed visual state. The number and length of beats come from the argument and rehearsal, not a fixed template quota.
 
-Write one row per scene: `id | narrative job | claim spoken aloud | visual evidence | template and why | motion and why | asset/source | hold frame | speaker note`. Each scene makes one point and the visual supports it. The opening earns attention with a topic-specific visual event; subsequent beats establish the problem, explanation/evidence, consequence, and action. A lecture can substitute a question, demonstration, and comprehension checkpoint for a pitch's ask.
+## Storyboard each scroll
 
-Choose by semantic job rather than by filling a quota of techniques. Use an image when it shows a product, place, person, scale, atmosphere, or change that text cannot convey as well. Use HTML/SVG when exact numbers, labels, relationships, or maps must remain true and readable. A technique belongs in the storyboard only if its hold frame can support the spoken claim.
+Create one row for each narrative beat:
 
-## Motion decisions
+`id | spoken claim | what is known on entry | visual proof | scroll changes | stable hold | hand-off | source/caveat | speaker note`
 
-The first 1–2 scenes may use aggressive scale, depth, masked image reveals, frame scrubbing, kinetic type, and layered parallax. Make each opening distinctive to its subject. The strongest effect should land on a legible completed frame rather than run continuously while the presenter speaks. Later effects should reveal order, expose detail, compare alternatives, or move between sections. Record that job in the storyboard; if an effect has no job, simplify it.
+For every row:
 
-Do not encode essential information solely in animation. The static and reduced-motion state must show the claim and evidence. Scroll progress is audience/presenter controlled, so the deck must not depend on timed autoplay to make its point.
+1. State what question this beat answers or raises, and how it advances the thesis.
+2. Describe the entering frame. When it follows another scene, carry one visual or conceptual element forward where that helps the audience connect the ideas.
+3. Name the scroll action and its information consequence: reveal a feature, move closer, expose a layer, trace a route, change scale, align two states, or bring labels into view. If the text and image would communicate identically without scrolling, the scene needs a different visual idea.
+4. Define the composed hold: the spoken claim and the evidence that stay visible while the presenter talks. The 35% keyboard landing must be a valid hold.
+5. Describe the exit or hand-off. A scene transition should resolve or deliberately change the visual story rather than simply uncover the next card.
+6. Include spoken notes, source attribution, and caveats. Notes supplement the screen; they do not carry required audience information.
 
-## Build loop
+The hold is a stable visual state controlled by the presenter. It may be a single key frame in a scrubbed film, a settled diagram, or a completed reveal. It is not empty space in a timeline, and the audience must not need to keep scrolling while the presenter speaks.
 
-1. Define deck art direction: typography, palette, image language, texture, and opening motion. Deliberately differ from the seven showcase decks when the new topic calls for it.
-2. Select templates from `techniques.md`, draft copy and notes, and list every needed image/diagram. Generate or source assets before finalizing layouts.
-3. Scaffold with the CLI, populate `deck.json`, and tune each scene's CSS and GSAP choreography. Keep scene-local selectors and token-driven colors.
-4. Run static check, strict browser verify, inspect 30/55/85 captures, revise, and repeat. Inspect actual production subpath after publishing.
+## Route the visual form
 
-## Why these choices
+Use the scene suitability contract and failure register in [scene-ledger.md](scene-ledger.md) before selecting a template. Match the relationship in the content to the visual grammar: spatial parts need a spatial image, change needs aligned states, order needs a route or trace, and measured evidence needs a truthful chart.
 
-An [experimental comparison of presentation structures](https://pure.psu.edu/en/publications/assertion-evidence-slides-appear-to-lead-to-better-comprehension--2/) found improved comprehension and recall for a sentence claim supported by visual evidence in its technical-teaching setting. This informs the claim/evidence storyboard; it does not require every scene to look like a slide. [ScrollyVis research](https://arxiv.org/abs/2207.03616) demonstrates guided narratives combining media and specialized visuals, supporting a varied authoring grammar. The number 24 is a requested coverage target, not an empirical optimum.
+Images carry place, material, scale, people, and visible change. Use original or sourced images wherever they carry more information than generic decoration. Use HTML/SVG for exact values, annotation, labels, routes, and comparisons. Keep precise information editable and accessible. Do not put charts, words, logos, or fake data into generated image pixels.
+
+Design one dominant focal point per scene. The typography should identify the claim first, then provide concise labels, values, source, or caveat. Remove copy or move it to a later beat when it weakens the focal point. A grid of rounded text cards is not a default scene grammar.
+
+Make the main claim, meaningful image, or decisive value visible at headline scale within the first second of the first one or two scenes. Treat this as the opening hook; decorative movement must not delay it.
+
+Treat existing scene templates as mechanisms, not mandated layouts. If no supported type fits the relationship, document the gap in the ledger and create an intentional bespoke scene only if it meets the same contract. Do not publish an unreviewed experimental type as production-ready.
+
+## Pace the scroll
+
+Scroll progress changes the visual state and controls the release of information; it does not autoplay the argument. Motion is justified when it reveals order, cause, detail, comparison, or a change of scale/focus. Do not use “boxes appear one after another” as a default beat: name the evidence or relationship that becomes understandable at each point. The first one or two scenes establish a strong hook; later scenes alternate purposeful reveals, calm holds, and brief transitions.
+
+The engine supplies a normalized timeline from 0 to 1, with a common entrance zone, hold zone, and exit zone. These zones help authoring but do not force a visible fade on every scene. Image scrubbing and other continuous changes may span the timeline only when scroll position makes the speaker's explanation more precise. Keep a readable landing near 35%, a stable region for speaking, and a deliberate hand-off.
+
+Choose pin distance according to the amount of spoken explanation and the precision required to operate the effect. There is no empirically established universal distance, timing, font scale, or number of scenes. Do not depend on an exact wheel notch, continuous scroll, autoplay, hover, or color alone to communicate meaning.
+
+## Build and revise
+
+1. Choose a coherent deck style: display and reading type, palette, image treatment, density, and a motif that can evolve with the story. Style sets express a visual identity and contrast/scale intent, not a fixed layout for every scene.
+2. Finish the storyboard, evidence list, and image plan. Prepare the intended desktop and narrow-screen crops before tuning type around them. At 390px, explicitly inspect the media element width and verify its entire crop and caption remain visible; horizontal-overflow checks can pass while a flex-shrunk image is still too narrow or its contents are clipped.
+3. Scaffold with `node scripts/cli.mjs init <dir> --title <title>` and add suitable scene modules with `node scripts/cli.mjs add <technique> --dir <dir> --id <NN-name>`. Populate `data/deck.json`. Adapt a module or write a bespoke one when the desired scroll state cannot be produced with the chosen template.
+4. Inspect the hold state and transitions at presentation distance. Rehearse the whole deck with the actual wheel or keyboard. Ensure the presenter can pause, continue, reverse a reveal, and recover from an overscroll.
+5. Run static checks and strict browser verification. Inspect entrance, speaker hold, and exit at projector size, then the full scene at approximately 390px and in reduced motion. Review every capture before marking a type production-ready. Use [quality.md](quality.md) for rejection criteria and [scene-ledger.md](scene-ledger.md) for type support status.
+
+The generated deck includes its own engine. The module interface is specified in [contract.md](contract.md).
+
+## Design basis
+
+Claim-and-evidence framing is a useful way to keep a spoken beat focused. Research on Assertion-Evidence presentations reported benefits in a technical-teaching setting; that finding does not establish a universal layout and does not require every scrollytelling scene to resemble a slide. ScrollyVis research discusses guided narratives combining media and specialized visuals. Neither source establishes an optimal scene count, scroll distance, typography scale, or motion schedule.

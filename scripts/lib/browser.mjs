@@ -1,8 +1,8 @@
 /**
  * browser.mjs — Playwright를 "있으면 쓰고 없으면 건너뛴다".
  *
- * playwright는 optional peer다(package.json). 덱을 만드는 사람에게 브라우저 설치를 강요하지 않고,
- * 없으면 브라우저 게이트 G5~G10을 skipped로 남긴 뒤 exit 0 한다.
+ * playwright는 optional peer다(package.json). 정적 check는 설치 없이 실행할 수 있다.
+ * verify에서 브라우저가 없으면 G5~G13을 skipped 실패로 남겨 배포 통과로 오인하지 않는다.
  */
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
@@ -14,7 +14,7 @@ const GLOBAL_FALLBACKS = [
 ];
 
 export const INSTALL_HINT = [
-  'Playwright가 없어 브라우저 게이트(G5~G10)를 건너뜁니다.',
+  'Playwright가 없어 브라우저 게이트(G5~G13)를 건너뜁니다. verify는 실패로 처리합니다.',
   '  설치: npm i -D playwright && npx playwright install --with-deps chromium',
   '  전역 설치본을 쓰려면 PLAYWRIGHT_PATH=/경로/playwright/index.js 를 지정하세요.',
 ].join('\n');

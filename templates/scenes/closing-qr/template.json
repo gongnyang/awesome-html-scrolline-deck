@@ -29,12 +29,12 @@
     0.3,
     0.75
   ],
-  "notesHint": "Stop talking and leave this frame up. Someone is still photographing it.",
-  "description_en": "Closing scene: thanks set letter by letter beside a QR that draws itself, a typed URL, and a link back to the first scene.",
-  "description_ko": "마무리 장면. 감사 인사가 글자 단위로 놓이고, QR이 스스로 그려지며 주소가 타이핑되고, 첫 장면으로 돌아가는 링크가 남는다.",
-  "responsive": "On narrow screens, stack the QR above its URL and keep the restart action within the copy column.",
-  "reducedMotion": "Show the complete QR, URL, thank-you and restart control without drawing or typing.",
-  "purpose": "마무리 장면. 감사 인사가 글자 단위로 놓이고, QR이 스스로 그려지며 주소가 타이핑되고, 첫 장면으로 돌아가는 링크가 남는다.",
+  "notesHint": "State the conclusion and one audience action. Leave the final frame up long enough to act or scan.",
+  "description_en": "The conclusion and one requested action dominate the final hold; a QR and restart link remain optional secondary affordances.",
+  "description_ko": "발표의 결론과 한 가지 행동 요청을 가장 크게 남기고, QR·URL·다시 보기는 필요한 경우에만 보조로 둡니다.",
+  "responsive": "Keep conclusion and action text first; stack an optional QR/URL below on mobile with a reachable restart control.",
+  "reducedMotion": "Show conclusion, action detail, optional URL/QR, and restart control immediately without typing or drawing.",
+  "purpose": "결론과 다음 행동을 기억하게 하고 선택적으로 후속 자료에 연결한다.",
   "exampleCopy": {
     "kicker": "첫 행동",
     "title": "다음 점심 한 가지를 바꿔보기",
@@ -43,5 +43,21 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "work/skill-trials/food-waste/06-ask"
+  "previewSource": "work/template-qa-closing/01-ask",
+  "sceneContract": {
+    "status": "production",
+    "fit": "A conclusion that states one specific next action for the audience; QR is an optional follow-up resource.",
+    "unfit": "Thank-you-only endings, multiple competing asks, or an invented/unclear QR destination.",
+    "requiredInputs": "copy.title contains the conclusion or action; copy.lines contains the action detail. Optional deck.links.site and matching SVG in assets.images[0].",
+    "scrollBeatSemantics": "The conclusion arrives first, action detail follows, then optional QR/URL assembles into its secondary place.",
+    "stableHold": "By .48 the title, detail, optional URL/QR, and restart control are all visible and stay still.",
+    "projectorTypeCriteria": "Conclusion has the largest type. QR remains secondary and URL is large enough to read.",
+    "labelCriteria": "Never use copy.lines as a URL. The destination comes from deck.links.site; only pair a QR with that destination.",
+    "mobile": "Claim and action appear first. Optional QR/URL and the restart link remain visible and reachable below.",
+    "reducedMotion": "No character cascade, typing, or QR drawing; all supplied text and actions are immediately visible.",
+    "exampleContent": "A concise recommendation, one concrete next step, optional source or registration URL.",
+    "unsupportedReason": "A QR cannot substitute for a missing conclusion or a clear reason to take action.",
+    "nextImplementation": "The URL is supplied from deck.links.site and QR is generated from that same URL. Review the .55/mobile/reduced hold when adapting content.",
+    "estimatedEffort": "M"
+  }
 }

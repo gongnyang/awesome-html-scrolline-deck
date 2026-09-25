@@ -1,6 +1,6 @@
 {
   "technique": "tilt-card",
-  "pinVh": 200,
+  "pinVh": 280,
   "pin": true,
   "tags": [
     "person",
@@ -11,37 +11,50 @@
   "slots": {
     "kicker": true,
     "title": true,
-    "lines": {
-      "min": 2,
-      "max": 4
-    }
+    "lines": { "min": 2, "max": 4 }
   },
   "assets": {
     "frames": false,
     "images": {
       "min": 1,
-      "max": 1
+      "max": 3,
+      "altRequired": true
     },
     "video": false,
     "poster": false
   },
-  "hold": [
-    0.3,
-    0.75
-  ],
-  "notesHint": "This is the scene where you say who is talking and why they get to.",
-  "description_en": "Quiet scene: a masked portrait holds one side while two to five hairline-ruled lines read on the other, under a slow tilt.",
-  "description_ko": "조용한 장면. 마스크 처리된 인물 사진이 한쪽을 잡고, 반대쪽에 머리카락선으로 구분된 2~5줄이 느린 기울기 아래 놓인다.",
-  "responsive": "On narrow screens, put copy above the dimmed portrait so labels and biography stay readable.",
-  "reducedMotion": "Hold the portrait still with the complete biography copy visible.",
-  "purpose": "조용한 장면. 마스크 처리된 인물 사진이 한쪽을 잡고, 반대쪽에 머리카락선으로 구분된 2~5줄이 느린 기울기 아래 놓인다.",
+  "hold": [0.3, 0.82],
+  "notesHint": "Name the speaker, role and interview date; provide a permitted photograph, verbatim quote, source and confirmation of consent. Each supporting image must show the speaker or work they directly describe.",
+  "description_en": "Human evidence scene: a sourced quote remains legible while one to three photos move from the speaker to the work and setting that give the quote context.",
+  "description_ko": "인물 근거 장면. 출처가 확인된 인용문을 고정해 읽히게 하고, 인물·직접 한 일·발언 맥락을 보여주는 사진을 스크롤에 따라 연결한다.",
+  "responsive": "At narrow widths, show the photo first and put quote, role, context and source beneath it. Keep the photo large enough to identify the described activity.",
+  "reducedMotion": "Show the first authorized photo, complete quote, speaker attribution, context and source without tilt or fades.",
+  "purpose": "실제 발언자의 경험과 직접 관여한 작업을 함께 보여줘, 인용이 어떤 관찰에서 나왔는지 확인하게 한다.",
   "exampleCopy": {
-    "kicker": "가상 제품 콘셉트 · Nimbus Air",
-    "title": "출근길의 소음을 접어 넣다",
+    "kicker": "가상 인터뷰 · 제품 설계",
+    "title": "“접히는 힌지가 휴대 방식을 바꿨어요.”",
     "lines": [
-      "얇은 금속 이어컵과 접히는 힌지의 형태를 먼저 봅니다."
+      "김서윤 · 제품 설계 엔지니어 · 가상 인터뷰",
+      "힌지 조립 작업과 직접 연결된 관찰을 소개합니다.",
+      "실제 제품 테스트 결과가 아니라 콘셉트 개발 사례입니다."
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/product-launch/01-hero"
+  "previewSource": "examples/product-launch/01-hero",
+  "sceneContract": {
+    "status": "production",
+    "fit": "실제 경험을 말한 사람이 결과나 작업에 직접 참여해, 그 사람의 관찰이 주장을 이해하는 근거가 될 때.",
+    "unfit": "스톡 인물, 배우가 실제 참여자처럼 보이는 장면, 인용 동의나 발언 출처가 확인되지 않은 후기.",
+    "requiredInputs": "인물과 실제 작업이 식별되는 허가된 사진 1–3장, 원문 그대로의 인용, 이름·역할·날짜, 출처 링크와 촬영·인용 동의.",
+    "scrollBeatSemantics": "화면은 인물에서 그가 직접 설명한 작업과 장소로 이동한다. 대응하는 문장에 스크롤이 멈추면 사진과 관찰 근거가 같이 멈춘다.",
+    "stableHold": "인용·현재 맥락 문장·해당 사진·인물 출처가 동시에 읽히고, 지난 문장으로 되돌아갈 수 있다.",
+    "projectorTypeCriteria": "긴 소개문 대신 검증 가능한 인용과 짧은 작업 맥락을 쓴다. 얼굴만 큰 스톡형 구도는 사용하지 않는다.",
+    "labelCriteria": "실명·역할·소속·발언 날짜와 원문 출처를 표시한다. 익명 사례나 가상 인터뷰는 화면에 명시한다.",
+    "mobile": "사진과 텍스트를 세로 순서로 쌓고, 인용과 출처를 사진 위 오버레이에 넣지 않는다.",
+    "reducedMotion": "첫 허가 사진과 전체 인용·역할·맥락·출처를 그대로 보여준다. 사진 기울기와 단계 페이드는 생략한다.",
+    "exampleContent": "위 문구는 가상 인터뷰 예시다. 실제 발표에서는 서면 동의를 받은 발언과 발언자가 직접 설명한 작업 사진으로 교체한다.",
+    "unsupportedReason": "이전 버전은 출처가 없는 인물 프로필과 장식적인 기울기만 제공해 발언의 근거와 당사자의 관여를 확인하기 어려웠다.",
+    "nextImplementation": "인물 발언의 출처 필드를 명확히 하고, 사진 순서를 스크롤 비트와 연결해 인터뷰 증거의 맥락을 따라가게 한다.",
+    "estimatedEffort": "L"
+  }
 }

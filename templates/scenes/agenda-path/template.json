@@ -29,21 +29,37 @@
     0.75
   ],
   "notesHint": "Show the talk as a route with a clear start, current stop, and destination.",
-  "description_en": "A route line connects agenda stops and reveals each stop in sequence.",
-  "description_ko": "발표의 흐름을 경로로 보여주고 각 정거장의 목적을 분명히 합니다.",
-  "responsive": "Use a four-stop horizontal route on desktop and a two-column stop grid on narrow screens.",
-  "reducedMotion": "Show all route stops and the complete connector in place.",
+  "description_en": "The real sections of a talk form a vertical narrative path; each section states what the audience will learn.",
+  "description_ko": "발표의 실제 구간을 세로 경로에 놓고, 청중이 각 구간에서 얻게 될 내용을 함께 약속합니다.",
+  "responsive": "Use one vertical path at every width; keep each section name and its audience promise together.",
+  "reducedMotion": "Show every section and audience promise on the completed static path.",
   "purpose": "발표의 흐름을 경로로 보여주고 각 정거장의 목적을 분명히 합니다.",
   "exampleCopy": {
-    "kicker": "가상 사례 · 2027년은 효율을 확장합니다",
-    "title": "물류 자동화 · 고객 유지 · 재고 정확도",
+    "kicker": "발표 흐름",
+    "title": "오늘은 원인에서 검증된 선택지까지 간다",
     "lines": [
-      "1분기: 기준 합의: 유지율과 물류비 목표",
-      "2분기: 자동화 시험: 3개 권역 우선 적용",
-      "3분기: 고객 유지: 이탈 사유 점검",
-      "4분기: 연말 검토: 가상 계획 시나리오"
+      "관측: 어떤 변화가 나타났는지 함께 확인",
+      "원인: 변화가 생긴 조건과 경로를 설명",
+      "검증: 서로 다른 설명을 자료와 대조",
+      "선택: 확인된 근거로 다음 행동을 정리"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/annual-report/09-next"
+  "previewSource": "examples/annual-report/09-next",
+  "sceneContract": {
+    "status": "production",
+    "fit": "한 발표 안의 2–4개 실제 구간을 미리 알려 청중이 논리적 흐름을 따라오게 할 때.",
+    "unfit": "연도별 사건/계획이면 timeline, 한 절차의 단계별 원인 결과면 step-flow가 더 적합할 때.",
+    "requiredInputs": "copy.lines 2–4개, 각 `발표 구간: 청중이 알게 될 내용` 형식. 실제 발표 본문과 일치하는 구간.",
+    "scrollBeatSemantics": "전체 의제는 경로로 유지되며 각 구간의 핵심 질문/청중 약속에 차례로 초점을 둔다.",
+    "stableHold": "전체 구간명과 그 구간에서 얻을 정보가 동시에 읽히고 현재 구간만 강조된다.",
+    "projectorTypeCriteria": "구간명은 본문보다 한 위계 위, 약속 문장은 큰 본문으로 읽히며 네 항목이 세로로 이어진다.",
+    "labelCriteria": "순서는 실제 발표 흐름을 따른다. 이 장면에 없는 시간·분기 표기를 임의로 붙이지 않는다.",
+    "mobile": "세로 축을 유지하고 각 구간명과 약속을 한 묶음으로 배치한다.",
+    "reducedMotion": "의제 전체와 모든 청중 약속을 정적으로 제공한다.",
+    "exampleContent": "관측한 지표→원인 설명→근거 검증→의사결정으로 이어지는 실제 발표 의제.",
+    "unsupportedReason": "",
+    "nextImplementation": "Use only with the stated source, chronology/relationship evidence, and presenter-readable hold; review the authored instance for claim accuracy.",
+    "estimatedEffort": ""
+  }
 }

@@ -9,3 +9,13 @@
 [data-scene="10-close"] .m__map{position:relative;min-height:50vh;display:grid;place-items:center}[data-scene="10-close"] .m__hub{z-index:2;width:clamp(130px,20vw,250px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;padding:1rem;background:var(--accent);color:var(--surface);font-size:1.3rem}[data-scene="10-close"] .m__nodes{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;justify-items:center}[data-scene="10-close"] .m__node{max-width:12rem;padding:1rem;border:1px solid var(--line);background:var(--surface)}[data-scene="10-close"] .m__nodes:before{content:"";position:absolute;inset:18% 20%;border:1px solid var(--accent-soft);border-radius:50%}
 @media(max-width:720px){[data-scene="10-close"] .m{padding:36px 0;min-height:100svh}[data-scene="10-close"] .m__map{min-height:48vh}[data-scene="10-close"] .m__nodes{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){[data-scene="10-close"] .m *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+[data-scene="10-close"] .m__map{min-height:46vh}
+[data-scene="10-close"] .m__nodes{inset:2% 3%;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;align-items:stretch;justify-items:stretch;gap:clamp(20px,5vw,72px)}
+[data-scene="10-close"] .m__node{z-index:3;max-width:min(15rem,38vw);padding:.35rem 0;border:0;background:transparent;display:flex;flex-direction:column;gap:.35rem;color:var(--ink);line-height:1.25}
+[data-scene="10-close"] .m__node b{color:var(--accent);font:600 clamp(13px,1.2vw,16px)/1 var(--font-mono,monospace)}
+[data-scene="10-close"] .m__node span{font:650 clamp(18px,2.1vw,26px)/1.18 var(--font-display,inherit);text-wrap:balance}
+[data-scene="10-close"] .m__node:nth-child(1){align-self:start;justify-self:start;text-align:left}
+[data-scene="10-close"] .m__node:nth-child(2){align-self:start;justify-self:end;text-align:right}
+[data-scene="10-close"] .m__node:nth-child(3){align-self:end;justify-self:start;text-align:left}
+[data-scene="10-close"] .m__node:nth-child(4){align-self:end;justify-self:end;text-align:right}
+@media(max-width:720px){[data-scene="10-close"] .m__map{min-height:48vh}[data-scene="10-close"] .m__nodes{inset:0 1%;gap:16px}[data-scene="10-close"] .m__node{max-width:42vw}[data-scene="10-close"] .m__node span{font-size:clamp(16px,4.2vw,20px)}}

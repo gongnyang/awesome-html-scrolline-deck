@@ -28,12 +28,12 @@
     0.3,
     0.75
   ],
-  "notesHint": "Mark a meaningful change in topic with a chapter number and a visual threshold.",
-  "description_en": "A large chapter numeral parts a layered color field before the new section settles.",
-  "description_ko": "큰 장 번호와 색면의 전환으로 다음 논점의 시작을 알립니다.",
-  "responsive": "On narrow screens, place the chapter number above the title.",
-  "reducedMotion": "Show the full chapter number and title as a static card.",
-  "purpose": "큰 장 번호와 색면의 전환으로 다음 논점의 시작을 알립니다.",
+  "notesHint": "Connect the chapter title to two to four questions or proof steps the next section will answer.",
+  "description_en": "A chapter marker opens into the actual section questions, which arrive along one reading path and remain on screen as the next section's agenda.",
+  "description_ko": "장 번호와 제목 뒤에 다음 장에서 답할 질문·근거 단계를 순서대로 드러내고, 한 경로에 정지시킵니다.",
+  "responsive": "Keep the title and all two to four agenda lines visible together; on mobile stack the chapter marker above the steps.",
+  "reducedMotion": "Show the title, chapter marker, and all agenda lines immediately as a static reading path.",
+  "purpose": "다음 장의 실제 질문과 증명 순서를 예고한다.",
   "exampleCopy": {
     "kicker": "02 장 · 검증",
     "title": "주장에서 증명으로",
@@ -43,5 +43,21 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "work/preview-deck/01-chapter"
+  "previewSource": "work/template-qa-chapter/01-chapter",
+  "sceneContract": {
+    "status": "production",
+    "fit": "A real section change whose next two to four questions/proof steps can be stated in concise text.",
+    "unfit": "A title-only pause, a repeated divider, or a section whose evidence needs an image/data visual.",
+    "requiredInputs": "A chapter number in copy.kicker, a specific section claim in copy.title, and two to four ordered copy.lines.",
+    "scrollBeatSemantics": "The numeral opens a visual threshold; the new claim and its actual section steps enter one by one.",
+    "stableHold": "By 0.48 the full title and every listed step are visible together and stay still through the speaking hold.",
+    "projectorTypeCriteria": "Chapter numeral supports orientation; title and step labels remain the primary readable content.",
+    "labelCriteria": "Each line names a real question or proof step in the talk, in spoken order.",
+    "mobile": "Number moves to the backdrop and all steps remain readable beneath the title in one scene.",
+    "reducedMotion": "All steps are immediately visible in their reading order with no stagger or movement.",
+    "exampleContent": "Chapter 02 · From claim to evidence, followed by the questions the evidence will answer.",
+    "unsupportedReason": "Do not use it to pad a deck with a decorative divider or repeat its numbered card grammar.",
+    "nextImplementation": "Keep agenda lines concrete and review desktop, mobile, reduced-motion, and the .55 hold.",
+    "estimatedEffort": "M"
+  }
 }

@@ -26,11 +26,11 @@ const parse = (line) => {
   return { title: text.slice(0, sep.index).trim(), bullets };
 };
 
-// Blocks march down the diagonal. y starts at 26% so block 01 clears the
-// scene heading (kicker + title end near 18% on a 700px-tall viewport).
+// Blocks march down the diagonal. Keep the first anchor below a two-line
+// heading at projection size; four anchors still fit in the viewport.
 const spot = (index, total) => {
   const t = total > 1 ? index / (total - 1) : 0.5;
-  return { x: 4 + t * 52, y: 26 + t * 48 };
+  return { x: 4 + t * 52, y: 36 + t * 42 };
 };
 
 // The light runs a rail, not a straight diagonal: down each block's left
@@ -101,24 +101,18 @@ export default {
     const titles = blocks.map((block) => block.querySelector('.kt__title'));
     const bullets = blocks.map((block) => [...block.querySelectorAll('.kt__bullets li')]).flat();
     const setActive = (index) => blocks.forEach((block, i) => block.classList.toggle('is-active', i === index));
-    const entries = [
-      { from: { xPercent: -120, rotation: 8, autoAlpha: 0 } },
-      { from: { xPercent: 120, rotation: -8, autoAlpha: 0 } },
-      { from: { yPercent: 120, rotation: 4, autoAlpha: 0 } },
-      { from: { yPercent: -120, rotation: -4, autoAlpha: 0 } },
-    ];
 
     ctx.gsap.set(grid, { '--grid': 0 });
     ctx.gsap.set(line, { '--draw': 0 });
     ctx.gsap.set(head, { '--head': 0, '--head-on': 0 });
     if (bullets.length) ctx.gsap.set(bullets, { '--reveal': 0 });
 
-    // enter — 0 .. 0.30. Grid, heading, then the titles throw themselves in.
+    // enter — reveal the named route in reading order, without throwing text across the stage.
     tl.to(grid, { '--grid': 1, duration: 0.06 }, 0);
     tl.fromTo(heading, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.08 }, 0);
     titles.forEach((title, index) => {
-      tl.fromTo(title, entries[index % entries.length].from,
-        { xPercent: 0, yPercent: 0, rotation: 0, autoAlpha: 1, duration: 0.09, ease: 'power3.out' }, 0.03 + index * 0.05);
+      tl.fromTo(title, { y: 22, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.1, ease: 'power2.out' }, 0.05 + index * 0.055);
     });
     tl.to(line, { '--draw': 1, duration: 0.2, ease: 'power2.out' }, 0.06);
     tl.to(head, { '--head': 1, '--head-on': 1, duration: 0.2 }, 0.06);
@@ -127,18 +121,9 @@ export default {
     // hold — 0.30 .. 0.75. The accent walks block to block as you talk.
     blocks.forEach((_, index) => tl.call(setActive, [index], 0.36 + index * 0.1));
 
-    // exit — 0.75 .. 1.00. Bullets close, blocks leave the way they arrived.
+    // exit — the full route holds through the spoken transition, then clears together.
     if (bullets.length) tl.to(bullets, { '--reveal': 0, duration: 0.08, stagger: 0.01 }, 0.76);
-    blocks.forEach((block, index) => {
-      const from = entries[index % entries.length].from;
-      tl.to(block, {
-        xPercent: from.xPercent ? Math.sign(from.xPercent) * 18 : 0,
-        yPercent: from.yPercent ? Math.sign(from.yPercent) * 18 : 0,
-        autoAlpha: 0,
-        duration: 0.14,
-        ease: 'power2.in',
-      }, 0.82);
-    });
+    blocks.forEach((block) => tl.to(block, { y: -14, autoAlpha: 0, duration: 0.12, ease: 'power2.in' }, 0.84));
     tl.to(line, { '--draw': 0, duration: 0.14 }, 0.82);
     tl.to(head, { '--head-on': 0, duration: 0.14 }, 0.82);
     tl.to(heading, { y: -24, autoAlpha: 0, duration: 0.1 }, 0.88);

@@ -53,12 +53,14 @@ Options: `{ pattern, count, critical, poster, fit, mobilePattern }`, where
 
 ## 4. The timeline
 
-The engine creates `gsap.timeline({ paused: true })` and scrubs it with
-`scrub: 0.6` across the scene's pin distance.
+The engine creates `gsap.timeline({ paused: true })` and binds it directly to
+scroll progress with `scrub: true` across the scene's pin distance.
 
 - **Total length is 1.** Position and duration are fractions of the scene, so
   changing `pinVh` later rescales the choreography instead of breaking it.
-  A longer timeline makes GSAP squash everything by `1/duration`.
+  The engine fills a short timeline with an inert tail to keep cue positions
+  aligned with scroll progress. A longer timeline makes GSAP squash everything
+  by `1/duration` and fails the timeline gate.
 - Bands: entrance `0 → .30`, hold `.30 → .75`, exit `.75 → 1`. Keyboard
   navigation lands at 35%, inside the hold.
 - Use `fromTo`, not `from`. A bare `from()` applies its start values at build

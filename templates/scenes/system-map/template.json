@@ -29,19 +29,36 @@
     0.75
   ],
   "notesHint": "Explain how several actors or components influence one another.",
-  "description_en": "A central node connects to surrounding system actors with directional links.",
-  "description_ko": "중심 요소와 주변 구성요소의 관계를 연결선으로 설명합니다.",
-  "responsive": "Arrange surrounding components in three columns on desktop and two columns on narrow screens.",
-  "reducedMotion": "Show the center and all system nodes in place.",
+  "description_en": "A central system and its named components stay visible while each explicit relationship is emphasized in turn.",
+  "description_ko": "중심 시스템과 구성 요소를 계속 보여주고, 각 연결의 의미를 순서대로 강조합니다.",
+  "responsive": "Use a central hub and a readable vertical relationship rail on mobile; keep every component and relation visible.",
+  "reducedMotion": "Show the title, central element, and all named component relationships statically.",
   "purpose": "중심 요소와 주변 구성요소의 관계를 연결선으로 설명합니다.",
   "exampleCopy": {
-    "kicker": "예약과 현장 대기를 한 흐름으로",
-    "title": "모바일 대기표 · 상담 슬롯 · 직원 알림",
+    "kicker": "제안된 서비스 흐름",
+    "title": "모바일 대기 예약",
     "lines": [
-      "기존 POS를 유지하며 현장 흐름만 연결한다.",
-      "화살표는 제안된 흐름을 나타냅니다."
+      "POS: 기존 주문과 결제 정보를 대기 서비스에 전달",
+      "대기 서비스: 빈 상담 슬롯을 확인해 고객에게 순서를 안내",
+      "직원 알림: 고객 도착을 담당자에게 알려 상담 시작을 준비"
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "examples/client-proposal/05-solution"
+  "previewSource": "examples/client-proposal/05-solution",
+  "sceneContract": {
+    "status": "production",
+    "fit": "중심 요소와 2–4개 구성 요소의 실제 관계를 짧게 설명하고, 모든 관계를 같은 화면에 둬야 할 때.",
+    "unfit": "방향·의미가 불명확하거나 요소가 다섯 개 이상이거나 모든 쌍 사이를 연결해야 할 때.",
+    "requiredInputs": "copy.lines 2–4개, 각 `구성 요소: 중심 요소와의 관계` 형식. 관계는 제안이면 제안임을 명시.",
+    "scrollBeatSemantics": "중심 요소와 전체 구성은 고정되어 보이고, 스크롤 초점이 각 관계 설명으로 차례로 이동한다.",
+    "stableHold": "중심 요소와 모든 구성 요소, 각 관계 설명이 동시에 읽히며 현재 관계만 강조된다.",
+    "projectorTypeCriteria": "중심 제목/허브가 가장 크고 노드명이 다음 위계, 관계 문장은 본문 크기로 표시된다.",
+    "labelCriteria": "각 설명은 구성 요소와 중심의 실제 인과·데이터·업무 관계를 명시한다. 연결을 암시하는 선만으로 의미를 대신하지 않는다.",
+    "mobile": "허브 아래에 관계 레일을 세로로 쌓고 요소명과 관계문을 함께 읽게 한다.",
+    "reducedMotion": "모든 관계 설명과 중심 요소를 한 화면에 정적으로 제공한다.",
+    "exampleContent": "모바일 대기 서비스와 POS, 상담 슬롯, 직원 알림 사이의 역할과 전달 정보.",
+    "unsupportedReason": "",
+    "nextImplementation": "Use only with the stated source, chronology/relationship evidence, and presenter-readable hold; review the authored instance for claim accuracy.",
+    "estimatedEffort": ""
+  }
 }

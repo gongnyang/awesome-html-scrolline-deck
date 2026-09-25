@@ -29,12 +29,12 @@
     0.3,
     0.75
   ],
-  "notesHint": "Say each word out loud as it lands. The last word is the promise of the talk.",
-  "description_en": "The title splits into two to five words that relay across the stage; the final word stays and a centre wipe closes the scene.",
-  "description_ko": "제목을 2~5개 단어로 쪼개 차례로 화면을 가로지르고, 마지막 단어만 남긴 뒤 가운데 와이프로 장면을 닫는다.",
+  "notesHint": "Pause at each phrase, then state the complete assertion in the speaking hold.",
+  "description_en": "A short assertion grows phrase by phrase as the presenter scrolls; every phrase remains visible in the final hold.",
+  "description_ko": "짧은 주장을 구절별로 쌓는다. 발표 정지 구간에는 앞선 구절까지 모두 남아 완전한 문장을 읽을 수 있다.",
   "responsive": "At widths up to 720px, display each word on its own centered row and keep the progress rail below the phrase.",
   "reducedMotion": "Show the full arrow-separated phrase and complete progress rail as a static composition.",
-  "purpose": "제목을 2~5개 단어로 쪼개 차례로 화면을 가로지르고, 마지막 단어만 남긴 뒤 가운데 와이프로 장면을 닫는다.",
+  "purpose": "발표의 짧은 주장을 구절 순서대로 공개하고 완성 문장으로 청중의 주의를 모은다.",
   "exampleCopy": {
     "kicker": "학교 급식",
     "title": "남기지 않기 → 함께 고르기 → 조금씩 담기",
@@ -43,5 +43,21 @@
     ]
   },
   "preview": "preview.webp",
-  "previewSource": "work/skill-trials/food-waste/01-hook"
+  "previewSource": "work/skill-trials/food-waste/01-hook",
+  "sceneContract": {
+    "status": "production",
+    "fit": "단어 순서가 논지의 개념 변화를 한눈에 보여주는 짧은 문구.",
+    "unfit": "문장 길이가 긴 주장, 단어만으로 의미가 부족한 사실 전달.",
+    "requiredInputs": "순서를 바꿀 수 없는 2–5개의 단어/짧은 구절.",
+    "scrollBeatSemantics": "구절을 순차 공개하며 앞선 구절을 남겨 주장의 의미가 누적된다.",
+    "stableHold": "완성 문장과 한 줄 보조 설명이 함께 읽힌다.",
+    "projectorTypeCriteria": "큰 단어 한 개 외 근거·보조 정보가 없다. 주된 설명 장면으로 사용할 수 없다.",
+    "labelCriteria": "필수 출처 표기 자리가 없다.",
+    "mobile": "단어를 화면 너비 안에 차례로 배치한다. 슬라이드 밖으로 날리는 타이포를 금한다.",
+    "reducedMotion": "전체 문구를 자연스러운 문장으로 복원해 표시한다.",
+    "exampleContent": "실험 전 → 측정 중 → 검증 완료와 같이 하나의 과정에서 의미가 변하는 단어.",
+    "unsupportedReason": "수치나 실증 근거를 설명하는 장면으로 쓰면 주장만 남으므로 적합하지 않다.",
+    "nextImplementation": "실제 덱에서는 바로 뒤에 시각 근거 장면을 배치한다.",
+    "estimatedEffort": "M"
+  }
 }

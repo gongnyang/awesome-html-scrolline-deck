@@ -2,7 +2,7 @@
 
 The gallery also includes three captioned Korean videos derived from the completed decks: a promotional short, a sourced Cheonggyecheon case story, and a scene-design lesson. Historical visuals in the case story are visibly labeled as AI reconstructions.
 
-Presentation-ready, scroll-driven HTML decks. A presenter controls each scene's entrance, finished frame, and exit with the wheel or keyboard. The skill plans the talk, chooses from 24 working scene templates, develops local imagery, builds the site, and verifies what the audience will actually see.
+Presentation-ready, scroll-driven HTML decks. A presenter controls each scene's entrance, finished frame, and exit with the wheel or keyboard. The skill plans the talk, chooses from 25 working scene templates, develops local imagery, builds the site, and verifies what the audience will actually see.
 
 [한국어 안내](README.ko.md) · [Live gallery](https://gongnyang.github.io/awesome-html-scrolline-deck/) · [Skill](SKILL.md) · [Scene catalogue](references/techniques.md)
 
@@ -47,7 +47,7 @@ Strict verify drives a real browser with wheel and keyboard input, checks every 
 ## What ships
 
 - `SKILL.md`: task-level authoring and verification workflow.
-- `templates/scenes/`: 24 scene implementations with metadata, mobile and reduced-motion behavior.
+- `templates/scenes/`: 25 scene implementations with metadata, mobile and reduced-motion behavior.
 - `engine/`: GSAP ScrollTrigger + Lenis runtime copied into generated decks.
 - `scripts/`: CLI, static/browser gates, gallery builder, and production-subpath smoke test.
 - `examples/`: eight complete decks with local imagery, presenter notes, and QA captures.
@@ -56,6 +56,6 @@ Present with `→`/Space, `←`, number keys, `F` fullscreen, `N` notes, and `P`
 
 ## Design rationale
 
-The skill chooses scenes by their rhetorical job: open, explain, compare, prove, or ask. Technical-presentation [research on assertion–evidence structure](https://pure.psu.edu/en/publications/assertion-evidence-slides-appear-to-lead-to-better-comprehension--2/) motivates putting a clear claim beside meaningful visual evidence. The 24-template count is coverage for different presentation needs, not a research-derived optimum. [WCAG motion guidance](https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions) and [responsive image guidance](https://web.dev/learn/design/responsive-images) inform the static fallback and image-loading rules.
+The skill chooses scenes by their rhetorical job: open, explain, compare, prove, or ask. Technical-presentation [research on assertion–evidence structure](https://pure.psu.edu/en/publications/assertion-evidence-slides-appear-to-lead-to-better-comprehension--2/) motivates putting a clear claim beside meaningful visual evidence. The 25-template count is coverage for different presentation needs, not a research-derived optimum. [WCAG motion guidance](https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions) and [responsive image guidance](https://web.dev/learn/design/responsive-images) inform the static fallback and image-loading rules.
 
 MIT license.

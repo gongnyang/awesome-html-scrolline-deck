@@ -1,16 +1,18 @@
-/* document-proof: a distinct presentation structure built around the scene's speaking job. */
-[data-scene="09-governance"] .d{position:relative;width:min(1320px,calc(100% - var(--gutter,24px)*2));min-height:100svh;margin:auto;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vh,110px) 0;color:var(--ink)}
-[data-scene="09-governance"] .d__head{margin-bottom:clamp(24px,5vh,60px)}
-[data-scene="09-governance"] .d__kicker{margin:0 0 .8rem;color:var(--ink-subtle);font:600 .76rem var(--font-mono,monospace);letter-spacing:.16em;text-transform:uppercase}
-[data-scene="09-governance"] .d__title{margin:0;font:700 clamp(30px,5vw,68px)/1.05 var(--font-display,inherit);letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
-[data-scene="09-governance"] .d h3{font:650 clamp(18px,2vw,26px)/1.2 var(--font-display,inherit);margin:0 0 .45rem}
-[data-scene="09-governance"] .d p{color:var(--ink-muted);line-height:1.55}
-[data-scene="09-governance"] .d img{display:block;max-width:100%}
-[data-scene="09-governance"] .d__layout{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,7vw,96px);align-items:center}
-[data-scene="09-governance"] .d__paper{position:relative;display:grid;grid-template-columns:minmax(120px,.55fr) 1fr;align-items:center;gap:clamp(16px,3vw,40px);min-height:42vh;padding:clamp(20px,3vw,48px);background:var(--surface-raised);box-shadow:0 24px 80px var(--shadow);border:1px solid var(--line);transform:rotate(-1deg)}
-[data-scene="09-governance"] .d__image{width:100%;max-height:28vh;object-fit:contain;filter:saturate(.72)}
-[data-scene="09-governance"] .d__quote{margin:0;font-family:var(--font-display,inherit);font-size:clamp(22px,3.4vw,46px);line-height:1.25}
-[data-scene="09-governance"] .d__source{margin:0;border-left:2px solid var(--accent);padding:1rem clamp(14px,2vw,28px);font:500 clamp(14px,1.3vw,18px)/1.55 var(--font-mono,monospace);overflow-wrap:anywhere}
-[data-scene="09-governance"] .d__mark{background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
-@media(max-width:720px){[data-scene="09-governance"] .d{padding:36px 0;min-height:100svh}[data-scene="09-governance"] .d__layout{grid-template-columns:1fr;gap:1rem}[data-scene="09-governance"] .d__paper{grid-template-columns:1fr;min-height:28vh}[data-scene="09-governance"] .d__image{max-height:18vh;object-position:left center}}
-@media(prefers-reduced-motion:reduce){[data-scene="09-governance"] .d *{scroll-behavior:auto;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+[data-scene="09-governance"] .go{position:relative;isolation:isolate;min-height:100svh;overflow:hidden;background:var(--canvas);color:var(--ink)}
+[data-scene="09-governance"] .go__visual{position:absolute;inset:0 auto 0 0;width:47%;margin:0;overflow:hidden}
+[data-scene="09-governance"] .go__image{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.76)}
+[data-scene="09-governance"] .go__visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 38%,var(--canvas) 98%),linear-gradient(0deg,color-mix(in srgb,var(--canvas) 60%,transparent),transparent 45%)}
+[data-scene="09-governance"] .go__image-credit{position:absolute;left:clamp(20px,4vw,60px);bottom:32px;z-index:1;color:var(--ink);font:11px var(--font-mono,monospace);letter-spacing:.05em}
+[data-scene="09-governance"] .go__content{position:relative;z-index:1;width:min(840px,61%);min-height:100svh;margin-left:auto;padding:clamp(48px,6vh,72px) clamp(36px,7vw,116px) 28px clamp(24px,3vw,48px);display:flex;flex-direction:column;justify-content:center}
+[data-scene="09-governance"] .go__kicker{margin:0 0 15px;color:var(--ink-muted);font:600 13px var(--font-mono,monospace);letter-spacing:.14em}
+[data-scene="09-governance"] .go__title{margin:0;max-width:none;font:750 clamp(42px,4.4vw,64px)/1.06 var(--font-display,inherit);letter-spacing:-.04em;word-break:keep-all}
+[data-scene="09-governance"] .go__zero{display:flex;align-items:baseline;gap:18px;margin-top:clamp(18px,3vh,34px);border-bottom:1px solid var(--line)}
+[data-scene="09-governance"] .go__zero strong{font:700 clamp(116px,15vw,214px)/.9 var(--font-display,inherit);letter-spacing:-.11em;color:var(--accent)}
+[data-scene="09-governance"] .go__zero span{font:650 clamp(19px,2vw,28px)/1.2 var(--font-display,inherit);word-break:keep-all}
+[data-scene="09-governance"] .go__flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+[data-scene="09-governance"] .go__step{position:relative;margin:0;padding-top:13px;border-top:3px solid var(--accent);font:650 clamp(17px,1.55vw,22px)/1.2 var(--font-display,inherit)}
+[data-scene="09-governance"] .go__step small{display:block;margin-top:8px;color:var(--ink-muted);font:500 clamp(12px,1vw,15px)/1.35 var(--font-body,inherit)}
+[data-scene="09-governance"] .go__rule{margin:30px 0 0;font:650 clamp(16px,1.5vw,21px)/1.4 var(--font-display,inherit);color:var(--ink)}
+[data-scene="09-governance"] .go__source{margin:16px 0 0;color:var(--ink-muted);font:12px/1.4 var(--font-mono,monospace)}
+@media(max-width:800px){[data-scene="09-governance"] .go__visual{position:relative;width:100%;height:25svh;min-height:170px}[data-scene="09-governance"] .go__visual:after{background:linear-gradient(0deg,var(--canvas),transparent 55%)}[data-scene="09-governance"] .go__image-credit{bottom:10px;color:var(--ink)}[data-scene="09-governance"] .go__content{width:100%;min-height:0;margin:0;padding:12px 20px 36px;justify-content:flex-start}[data-scene="09-governance"] .go__title{font-size:clamp(36px,8.5vw,52px)}[data-scene="09-governance"] .go__zero{margin-top:16px}[data-scene="09-governance"] .go__zero strong{font-size:112px}[data-scene="09-governance"] .go__zero span{font-size:18px}[data-scene="09-governance"] .go__flow{gap:10px;margin-top:18px}[data-scene="09-governance"] .go__step{font-size:16px}[data-scene="09-governance"] .go__step small{font-size:12px}[data-scene="09-governance"] .go__rule{margin-top:20px;font-size:17px}}
+@media(prefers-reduced-motion:reduce){[data-scene="09-governance"] .go__visual,[data-scene="09-governance"] .go__head,[data-scene="09-governance"] .go__zero,[data-scene="09-governance"] .go__step,[data-scene="09-governance"] .go__rule{opacity:1;transform:none}}

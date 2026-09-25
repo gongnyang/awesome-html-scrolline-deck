@@ -3,12 +3,12 @@
 [data-scene="{{id}}"] .relay__kicker { position: relative; z-index: 1; margin: 0 0 clamp(36px,8vh,96px); color: var(--ink-subtle); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: clamp(11px, .95vw, var(--eyebrow-size, 13px)); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 [data-scene="{{id}}"] .relay__stage { position: relative; z-index: 1; width: min(100%, 1120px); margin: auto; }
 [data-scene="{{id}}"] .relay__sequence { margin: 0 0 var(--space-md, 16px); color: var(--ink-subtle); font: 600 clamp(11px, 1vw, 13px)/1 var(--font-mono, monospace); letter-spacing: .16em; font-variant-numeric: tabular-nums; }
-[data-scene="{{id}}"] .relay__words { position: relative; display: flex; align-items: center; justify-content: center; gap: clamp(12px,2vw,28px); min-height: clamp(100px,16vw,220px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(48px, 9vw, 132px); font-weight: 750; line-height: .98; letter-spacing: -.05em; white-space: nowrap; }
+[data-scene="{{id}}"] .relay__words { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(12px,2vw,28px); min-height: clamp(100px,16vw,220px); color: var(--ink); font-family: var(--font-display, inherit); font-size: clamp(36px, 6vw, 84px); font-weight: 750; line-height: 1.06; letter-spacing: -.045em; word-break: keep-all; text-wrap: balance; }
 [data-scene="{{id}}"] .relay__word { display: inline-block; }
-[data-scene="{{id}}"] .relay__word + .relay__word::before { content: '\2192'; margin-right: clamp(10px,1.4vw,20px); color: var(--accent); font-size: .42em; vertical-align: .22em; }
+[data-scene="{{id}}"] .relay__word + .relay__word::before { content: '\2192'; margin-right: clamp(10px,1.4vw,20px); color: var(--accent-1); font-size: .42em; vertical-align: .22em; }
 [data-scene="{{id}}"] .relay__rail { width: min(28rem,70%); height: 2px; margin: clamp(28px,5vh,56px) auto 0; overflow: hidden; background: var(--hairline); }
-[data-scene="{{id}}"] .relay__progress { display: block; width: 100%; height: 100%; background: var(--accent); transform: scaleX(var(--progress,1)); transform-origin: left; }
-[data-scene="{{id}}"] .relay__lines { position: relative; z-index: 1; display: grid; gap: var(--space-xs, 8px); margin-top: var(--space-section, 88px); color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.55; word-break: keep-all; }
+[data-scene="{{id}}"] .relay__progress { display: block; width: 100%; height: 100%; background: var(--accent-1); transform: scaleX(var(--progress,1)); transform-origin: left; }
+[data-scene="{{id}}"] .relay__lines { position: relative; z-index: 1; display: grid; gap: var(--space-xs, 8px); margin-top: clamp(28px,5vh,64px); color: var(--ink-muted); font-family: var(--font-body, inherit); font-size: clamp(17px, 1.6vw, var(--subhead-size, 20px)); line-height: 1.55; word-break: keep-all; }
 [data-scene="{{id}}"] .relay__lines p { margin: 0; }
 [data-scene="{{id}}"] .relay__reveal { position: absolute; z-index: 0; inset: 0; background: var(--surface-1); clip-path: inset(50% 50% 50% 50%); opacity: 0; pointer-events: none; }
 @media (max-width: 720px) {

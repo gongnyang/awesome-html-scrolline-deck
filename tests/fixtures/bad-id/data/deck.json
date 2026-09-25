@@ -3,11 +3,11 @@
   "subtitle": "정적 게이트가 통과해야 하는 최소 덱",
   "lang": "ko",
   "presenter": { "name": "공냥이", "roles": ["발표"], "autoDurationSec": 180 },
-  "theme": { "style": "dark", "accent": "--accent" },
+  "theme": { "style": "dark", "accent": "#7AE600" },
   "scenes": [
     {
       "id": "01-hero",
-      "order": 0,
+      "order": 1,
       "technique": "frame-scrub-hero",
       "pinVh": 200,
       "pin": true,
@@ -18,7 +18,7 @@
     },
     {
       "id": "02-closing",
-      "order": 1,
+      "order": 2,
       "technique": "closing-qr",
       "pinVh": 150,
       "pin": true,
