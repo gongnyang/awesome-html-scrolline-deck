@@ -27,7 +27,7 @@ export function computeRange({ top, height, scrollY = 0, innerHeight = 900, pinn
   return { start, pinDistance, end: start + pinDistance, height: Math.round(height), pinned: Boolean(pinned) };
 }
 
-/** deck.json의 pinVh가 뜻하는 픽셀 핀 거리. 엔진은 ScrollTrigger end를 `+=pinVh%`로 준다. */
+/** deck.json의 pinVh가 뜻하는 픽셀 핀 거리. 엔진은 이 뷰포트 기준 거리를 ScrollTrigger에 전달한다. */
 export function expectedPinDistance(pinVh, innerHeight) {
   return (Number(pinVh) / 100) * Number(innerHeight);
 }

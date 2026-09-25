@@ -6,14 +6,16 @@ usually bite.
 ## 1. `vh` is not a ScrollTrigger unit
 
 ```js
-end: `+=${scene.pinVh}vh`   // wrong — collapses the pin to roughly a ninth
-end: `+=${scene.pinVh}%`    // right — % of viewport height
+end: `+=${scene.pinVh}vh`   // wrong — vh is not parsed as a relative unit
+end: `+=${scene.pinVh}%`    // wrong — changes when the trigger grows with wrapped text
+end: () => `+=${Math.round(scene.pinVh / 100 * window.innerHeight)}` // viewport pixels
 ```
 
-ScrollTrigger accepts `px` and `%` in a relative end string. `vh` is parsed as a
-bare number, so a 250vh pin becomes a few hundred pixels and the whole
-choreography plays in a flick of the wheel. Gate G5 measures the pin spacer and
-fails when the distance is off by more than 2px.
+ScrollTrigger accepts pixels and percentages in a relative end string. `vh` is
+parsed as a bare number, so a 250vh pin becomes a few hundred pixels. A relative
+percentage can scale with the trigger's rendered height, which changes when text
+wraps differently across platforms. Compute pixels from the viewport on refresh.
+Gate G5 measures the pin spacer and fails when the distance is off by more than 2px.
 
 ## 2. Lenis 1.1.0 needs `prevent` as a function
 

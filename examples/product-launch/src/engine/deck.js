@@ -208,9 +208,9 @@ export async function createDeck({
         ? ScrollTrigger.create({
             trigger: section,
             start: 'top top',
-            // `%` of viewport height. `vh` is not a valid ScrollTrigger end unit and
-            // silently collapses the pin distance.
-            end: `+=${scene.pinVh}%`,
+            // Resolve the contract against the viewport, independent of trigger height.
+            // ScrollTrigger's relative `%` end can scale with a tall, wrapped section.
+            end: () => `+=${Math.round((Number(scene.pinVh) / 100) * window.innerHeight)}`,
             pin: true,
             scrub: true,
             animation: tl,
