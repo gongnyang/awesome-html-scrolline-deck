@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const EX = path.join(ROOT, 'examples');
 const SITE = path.join(ROOT, 'site');
+const TEMPLATE_ROOT = path.join(ROOT, 'templates', 'scenes');
 const VIDEOS = [
   ['01-promo-shorts', '홍보 쇼츠', '여덟 개 덱을 45초 세로 영상으로 압축했습니다.'],
   ['02-real-case-cheonggyecheon', '실제 사례 스토리', '청계천 복원의 연혁과 도시 열섬 연구를 55초에 담았습니다.'],
@@ -60,6 +61,17 @@ for (const name of decks) {
   cards.push({ name, title: deck.title, subtitle: deck.subtitle || '', style: deck.theme?.style || 'dark', accent: deck.theme?.accent || '#a8ff60', scenes, pin, shots });
   console.log(`built ${name}: ${scenes.length} scenes, ${pin}vh`);
 }
+const techniques = fs.readdirSync(TEMPLATE_ROOT).filter((name) =>
+  fs.existsSync(path.join(TEMPLATE_ROOT, name, 'template.json'))).sort();
+if (techniques.length !== 24) throw new Error(`Expected 24 scene templates, found ${techniques.length}`);
+fs.mkdirSync(path.join(SITE, '_templates'), { recursive: true });
+const templateCards = techniques.map((name) => {
+  const dir = path.join(TEMPLATE_ROOT, name);
+  const preview = path.join(dir, 'preview.webp');
+  if (!fs.existsSync(preview)) throw new Error(`${name}: representative preview.webp is missing`);
+  fs.copyFileSync(preview, path.join(SITE, '_templates', `${name}.webp`));
+  return { name, ...JSON.parse(fs.readFileSync(path.join(dir, 'template.json'), 'utf8')) };
+});
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const html = `<!doctype html>
@@ -96,6 +108,12 @@ const html = `<!doctype html>
   .video-card video { display:block; width:100%; max-height:420px; background:#080b0e; aspect-ratio:16/10; object-fit:contain }
   .video-card:first-child video { aspect-ratio:9/12 } .video-card h3 { font-size:22px; margin:16px 0 8px }
   .video-card p { color:var(--muted); line-height:1.5; margin:0 0 10px } .video-card a { color:var(--accent) }
+  .templates { padding:8vh 0; border-top:1px solid var(--hair) } .templates h2 { font-size:clamp(36px,5vw,68px); margin:0 0 12px; line-height:1.05 }
+  .template-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:18px; margin-top:36px }
+  .template-card { border:1px solid var(--hair); background:#10171a; overflow:hidden }
+  .template-card img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; background:#151b1e }
+  .template-card div { padding:16px } .template-card h3 { font-size:19px; margin:0 0 8px; line-height:1.2 }
+  .template-card code { color:var(--accent); font-size:12px } .template-card p { color:var(--muted); font-size:14px; line-height:1.45; margin:0 }
   ol { margin:0; padding-left:1.2em; color:var(--muted); font-size:14px; line-height:1.7 } ol code { color:var(--ink); font-size:12px }
   footer { color:var(--subtle); font-size:13px; margin-top:8vh; line-height:1.7 }
 </style>
@@ -116,6 +134,10 @@ ${cards.map((c) => `
     </div>
     <div class="strip">${c.shots.slice(0,4).map((f) => `<a href="./${c.name}/"><img loading="lazy" src="./_qa/${c.name}/${f}" alt="${esc(c.title)} — ${f.replace('-55.jpg','')} 완성 화면" /></a>`).join('')}</div>
   </section>`).join('')}
+  <section class="templates" id="templates"><p class="eyebrow">Scene library · 24 executable compositions</p><h2>장면을 역할로 고르세요.</h2>
+    <p class="lead">각 장면은 완성 화면, 예시 문구, 모바일·모션 감소 구성을 갖춥니다. 같은 효과를 이름만 바꾼 변형은 제외했습니다.</p>
+    <div class="template-grid">${templateCards.map((t) => `<article class="template-card"><img loading="lazy" src="./_templates/${t.name}.webp" alt="${esc(t.name)} 장면 완성 화면" /><div><code>${esc(t.name)}</code><h3>${esc(t.exampleCopy?.title || t.description_ko || t.name)}</h3><p>${esc(t.purpose || t.description_ko || '')}</p></div></article>`).join('')}</div>
+  </section>
   <section class="videos" id="videos"><p class="eyebrow">Deck to video · three storytelling methods</p><h2>발표 장면을 영상으로</h2>
     <p class="lead">홍보용 몽타주, 출처를 밝힌 실제 사례, 장면 설계 강의. 세 영상 모두 한국어 음성과 화면 자막을 포함합니다.</p>
     <div class="video-grid">

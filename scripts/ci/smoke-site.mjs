@@ -44,16 +44,25 @@ try {
     const response = await gallery.page.goto(base, { waitUntil: 'networkidle', timeout: 60_000 });
     const cards = await gallery.page.locator('section.deck').count();
     const videos = await gallery.page.locator('video').count();
-    if (!response?.ok() || cards !== 8 || videos !== 3 || gallery.errors.length) {
-      throw new Error(`Gallery failed: HTTP ${response?.status()}, ${cards} cards, ${videos} videos, ${gallery.errors.join(' | ')}`);
+    const templates = await gallery.page.locator('.template-card').count();
+    if (!response?.ok() || cards !== 8 || videos !== 3 || templates !== 24 || gallery.errors.length) {
+      throw new Error(`Gallery failed: HTTP ${response?.status()}, ${cards} decks, ${templates} templates, ${videos} videos, ${gallery.errors.join(' | ')}`);
     }
+    const brokenPreviews = await gallery.page.evaluate(async () => {
+      const urls = [...document.querySelectorAll('.template-card img')].map((img) => img.getAttribute('src'));
+      return (await Promise.all(urls.map(async (url) => {
+        const img = new Image(); img.src = url;
+        try { await img.decode(); return null; } catch { return url; }
+      }))).filter(Boolean);
+    });
+    if (brokenPreviews.length) throw new Error(`Template previews failed to decode: ${brokenPreviews.join(', ')}`);
     for (const slug of ['01-promo-shorts', '02-real-case-cheonggyecheon', '03-education-scene-design']) {
       for (const ext of ['mp4', 'jpg', 'srt']) {
         const mediaResponse = await gallery.page.request.get(`${base}videos/${slug}.${ext}`);
         if (!mediaResponse.ok()) throw new Error(`Video asset failed: ${mediaResponse.status()} videos/${slug}.${ext}`);
       }
     }
-    console.log(`PASS ${base} (8 deck cards, 3 playable video sources)`);
+    console.log(`PASS ${base} (8 decks, 24 template previews, 3 playable video sources)`);
   } finally {
     await gallery.context.close();
   }
