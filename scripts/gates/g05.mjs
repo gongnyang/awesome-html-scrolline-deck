@@ -1,9 +1,9 @@
 /**
- * G5 — 핀 거리 실측: pin-spacer 높이 − 뷰포트 높이 = pinVh% × 뷰포트 높이 (±2px).
+ * G5 — 핀 거리 실측: pin-spacer 높이 − 실제 section 높이 = pinVh% × 뷰포트 높이 (±2px).
  *
  * fc-astra에서 ScrollTrigger end를 `+=${pinVh}vh`로 줬다가 핀 거리가 1/9로 줄었다.
- * ScrollTrigger의 end 문자열은 vh를 모른다 — `%`만 뷰포트 높이 기준으로 해석한다.
- * 이 게이트는 그 단위 사고를 실측으로 잡는다.
+ * ScrollTrigger의 상대 `%`도 section 높이에 영향을 받을 수 있다. 그래서 엔진은
+ * 뷰포트 픽셀을 전달하고, 이 게이트는 section 자체의 초과 높이를 제외해 측정한다.
  */
 import { orderedScenes } from './_util.mjs';
 import { expectedPinDistance } from '../lib/wheel.mjs';

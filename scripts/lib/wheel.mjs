@@ -18,12 +18,13 @@ export const MIN_OPACITY = 0.05;  // 가시 판정 최소 불투명도.
 
 /**
  * pin-spacer 기하 → 장면 구간.
- * 핀이 걸린 장면은 spacer 높이에서 뷰포트 높이를 뺀 만큼이 핀 거리(= 스크럽 구간)다.
+ * 핀이 걸린 장면은 spacer 높이에서 실제 section 높이를 뺀 만큼이 핀 거리다.
+ * 문구가 줄바꿈되어 section이 뷰포트보다 커져도 핀 길이는 그대로여야 한다.
  * 핀이 없는 장면은 제자리를 지나가므로 핀 거리 0으로 본다.
  */
-export function computeRange({ top, height, scrollY = 0, innerHeight = 900, pinned = true }) {
+export function computeRange({ top, height, scrollY = 0, innerHeight = 900, sectionHeight = innerHeight, pinned = true }) {
   const start = Math.round(top + scrollY);
-  const pinDistance = pinned ? Math.max(0, Math.round(height - innerHeight)) : 0;
+  const pinDistance = pinned ? Math.max(0, Math.round(height - sectionHeight)) : 0;
   return { start, pinDistance, end: start + pinDistance, height: Math.round(height), pinned: Boolean(pinned) };
 }
 
@@ -174,6 +175,7 @@ export async function sceneRanges(page) {
         technique: section.dataset.technique ?? '',
         top: rect.top,
         height: rect.height,
+        sectionHeight: section.getBoundingClientRect().height,
         pinned: Boolean(spacer),
         scrollY: window.scrollY,
         innerHeight: window.innerHeight,
