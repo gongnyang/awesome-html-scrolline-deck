@@ -433,5 +433,16 @@ export function build(map, env) {
   });
   if (master.duration() < map.duration)
     master.to({}, { duration: map.duration - master.duration() }, master.duration());
-  return { tl: master, map, beats, byId, destroy: () => beats.forEach((b) => b.root.remove()) };
+  let destroyed = false;
+  const destroy = () => {
+    if (destroyed) return;
+    destroyed = true;
+    beats.forEach((beat) => {
+      beat.media?.seq?.destroy?.();
+      beat.media?.clip?.destroy?.();
+    });
+    master.kill();
+    beats.forEach((beat) => beat.root.remove());
+  };
+  return { tl: master, map, beats, byId, destroy };
 }

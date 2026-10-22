@@ -10,6 +10,7 @@ const mocks = vi.hoisted(() => ({
   createPresenter: vi.fn(),
   createA11y: vi.fn(),
   exportPath: vi.fn(),
+  exportHolds: vi.fn(),
   buildExport: vi.fn(),
   toExportSeconds: vi.fn(),
 }));
@@ -21,6 +22,7 @@ vi.mock('./presenter.js', () => ({ createPresenter: mocks.createPresenter }));
 vi.mock('./a11y.js', () => ({ createA11y: mocks.createA11y, prefersReducedMotion: () => false }));
 vi.mock('./export.js', () => ({
   exportPath: mocks.exportPath,
+  exportHolds: mocks.exportHolds,
   buildExportTimeline: mocks.buildExport,
   toExportSeconds: mocks.toExportSeconds,
 }));
@@ -31,6 +33,17 @@ import { boot } from './boot.js';
 const deck = { id: 'demo', concept: 'smoke', beats: [], sources: [{ id: 's1', title: 'Source one' }] };
 const concept = { id: 'smoke' };
 const moves = {};
+const initialFontsDescriptor = Object.getOwnPropertyDescriptor(document, 'fonts');
+
+function deferred() {
+  let resolve;
+  const promise = new Promise((done) => (resolve = done));
+  return { promise, resolve };
+}
+
+function stubFonts(ready) {
+  Object.defineProperty(document, 'fonts', { configurable: true, value: { ready } });
+}
 
 function built() {
   return { tl: { time: vi.fn(() => 1.25), seek: vi.fn() }, beats: [], destroy: vi.fn() };
@@ -38,7 +51,10 @@ function built() {
 
 beforeEach(() => {
   vi.useFakeTimers();
-  vi.clearAllMocks();
+  vi.resetAllMocks();
+  if (initialFontsDescriptor) Object.defineProperty(document, 'fonts', initialFontsDescriptor);
+  else Reflect.deleteProperty(document, 'fonts');
+  Object.defineProperty(document, 'fonts', { configurable: true, value: undefined });
   document.body.innerHTML = '<div id="app"></div>';
   delete window.__deck;
   delete window.__timelines;
@@ -50,7 +66,7 @@ beforeEach(() => {
     host.append(root);
     return { root, clear: vi.fn(), viewport: {} };
   });
-  mocks.build.mockResolvedValue(built());
+  mocks.build.mockImplementation(async () => built());
   mocks.createDriver.mockImplementation(() => ({
     attach: vi.fn(),
     detach: vi.fn(),
@@ -61,10 +77,15 @@ beforeEach(() => {
   mocks.createPresenter.mockReturnValue({ destroy: vi.fn(), goto: vi.fn() });
   mocks.createA11y.mockReturnValue({ destroy: vi.fn() });
   mocks.exportPath.mockReturnValue({ duration: 8 });
+  mocks.exportHolds.mockReturnValue({});
   mocks.buildExport.mockReturnValue({});
   mocks.toExportSeconds.mockImplementation((path, time) => time);
 });
-afterEach(() => vi.useRealTimers());
+afterEach(() => {
+  vi.useRealTimers();
+  if (initialFontsDescriptor) Object.defineProperty(document, 'fonts', initialFontsDescriptor);
+  else Reflect.deleteProperty(document, 'fonts');
+});
 
 describe('boot', () => {
   it('renders validation errors and throws before planning', async () => {
@@ -99,7 +120,10 @@ describe('boot', () => {
     expect(window.__deck.tl).toBe(first.tl);
     await handle.rebuild('fonts');
     expect(window.__deck.tl).toBe(second.tl);
+    expect(first.destroy).toHaveBeenCalledOnce();
     handle.destroy();
+    handle.destroy();
+    expect(second.destroy).toHaveBeenCalledOnce();
   });
 
   // 문서 대조로 찾은 결함: C12 URL 파라미터 ?t·?stop·?debug=1이 구현돼 있지 않았다(?motion=reduce만).
@@ -136,8 +160,193 @@ describe('boot', () => {
     expect(mocks.createDriver).not.toHaveBeenCalled();
     expect(mocks.createPresenter).not.toHaveBeenCalled();
     expect(mocks.buildExport).toHaveBeenCalledOnce();
+    expect(mocks.build).toHaveBeenCalledTimes(2);
     expect(window.__timelines.scrolline).toEqual({});
     handle.destroy();
+  });
+
+  it('passes the shared export holds table as the third exportPath argument', async () => {
+    const map = { duration: 4, stops: [] };
+    const holds = { title: 2.5 };
+    const exportDeck = { ...deck, export: { lead: 0.5 }, beats: [{ id: 'title', exportHold: 2.5 }] };
+    mocks.plan.mockReturnValue(map);
+    mocks.exportHolds.mockReturnValue(holds);
+    const handle = await boot({
+      host: document.querySelector('#app'),
+      deck: exportDeck,
+      concept,
+      moves,
+      assetBase: '/',
+      mode: 'export',
+    });
+    expect(mocks.exportHolds).toHaveBeenCalledWith(exportDeck, map);
+    expect(mocks.exportPath).toHaveBeenCalledWith(map, exportDeck.export, holds);
+    handle.destroy();
+  });
+
+  it('builds before waiting for fonts, then wraps only the final build', async () => {
+    const sequence = [];
+    const first = built();
+    first.destroy.mockImplementation(() => sequence.push('destroy-1'));
+    const final = built();
+    const fontsReady = deferred();
+    const fontsRequested = deferred();
+    const wrapper = { final: true };
+    const stage = {
+      root: document.createElement('div'),
+      clear: vi.fn(() => sequence.push('clear')),
+      viewport: {},
+    };
+    mocks.createStage.mockReturnValue(stage);
+    mocks.build
+      .mockImplementationOnce(async () => {
+        sequence.push('build-1');
+        return first;
+      })
+      .mockImplementationOnce(async () => {
+        sequence.push('build-2');
+        return final;
+      });
+    mocks.buildExport.mockReturnValue(wrapper);
+    Object.defineProperty(document, 'fonts', {
+      configurable: true,
+      get() {
+        sequence.push('fonts-ready');
+        fontsRequested.resolve();
+        return { ready: fontsReady.promise };
+      },
+    });
+
+    const pending = boot({
+      host: document.querySelector('#app'),
+      deck,
+      concept,
+      moves,
+      assetBase: '/',
+      mode: 'export',
+    });
+    await fontsRequested.promise;
+    expect(mocks.build).toHaveBeenCalledTimes(1);
+    expect(sequence).toEqual(['build-1', 'fonts-ready']);
+    expect(stage.clear).not.toHaveBeenCalled();
+
+    fontsReady.resolve();
+    const handle = await pending;
+    expect(mocks.build).toHaveBeenCalledTimes(2);
+    expect(sequence).toEqual(['build-1', 'fonts-ready', 'destroy-1', 'clear', 'build-2']);
+    expect(stage.clear).toHaveBeenCalledOnce();
+    expect(first.destroy).toHaveBeenCalledOnce();
+    expect(handle.built).toBe(final);
+    expect(mocks.buildExport).toHaveBeenCalledOnce();
+    expect(mocks.buildExport.mock.calls[0][0]).toBe(final.tl);
+    expect(window.__timelines.scrolline).toBe(wrapper);
+
+    fontsReady.resolve();
+    await Promise.resolve();
+    expect(mocks.build).toHaveBeenCalledTimes(2);
+    handle.destroy();
+  });
+
+  it('rebuilds once when live fonts settle', async () => {
+    const fontsReady = deferred();
+    const fontsRequested = deferred();
+    Object.defineProperty(document, 'fonts', {
+      configurable: true,
+      get() {
+        fontsRequested.resolve();
+        return { ready: fontsReady.promise };
+      },
+    });
+    const rebuilt = new Promise((resolve) =>
+      window.addEventListener('scrolline:rebuild', resolve, { once: true }),
+    );
+
+    const handle = await boot({ host: document.querySelector('#app'), deck, concept, moves, assetBase: '/' });
+    await fontsRequested.promise;
+    expect(mocks.build).toHaveBeenCalledOnce();
+
+    fontsReady.resolve();
+    await rebuilt;
+    expect(mocks.build).toHaveBeenCalledTimes(2);
+    handle.destroy();
+  });
+
+  it('does not rebuild when live fonts settle after disposal', async () => {
+    const fontsReady = deferred();
+    const fontsRequested = deferred();
+    Object.defineProperty(document, 'fonts', {
+      configurable: true,
+      get() {
+        fontsRequested.resolve();
+        return { ready: fontsReady.promise };
+      },
+    });
+    const handle = await boot({ host: document.querySelector('#app'), deck, concept, moves, assetBase: '/' });
+    await fontsRequested.promise;
+    handle.destroy();
+
+    fontsReady.resolve();
+    await fontsReady.promise;
+    await Promise.resolve();
+    expect(mocks.build).toHaveBeenCalledOnce();
+  });
+
+  it('clears the export font timeout when fonts are already ready', async () => {
+    stubFonts(Promise.resolve());
+    const handle = await boot({
+      host: document.querySelector('#app'),
+      deck,
+      concept,
+      moves,
+      assetBase: '/',
+      mode: 'export',
+    });
+
+    expect(vi.getTimerCount()).toBe(0);
+    handle.destroy();
+  });
+
+  it('registers the final export timeline when fonts.ready exceeds the timeout', async () => {
+    const final = built();
+    const fontsReady = deferred();
+    const fontsRequested = deferred();
+    const ready = vi.fn();
+    mocks.build.mockResolvedValueOnce(built()).mockResolvedValueOnce(final);
+    Object.defineProperty(document, 'fonts', {
+      configurable: true,
+      get() {
+        fontsRequested.resolve();
+        return { ready: fontsReady.promise };
+      },
+    });
+    window.addEventListener('scrolline:export-ready', ready);
+
+    const pending = boot({
+      host: document.querySelector('#app'),
+      deck,
+      concept,
+      moves,
+      assetBase: '/',
+      mode: 'export',
+    });
+    await fontsRequested.promise;
+    expect(mocks.build).toHaveBeenCalledTimes(1);
+    expect(mocks.buildExport).not.toHaveBeenCalled();
+
+    await vi.advanceTimersByTimeAsync(8_000);
+    const handle = await pending;
+    expect(mocks.build).toHaveBeenCalledTimes(2);
+    expect(mocks.buildExport).toHaveBeenCalledOnce();
+    expect(mocks.buildExport.mock.calls[0][0]).toBe(final.tl);
+    expect(window.__timelines.scrolline).toEqual({});
+    expect(ready).toHaveBeenCalledOnce();
+    expect(ready.mock.calls[0][0].detail).toEqual({ duration: 8 });
+
+    fontsReady.resolve();
+    await Promise.resolve();
+    expect(mocks.build).toHaveBeenCalledTimes(2);
+    handle.destroy();
+    window.removeEventListener('scrolline:export-ready', ready);
   });
 
   it('passes the complete v2 renderer environment to build', async () => {
@@ -211,9 +420,22 @@ describe('boot', () => {
   it('binds export clips and waits for every sequence before registering the wrapper', async () => {
     let readyOne;
     let readyTwo;
-    const first = { preloadAll: vi.fn(() => new Promise((resolve) => (readyOne = resolve))) };
-    const second = { preloadAll: vi.fn(() => new Promise((resolve) => (readyTwo = resolve))) };
+    const startedOne = deferred();
+    const startedTwo = deferred();
+    const first = {
+      preloadAll: vi.fn(() => {
+        startedOne.resolve();
+        return new Promise((resolve) => (readyOne = resolve));
+      }),
+    };
+    const second = {
+      preloadAll: vi.fn(() => {
+        startedTwo.resolve();
+        return new Promise((resolve) => (readyTwo = resolve));
+      }),
+    };
     const clip = { bindExport: vi.fn() };
+    stubFonts(Promise.resolve());
     mocks.build.mockResolvedValue({
       tl: { time: vi.fn(() => 0), seek: vi.fn() },
       beats: [
@@ -233,11 +455,9 @@ describe('boot', () => {
       assetBase: '/',
       mode: 'export',
     });
-    await Promise.resolve();
-    await Promise.resolve();
+    await Promise.all([startedOne.promise, startedTwo.promise]);
     expect(mocks.buildExport).not.toHaveBeenCalled();
     readyOne();
-    await Promise.resolve();
     expect(mocks.buildExport).not.toHaveBeenCalled();
     readyTwo();
     const handle = await pending;

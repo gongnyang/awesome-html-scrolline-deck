@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildExportTimeline, exportPath, toExportSeconds } from './export.js';
+import { buildExportTimeline, exportHolds, exportPath, toExportSeconds } from './export.js';
 
 const map = {
   duration: 10,
@@ -79,6 +79,18 @@ describe('buildExportTimeline', () => {
     wrapper.seek(2.4);
     expect(master.time).toBeCloseTo(first);
     expect(wrapper.duration()).toBeCloseTo(path.duration);
+  });
+});
+
+describe('exportHolds', () => {
+  it('maps every stop of a beat to that beat exportHold and skips beats without one', () => {
+    const deck = { beats: [{ id: 'a', exportHold: 2.4 }, { id: 'b' }] };
+    const stops = [
+      { name: 'a', beat: 'a', t: 1 },
+      { name: 'a/step', beat: 'a', t: 2 },
+      { name: 'b', beat: 'b', t: 3 },
+    ];
+    expect(exportHolds(deck, { duration: 4, stops })).toEqual({ a: 2.4, 'a/step': 2.4 });
   });
 });
 

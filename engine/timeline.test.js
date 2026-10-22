@@ -349,4 +349,62 @@ describe('plan', () => {
     built.tl.pause(map.beats[0].end + 0.001);
     expect(Number(gsap.getProperty(built.byId.get('a').root, 'opacity'))).toBe(1);
   });
+
+  it('destroys beat media, kills the master timeline, then removes roots once', () => {
+    const events = [];
+    const seq = { destroy: vi.fn(() => events.push('seq')) };
+    const clip = { destroy: vi.fn(() => events.push('clip')) };
+    const deck = {
+      id: 'destroy',
+      lang: 'en',
+      beats: [{ id: 'one', type: 'text', text: 'Cleanup', enter: { move: 'enter' } }],
+    };
+    const map = plan(deck, env);
+    const stageRoot = document.createElement('div');
+    let beatRoot;
+    const built = build(map, {
+      stage: {
+        root: stageRoot,
+        viewport: { w: 100, h: 100 },
+        placeBeat: (node) => stageRoot.append(node),
+        overlayFor: () => document.createElement('div'),
+      },
+      deck,
+      registry,
+      concept,
+      beatTypes: {
+        text: {
+          primary: 'block',
+          render: () => {
+            beatRoot = document.createElement('section');
+            const part = document.createElement('span');
+            beatRoot.append(part);
+            const remove = beatRoot.remove.bind(beatRoot);
+            vi.spyOn(beatRoot, 'remove').mockImplementation(() => {
+              events.push('root');
+              remove();
+            });
+            return { root: beatRoot, parts: { block: [part] }, media: { seq, clip } };
+          },
+        },
+      },
+      gsap,
+      measureFn: () => ({ x: 0, y: 0, w: 1, h: 1 }),
+    });
+    const kill = built.tl.kill.bind(built.tl);
+    vi.spyOn(built.tl, 'kill').mockImplementation((...args) => {
+      events.push('kill');
+      return kill(...args);
+    });
+
+    built.destroy();
+    expect(events).toEqual(['seq', 'clip', 'kill', 'root']);
+    expect(beatRoot.isConnected).toBe(false);
+
+    built.destroy();
+    expect(events).toEqual(['seq', 'clip', 'kill', 'root']);
+    expect(seq.destroy).toHaveBeenCalledOnce();
+    expect(clip.destroy).toHaveBeenCalledOnce();
+    expect(built.tl.kill).toHaveBeenCalledOnce();
+  });
 });

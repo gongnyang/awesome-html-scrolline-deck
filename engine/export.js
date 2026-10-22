@@ -57,6 +57,21 @@ export function exportPath(map, opts, holds) {
 }
 
 /**
+ * stop 이름 → hold 초. 각 stop이 속한 beat의 exportHold(유한수일 때만).
+ * boot(브라우저 wrapper)와 tools(영상 길이·stopAt)가 같은 표를 써야 시각이 맞는다.
+ * @param {{ beats: Array<{ id: string, exportHold?: number }> }} deck
+ * @param {import('./types.js').TimelineMap} map
+ * @returns {Record<string, number>}
+ */
+export function exportHolds(deck, map) {
+  return Object.fromEntries(
+    map.stops
+      .map((stop) => [stop.name, deck.beats.find((item) => item.id === stop.beat)?.exportHold])
+      .filter(([, hold]) => Number.isFinite(hold)),
+  );
+}
+
+/**
  * paused wrapper: segment마다 master.tweenFromTo(from, to, { duration, ease })를 start 초에 add.
  * @param {object} master  paused master timeline
  * @param {import('./types.js').ExportPath} path

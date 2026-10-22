@@ -47,15 +47,6 @@ export function parseCaptureArgs(args) {
 // 엔진·registry는 늘 이 레포 것(root는 덱·출력 위치만 바꾼다).
 const CODE_ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-const holdsFor = (deck, map) =>
-  Object.fromEntries(
-    map.stops
-      .map((stop) => {
-        const beat = deck.beats.find((item) => item.id === stop.beat);
-        return [stop.name, beat?.exportHold];
-      })
-      .filter(([, hold]) => Number.isFinite(hold)),
-  );
 
 /**
  * Deck → timing map and export path, no build or render (the --dry-run report).
@@ -64,7 +55,7 @@ const holdsFor = (deck, map) =>
 export async function exportPlan(root, { deckId, fps, out: outArg }) {
   const { deckFile, buildDir, out } = exportPaths(root, deckId, outArg);
   if (!existsSync(deckFile)) throw new Error(`deck not found: ${deckId}`);
-  const [{ default: YAML }, { exportPath }, { plan }] = await Promise.all([
+  const [{ default: YAML }, { exportHolds, exportPath }, { plan }] = await Promise.all([
     import('yaml'),
     import('../engine/export.js'),
     import('../engine/timeline.js'),
@@ -75,7 +66,7 @@ export async function exportPlan(root, { deckId, fps, out: outArg }) {
     import(pathToFileURL(path.join(CODE_ROOT, 'concepts', deck.concept, 'index.js')).href),
   ]);
   const map = plan(deck, { registry: moves, concept });
-  const pathInfo = exportPath(map, deck.export, holdsFor(deck, map));
+  const pathInfo = exportPath(map, deck.export, exportHolds(deck, map));
   return { deck: deckId, fps, out, buildDir, map, path: pathInfo };
 }
 

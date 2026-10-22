@@ -2,7 +2,7 @@
 import { EVENTS, RESIZE, VERSION } from './constants.js';
 import { createA11y, prefersReducedMotion } from './a11y.js';
 import { validateDeck } from './deck-schema.js';
-import { buildExportTimeline, exportPath, toExportSeconds } from './export.js';
+import { buildExportTimeline, exportHolds, exportPath, toExportSeconds } from './export.js';
 import { frameSequence, preloadImages, videoClip } from './media.js';
 import { createPresenter } from './presenter.js';
 import { createScrollDriver } from './scroll.js';
@@ -18,6 +18,24 @@ import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { SplitText } from 'gsap/SplitText';
 
 const eventTarget = () => (typeof window === 'undefined' ? null : window);
+const EXPORT_FONTS_TIMEOUT_MS = 8_000;
+
+async function waitForExportFonts() {
+  const ready = document.fonts?.ready;
+  if (!ready) return;
+
+  let timer;
+  try {
+    await Promise.race([
+      Promise.resolve(ready).catch(() => {}),
+      new Promise((resolve) => {
+        timer = setTimeout(resolve, EXPORT_FONTS_TIMEOUT_MS);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 function emit(name, detail) {
   const target = eventTarget();
@@ -187,8 +205,14 @@ export async function boot(opts) {
   const sources = sourceIndex(deck.sources);
   const plugins = registeredPlugins();
 
+  const destroyBuilt = () => {
+    if (!built) return;
+    const previous = built;
+    built = undefined;
+    previous.destroy?.();
+  };
+
   const buildDeck = async () => {
-    built?.destroy?.();
     built = await build(map, {
       stage,
       gsap,
@@ -212,7 +236,17 @@ export async function boot(opts) {
     return built;
   };
 
-  await buildDeck();
+  if (mode === 'export') {
+    // Build once to put text in the DOM so its font requests can start. Then
+    // rebuild after fonts settle (or the bound expires) before making a wrapper.
+    await buildDeck();
+    await waitForExportFonts();
+    destroyBuilt();
+    stage.clear();
+    await buildDeck();
+  } else {
+    await buildDeck();
+  }
 
   const rebuild = async (reason = 'resize') => {
     if (disposed) return;
@@ -220,6 +254,7 @@ export async function boot(opts) {
     driver?.detach?.();
     presenter?.destroy?.();
     a11y?.destroy?.();
+    destroyBuilt();
     stage.clear();
     viewport = viewportFor(mode);
     stage.viewport = viewport;
@@ -257,7 +292,7 @@ export async function boot(opts) {
     // Keep removal private while preserving the public, contract-defined handle shape.
     removeResize = () => window.removeEventListener('resize', onResize);
   } else {
-    const path = exportPath(map, deck.export);
+    const path = exportPath(map, deck.export, exportHolds(deck, map));
     bindExportClips(built.beats, path);
     await preloadExportMedia(built.beats);
     const wrapper = buildExportTimeline(built.tl, path, gsap);
@@ -299,13 +334,15 @@ export async function boot(opts) {
   }
   emit(EVENTS.ready, { map, mode });
 
-  // Fonts can change measured rects once.  Do not delay readiness for it.
-  document.fonts?.ready?.then(() => {
-    if (!fontsRebuilt && !disposed) {
-      fontsRebuilt = true;
-      void rebuild('fonts');
-    }
-  });
+  // Live fonts can change measured rects once. Do not delay readiness for it.
+  if (mode === 'live') {
+    document.fonts?.ready?.then(() => {
+      if (!fontsRebuilt && !disposed) {
+        fontsRebuilt = true;
+        void rebuild('fonts');
+      }
+    });
+  }
 
   return {
     map,
@@ -320,6 +357,7 @@ export async function boot(opts) {
     },
     rebuild,
     destroy() {
+      if (disposed) return;
       disposed = true;
       clearTimeout(resizeTimer);
       removeResize();
@@ -327,7 +365,7 @@ export async function boot(opts) {
       driver?.detach?.();
       presenter?.destroy?.();
       a11y?.destroy?.();
-      built?.destroy?.();
+      destroyBuilt();
       track?.remove();
       stage.root?.remove();
       if (window.__deck === api) delete window.__deck;

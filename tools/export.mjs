@@ -15,9 +15,9 @@ const run = (command, args, env = process.env) => {
   if (result.status !== 0) throw new Error(`${command} exited ${result.status}`);
 };
 
-function setCompositionRoot(file, duration) {
-  const html = readFileSync(file, 'utf8');
-  const root = `<div id="scrolline-root" data-composition-id="scrolline" data-width="1920" data-height="1080" data-duration="${duration}">`;
+export function setCompositionRoot(file, report, io = { readFileSync, writeFileSync }) {
+  const html = io.readFileSync(file, 'utf8');
+  const root = `<div id="scrolline-root" data-composition-id="scrolline" data-width="1920" data-height="1080" data-duration="${report.path.duration}">`;
   // HyperFrames lints the standalone HTML, not Vite's external bundle.  Keep
   // this static registration shape for lint while boot performs the real,
   // post-build assignment from its export-ready branch.  Executing an alias
@@ -25,7 +25,7 @@ function setCompositionRoot(file, duration) {
   const registration = `<script>if(false)window.__timelines['scrolline']=window.__timelines.scrolline</script>`;
   const replaced = html.replace('<div id="app"></div>', `${root}<div id="app"></div></div>${registration}`);
   if (replaced === html) throw new Error('export HTML must contain <div id="app"></div>');
-  writeFileSync(file, replaced);
+  io.writeFileSync(file, replaced);
 }
 
 function builtEntry(buildDir) {
@@ -55,7 +55,7 @@ async function main() {
   const entry = builtEntry(buildDir);
   const assets = path.join(ROOT, 'decks', deckId, 'assets');
   if (existsSync(assets)) cpSync(assets, path.join(buildDir, 'assets'), { recursive: true });
-  setCompositionRoot(entry, pathInfo.duration);
+  setCompositionRoot(entry, report);
   run('npx', ['hyperframes', 'lint', buildDir]);
   if (parsed.buildOnly) return console.log(JSON.stringify({ ...report, entry }, null, 2));
   run('npx', ['hyperframes', 'render', buildDir, '--fps', String(fps), '--output', out]);
